@@ -12,5 +12,6 @@ The game centers around an unusual alien invasion against a colony planet in the
 ## Gameplay
 <div align="center">
   <video src="xmultiply.mp4" poster="xmultiply.jpg" width="650" height="520" controls preload></video>
+  Full Gameplay [link](https://www.youtube.com/watch?v=bDFKSX90Ogo).
 </div>
 
