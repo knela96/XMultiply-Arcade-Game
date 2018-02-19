@@ -1,9 +1,16 @@
 # X-Multiply Arcade Game
-TODO: Write a project description
-## Installation
-TODO: Describe the installation process
-## Usage
-TODO: Write usage instructions
+The game centers around an unusual alien invasion against a colony planet in the year 2249—the aliens themselves are microscopic creatures that invade, infect, and kill the colonists. Scientists have deployed the microscopic fighter X-002 into the body of the hapless woman whose body has been invaded by the alien queen.
+## Our Team
+Rafel Brau - Management
+Pol Cortés - Art & Design
+Èric Canela - Code
+Ferran Barnés - Code
+Eneko Gabaldón - QA
+(/images/logo.png)
+
+## Gameplay
+[![IMAGE ALT TEXT](http://img.youtube.com/vi/GcoOZxjrLdk/0.jpg)](https://youtu.be/GcoOZxjrLdk "Video Title")
+
 ## Contributing
 1. Fork it!
 2. Create your feature branch: `git checkout -b my-newfeature`
@@ -11,9 +18,3 @@ TODO: Write usage instructions
 feature'`
 4. Push to the branch: `git push origin my-new-feature`
 5. Submit a pull request :D
-## History
-TODO: Write history
-## Credits
-TODO: Write credits
-## License
-TODO: Write license
