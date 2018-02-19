@@ -11,6 +11,6 @@ The game centers around an unusual alien invasion against a colony planet in the
 
 ## Gameplay
 <div align="center">
-  <a href="https://www.youtube.com/watch?v=GcoOZxjrLdk"><img src="https://img.youtube.com/vi/GcoOZxjrLdk/0.jpg" alt="IMAGE ALT TEXT"></a>
+  <video src="xmultiply.mp4" poster="xmultiply.jpg" width="650" height="520" controls preload></video>
 </div>
 
