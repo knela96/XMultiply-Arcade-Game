@@ -14,10 +14,3 @@ The game centers around an unusual alien invasion against a colony planet in the
   <a href="https://www.youtube.com/watch?v=GcoOZxjrLdk"><img src="https://img.youtube.com/vi/GcoOZxjrLdk/0.jpg" alt="IMAGE ALT TEXT"></a>
 </div>
 
-## Contributing
-1. Fork it!
-2. Create your feature branch: `git checkout -b my-newfeature`
-3. Commit your changes: `git commit -am 'Add some
-feature'`
-4. Push to the branch: `git push origin my-new-feature`
-5. Submit a pull request :D
