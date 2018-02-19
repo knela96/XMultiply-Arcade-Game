@@ -9,9 +9,6 @@ The game centers around an unusual alien invasion against a colony planet in the
 - Ferran Barnés - Code
 - Eneko Gabaldón - QA
 
-@import "style.css"
-@import "prova.html"
-
 ## Gameplay
 <div align="center">
   <a href="https://www.youtube.com/watch?v=GcoOZxjrLdk"><img src="https://img.youtube.com/vi/GcoOZxjrLdk/0.jpg" alt="IMAGE ALT TEXT"></a>
