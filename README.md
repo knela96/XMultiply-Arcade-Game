@@ -16,6 +16,4 @@ The game centers around an unusual alien invasion against a colony planet in the
   
 
 ## Gameplay
-<iframe width="560" height="315" src="https://www.youtube.com/embed/videoseries?list=PLx0sYbCqOb8TBPRdmBHs5Iftvv9TPboYG" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
-<iframe width="645" height="520" src="https://www.youtube.com/watch?v=ikx26GYrKao" frameborder="0"></iframe>
-Full Gameplay [link](https://www.youtube.com/watch?v=bDFKSX90Ogo&feature=youtu.be).
+<iframe width="560" height="315" src="https://www.youtube.com/embed/dePMGk-hudA" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
