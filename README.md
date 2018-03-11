@@ -5,7 +5,7 @@ The game centers around an unusual alien invasion against a colony planet in the
 [Link to a X-Multiply Gameplay!](https://www.youtube.com/embed/dePMGk-hudA)
 
 ## Zinnamon Team
-![alt Team](Zinnamon_Team.jpeg)
+![alt Team](Screenshots/Zinnamon_Team.jpeg)
 <em>Eneko Gabaldón, Pol Cortés, Rafel Brau, Èric Canela, Ferran Barnés</em>
 - Management
   - Rafel Brau
