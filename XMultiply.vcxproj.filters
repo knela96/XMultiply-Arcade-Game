@@ -37,23 +37,23 @@
     <ClCompile Include="ModuleFadeToBlack.cpp">
       <Filter>Modules</Filter>
     </ClCompile>
-    <ClCompile Include="ModuleSceneKen.cpp">
-      <Filter>Modules</Filter>
-    </ClCompile>
-    <ClCompile Include="ModuleSceneMainMenu.cpp">
-      <Filter>Modules</Filter>
-    </ClCompile>
     <ClCompile Include="ModuleSceneChoosePlayer.cpp">
-      <Filter>Modules</Filter>
-    </ClCompile>
-    <ClCompile Include="ModuleSceneStage1.cpp">
-      <Filter>Modules</Filter>
-    </ClCompile>
-    <ClCompile Include="ModuleSceneStage2.cpp">
-      <Filter>Modules</Filter>
+      <Filter>Modules\Scenes</Filter>
     </ClCompile>
     <ClCompile Include="ModuleSceneCongrats.cpp">
-      <Filter>Modules</Filter>
+      <Filter>Modules\Scenes</Filter>
+    </ClCompile>
+    <ClCompile Include="ModuleSceneMainMenu.cpp">
+      <Filter>Modules\Scenes</Filter>
+    </ClCompile>
+    <ClCompile Include="ModuleSceneKen.cpp">
+      <Filter>Modules\Scenes</Filter>
+    </ClCompile>
+    <ClCompile Include="ModuleSceneStage1.cpp">
+      <Filter>Modules\Scenes</Filter>
+    </ClCompile>
+    <ClCompile Include="ModuleSceneStage2.cpp">
+      <Filter>Modules\Scenes</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -102,23 +102,23 @@
     <ClInclude Include="ModuleFadeToBlack.h">
       <Filter>Modules</Filter>
     </ClInclude>
-    <ClInclude Include="ModuleSceneKen.h">
-      <Filter>Modules</Filter>
-    </ClInclude>
-    <ClInclude Include="ModuleSceneMainMenu.h">
-      <Filter>Modules</Filter>
-    </ClInclude>
     <ClInclude Include="ModuleSceneChoosePlayer.h">
-      <Filter>Modules</Filter>
-    </ClInclude>
-    <ClInclude Include="ModuleSceneStage1.h">
-      <Filter>Modules</Filter>
-    </ClInclude>
-    <ClInclude Include="ModuleSceneStage2.h">
-      <Filter>Modules</Filter>
+      <Filter>Modules\Scenes</Filter>
     </ClInclude>
     <ClInclude Include="ModuleSceneCongrats.h">
-      <Filter>Modules</Filter>
+      <Filter>Modules\Scenes</Filter>
+    </ClInclude>
+    <ClInclude Include="ModuleSceneMainMenu.h">
+      <Filter>Modules\Scenes</Filter>
+    </ClInclude>
+    <ClInclude Include="ModuleSceneKen.h">
+      <Filter>Modules\Scenes</Filter>
+    </ClInclude>
+    <ClInclude Include="ModuleSceneStage1.h">
+      <Filter>Modules\Scenes</Filter>
+    </ClInclude>
+    <ClInclude Include="ModuleSceneStage2.h">
+      <Filter>Modules\Scenes</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -130,6 +130,9 @@
     </Filter>
     <Filter Include="Modules">
       <UniqueIdentifier>{97038a22-c05a-4e76-9f0d-e1494cf05fb2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Modules\Scenes">
+      <UniqueIdentifier>{46179672-e271-4849-89db-f290ee31d7e7}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

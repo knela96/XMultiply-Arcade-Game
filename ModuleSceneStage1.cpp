@@ -42,7 +42,7 @@ bool ModuleSceneStage1::Start()
 
 	App->projectile->Enable();
 
-	graphics = App->textures->Load("Assets/TileMap.png");
+	graphics = App->textures->Load("Assets/TileMap1.png");
 
 	back = App->textures->Load("Assets/FirstLvlMap3.png");
 
@@ -60,6 +60,8 @@ bool ModuleSceneStage1::CleanUp()
 	App->player->Disable();
 	App->enemy->Disable();
 	App->projectile->Disable();
+
+	App->render->camera.x = App->render->camera.y = 0;
 	return ret;
 
 }

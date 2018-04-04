@@ -21,9 +21,9 @@ ModuleSceneStage2::ModuleSceneStage2()
 
 	// Background / sky
 	background.x = 0;
-	background.y = 1;
-	background.w = 4961;
-	background.h = 513;
+	background.y = 0;
+	background.w = 4608;
+	background.h = 256;
 }
 
 ModuleSceneStage2::~ModuleSceneStage2()
@@ -35,7 +35,7 @@ bool ModuleSceneStage2::Start()
 	LOG("Loading background assets");
 	bool ret = true;
 
-	graphics = App->textures->Load("Assets/TileMap.png");
+	graphics = App->textures->Load("Assets/TileMap2.png");
 
 	back = App->textures->Load("Assets/FirstLvlMap3.png");
 
@@ -80,7 +80,7 @@ update_status ModuleSceneStage2::Update()
 	App->render->Blit(back, ScrollingOffset + 512, 0, &ground, 0.1f);
 
 
-	App->render->Blit(graphics, 0, 0, &background);
+	App->render->Blit(graphics, -50, -35, &background);
 
 	if (App->input->keyboard[SDL_SCANCODE_RETURN] == 1)
 	{

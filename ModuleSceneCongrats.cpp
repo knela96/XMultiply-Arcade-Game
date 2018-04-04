@@ -22,7 +22,7 @@ bool ModuleSceneCongrats::Start()
 {
 	LOG("Loading background assets");
 	bool ret = true;
-	graphics = App->textures->Load("../Screenshots/Credits.png");
+	graphics = App->textures->Load("Assets/Credits.png");
 	return ret;
 }
 

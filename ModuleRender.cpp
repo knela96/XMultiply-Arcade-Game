@@ -3,6 +3,8 @@
 #include "ModuleRender.h"
 #include "ModuleWindow.h"
 #include "ModuleInput.h"
+#include "ModuleSceneStage1.h"
+#include "ModuleSceneStage2.h"
 #include "SDL/include/SDL.h"
 
 ModuleRender::ModuleRender() : Module()
@@ -62,9 +64,9 @@ update_status ModuleRender::Update()
 
 	if (App->input->keyboard[SDL_SCANCODE_RIGHT] == 1)
 		camera.x -= speed;
-
 	/*
-	camera.x -= speed;
+	if(App->scene_stage1->IsEnabled() || App->scene_stage2->IsEnabled())
+		camera.x -= speed;
 
 	if (camera.x <= -9132 && camera.x >= -11427)
 		camera.y -= 1;
