@@ -3,11 +3,14 @@
 #include "ModuleRender.h"
 #include "ModuleInput.h"
 #include "ModuleTextures.h"
+#include "ModuleSceneKen.h"
+#include "ModuleSceneHonda.h"
 #include "ModulePlayer.h"
 #include "ModuleAudio.h"
 #include "ModuleEnemy.h"
 #include "ModuleBackground.h"
 #include "ModuleProjectile.h"
+#include "ModuleFadeToBlack.h"
 
 Application::Application()
 {
@@ -17,9 +20,12 @@ Application::Application()
 	modules[3] = textures = new ModuleTextures();
 	modules[4] = audio = new ModuleAudio();
 	modules[5] = background = new ModuleBackground();
-	modules[6] = player = new ModulePlayer();
-	modules[7] = enemy = new ModuleEnemy();
-	modules[8] = projectile = new ModuleProjectile();
+	modules[6] = scene_honda = new ModuleSceneHonda();
+	modules[7] = scene_ken = new ModuleSceneKen();
+	modules[8] = player = new ModulePlayer();
+	modules[9] = enemy = new ModuleEnemy();
+	modules[10] = projectile = new ModuleProjectile();
+	modules[11] = fade = new ModuleFadeToBlack();
 }	
 
 Application::~Application()
