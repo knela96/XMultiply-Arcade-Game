@@ -15,6 +15,7 @@ public:
 	bool FadeToBlack(Module* module_off, Module* module_on, float time = 2.0f);
 	bool FadeToBlack(float time = 2.0f);
 	bool isBlack = false;
+	bool isfadding = false;
 
 private:
 
@@ -25,7 +26,7 @@ private:
 		fade_from_black
 	} current_step = fade_step::none;
 
-	Uint32 start_time = 0;
+	Uint32 start_time = 0; 
 	Uint32 total_time = 0;
 	SDL_Rect screen;
 	Module* module_off;

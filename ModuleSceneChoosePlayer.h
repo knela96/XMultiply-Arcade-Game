@@ -23,7 +23,8 @@ public:
 	SDL_Texture* player2 = nullptr;
 	SDL_Texture* graphics = nullptr;
 	SDL_Rect background;
-	Animation water;
+	Uint32 start_time = 0;
+	Uint32 current_time = 0;
 };
 
 #endif // __MODULESCENECHOOSEPLAYER_H__
