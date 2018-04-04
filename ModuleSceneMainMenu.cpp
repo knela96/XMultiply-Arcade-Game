@@ -6,29 +6,12 @@
 #include "ModuleInput.h"
 #include "ModuleFadeToBlack.h"
 #include "ModuleSceneMainMenu.h"
-#include "ModuleSceneKen.h"
-
-// Reference at https://youtu.be/6OlenbCC4WI?t=382
+#include "ModuleSceneChoosePlayer.h"
 
 ModuleSceneMainMenu::ModuleSceneMainMenu()
 {
-	// ground
-	ground = {8, 376, 848, 64};
-
-	// roof
-	roof = {91, 7, 765, 49};
-
-	// foreground
-	foreground = {164, 66, 336, 51};
-
-	// Background / sky
-	background = {120, 128, 671, 199};
-
-	// flag animation
-	water.PushBack({8, 447, 283, 9});
-	water.PushBack({296, 447, 283, 12});
-	water.PushBack({588, 447, 283, 18});
-	water.speed = 0.02f;
+	// Background
+	background = {0, 0, 384, 256};
 }
 
 ModuleSceneMainMenu::~ModuleSceneMainMenu()
@@ -39,11 +22,22 @@ bool ModuleSceneMainMenu::Start()
 {
 	LOG("Loading background assets");
 	bool ret = true;
-	graphics = App->textures->Load("MainMenu_stage2.png");
-
-	// TODO 1: Enable (and properly disable) the player module
-	App->player->Enable();
+	graphics = App->textures->Load("Assets/Screenshots/Menu.png");
 	return ret;
+}
+
+// Update: draw background
+update_status ModuleSceneMainMenu::Update()
+{
+	// Draw everything --------------------------------------
+	App->render->Blit(graphics, 0, 0, &background, 1.0f); // back of the room
+	
+	// TODO 2: make so pressing SPACE the KEN stage is loaded
+	if (App->input->keyboard[SDL_SCANCODE_5] == 1)
+	{
+		App->fade->FadeToBlack(App->scene_MainMenu, App->scene_choosePlayer, 2);
+	}
+	return UPDATE_CONTINUE;
 }
 
 // Load assets
@@ -52,25 +46,5 @@ bool ModuleSceneMainMenu::CleanUp()
 	// TODO 5: Remove all memory leaks
 	LOG("Unloading MainMenu stage");
 	App->textures->Unload(graphics);
-	App->player->Disable();
 	return true;
-}
-
-// Update: draw background
-update_status ModuleSceneMainMenu::Update()
-{
-	// Draw everything --------------------------------------	
-	App->render->Blit(graphics, 0, 160, &ground);
-	App->render->Blit(graphics, 50, -15, &background, 0.75f); // back of the room
-	
-	App->render->Blit(graphics, 280, 125, &foreground);
-	App->render->Blit(graphics, 305, 136, &(water.GetCurrentFrame())); // water animation
-	App->render->Blit(graphics, 0, -16, &roof, 0.75f);
-
-	// TODO 2: make so pressing SPACE the KEN stage is loaded
-	if (App->input->keyboard[SDL_SCANCODE_SPACE] == 1)
-	{
-		App->fade->FadeToBlack(App->scene_MainMenu, App->scene_ken, 1);
-	}
-	return UPDATE_CONTINUE;
 }

@@ -11,6 +11,7 @@
 #include "ModuleBackground.h"
 #include "ModuleProjectile.h"
 #include "ModuleFadeToBlack.h"
+#include "ModuleSceneChoosePlayer.h"
 
 Application::Application()
 {
@@ -19,13 +20,12 @@ Application::Application()
 	modules[2] = input = new ModuleInput();
 	modules[3] = textures = new ModuleTextures();
 	modules[4] = audio = new ModuleAudio();
-	modules[5] = background = new ModuleBackground();
-	modules[6] = scene_MainMenu = new ModuleSceneMainMenu();
-	modules[7] = scene_ken = new ModuleSceneKen();
-	modules[8] = player = new ModulePlayer();
-	modules[9] = enemy = new ModuleEnemy();
-	modules[10] = projectile = new ModuleProjectile();
-	modules[11] = fade = new ModuleFadeToBlack();
+	modules[5] = player = new ModulePlayer();
+	modules[6] = projectile = new ModuleProjectile();
+	modules[7] = enemy = new ModuleEnemy();
+	modules[8] = scene_MainMenu = new ModuleSceneMainMenu();
+	modules[9] = scene_choosePlayer = new ModuleSceneChoosePlayer();
+	modules[10] = fade = new ModuleFadeToBlack();//Must be after all scenes
 }	
 
 Application::~Application()
@@ -39,8 +39,8 @@ bool Application::Init()
 	bool ret = true;
 
 	// Disable the modules that do not want to start
-	scene_ken->Disable();
-	background->Disable();
+	scene_choosePlayer->Disable();
+
 	player->Disable();
 
 

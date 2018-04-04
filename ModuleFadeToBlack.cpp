@@ -43,17 +43,28 @@ update_status ModuleFadeToBlack::Update()
 				total_time += total_time;
 				start_time = SDL_GetTicks();
 				current_step = fade_step::fade_from_black;
-				module_off->Disable();
-				module_on->Enable();
+				if (switch_scene) {
+					module_off->Disable();
+					module_on->Enable();
+				}
+				else {
+					isBlack = true;
+				}
 			}
 		} break;
 
 		case fade_step::fade_from_black:
 		{
+			isBlack = false;
 			normalized = 1.0f - normalized;
 
-			if(now >= total_time)
+			if (now >= total_time) {
 				current_step = fade_step::none;
+				if (switch_scene) {
+					switch_scene = false;
+				}
+			}
+
 		} break;
 	}
 
@@ -77,6 +88,23 @@ bool ModuleFadeToBlack::FadeToBlack(Module* module_off, Module* module_on, float
 		ret = true;
 		this->module_off = module_off;
 		this->module_on = module_on;
+		switch_scene = true;
+	}
+
+	return ret;
+}
+
+bool ModuleFadeToBlack::FadeToBlack(float time)
+{
+	bool ret = false; 
+	isBlack = false;
+
+	if (current_step == fade_step::none)
+	{
+		current_step = fade_step::fade_to_black;
+		start_time = SDL_GetTicks();
+		total_time = (Uint32)(time * 0.5f * 1000.0f);
+		ret = true;
 	}
 
 	return ret;
