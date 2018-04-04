@@ -5,6 +5,7 @@
 #include "ModuleInput.h"
 #include "ModuleFadeToBlack.h"
 #include "ModuleSceneChoosePlayer.h"
+#include "ModuleSceneStage1.h"
 
 
 
@@ -22,8 +23,8 @@ bool ModuleSceneChoosePlayer::Start()
 {
 	LOG("Loading background assets");
 	bool ret = true;
-	player1 = App->textures->Load("Assets/Screenshots/1Player.png");
-	player2 = App->textures->Load("Assets/Screenshots/2Players.png");
+	player1 = App->textures->Load("../Screenshots/1Player.png");
+	player2 = App->textures->Load("../Screenshots/2Players.png");
 	graphics = player1;
 	return ret;
 }
@@ -51,9 +52,9 @@ update_status ModuleSceneChoosePlayer::Update()
 	App->render->Blit(graphics, 0, 0, &background, 1.0f);
 
 	// TODO 2: make so pressing SPACE the KEN stage is loaded
-	if (App->input->keyboard[SDL_SCANCODE_1] == 1)
+	if (App->input->keyboard[SDL_SCANCODE_RETURN] == 1)
 	{
-		//App->fade->FadeToBlack(App->scene_choosePlayer, App->scene_ken, 1);
+		App->fade->FadeToBlack(App->scene_choosePlayer, App->scene_stage1, 1);
 	}
 	return UPDATE_CONTINUE;
 }

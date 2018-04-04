@@ -22,7 +22,7 @@ bool ModuleSceneMainMenu::Start()
 {
 	LOG("Loading background assets");
 	bool ret = true;
-	graphics = App->textures->Load("Assets/Screenshots/Menu.png");
+	graphics = App->textures->Load("../Screenshots/Menu.png");
 	return ret;
 }
 
@@ -33,7 +33,7 @@ update_status ModuleSceneMainMenu::Update()
 	App->render->Blit(graphics, 0, 0, &background, 1.0f); // back of the room
 	
 	// TODO 2: make so pressing SPACE the KEN stage is loaded
-	if (App->input->keyboard[SDL_SCANCODE_5] == 1)
+	if (App->input->keyboard[SDL_SCANCODE_RETURN] == 1)
 	{
 		App->fade->FadeToBlack(App->scene_MainMenu, App->scene_choosePlayer, 2);
 	}

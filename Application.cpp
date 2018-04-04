@@ -3,15 +3,14 @@
 #include "ModuleRender.h"
 #include "ModuleInput.h"
 #include "ModuleTextures.h"
-#include "ModuleSceneKen.h"
-#include "ModuleSceneMainMenu.h"
 #include "ModulePlayer.h"
 #include "ModuleAudio.h"
 #include "ModuleEnemy.h"
-#include "ModuleBackground.h"
 #include "ModuleProjectile.h"
 #include "ModuleFadeToBlack.h"
+#include "ModuleSceneMainMenu.h"
 #include "ModuleSceneChoosePlayer.h"
+#include "ModuleSceneStage1.h"
 
 Application::Application()
 {
@@ -25,7 +24,8 @@ Application::Application()
 	modules[7] = enemy = new ModuleEnemy();
 	modules[8] = scene_MainMenu = new ModuleSceneMainMenu();
 	modules[9] = scene_choosePlayer = new ModuleSceneChoosePlayer();
-	modules[10] = fade = new ModuleFadeToBlack();//Must be after all scenes
+	modules[10] = scene_stage1 = new ModuleSceneStage1();
+	modules[11] = fade = new ModuleFadeToBlack();//Must be after all scenes
 }	
 
 Application::~Application()
@@ -40,6 +40,7 @@ bool Application::Init()
 
 	// Disable the modules that do not want to start
 	scene_choosePlayer->Disable();
+	scene_stage1->Disable();
 
 	player->Disable();
 

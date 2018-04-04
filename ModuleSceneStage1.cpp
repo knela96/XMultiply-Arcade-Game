@@ -2,11 +2,9 @@
 #include "Application.h"
 #include "ModuleTextures.h"
 #include "ModuleRender.h"
-#include "ModuleBackground.h"
+#include "ModuleSceneStage1.h"
 
-// Reference at https://www.youtube.com/watch?v=OEhmUuehGOA
-
-ModuleBackground::ModuleBackground()
+ModuleSceneStage1::ModuleSceneStage1()
 {
 	//ground
 	ground.x = 0;
@@ -21,11 +19,11 @@ ModuleBackground::ModuleBackground()
 	background.h = 513;	
 }
 
-ModuleBackground::~ModuleBackground()
+ModuleSceneStage1::~ModuleSceneStage1()
 {}
 
 // Load assets
-bool ModuleBackground::Start()
+bool ModuleSceneStage1::Start()
 {
 	LOG("Loading background assets");
 	bool ret = true;
@@ -36,7 +34,7 @@ bool ModuleBackground::Start()
 }
 
 // Update: draw background
-update_status ModuleBackground::Update()
+update_status ModuleSceneStage1::Update()
 {
 	--ScrollingOffset;
 	if (ScrollingOffset < -512)
