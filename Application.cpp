@@ -11,6 +11,8 @@
 #include "ModuleSceneMainMenu.h"
 #include "ModuleSceneChoosePlayer.h"
 #include "ModuleSceneStage1.h"
+#include "ModuleSceneStage2.h"
+#include "ModuleSceneCongrats.h"
 
 Application::Application()
 {
@@ -25,7 +27,9 @@ Application::Application()
 	modules[8] = scene_MainMenu = new ModuleSceneMainMenu();
 	modules[9] = scene_choosePlayer = new ModuleSceneChoosePlayer();
 	modules[10] = scene_stage1 = new ModuleSceneStage1();
-	modules[11] = fade = new ModuleFadeToBlack();//Must be after all scenes
+	modules[11] = scene_stage2 = new ModuleSceneStage2();
+	modules[12] = scene_congrats = new ModuleSceneCongrats();
+	modules[13] = fade = new ModuleFadeToBlack();//Must be after all scenes
 }	
 
 Application::~Application()

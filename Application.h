@@ -18,6 +18,8 @@ class ModuleFadeToBlack;
 class ModuleSceneMainMenu;
 class ModuleSceneChoosePlayer;
 class ModuleSceneStage1;
+class ModuleSceneStage2;
+class ModuleSceneCongrats;
 
 class Application
 {
@@ -36,6 +38,9 @@ public:
 	ModuleSceneMainMenu* scene_MainMenu;
 	ModuleSceneChoosePlayer* scene_choosePlayer = nullptr;
 	ModuleSceneStage1* scene_stage1 = nullptr;
+	ModuleSceneStage2* scene_stage2 = nullptr;
+	ModuleSceneCongrats* scene_congrats = nullptr;
+
 public:
 
 	Application();

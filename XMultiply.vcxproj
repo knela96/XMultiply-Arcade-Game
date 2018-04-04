@@ -14,7 +14,7 @@
     <ProjectGuid>{746CC4C3-787F-4B0E-AA66-E388FE3FF4F6}</ProjectGuid>
     <RootNamespace>XMultiply</RootNamespace>
     <ProjectName>XMultiply</ProjectName>
-    <WindowsTargetPlatformVersion>10.0.15063.0</WindowsTargetPlatformVersion>
+    <WindowsTargetPlatformVersion>10.0.16299.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
@@ -76,6 +76,7 @@
     <ClInclude Include="MemLeaks.h" />
     <ClInclude Include="Module.h" />
     <ClInclude Include="ModuleAudio.h" />
+    <ClInclude Include="ModuleSceneCongrats.h" />
     <ClInclude Include="ModuleSceneStage1.h" />
     <ClInclude Include="ModuleEnemy.h" />
     <ClInclude Include="ModuleFadeToBlack.h" />
@@ -86,6 +87,7 @@
     <ClInclude Include="ModuleSceneChoosePlayer.h" />
     <ClInclude Include="ModuleSceneMainMenu.h" />
     <ClInclude Include="ModuleSceneKen.h" />
+    <ClInclude Include="ModuleSceneStage2.h" />
     <ClInclude Include="ModuleTextures.h" />
     <ClInclude Include="ModuleWindow.h" />
     <ClInclude Include="p2Point.h" />
@@ -95,6 +97,7 @@
     <ClCompile Include="Globals.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="ModuleAudio.cpp" />
+    <ClCompile Include="ModuleSceneCongrats.cpp" />
     <ClCompile Include="ModuleSceneStage1.cpp" />
     <ClCompile Include="ModuleEnemy.cpp" />
     <ClCompile Include="ModuleFadeToBlack.cpp" />
@@ -105,6 +108,7 @@
     <ClCompile Include="ModuleSceneChoosePlayer.cpp" />
     <ClCompile Include="ModuleSceneMainMenu.cpp" />
     <ClCompile Include="ModuleSceneKen.cpp" />
+    <ClCompile Include="ModuleSceneStage2.cpp" />
     <ClCompile Include="ModuleTextures.cpp" />
     <ClCompile Include="ModuleWindow.cpp" />
   </ItemGroup>
