@@ -79,8 +79,8 @@ update_status ModuleFadeToBlack::Update()
 bool ModuleFadeToBlack::FadeToBlack(Module* module_off, Module* module_on, float time)
 {
 	bool ret = false;
-
-	if(current_step == fade_step::none)
+	
+	if(current_step == fade_step::none || isBlack || !isBlack)
 	{
 		current_step = fade_step::fade_to_black;
 		start_time = SDL_GetTicks();

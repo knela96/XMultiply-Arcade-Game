@@ -3,6 +3,7 @@
 #include "ModuleTextures.h"
 #include "ModuleRender.h"
 #include "ModuleSceneStage1.h"
+#include "ModulePlayer.h"
 
 ModuleSceneStage1::ModuleSceneStage1()
 {
@@ -29,6 +30,7 @@ bool ModuleSceneStage1::Start()
 	bool ret = true;
 	graphics = App->textures->Load("Assets/TileMap.png");
 	back = App->textures->Load("Assets/FirstLvlMap3.png");
+	App->player->Enable();
 	
 	return ret;
 }
