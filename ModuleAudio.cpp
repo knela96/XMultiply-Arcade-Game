@@ -42,31 +42,49 @@ bool ModuleAudio::Init()
 			ret = false;
 		}
 
-		//Load music and sound if everything initialized correctly
 
-		music = Mix_LoadMUS(MUS_PATH);
-
-		wave = Mix_LoadWAV("Assets/shoot.wav");
-
-		if(wave==nullptr)
-			LOG("Could not initialize Mixer lib. Mix_Init: %s", Mix_GetError());
-		
-		Mix_FadeInMusic(music, -1, 2000); //pointer to where the music is (already loaded), 0 don't play music and -1 to loop 
-											//forever the music, milisecond in which the fade in enters
-		
 	}
 	return ret;
 }
 
-void ModuleAudio::PlayShoot() {
-	Mix_PlayChannel(-1, App->audio->wave, 0);
+Mix_Music* const ModuleAudio::LoadM(const char* path)
+{
+	Mix_Music* music = nullptr;
+	music = Mix_LoadMUS(path);
+	return music;
+}
+bool ModuleAudio::UnloadM(Mix_Music * music) 
+{
+	Mix_FreeMusic(music);
+	return true;
+}
+Mix_Chunk *const ModuleAudio::LoadS(const char* path)
+{
+	Mix_Chunk* wave = nullptr;
+	wave = Mix_LoadWAV(path);
+	return wave;
+}
+bool ModuleAudio::UnloadS(Mix_Chunk * sound)
+{
+	Mix_FreeChunk(sound);
+	return true;
+}
+
+bool ModuleAudio::PlayMusic(Mix_Music* music)
+{
+
+	Mix_FadeInMusic(music, -1, 2000); //pointer to where the music is (already loaded), 0 don't play music and -1 to loop 
+									  //forever the music, milisecond in which the fade in enters
+	return true;
+}
+
+bool ModuleAudio::PlaySound(Mix_Chunk* wave)
+{
+	Mix_PlayChannel(-1, wave, 0);
+	return true;
 }
 
 bool ModuleAudio::CleanUp() {
-
-	Mix_FreeChunk(wave);
-
-	Mix_FreeMusic(music);
 
 	Mix_CloseAudio();
 

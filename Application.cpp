@@ -47,7 +47,7 @@ bool Application::Init()
 	scene_stage1->Disable();
 	scene_stage2->Disable();
 	scene_congrats->Disable();
-	audio->Disable();
+
 
 	player->Disable();
 	enemy->Disable();

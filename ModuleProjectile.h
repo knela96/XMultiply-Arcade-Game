@@ -5,9 +5,11 @@
 #include "Animation.h"
 #include "Globals.h"
 #include "p2Point.h"
+#include "ModuleAudio.h"
 
 struct SDL_Rect;
 struct SDL_Texture;
+struct Mix_Chunk;
 
 typedef unsigned int Uint32;
 
@@ -32,6 +34,7 @@ public:
 	
 	SDL_Rect* shoot;
 	ModulePlayer* player;
+	Mix_Chunk* shoot_fx = nullptr;
 	SDL_Texture* graphics = nullptr;
 	Animation singleshot;
 	Bullet bullets[10] = { false,{ 0,0 } };

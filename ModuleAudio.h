@@ -7,6 +7,7 @@ struct Mix_Chunk;
 
 typedef struct _Mix_Music Mix_Music;
 
+
 class ModuleAudio : public Module 
 {
 public:
@@ -15,14 +16,17 @@ public:
 
 	bool Init();
 	bool CleanUp();
-	void PlayShoot();
+
+	bool PlayMusic(Mix_Music* music);
+	bool PlaySound(Mix_Chunk * wave);
 
 public:
 
-	// wave file
-	Mix_Chunk * wave = nullptr;
-	//music file
-	Mix_Music * music = nullptr;
+	Mix_Music * const LoadM(const char* path);
+	bool UnloadM(Mix_Music * music);
+
+	Mix_Chunk * const LoadS(const char * path);
+	bool UnloadS(Mix_Chunk * sound);
 
 };
 

@@ -9,6 +9,8 @@
 #include "ModuleSceneChoosePlayer.h"
 #include "ModuleAudio.h"
 
+#define MUS_PATH "Assets/Audio Files/Music in OGG/01_X-Multiply_Title_.ogg"
+
 ModuleSceneMainMenu::ModuleSceneMainMenu()
 {
 	// Background
@@ -22,9 +24,17 @@ ModuleSceneMainMenu::~ModuleSceneMainMenu()
 bool ModuleSceneMainMenu::Start()
 {
 	LOG("Loading background assets");
+
 	bool ret = true;
-	App->audio->Enable();
+
+
+	music = App->audio->LoadM(MUS_PATH);
+
 	graphics = App->textures->Load("../Screenshots/Menu.png");
+
+
+	App->audio->PlayMusic(music);//plays background music in a loop
+
 	return ret;
 }
 
@@ -33,6 +43,7 @@ update_status ModuleSceneMainMenu::Update()
 {
 	// Draw everything --------------------------------------
 	App->render->Blit(graphics, 0, 0, &background, 1.0f); // back of the room
+	
 	
 	// TODO 2: make so pressing SPACE the KEN stage is loaded
 	if (App->input->keyboard[SDL_SCANCODE_RETURN] == 1)
@@ -48,6 +59,7 @@ bool ModuleSceneMainMenu::CleanUp()
 	// TODO 5: Remove all memory leaks
 	LOG("Unloading MainMenu stage");
 	App->textures->Unload(graphics);
-	App->audio->Disable();
+	App->audio->UnloadM(music);
+	
 	return true;
 }

@@ -28,6 +28,8 @@ bool ModuleProjectile::Start()
 	
 	
 	LOG("Loading player textures");
+
+	shoot_fx = App->audio->LoadS("Assets/Audio Files/SFX in WAV/xmultipl-114.wav");
 	
 	graphics = App->textures->Load("Assets/Player.png"); // arcade version
 	
@@ -53,7 +55,7 @@ update_status ModuleProjectile::Update()
 				if (bullets[i].bullet == nullptr) {
 					shooting_delay = start_time;
 					bullets[i].bullet = new SDL_Rect{ player->position.x + /* player->w */ 15 , player->position.y  /* + (player->h / 2) - 30 ,80,60 */ };
-					App->audio->PlayShoot();
+					App->audio->PlaySound(shoot_fx);
 					bullets[i].position.x = App->player->position.x;
 					bullets[i].position.y = App->player->position.y;
 					break;
@@ -98,6 +100,9 @@ bool ModuleProjectile::CleanUp()
 		bullets[i].bullet = nullptr;
 	}
 	player = nullptr;
+
+	App->textures->Unload(graphics);
+	App->audio->UnloadS(shoot_fx);
 	return true;
 }
 
