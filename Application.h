@@ -14,7 +14,7 @@ class ModuleEnemy;
 class ModuleAudio;
 class ModuleBackground;
 class ModuleSceneKen;
-class ModuleSceneHonda;
+class ModuleSceneMainMenu;
 class ModuleProjectile;
 class Module;
 class ModuleFadeToBlack;
@@ -30,7 +30,7 @@ public:
 	ModuleTextures* textures = nullptr;
 	ModuleBackground* background = nullptr;
 	ModuleSceneKen* scene_ken;
-	ModuleSceneHonda* scene_honda;
+	ModuleSceneMainMenu* scene_MainMenu;
 	ModulePlayer* player = nullptr;
 	ModuleEnemy* enemy = nullptr;
 	ModuleAudio* audio = nullptr;

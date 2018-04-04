@@ -18,29 +18,7 @@ ModuleBackground::ModuleBackground()
 	background.x = 0;
 	background.y = 1;
 	background.w = 4961;
-	background.h = 513;
-
-	//// flag animation
-	//flag.PushBack({848, 208, 40, 40});
-	//flag.PushBack({848, 256, 40, 40});
-	//flag.PushBack({848, 304, 40, 40});
-	//flag.speed = 0.08f;
-
-	////ship
-
-	//ship.x = 0 ;
-	//ship.y = 0 ;
-	//ship.w = 525;
-	//ship.h = 200 ;
-
-	//// girl animation
-	//people.PushBack({ 619,16,37,57 });
-	//people.PushBack({ 619,80,37,57 });
-	//people.PushBack({ 619,144,37,57 });
-	//people.PushBack({ 619,80,37,57 });
-	//people.speed = 0.1f;
-
-	
+	background.h = 513;	
 }
 
 ModuleBackground::~ModuleBackground()

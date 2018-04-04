@@ -40,10 +40,10 @@
     <ClCompile Include="ModuleFadeToBlack.cpp">
       <Filter>Modules</Filter>
     </ClCompile>
-    <ClCompile Include="ModuleSceneHonda.cpp">
+    <ClCompile Include="ModuleSceneKen.cpp">
       <Filter>Modules</Filter>
     </ClCompile>
-    <ClCompile Include="ModuleSceneKen.cpp">
+    <ClCompile Include="ModuleSceneMainMenu.cpp">
       <Filter>Modules</Filter>
     </ClCompile>
   </ItemGroup>
@@ -96,10 +96,10 @@
     <ClInclude Include="ModuleFadeToBlack.h">
       <Filter>Modules</Filter>
     </ClInclude>
-    <ClInclude Include="ModuleSceneHonda.h">
+    <ClInclude Include="ModuleSceneKen.h">
       <Filter>Modules</Filter>
     </ClInclude>
-    <ClInclude Include="ModuleSceneKen.h">
+    <ClInclude Include="ModuleSceneMainMenu.h">
       <Filter>Modules</Filter>
     </ClInclude>
   </ItemGroup>

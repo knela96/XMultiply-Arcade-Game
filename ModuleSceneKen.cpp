@@ -5,7 +5,7 @@
 #include "ModulePlayer.h"
 #include "ModuleInput.h"
 #include "ModuleFadeToBlack.h"
-#include "ModuleSceneHonda.h"
+#include "ModuleSceneMainMenu.h"
 #include "ModuleSceneKen.h"
 
 // Reference at https://www.youtube.com/watch?v=OEhmUuehGOA
@@ -94,10 +94,10 @@ update_status ModuleSceneKen::Update()
 	
 	App->render->Blit(graphics, 0, 170, &ground);
 
-	// TODO 2: make so pressing SPACE the HONDA stage is loaded
+	// TODO 2: make so pressing SPACE the MainMenu stage is loaded
 	if (App->input->keyboard[SDL_SCANCODE_SPACE] == 1)
 	{
-		App->fade->FadeToBlack(App->scene_ken, App->scene_honda, 1);
+		App->fade->FadeToBlack(App->scene_ken, App->scene_MainMenu, 1);
 	}
 	return UPDATE_CONTINUE;
 }

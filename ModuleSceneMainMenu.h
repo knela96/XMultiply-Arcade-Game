@@ -1,5 +1,5 @@
-#ifndef __MODULESCENEHONDA_H__
-#define __MODULESCENEHONDA_H__
+#ifndef __MODULESCENEMAINMENU_H__
+#define __MODULESCENEMAINMENU_H__
 
 #include "Module.h"
 #include "Animation.h"
@@ -7,11 +7,11 @@
 
 struct SDL_Texture;
 
-class ModuleSceneHonda : public Module
+class ModuleSceneMainMenu : public Module
 {
 public:
-	ModuleSceneHonda();
-	~ModuleSceneHonda();
+	ModuleSceneMainMenu();
+	~ModuleSceneMainMenu();
 
 	bool Start();
 	update_status Update();
@@ -27,4 +27,4 @@ public:
 	Animation water;
 };
 
-#endif // __MODULESCENEHONDA_H__
+#endif // __MODULESCENEMAINMENU_H__
