@@ -45,6 +45,8 @@ bool Application::Init()
 	// Disable the modules that do not want to start
 	scene_choosePlayer->Disable();
 	scene_stage1->Disable();
+	scene_stage2->Disable();
+	scene_congrats->Disable();
 
 	player->Disable();
 
