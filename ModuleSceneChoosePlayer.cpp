@@ -54,7 +54,7 @@ update_status ModuleSceneChoosePlayer::Update()
 	// TODO 2: make so pressing SPACE the KEN stage is loaded
 	if (App->input->keyboard[SDL_SCANCODE_RETURN] == 1)
 	{
-		App->fade->FadeToBlack(App->scene_choosePlayer, App->scene_congrats, 1);
+		App->fade->FadeToBlack(App->scene_choosePlayer, App->scene_stage1, 1);
 	}
 	return UPDATE_CONTINUE;
 }

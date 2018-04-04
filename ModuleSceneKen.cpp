@@ -58,7 +58,9 @@ bool ModuleSceneKen::Start()
 	graphics = App->textures->Load("ken_stage.png");
 
 	// TODO 1: Enable (and properly disable) the player module
+
 	App->player->Enable();
+
 	return true;
 }
 

@@ -13,7 +13,7 @@ ModulePlayer::ModulePlayer()
 {
 
 	position.x = 100;
-	position.y = 220;
+	position.y = 130;
 
 
 	//({ 4, 4, 36, 10 })
@@ -64,7 +64,7 @@ bool ModulePlayer::Start()
 update_status ModulePlayer::Update()
 {
 	int speed = 1;
-	position.x += speed;
+	//position.x += speed; //uncomment when camera moves
 	if (App->input->keyboard[SDL_SCANCODE_D] == 1)
 	{
 		position.x += speed;
@@ -124,5 +124,7 @@ bool ModulePlayer::CleanUp()
 {
 	LOG("Unloading ken scene");
 	App->textures->Unload(graphics);
+	position.x = 100;
+	position.y = 130;
 	return true;
 }

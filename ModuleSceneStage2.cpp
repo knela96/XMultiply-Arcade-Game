@@ -3,7 +3,13 @@
 #include "ModuleTextures.h"
 #include "ModuleRender.h"
 #include "ModuleSceneStage2.h"
+#include "ModuleInput.h"
+#include "ModuleFadeToBlack.h"
+#include "ModuleSceneCongrats.h"
 #include "ModulePlayer.h"
+#include "ModuleEnemy.h"
+#include "ModuleProjectile.h"
+
 
 ModuleSceneStage2::ModuleSceneStage2()
 {
@@ -28,13 +34,38 @@ bool ModuleSceneStage2::Start()
 {
 	LOG("Loading background assets");
 	bool ret = true;
+
 	graphics = App->textures->Load("Assets/TileMap.png");
+
 	back = App->textures->Load("Assets/FirstLvlMap3.png");
+
 	App->player->Enable();
+
+	App->projectile->Enable();
+
+	App->enemy->Enable();
 
 	return ret;
 }
 
+bool ModuleSceneStage2::CleanUp()
+{
+	LOG("Cleaning backround assets");
+	bool ret = true;
+
+	App->textures->Unload(graphics);
+
+	App->textures->Unload(back);
+
+	App->player->Disable();
+
+	App->enemy->Disable();
+
+	App->projectile->Disable();
+
+	return ret;
+
+}
 // Update: draw background
 update_status ModuleSceneStage2::Update()
 {
@@ -51,6 +82,10 @@ update_status ModuleSceneStage2::Update()
 
 	App->render->Blit(graphics, 0, 0, &background);
 
+	if (App->input->keyboard[SDL_SCANCODE_RETURN] == 1)
+	{
+		App->fade->FadeToBlack(App->scene_stage2, App->scene_congrats, 1);
+	}
 
 
 
