@@ -21,14 +21,14 @@ Application::Application()
 	modules[2] = input = new ModuleInput();
 	modules[3] = textures = new ModuleTextures();
 	modules[4] = audio = new ModuleAudio();
-	modules[5] = player = new ModulePlayer();
-	modules[6] = projectile = new ModuleProjectile();
-	modules[7] = enemy = new ModuleEnemy();
+	modules[12] = player = new ModulePlayer();
+	modules[11] = projectile = new ModuleProjectile();
+	modules[10] = enemy = new ModuleEnemy();
 	modules[8] = scene_MainMenu = new ModuleSceneMainMenu();
 	modules[9] = scene_choosePlayer = new ModuleSceneChoosePlayer();
-	modules[10] = scene_stage1 = new ModuleSceneStage1();
-	modules[11] = scene_stage2 = new ModuleSceneStage2();
-	modules[12] = scene_congrats = new ModuleSceneCongrats();
+	modules[7] = scene_stage1 = new ModuleSceneStage1();
+	modules[6] = scene_stage2 = new ModuleSceneStage2();
+	modules[5] = scene_congrats = new ModuleSceneCongrats();
 	modules[13] = fade = new ModuleFadeToBlack();//Must be after all scenes
 }	
 
@@ -47,8 +47,11 @@ bool Application::Init()
 	scene_stage1->Disable();
 	scene_stage2->Disable();
 	scene_congrats->Disable();
+	audio->Disable();
 
 	player->Disable();
+	enemy->Disable();
+	projectile->Disable();
 
 
 	for(int i = 0; i < NUM_MODULES && ret == true; ++i)

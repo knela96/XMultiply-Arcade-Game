@@ -22,21 +22,21 @@ bool ModuleSceneCongrats::Start()
 {
 	LOG("Loading background assets");
 	bool ret = true;
-	graphics = App->textures->Load("../Screenshots/Menu.png");
+	graphics = App->textures->Load("../Screenshots/Credits.png");
 	return ret;
 }
 
 // Update: draw background
 update_status ModuleSceneCongrats::Update()
-{/*
+{
 	// Draw everything --------------------------------------
 	App->render->Blit(graphics, 0, 0, &background, 1.0f); // back of the room
 
 														  // TODO 2: make so pressing SPACE the KEN stage is loaded
 	if (App->input->keyboard[SDL_SCANCODE_RETURN] == 1)
 	{
-		App->fade->FadeToBlack(App->scene_Congrats, App->scene_choosePlayer, 2);
-	}*/
+		App->fade->FadeToBlack(App->scene_congrats, App->scene_MainMenu, 2);
+	}
 	return UPDATE_CONTINUE;
 }
 

@@ -8,7 +8,7 @@
 #include "SDL_mixer/include/SDL_mixer.h"
 
 #pragma comment (lib, "SDL_mixer/libx86/SDL2_mixer.lib")
-#define MUS_PATH "Assets/Musiclvl1.ogg"
+#define MUS_PATH "Assets/Audio Files/Music in OGG/01_X-Multiply_Title_.ogg"
 
 ModuleAudio::ModuleAudio() : Module()
 {}

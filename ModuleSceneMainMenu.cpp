@@ -7,6 +7,7 @@
 #include "ModuleFadeToBlack.h"
 #include "ModuleSceneMainMenu.h"
 #include "ModuleSceneChoosePlayer.h"
+#include "ModuleAudio.h"
 
 ModuleSceneMainMenu::ModuleSceneMainMenu()
 {
@@ -22,6 +23,7 @@ bool ModuleSceneMainMenu::Start()
 {
 	LOG("Loading background assets");
 	bool ret = true;
+	App->audio->Enable();
 	graphics = App->textures->Load("../Screenshots/Menu.png");
 	return ret;
 }
@@ -46,5 +48,6 @@ bool ModuleSceneMainMenu::CleanUp()
 	// TODO 5: Remove all memory leaks
 	LOG("Unloading MainMenu stage");
 	App->textures->Unload(graphics);
+	App->audio->Disable();
 	return true;
 }

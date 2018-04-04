@@ -6,8 +6,8 @@
 #include "ModuleFadeToBlack.h"
 #include "ModuleSceneChoosePlayer.h"
 #include "ModuleSceneStage1.h"
+#include "ModuleSceneCongrats.h"
 #include "SDL/include/SDL_timer.h"
-
 
 
 ModuleSceneChoosePlayer::ModuleSceneChoosePlayer()

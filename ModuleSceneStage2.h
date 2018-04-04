@@ -14,6 +14,7 @@ public:
 	~ModuleSceneStage2();
 
 	bool Start();
+	bool CleanUp();
 	update_status Update();
 
 public:
