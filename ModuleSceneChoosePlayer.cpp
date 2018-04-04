@@ -7,6 +7,7 @@
 #include "ModuleSceneChoosePlayer.h"
 #include "ModuleSceneStage1.h"
 #include "ModuleSceneCongrats.h"
+#include "SDL/include/SDL_timer.h"
 
 
 ModuleSceneChoosePlayer::ModuleSceneChoosePlayer()
@@ -41,11 +42,16 @@ bool ModuleSceneChoosePlayer::CleanUp()
 // Update: draw background
 update_status ModuleSceneChoosePlayer::Update()
 {
+	current_time = SDL_GetTicks();
+
 	if (App->fade->isBlack) {
 		graphics = (player1 == graphics) ? player2 : player1;
 	}
 	else {
-		App->fade->FadeToBlack(5);
+		if (current_time - start_time > 2000) {
+			App->fade->FadeToBlack(1);
+			start_time = current_time;
+		}
 	}
 
 	// Draw everything --------------------------------------	

@@ -57,12 +57,10 @@ update_status ModuleFadeToBlack::Update()
 		{
 			isBlack = false;
 			normalized = 1.0f - normalized;
-
 			if (now >= total_time) {
 				current_step = fade_step::none;
-				if (switch_scene) {
-					switch_scene = false;
-				}
+				switch_scene = false;
+				isfadding = false;
 			}
 
 		} break;
@@ -80,11 +78,28 @@ bool ModuleFadeToBlack::FadeToBlack(Module* module_off, Module* module_on, float
 {
 	bool ret = false;
 	
-	if(current_step == fade_step::none || isBlack || !isBlack)
+	if(current_step == fade_step::none)
 	{
 		current_step = fade_step::fade_to_black;
 		start_time = SDL_GetTicks();
 		total_time = (Uint32)(time * 0.5f * 1000.0f);
+		
+		ret = true;
+		this->module_off = module_off;
+		this->module_on = module_on;
+		switch_scene = true;
+	}
+	else if (isfadding){
+
+		/*	If the background is fading to the second texture of the background 
+		*	it will continue the fade to black and load the level, if it's from the 
+		*	black it will return to black and load the level
+		*/
+		if (current_step == fade_step::fade_from_black) {
+			current_step = fade_step::fade_to_black;
+			start_time = (SDL_GetTicks() - start_time) + (SDL_GetTicks() - total_time);
+		}
+		isfadding = false;
 		ret = true;
 		this->module_off = module_off;
 		this->module_on = module_on;
@@ -96,8 +111,7 @@ bool ModuleFadeToBlack::FadeToBlack(Module* module_off, Module* module_on, float
 
 bool ModuleFadeToBlack::FadeToBlack(float time)
 {
-	bool ret = false; 
-	isBlack = false;
+	bool ret = false;
 
 	if (current_step == fade_step::none)
 	{
@@ -105,6 +119,7 @@ bool ModuleFadeToBlack::FadeToBlack(float time)
 		start_time = SDL_GetTicks();
 		total_time = (Uint32)(time * 0.5f * 1000.0f);
 		ret = true;
+		isfadding = true;
 	}
 
 	return ret;
