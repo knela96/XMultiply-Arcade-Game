@@ -42,7 +42,8 @@ bool ModuleParticles::Start()
 // Called every draw update
 update_status ModuleParticles::Update()
 {
-	player = App->player;
+	
+player = App->player;
 
 	
 
@@ -99,14 +100,14 @@ update_status ModuleParticles::Update()
 // Called before quitting
 bool ModuleParticles::CleanUp()
 {
-	/*
+	
 	for (int i = 0; i < 10; ++i) {
-		bullets[i].bullet = nullptr;
+		shoot.bullet = nullptr;
 	}
 	player = nullptr;
 
 	App->textures->Unload(graphics);
-	App->audio->UnloadS(shoot_fx);*/
+	App->audio->UnloadS(shoot.common_fx);
 	return true;
 }
 

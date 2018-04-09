@@ -52,7 +52,7 @@
     <ClCompile Include="ModuleSceneStage2.cpp">
       <Filter>Modules\Scenes</Filter>
     </ClCompile>
-    <ClCompile Include="ModulePartciles.cpp">
+    <ClCompile Include="ModuleParticles.cpp">
       <Filter>Modules</Filter>
     </ClCompile>
   </ItemGroup>

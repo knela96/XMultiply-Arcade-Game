@@ -103,7 +103,7 @@
     <ClCompile Include="ModuleFadeToBlack.cpp" />
     <ClCompile Include="ModuleInput.cpp" />
     <ClCompile Include="ModulePlayer.cpp" />
-    <ClCompile Include="ModulePartciles.cpp" />
+    <ClCompile Include="ModuleParticles.cpp" />
     <ClCompile Include="ModuleRender.cpp" />
     <ClCompile Include="ModuleSceneChoosePlayer.cpp" />
     <ClCompile Include="ModuleSceneMainMenu.cpp" />
