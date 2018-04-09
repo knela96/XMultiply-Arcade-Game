@@ -12,6 +12,10 @@
 ModuleParticles::ModuleParticles() : Module() {
 
 
+	shoot.anim.PushBack({ 64, 30, 17, 18});
+	shoot.anim.speed = 0.1f;
+
+
 }
 
 // Destructor
@@ -39,7 +43,8 @@ update_status ModuleParticles::Update()
 
 	
 
-	/*
+
+	
 	start_time = (Uint32 *)SDL_GetTicks();
 
 	//Rectangle Movement
@@ -49,7 +54,7 @@ update_status ModuleParticles::Update()
 			for (int i = 0; i < 10 && (start_time - shooting_delay > 250); ++i) {
 				if (bullets[i].bullet == nullptr) {
 					shooting_delay = start_time;
-					bullets[i].bullet = new SDL_Rect{ player->position.x + /* player->w */ 15, player->position.y  /* + (player->h / 2) - 30 ,80,60 / };
+					bullets[i].bullet = new SDL_Rect{ player->position.x +  15, player->position.y  };
 					App->audio->PlaySound(shoot_fx);
 					bullets[i].position.x = App->player->position.x;
 					bullets[i].position.y = App->player->position.y;
@@ -58,8 +63,8 @@ update_status ModuleParticles::Update()
 			}
 		}
 	}
-
-
+	/*
+	/*
 	//Check Collisions
 	for (int i = 0; i < 10; ++i) {
 		for (int j = 0; j < 30; ++j) {
