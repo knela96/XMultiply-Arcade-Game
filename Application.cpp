@@ -6,7 +6,7 @@
 #include "ModulePlayer.h"
 #include "ModuleAudio.h"
 #include "ModuleEnemy.h"
-#include "ModuleProjectile.h"
+#include "ModuleParticles.h"
 #include "ModuleFadeToBlack.h"
 #include "ModuleSceneMainMenu.h"
 #include "ModuleSceneChoosePlayer.h"
@@ -22,7 +22,7 @@ Application::Application()
 	modules[3] = textures = new ModuleTextures();
 	modules[4] = audio = new ModuleAudio();
 	modules[12] = player = new ModulePlayer();
-	modules[11] = projectile = new ModuleProjectile();
+	modules[11] = particles = new ModuleParticles();
 	modules[10] = enemy = new ModuleEnemy();
 	modules[8] = scene_MainMenu = new ModuleSceneMainMenu();
 	modules[9] = scene_choosePlayer = new ModuleSceneChoosePlayer();
@@ -51,7 +51,7 @@ bool Application::Init()
 
 	player->Disable();
 	enemy->Disable();
-	projectile->Disable();
+	particles->Disable();
 
 
 	for(int i = 0; i < NUM_MODULES && ret == true; ++i)

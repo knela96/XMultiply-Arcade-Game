@@ -22,9 +22,6 @@
     <ClCompile Include="ModulePlayer.cpp">
       <Filter>Modules</Filter>
     </ClCompile>
-    <ClCompile Include="ModuleProjectile.cpp">
-      <Filter>Modules</Filter>
-    </ClCompile>
     <ClCompile Include="ModuleRender.cpp">
       <Filter>Modules</Filter>
     </ClCompile>
@@ -55,7 +52,7 @@
     <ClCompile Include="ModuleSceneStage2.cpp">
       <Filter>Modules\Scenes</Filter>
     </ClCompile>
-    <ClCompile Include="ModuleParticles.cpp">
+    <ClCompile Include="ModulePartciles.cpp">
       <Filter>Modules</Filter>
     </ClCompile>
   </ItemGroup>
@@ -88,9 +85,6 @@
       <Filter>Modules</Filter>
     </ClInclude>
     <ClInclude Include="ModulePlayer.h">
-      <Filter>Modules</Filter>
-    </ClInclude>
-    <ClInclude Include="ModuleProjectile.h">
       <Filter>Modules</Filter>
     </ClInclude>
     <ClInclude Include="ModuleRender.h">

@@ -8,7 +8,7 @@
 #include "ModuleSceneCongrats.h"
 #include "ModulePlayer.h"
 #include "ModuleEnemy.h"
-#include "ModuleProjectile.h"
+#include "ModuleParticles.h"
 
 
 ModuleSceneStage2::ModuleSceneStage2()
@@ -41,7 +41,7 @@ bool ModuleSceneStage2::Start()
 
 	App->player->Enable();
 
-	App->projectile->Enable();
+	App->particles->Enable();
 
 	App->enemy->Enable();
 
@@ -61,7 +61,7 @@ bool ModuleSceneStage2::CleanUp()
 
 	App->enemy->Disable();
 
-	App->projectile->Disable();
+	App->particles->Disable();
 
 	return ret;
 

@@ -1,6 +1,6 @@
 #include "Globals.h"
 #include "Application.h"
-#include "ModuleProjectile.h"
+#include "ModuleParticles.h"
 #include "ModuleEnemy.h"
 #include "ModulePlayer.h"
 #include "ModuleInput.h"
@@ -9,7 +9,7 @@
 #include "ModuleTextures.h"
 #include "ModuleRender.h"
 
-ModuleProjectile::ModuleProjectile() : Module() {
+ModuleParticles::ModuleParticles() : Module() {
 
 
 	singleshot.PushBack({ 64, 30, 17, 18});
@@ -19,10 +19,10 @@ ModuleProjectile::ModuleProjectile() : Module() {
 }
 
 // Destructor
-ModuleProjectile::~ModuleProjectile() {}
+ModuleParticles::~ModuleParticles() {}
 
 // Called before render is available
-bool ModuleProjectile::Start()
+bool ModuleParticles::Start()
 {
 	bool ret = true;
 	
@@ -37,24 +37,26 @@ bool ModuleProjectile::Start()
 }
 
 // Called every draw update
-update_status ModuleProjectile::Update()
+update_status ModuleParticles::Update()
 {
 	player = App->player;
+
+	
 	Animation* current_animation = &singleshot;
 	SDL_Rect r = current_animation->GetCurrentFrame();
 	int speed = 1;
 
-
+	/*
 	start_time = (Uint32 *)SDL_GetTicks();
 
 	//Rectangle Movement
-	
+
 	if (App->input->keyboard[SDL_SCANCODE_SPACE] == 1) {
 		if (start_time - shooting_delay > 250) {
 			for (int i = 0; i < 10 && (start_time - shooting_delay > 250); ++i) {
 				if (bullets[i].bullet == nullptr) {
 					shooting_delay = start_time;
-					bullets[i].bullet = new SDL_Rect{ player->position.x + /* player->w */ 15 , player->position.y  /* + (player->h / 2) - 30 ,80,60 */ };
+					bullets[i].bullet = new SDL_Rect{ player->position.x + /* player->w */ 15, player->position.y  /* + (player->h / 2) - 30 ,80,60 / };
 					App->audio->PlaySound(shoot_fx);
 					bullets[i].position.x = App->player->position.x;
 					bullets[i].position.y = App->player->position.y;
@@ -89,24 +91,25 @@ update_status ModuleProjectile::Update()
 			}
 		}
 	}
-
+	*/;
 	return update_status::UPDATE_CONTINUE;
 }
 
 // Called before quitting
-bool ModuleProjectile::CleanUp()
+bool ModuleParticles::CleanUp()
 {
+	/*
 	for (int i = 0; i < 10; ++i) {
 		bullets[i].bullet = nullptr;
 	}
 	player = nullptr;
 
 	App->textures->Unload(graphics);
-	App->audio->UnloadS(shoot_fx);
+	App->audio->UnloadS(shoot_fx);*/
 	return true;
 }
 
-bool ModuleProjectile::checkCollision(SDL_Rect* bullet, SDL_Rect* enemy) {
+bool ModuleParticles::checkCollision(SDL_Rect* bullet, SDL_Rect* enemy) {
 	//The sides of the rectangles
 	int leftA, leftB;
 	int rightA, rightB;

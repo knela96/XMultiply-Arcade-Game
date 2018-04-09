@@ -8,7 +8,7 @@
 #include "ModuleFadeToBlack.h"
 #include "ModulePlayer.h"
 #include "ModuleEnemy.h"
-#include "ModuleProjectile.h"
+#include "ModuleParticles.h"
 
 ModuleSceneStage1::ModuleSceneStage1()
 {
@@ -40,7 +40,7 @@ bool ModuleSceneStage1::Start()
 
 	App->enemy->Enable();
 
-	App->projectile->Enable();
+	App->particles->Enable();
 
 	graphics = App->textures->Load("Assets/TileMap1.png");
 
@@ -59,7 +59,7 @@ bool ModuleSceneStage1::CleanUp()
 	App->textures->Unload(back);
 	App->player->Disable();
 	App->enemy->Disable();
-	App->projectile->Disable();
+	App->particles->Disable();
 
 	App->render->camera.x = App->render->camera.y = 0;
 	return ret;

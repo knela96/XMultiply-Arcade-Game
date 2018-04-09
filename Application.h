@@ -13,7 +13,7 @@ class ModuleRender;
 class ModulePlayer;
 class ModuleEnemy;
 class ModuleAudio;
-class ModuleProjectile;
+class ModuleParticles;
 class ModuleFadeToBlack;
 class ModuleSceneMainMenu;
 class ModuleSceneChoosePlayer;
@@ -33,7 +33,7 @@ public:
 	ModulePlayer* player = nullptr;
 	ModuleEnemy* enemy = nullptr;
 	ModuleAudio* audio = nullptr;
-	ModuleProjectile* projectile = nullptr;
+	ModuleParticles* particles = nullptr;
 	ModuleFadeToBlack* fade = nullptr;
 	ModuleSceneMainMenu* scene_MainMenu;
 	ModuleSceneChoosePlayer* scene_choosePlayer = nullptr;
