@@ -11,14 +11,16 @@
 
 ModuleParticles::ModuleParticles() : Module() {
 
-
-	shoot.anim.PushBack({ 64, 30, 17, 18});
-	shoot.anim.speed = 0.1f;
-
+	for (uint i = 0; i < MAX_ACTIVE_PARTICLES; ++i)
+		active[i] = nullptr;
+	
 
 }
 
 // Destructor
+
+
+
 ModuleParticles::~ModuleParticles() {}
 
 // Called before render is available
@@ -32,7 +34,8 @@ bool ModuleParticles::Start()
 	shoot.common_fx = App->audio->LoadS("Assets/Audio Files/SFX in WAV/xmultipl-114.wav");
 	
 	graphics = App->textures->Load("Assets/Player.png"); // arcade version
-	
+	shoot.anim.PushBack({ 64, 30, 17, 18});
+	shoot.anim.speed = 0.1f;
 	return ret;
 }
 
@@ -52,12 +55,12 @@ update_status ModuleParticles::Update()
 	if (App->input->keyboard[SDL_SCANCODE_SPACE] == 1) {
 		if (start_time - shooting_delay > 250) {
 			for (int i = 0; i < 10 && (start_time - shooting_delay > 250); ++i) {
-				if (bullets[i].bullet == nullptr) {
+				if (shoot.bullet == nullptr) {
 					shooting_delay = start_time;
-					bullets[i].bullet = new SDL_Rect{ player->position.x +  15, player->position.y  };
-					App->audio->PlaySound(shoot_fx);
-					bullets[i].position.x = App->player->position.x;
-					bullets[i].position.y = App->player->position.y;
+					shoot.bullet = new SDL_Rect{ player->position.x +  15, player->position.y  };
+					App->audio->PlaySound(shoot.common_fx);
+					shoot.position.x = App->player->position.x;
+					shoot.position.y = App->player->position.y;
 					break;
 				}
 			}
@@ -77,19 +80,19 @@ update_status ModuleParticles::Update()
 			}
 		}
 	}
-
+	*/
 	for (int i = 0; i < 10; ++i) {
-		if (bullets[i].bullet != nullptr) {
-			if (bullets[i].position.x > SCREEN_WIDTH) {
-				bullets[i].bullet = nullptr;
+		if (shoot.bullet != nullptr) {
+			if (shoot.position.x > SCREEN_WIDTH) {
+				shoot.bullet = nullptr;
 			}
 			else {
-				bullets[i].position.x += 2;
-				App->render->Blit(graphics, bullets[i].position.x, bullets[i].position.y - r.h, &r);
+				shoot.position.x += 2;
+				App->render->Blit(graphics, shoot.position.x, shoot.position.y - 15, shoot.bullet);
 			}
 		}
 	}
-	*/;
+	;
 	return update_status::UPDATE_CONTINUE;
 }
 
