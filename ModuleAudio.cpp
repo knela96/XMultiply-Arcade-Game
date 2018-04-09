@@ -34,8 +34,8 @@ bool ModuleAudio::Init()
 
 	else {
 
-		int init = Mix_OpenAudio(22050, MIX_DEFAULT_FORMAT, 2, 4096); // frequency, Uint16 format, channel, chunksize
-
+		//int init = Mix_OpenAudio(22050, MIX_DEFAULT_FORMAT, 2, 4096); // frequency, Uint16 format, channel, chunksize
+		int init = Mix_OpenAudio(22050, MIX_DEFAULT_FORMAT, 2, 1024); //Reduces buffer and lag of the sound_fx
 		if (init == -1)
 		{
 			LOG("Could not initialize Mixer lib. Mix_Init: %s", Mix_GetError());
