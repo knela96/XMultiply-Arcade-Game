@@ -26,23 +26,23 @@ public:
 	SDL_Rect& GetCurrentFrame()
 	{
 		current_frame += speed;
-		if(current_frame >= last_frame)
-			current_frame = 0;
-
-		return frames[(int)current_frame];
-	}
-
-	SDL_Rect& GetCurrentFrameNotCycling(int lastframe)
-	{
-		if (current_frame < lastframe) {
-			current_frame += speed;
+		if (current_frame >= last_frame)
+		{
+			current_frame = (loop) ? 0.0f : last_frame - 1;
+			loops++;
 		}
+
 		return frames[(int)current_frame];
 	}
 
-	void reset_currentFrame() {
+	bool Finished() const
+	{
+		return loops > 0;
+	}
+
+	void Reset()
+	{
 		current_frame = 0;
-		frames[0];
 	}
 
 	bool islastframe() {
@@ -53,16 +53,6 @@ public:
 			return false;
 		}
 	}
-
-	bool Finished() const
-	{
-		return loops > 0;
-	}
-
-
-
-
-
 };
 
 #endif

@@ -17,6 +17,7 @@ public:
 	bool Start();
 	update_status Update();
 	bool CleanUp();
+	//bool checkCollision(SDL_Rect* bullet, SDL_Rect* enemy);
 
 public:
 
@@ -31,7 +32,7 @@ public:
 	Animation* current_animation;
 	SDL_Rect r;
 	iPoint position;
-
+	Uint32 start_time;
 };
 
 #endif

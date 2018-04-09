@@ -1,25 +1,18 @@
 #include "Globals.h"
 #include "Application.h"
 #include "ModuleParticles.h"
-#include "ModuleEnemy.h"
-#include "ModulePlayer.h"
-#include "ModuleInput.h"
 #include "ModuleAudio.h"
-#include "SDL/include/SDL.h"
 #include "ModuleTextures.h"
 #include "ModuleRender.h"
+
+#include "SDL/include/SDL.h"
+#include "SDL/include/SDL_timer.h"
 
 ModuleParticles::ModuleParticles() : Module() {
 
 	for (uint i = 0; i < MAX_ACTIVE_PARTICLES; ++i)
 		active[i] = nullptr;
-	
-
 }
-
-// Destructor
-
-
 
 ModuleParticles::~ModuleParticles() {}
 
@@ -28,131 +21,65 @@ bool ModuleParticles::Start()
 {
 	bool ret = true;
 	
-	
 	LOG("Loading player textures");
-
 	shoot.common_fx = App->audio->LoadS("Assets/Audio Files/SFX in WAV/xmultipl-114.wav");
 	
 	graphics = App->textures->Load("Assets/Player.png"); // arcade version
 	shoot.anim.PushBack({ 64, 30, 17, 18});
-	shoot.anim.speed = 0.1f;
+	shoot.anim.loop = false;
+	shoot.anim.speed = 3.0f;
+
 	return ret;
 }
 
-// Called every draw update
-update_status ModuleParticles::Update()
-{
-	
-player = App->player;
-
-	
-
-
-	
-	start_time = (Uint32 *)SDL_GetTicks();
-
-	//Rectangle Movement
-
-	if (App->input->keyboard[SDL_SCANCODE_SPACE] == 1) {
-		if (start_time - shooting_delay > 250) {
-			for (int i = 0; i < 10 && (start_time - shooting_delay > 250); ++i) {
-				if (shoot.bullet == nullptr) {
-					shooting_delay = start_time;
-					shoot.bullet = new SDL_Rect{ player->position.x +  15, player->position.y  };
-					App->audio->PlaySound(shoot.common_fx);
-					shoot.position.x = App->player->position.x;
-					shoot.position.y = App->player->position.y;
-					break;
-				}
-			}
-		}
-	}
-	/*
-	/*
-	//Check Collisions
-	for (int i = 0; i < 10; ++i) {
-		for (int j = 0; j < 30; ++j) {
-			if (bullets[i].bullet != nullptr && App->enemy->enemies[j].collision != nullptr) {
-				if (checkCollision(bullets[i].bullet, App->enemy->enemies[j].collision)) {
-					bullets[i].bullet = nullptr;
-					App->enemy->enemies[j].collision = nullptr;
-					break;
-				}
-			}
-		}
-	}
-	*/
-	for (int i = 0; i < 10; ++i) {
-		if (shoot.bullet != nullptr) {
-			if (shoot.position.x > SCREEN_WIDTH) {
-				shoot.bullet = nullptr;
-			}
-			else {
-				shoot.position.x += 2;
-				App->render->Blit(graphics, shoot.position.x, shoot.position.y - 15, shoot.bullet);
-			}
-		}
-	}
-	;
-	return update_status::UPDATE_CONTINUE;
-}
-
-// Called before quitting
+// Unload assets
 bool ModuleParticles::CleanUp()
 {
-	
-	for (int i = 0; i < 10; ++i) {
-		shoot.bullet = nullptr;
-	}
-	player = nullptr;
-
+	LOG("Unloading particles");
 	App->textures->Unload(graphics);
 	App->audio->UnloadS(shoot.common_fx);
+
+	for (uint i = 0; i < MAX_ACTIVE_PARTICLES; ++i)
+	{
+		if (active[i] != nullptr)
+		{
+			delete active[i];
+			active[i] = nullptr;
+		}
+	}
+
 	return true;
 }
 
-bool ModuleParticles::checkCollision(SDL_Rect* bullet, SDL_Rect* enemy) {
-	//The sides of the rectangles
-	int leftA, leftB;
-	int rightA, rightB;
-	int topA, topB;
-	int bottomA, bottomB;
-
-	//Calculate the sides of rect A
-	leftA = bullet->x;
-	rightA = bullet->x + bullet->w;
-	topA = bullet->y;
-	bottomA = bullet->y + bullet->h;
-
-	//Calculate the sides of rect B
-	leftB = enemy->x;
-	rightB = enemy->x + enemy->w;
-	topB = enemy->y;
-	bottomB = enemy->y + enemy->h;
-
-	//If any of the sides from A are outside of B
-	if (bottomA <= topB)
+// Update: draw background
+update_status ModuleParticles::Update()
+{
+	for (uint i = 0; i < MAX_ACTIVE_PARTICLES; ++i)
 	{
-		return false;
+		Particle* p = active[i];
+
+		if (p == nullptr)
+			continue;
+
+		if (p->Update() == false)
+		{
+			delete p;
+			active[i] = nullptr;
+		}
+		else if (SDL_GetTicks() >= p->born)
+		{
+			App->render->Blit(graphics, p->position.x, p->position.y, &(p->anim.GetCurrentFrame()));
+			if (p->fx_played == false)
+			{
+				p->fx_played = true;
+				p->speed.x = 2; 
+				App->audio->PlaySound(shoot.common_fx);
+				// Play particle fx here
+			}
+		}
 	}
 
-	if (topA >= bottomB)
-	{
-		return false;
-	}
-
-	if (rightA <= leftB)
-	{
-		return false;
-	}
-
-	if (leftA >= rightB)
-	{
-		return false;
-	}
-
-	//If none of the sides from A are outside B
-	return true;
+	return UPDATE_CONTINUE;
 }
 
 void ModuleParticles::AddParticle(const Particle& particle, int x, int y, Uint32 delay)
@@ -161,7 +88,7 @@ void ModuleParticles::AddParticle(const Particle& particle, int x, int y, Uint32
 	p->born = SDL_GetTicks() + delay;
 	p->position.x = x;
 	p->position.y = y;
-
+	p->life = 1000;
 	active[last_particle++] = p;
 }
 

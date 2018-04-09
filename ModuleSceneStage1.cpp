@@ -38,14 +38,11 @@ bool ModuleSceneStage1::Start()
 
 	App->player->Enable();
 
-	App->enemy->Enable();
-
-	App->particles->Enable();
-
+	//App->enemy->Enable();
+	
 	graphics = App->textures->Load("Assets/TileMap1.png");
 
 	back = App->textures->Load("Assets/FirstLvlMap3.png");
-
 	
 	return ret;
 }
@@ -58,8 +55,7 @@ bool ModuleSceneStage1::CleanUp()
 	App->textures->Unload(graphics);
 	App->textures->Unload(back);
 	App->player->Disable();
-	App->enemy->Disable();
-	App->particles->Disable();
+	//App->enemy->Disable();
 
 	App->render->camera.x = App->render->camera.y = 0;
 	return ret;

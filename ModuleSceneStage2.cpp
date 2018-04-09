@@ -41,9 +41,7 @@ bool ModuleSceneStage2::Start()
 
 	App->player->Enable();
 
-	App->particles->Enable();
-
-	App->enemy->Enable();
+	//App->enemy->Enable();
 
 	return ret;
 }
@@ -59,9 +57,7 @@ bool ModuleSceneStage2::CleanUp()
 
 	App->player->Disable();
 
-	App->enemy->Disable();
-
-	App->particles->Disable();
+	//App->enemy->Disable();
 
 	return ret;
 

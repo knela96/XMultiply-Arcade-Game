@@ -43,9 +43,6 @@
     <ClCompile Include="ModuleSceneMainMenu.cpp">
       <Filter>Modules\Scenes</Filter>
     </ClCompile>
-    <ClCompile Include="ModuleSceneKen.cpp">
-      <Filter>Modules\Scenes</Filter>
-    </ClCompile>
     <ClCompile Include="ModuleSceneStage1.cpp">
       <Filter>Modules\Scenes</Filter>
     </ClCompile>
@@ -106,9 +103,6 @@
       <Filter>Modules\Scenes</Filter>
     </ClInclude>
     <ClInclude Include="ModuleSceneMainMenu.h">
-      <Filter>Modules\Scenes</Filter>
-    </ClInclude>
-    <ClInclude Include="ModuleSceneKen.h">
       <Filter>Modules\Scenes</Filter>
     </ClInclude>
     <ClInclude Include="ModuleSceneStage1.h">
