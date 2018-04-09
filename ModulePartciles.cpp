@@ -12,10 +12,6 @@
 ModuleParticles::ModuleParticles() : Module() {
 
 
-	singleshot.PushBack({ 64, 30, 17, 18});
-	singleshot.speed = 0.1f;
-
-
 }
 
 // Destructor
@@ -29,7 +25,7 @@ bool ModuleParticles::Start()
 	
 	LOG("Loading player textures");
 
-	shoot_fx = App->audio->LoadS("Assets/Audio Files/SFX in WAV/xmultipl-114.wav");
+	shoot.common_fx = App->audio->LoadS("Assets/Audio Files/SFX in WAV/xmultipl-114.wav");
 	
 	graphics = App->textures->Load("Assets/Player.png"); // arcade version
 	
@@ -42,9 +38,6 @@ update_status ModuleParticles::Update()
 	player = App->player;
 
 	
-	Animation* current_animation = &singleshot;
-	SDL_Rect r = current_animation->GetCurrentFrame();
-	int speed = 1;
 
 	/*
 	start_time = (Uint32 *)SDL_GetTicks();
@@ -151,4 +144,47 @@ bool ModuleParticles::checkCollision(SDL_Rect* bullet, SDL_Rect* enemy) {
 
 	//If none of the sides from A are outside B
 	return true;
+}
+
+void ModuleParticles::AddParticle(const Particle& particle, int x, int y, Uint32 delay)
+{
+	Particle* p = new Particle(particle);
+	p->born = SDL_GetTicks() + delay;
+	p->position.x = x;
+	p->position.y = y;
+
+	active[last_particle++] = p;
+}
+
+// -------------------------------------------------------------
+// -------------------------------------------------------------
+
+Particle::Particle()
+{
+	position.SetToZero();
+	speed.SetToZero();
+}
+
+Particle::Particle(const Particle& p) :
+	anim(p.anim), position(p.position), speed(p.speed),
+	fx(p.fx), born(p.born), life(p.life)
+{}
+
+bool Particle::Update()
+{
+	bool ret = true;
+
+	if (life > 0)
+	{
+		if ((SDL_GetTicks() - born) > life)
+			ret = false;
+	}
+	else
+		if (anim.Finished())
+			ret = false;
+
+	position.x += speed.x;
+	position.y += speed.y;
+
+	return ret;
 }
