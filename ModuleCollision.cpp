@@ -177,14 +177,43 @@ bool Collider::CheckCollision(const SDL_Rect& r) const
 	// TODO 0: Return true if there is an overlap
 	// between argument "r" and property "rect"
 
-	if (r.w + r.x <= rect.x)//RIGHT
-		return false;
-	if (r.x >= rect.x + rect.w)//LEFT
-		return false;
-	if (r.h + r.y <= rect.y)//DOWN
-		return false;
-	if (r.h >= rect.y + rect.h)//TOP
-		return false;
+	//The sides of the rectangles
+	int leftA, leftB;
+	int rightA, rightB;
+	int topA, topB;
+	int bottomA, bottomB;
 
+	//Calculate the sides of rect A
+	leftA = r.x;
+	rightA = r.x + r.w;
+	topA = r.y;
+	bottomA = r.y + r.h;
+
+	//Calculate the sides of rect B
+	leftB = rect.x;
+	rightB = rect.x + rect.w;
+	topB = rect.y;
+	bottomB = rect.y + rect.h;
+
+	//If any of the sides from A are outside of B
+	if (bottomA <= topB)
+	{
+		return false;
+	}
+
+	if (topA >= bottomB)
+	{
+		return false;
+	}
+
+	if (rightA <= leftB)
+	{
+		return false;
+	}
+
+	if (leftA >= rightB)
+	{
+		return false;
+	}
 	return true;
 }

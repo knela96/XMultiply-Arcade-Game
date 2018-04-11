@@ -153,51 +153,10 @@ bool ModulePlayer::CleanUp()
 void ModulePlayer::OnCollision(Collider* collider1, Collider* collider2) {
 
 	if (collider2->type != COLLIDER_PLAYER) {
-		bool ret = true;
-		//The sides of the rectangles
-		int leftA, leftB;
-		int rightA, rightB;
-		int topA, topB;
-		int bottomA, bottomB;
-
-		//Calculate the sides of rect A
-		leftA = collider1->rect.x;
-		rightA = collider1->rect.x + collider1->rect.w;
-		topA = collider1->rect.y;
-		bottomA = collider1->rect.y + collider1->rect.h;
-
-		//Calculate the sides of rect B
-		leftB = collider2->rect.x;
-		rightB = collider2->rect.x + collider2->rect.w;
-		topB = collider2->rect.y;
-		bottomB = collider2->rect.y + collider2->rect.h;
-
-		//If any of the sides from A are outside of B
-		if (bottomA <= topB)
-		{
-			ret = false;
+		if (!dead) {
+			App->particles->AddParticle(App->particles->explosion, position.x, position.y, COLLIDER_NONE);
+			dead = true;
+			start_time = SDL_GetTicks();
 		}
-
-		if (topA >= bottomB)
-		{
-			ret = false;
-		}
-
-		if (rightA <= leftB)
-		{
-			ret = false;
-		}
-
-		if (leftA >= rightB)
-		{
-			ret = false;
-		}
-
-		if (ret == true)
-			if (!dead) {
-				App->particles->AddParticle(App->particles->explosion, position.x, position.y, COLLIDER_NONE);
-				dead = true;
-				start_time = SDL_GetTicks();
-			}
 	}
 }
