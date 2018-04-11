@@ -8,7 +8,7 @@
 
 struct SDL_Rect;
 struct SDL_Texture;
-
+struct Collider;
 typedef unsigned int Uint32;
 
 struct Enemy {
@@ -16,6 +16,8 @@ struct Enemy {
 	SDL_Texture* graphics = nullptr;
 	Animation forward;
 	iPoint position;
+	Collider* collider;
+	bool dead = false;
 };
 
 class ModuleEnemy : public Module
@@ -27,6 +29,7 @@ public:
 
 	bool Start();
 	update_status Update();
+	void OnCollision(Collider* collider1, Collider* collider2);
 
 public:
 	Enemy enemies[30];

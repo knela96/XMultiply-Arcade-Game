@@ -4,12 +4,19 @@
 #include "ModuleRender.h"
 #include "ModuleTextures.h"
 #include "SDL/include/SDL.h"
+#include "ModuleCollision.h"
+#include "ModuleParticles.h"
+
 #include <time.h>
 #include <stdlib.h>
 
+
 ModuleEnemy::ModuleEnemy() {
 
+
+	
 	srand(time(NULL));
+
 
 	anim.PushBack({ 0, 0, 43, 32 });
 	anim.PushBack({ 44, 0, 43, 32 });
@@ -43,6 +50,7 @@ update_status ModuleEnemy::Update()
 
 
 	for (int i = 0; i < 30; ++i) {
+		
 		Animation* current_animation = &enemies[i].forward;
 
 		if (enemies[i].position.x < 100) {
@@ -52,6 +60,10 @@ update_status ModuleEnemy::Update()
 		if ((start_time - spawn_delay > 200) && enemies[i].collision == nullptr) {
 			spawn_delay = start_time;
 
+           //HEY ERIC EN TEORIA AIXO ES UN INIT DEL COLLIDER PER CADA ENEMIC//
+			enemies[i].collider = App->collision->AddCollider({ enemies[i].position.x, enemies[i].position.y, 48, 16 }, COLLIDER_ENEMY, this);
+			enemies[i].collider->SetPos(enemies[i].position.x, enemies[i].position.y);
+			
 			enemies[i].position.x = SCREEN_WIDTH;
 			enemies[i].position.y = rand() % (SCREEN_HEIGHT-40)+30;
 		}
@@ -64,4 +76,18 @@ update_status ModuleEnemy::Update()
 	
 
 	return update_status::UPDATE_CONTINUE;
+}
+
+
+void ModuleEnemy::OnCollision(Collider* collider1, Collider* collider2){
+	for (int i = 0; i < 30; ++i) {
+	if (collider2->type == COLLIDER_PLAYER_SHOT) {
+		
+			App->particles->AddParticle(App->particles->explosion, enemies[i].position.x, enemies[i].position.y, COLLIDER_NONE);
+			
+			//AQUI FALTA POSAR LA LINIA QUE ELIMINA EL ENEMY ARA TORNO, TENIA PENSAT FICAR COM UNA PROPIETAT DEL ENEMY QUE FOS "ALAIVE" O ALGO PER L ESTIL//
+			
+		
+		}
+	}
 }
