@@ -13,23 +13,26 @@
 #include "ModuleSceneStage1.h"
 #include "ModuleSceneStage2.h"
 #include "ModuleSceneCongrats.h"
+#include "ModuleCollision.h"
 
 Application::Application()
 {
-	modules[0] = window = new ModuleWindow();
-	modules[1] = render = new ModuleRender();
-	modules[2] = input = new ModuleInput();
-	modules[3] = textures = new ModuleTextures();
-	modules[4] = audio = new ModuleAudio();
-	modules[8] = scene_MainMenu = new ModuleSceneMainMenu();
-	modules[9] = scene_choosePlayer = new ModuleSceneChoosePlayer();
-	modules[7] = scene_stage1 = new ModuleSceneStage1();
-	modules[6] = scene_stage2 = new ModuleSceneStage2();
-	modules[5] = scene_congrats = new ModuleSceneCongrats();
-	modules[12] = player = new ModulePlayer();
-	modules[11] = particles = new ModuleParticles();
-	modules[10] = enemy = new ModuleEnemy();
-	modules[13] = fade = new ModuleFadeToBlack();//Must be after all scenes
+	int i = 0;
+	modules[i++] = window = new ModuleWindow();
+	modules[i++] = render = new ModuleRender();
+	modules[i++] = input = new ModuleInput();
+	modules[i++] = textures = new ModuleTextures();
+	modules[i++] = audio = new ModuleAudio();
+	modules[i++] = scene_MainMenu = new ModuleSceneMainMenu();
+	modules[i++] = scene_choosePlayer = new ModuleSceneChoosePlayer();
+	modules[i++] = scene_stage1 = new ModuleSceneStage1();
+	modules[i++] = scene_stage2 = new ModuleSceneStage2();
+	modules[i++] = scene_congrats = new ModuleSceneCongrats();
+	modules[i++] = player = new ModulePlayer();
+	modules[i++] = enemy = new ModuleEnemy();
+	modules[i++] = particles = new ModuleParticles();
+	modules[i++] = collision = new ModuleCollision();
+	modules[i++] = fade = new ModuleFadeToBlack();//Must be after all scenes
 }	
 
 Application::~Application()

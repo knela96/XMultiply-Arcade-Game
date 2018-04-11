@@ -9,6 +9,7 @@
 #include "ModulePlayer.h"
 #include "ModuleEnemy.h"
 #include "ModuleParticles.h"
+#include "ModuleCollision.h"
 
 ModuleSceneStage1::ModuleSceneStage1()
 {
@@ -37,12 +38,19 @@ bool ModuleSceneStage1::Start()
 
 
 	App->player->Enable();
+	App->particles->Enable();
+	App->collision->Enable();
 
 	//App->enemy->Enable();
 	
 	graphics = App->textures->Load("Assets/TileMap1.png");
 
 	back = App->textures->Load("Assets/FirstLvlMap3.png");
+
+	// Colliders ---
+	App->collision->AddCollider({ 0, 224, 3930, 16 }, COLLIDER_WALL);
+	App->collision->AddCollider({ 1380, 0, 100, 100 }, COLLIDER_WALL);
+	App->collision->AddCollider({ 1380, 140, 100, 120 }, COLLIDER_WALL);
 	
 	return ret;
 }
@@ -55,6 +63,8 @@ bool ModuleSceneStage1::CleanUp()
 	App->textures->Unload(graphics);
 	App->textures->Unload(back);
 	App->player->Disable();
+	App->collision->Disable();
+	App->particles->Disable();
 	//App->enemy->Disable();
 
 	App->render->camera.x = App->render->camera.y = 0;
@@ -64,10 +74,12 @@ bool ModuleSceneStage1::CleanUp()
 // Update: draw background
 update_status ModuleSceneStage1::Update()
 {
-	--ScrollingOffset;
-	if (ScrollingOffset < -512)
-	{
-		ScrollingOffset = 0;
+	if (!App->player->dead) {
+		--ScrollingOffset;
+		if (ScrollingOffset < -512)
+		{
+			ScrollingOffset = 0;
+		}
 	}
 
 

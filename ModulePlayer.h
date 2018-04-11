@@ -7,7 +7,8 @@
 #include "p2Point.h"
 
 struct SDL_Texture;
-typedef unsigned int Uint32;
+struct Collider;
+
 class ModulePlayer : public Module
 {
 public:
@@ -17,7 +18,7 @@ public:
 	bool Start();
 	update_status Update();
 	bool CleanUp();
-	//bool checkCollision(SDL_Rect* bullet, SDL_Rect* enemy);
+	void OnCollision(Collider* collider1, Collider* collider2);
 
 public:
 
@@ -32,7 +33,9 @@ public:
 	Animation* current_animation;
 	SDL_Rect r;
 	iPoint position;
-	Uint32 start_time;
+	Uint32 start_time; 
+	Collider* collider;
+	bool dead = false;
 };
 
 #endif

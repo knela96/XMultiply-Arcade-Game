@@ -5,6 +5,9 @@
 #include "ModuleRender.h"
 #include "ModulePlayer.h"
 #include "ModuleParticles.h"
+#include "ModuleCollision.h"
+#include "ModuleFadeToBlack.h"
+
 #include "SDL/include/SDL.h"
 
 
@@ -65,6 +68,13 @@ bool ModulePlayer::Start()
 	LOG("Loading player textures");
 	bool ret = true;
 	graphics = App->textures->Load("Assets/Player.png"); // arcade version
+
+	start_time = 0;
+	dead = false;
+
+	//Add a collider to the player
+	collider = App->collision->AddCollider({ position.x, position.y, 48, 16 }, COLLIDER_PLAYER, this);
+	
 	return ret;
 }
 
@@ -109,7 +119,7 @@ update_status ModulePlayer::Update()
 	if (App->input->keyboard[SDL_SCANCODE_SPACE] == KEY_STATE::KEY_DOWN) {
 		//if (start_time - SDL_GetTicks() > 250) {
 			//start_time = SDL_GetTicks();
-			App->particles->AddParticle(App->particles->shoot, position.x+40, position.y-18);
+			App->particles->AddParticle(App->particles->shoot, position.x+40, position.y, COLLIDER_PLAYER_SHOT);
 		//}
 	}
 
@@ -119,8 +129,14 @@ update_status ModulePlayer::Update()
 
 	r = current_animation->GetCurrentFrame();
 
+	collider->SetPos(position.x, position.y);
 	// Draw everything --------------------------------------
-	App->render->Blit(graphics, position.x, position.y - r.h, &r);
+	if (!dead)
+		App->render->Blit(graphics, position.x, position.y, &(current_animation->GetCurrentFrame()));
+	else
+		if (SDL_GetTicks() - start_time >= 1000)
+			App->fade->FadeToBlack((Module*)App->scene_stage1, (Module*)App->scene_MainMenu);
+
 
 	return UPDATE_CONTINUE;
 }
@@ -134,98 +150,54 @@ bool ModulePlayer::CleanUp()
 	return true;
 }
 
+void ModulePlayer::OnCollision(Collider* collider1, Collider* collider2) {
 
-/*
-start_time = (Uint32 *)SDL_GetTicks();
+	if (collider2->type != COLLIDER_PLAYER) {
+		bool ret = true;
+		//The sides of the rectangles
+		int leftA, leftB;
+		int rightA, rightB;
+		int topA, topB;
+		int bottomA, bottomB;
 
-//Rectangle Movement
+		//Calculate the sides of rect A
+		leftA = collider1->rect.x;
+		rightA = collider1->rect.x + collider1->rect.w;
+		topA = collider1->rect.y;
+		bottomA = collider1->rect.y + collider1->rect.h;
 
-if (App->input->keyboard[SDL_SCANCODE_SPACE] == 1) {
-if (start_time - shooting_delay > 250) {
-for (int i = 0; i < 10 && (start_time - shooting_delay > 250); ++i) {
-if (shoot.bullet == nullptr) {
-shooting_delay = start_time;
-shoot.bullet = new SDL_Rect{ player->position.x +  15, player->position.y, shoot.anim.h };
-App->audio->PlaySound(shoot.common_fx);
-shoot.position.x = App->player->position.x;
-shoot.position.y = App->player->position.y;
-break;
-}
-}
-}
-}
-//Check Collisions
-for (int i = 0; i < 10; ++i) {
-for (int j = 0; j < 30; ++j) {
-if (bullets[i].bullet != nullptr && App->enemy->enemies[j].collision != nullptr) {
-if (checkCollision(bullets[i].bullet, App->enemy->enemies[j].collision)) {
-bullets[i].bullet = nullptr;
-App->enemy->enemies[j].collision = nullptr;
-break;
-}
-}
-}
-}
+		//Calculate the sides of rect B
+		leftB = collider2->rect.x;
+		rightB = collider2->rect.x + collider2->rect.w;
+		topB = collider2->rect.y;
+		bottomB = collider2->rect.y + collider2->rect.h;
 
-;
-return update_status::UPDATE_CONTINUE;
+		//If any of the sides from A are outside of B
+		if (bottomA <= topB)
+		{
+			ret = false;
+		}
+
+		if (topA >= bottomB)
+		{
+			ret = false;
+		}
+
+		if (rightA <= leftB)
+		{
+			ret = false;
+		}
+
+		if (leftA >= rightB)
+		{
+			ret = false;
+		}
+
+		if (ret == true)
+			if (!dead) {
+				App->particles->AddParticle(App->particles->explosion, position.x, position.y, COLLIDER_NONE);
+				dead = true;
+				start_time = SDL_GetTicks();
+			}
+	}
 }
-
-// Called before quitting
-bool ModuleParticles::CleanUp()
-{
-
-for (int i = 0; i < 10; ++i) {
-shoot.bullet = nullptr;
-}
-player = nullptr;
-
-App->textures->Unload(graphics);
-App->audio->UnloadS(shoot.common_fx);
-return true;
-}
-
-bool ModuleParticles::checkCollision(SDL_Rect* bullet, SDL_Rect* enemy) {
-//The sides of the rectangles
-int leftA, leftB;
-int rightA, rightB;
-int topA, topB;
-int bottomA, bottomB;
-
-//Calculate the sides of rect A
-leftA = bullet->x;
-rightA = bullet->x + bullet->w;
-topA = bullet->y;
-bottomA = bullet->y + bullet->h;
-
-//Calculate the sides of rect B
-leftB = enemy->x;
-rightB = enemy->x + enemy->w;
-topB = enemy->y;
-bottomB = enemy->y + enemy->h;
-
-//If any of the sides from A are outside of B
-if (bottomA <= topB)
-{
-return false;
-}
-
-if (topA >= bottomB)
-{
-return false;
-}
-
-if (rightA <= leftB)
-{
-return false;
-}
-
-if (leftA >= rightB)
-{
-return false;
-}
-
-//If none of the sides from A are outside B
-return true;
-}
-*/

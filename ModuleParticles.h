@@ -7,16 +7,24 @@
 #include "p2Point.h"
 #include "ModuleAudio.h"
 #include "ModulePlayer.h"
+#include "ModuleCollision.h"
 
 #define MAX_ACTIVE_PARTICLES 100
 
 struct SDL_Rect;
 struct SDL_Texture;
 struct Mix_Chunk;
+struct Collider;
+enum COLLIDER_TYPE;
+
+/*enum FX
+{
+	EXPLOSION_FX = 0,
+	SHOOT_FX
+};*/
 
 struct Particle {
-	SDL_Rect* bullet;
-
+	Collider* collider = nullptr;
 	Animation anim;
 	uint fx = 0;
 	iPoint position;
@@ -27,6 +35,7 @@ struct Particle {
 
 	Particle();
 	Particle(const Particle& p);
+	~Particle();
 	bool Update();
 
 	Mix_Chunk* common_fx = nullptr;
@@ -43,13 +52,16 @@ public:
 	bool Start();
 	update_status Update();
 	bool CleanUp();
+	void OnCollision(Collider* c1, Collider* c2);
 
-	void AddParticle(const Particle& particle, int x, int y, Uint32 delay = 0);
+	void AddParticle(const Particle& particle, int x, int y, COLLIDER_TYPE collider_type = COLLIDER_NONE, Uint32 delay = 0);
 
 public:
 	Uint32 * start_time = 0;
 	Uint32* shooting_delay;
 	Particle shoot;
+	Particle explosion;
+	Particle explosion_bullet;
 
 private: 
 	SDL_Texture * graphics = nullptr;
