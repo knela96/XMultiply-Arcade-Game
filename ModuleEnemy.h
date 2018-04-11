@@ -27,6 +27,7 @@ public:
 
 	bool Start();
 	update_status Update();
+	bool CleanUp();
 	void OnCollision(Collider* collider1, Collider* collider2);
 
 public:

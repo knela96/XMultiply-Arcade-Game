@@ -62,9 +62,9 @@ bool ModuleSceneStage1::CleanUp()
 	App->textures->Unload(graphics);
 	App->textures->Unload(back);
 	App->player->Disable();
+	App->enemy->Disable();
 	App->collision->Disable();
 	App->particles->Disable();
-	//App->enemy->Disable();
 
 	App->render->camera.x = App->render->camera.y = 0;
 	return ret;

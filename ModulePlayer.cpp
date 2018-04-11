@@ -141,7 +141,7 @@ update_status ModulePlayer::Update()
 
 bool ModulePlayer::CleanUp()
 {
-	LOG("Unloading ken scene");
+	LOG("Unloading Player assets");
 	App->textures->Unload(graphics);
 	position.x = 100;
 	position.y = 130;
@@ -150,11 +150,10 @@ bool ModulePlayer::CleanUp()
 
 void ModulePlayer::OnCollision(Collider* collider1, Collider* collider2) {
 
-	//if (collider2->type != COLLIDER_PLAYER) {
-		if (!dead) {
-			App->particles->AddParticle(App->particles->explosion, position.x, position.y, COLLIDER_NONE);
-			dead = true;
-			start_time = SDL_GetTicks();
-		}
-	//}
+	if (!dead) {
+		App->particles->AddParticle(App->particles->explosion, position.x, position.y, COLLIDER_NONE);
+		dead = true;
+		collider1->to_delete = true;
+		start_time = SDL_GetTicks();
+	}
 }

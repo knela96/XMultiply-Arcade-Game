@@ -59,7 +59,9 @@ bool ModuleSceneMainMenu::CleanUp()
 	// TODO 5: Remove all memory leaks
 	LOG("Unloading MainMenu stage");
 	App->textures->Unload(graphics);
+	graphics = nullptr;
 	App->audio->UnloadM(music);
+	music = nullptr;
 	
 	return true;
 }

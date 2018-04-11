@@ -43,6 +43,18 @@ bool ModuleEnemy::Start()
 	return ret;
 }
 
+bool ModuleEnemy::CleanUp()
+{
+	LOG("Unloading Enemy assets");
+	for (int i = 0; i < 30; ++i) {
+		if (enemies[i].collider != nullptr) {
+			App->textures->Unload(enemies[i].graphics);
+			enemies[i].collider = nullptr;
+		}
+	}
+	return true;
+}
+
 // Called every draw update
 update_status ModuleEnemy::Update()
 {
@@ -52,21 +64,17 @@ update_status ModuleEnemy::Update()
 	for (int i = 0; i < 30; ++i) {
 		
 		Animation* current_animation = &enemies[i].forward;
-
-		if (enemies[i].position.x <= 0) {
-			enemies[i].collider = nullptr;
-		}
-
+		
 		if ((start_time - spawn_delay > 200) && enemies[i].collider == nullptr) {
 			spawn_delay = start_time;
 
-           //HEY ERIC EN TEORIA AIXO ES UN INIT DEL COLLIDER PER CADA ENEMIC//
-			enemies[i].collider = App->collision->AddCollider({ enemies[i].position.x, enemies[i].position.y, 48, 16 }, COLLIDER_ENEMY, this);
-			
+			enemies[i].collider = App->collision->AddCollider({ enemies[i].position.x, enemies[i].position.y, 43, 32 }, COLLIDER_ENEMY, this);
+			enemies[i].dead = false;
 			enemies[i].position.x = SCREEN_WIDTH;
-			enemies[i].position.y = rand() % (SCREEN_HEIGHT-40)+30;
+			enemies[i].position.y = rand() % (SCREEN_HEIGHT-80)+40;
 		}
-		if (enemies[i].collider != nullptr) {
+
+		if (enemies[i].collider != nullptr && !enemies[i].dead) {
 			enemies[i].position.x -= 1;
 			enemies[i].collider->SetPos(enemies[i].position.x, enemies[i].position.y);
 			App->render->Blit(enemies[i].graphics, enemies[i].position.x, enemies[i].position.y, &current_animation->GetCurrentFrame());
@@ -81,7 +89,12 @@ update_status ModuleEnemy::Update()
 
 
 void ModuleEnemy::OnCollision(Collider* collider1, Collider* collider2){
-	if (collider2->type == COLLIDER_PLAYER_SHOT) {
-		App->particles->AddParticle(App->particles->explosion, collider2->rect.x, collider2->rect.y, COLLIDER_NONE);
+	for (int i = 0; i < 30; ++i) {
+		if ( enemies[i].collider != nullptr && enemies[i].collider == collider1 && collider2->type == COLLIDER_PLAYER_SHOT) {
+			App->particles->AddParticle(App->particles->explosion, collider1->rect.x, collider1->rect.y, COLLIDER_NONE);
+			enemies[i].dead = true;
+			enemies[i].collider->to_delete = true;
+		}
 	}
+	
 }
