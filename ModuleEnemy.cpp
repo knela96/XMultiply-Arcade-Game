@@ -81,13 +81,13 @@ update_status ModuleEnemy::Update()
 
 void ModuleEnemy::OnCollision(Collider* collider1, Collider* collider2){
 	for (int i = 0; i < 30; ++i) {
-	if (collider2->type == COLLIDER_PLAYER_SHOT) {
-		
+		if (collider2->type == COLLIDER_PLAYER_SHOT) {
+
 			App->particles->AddParticle(App->particles->explosion, enemies[i].position.x, enemies[i].position.y, COLLIDER_NONE);
-			
+
 			//AQUI FALTA POSAR LA LINIA QUE ELIMINA EL ENEMY ARA TORNO, TENIA PENSAT FICAR COM UNA PROPIETAT DEL ENEMY QUE FOS "ALAIVE" O ALGO PER L ESTIL//
-			
-		
+
+
 		}
 	}
 }

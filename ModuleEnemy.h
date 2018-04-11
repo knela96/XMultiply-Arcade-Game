@@ -6,7 +6,6 @@
 #include "Globals.h"
 #include "p2Point.h"
 
-struct SDL_Rect;
 struct SDL_Texture;
 struct Collider;
 typedef unsigned int Uint32;

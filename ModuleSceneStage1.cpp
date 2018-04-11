@@ -40,8 +40,7 @@ bool ModuleSceneStage1::Start()
 	App->player->Enable();
 	App->particles->Enable();
 	App->collision->Enable();
-
-	//App->enemy->Enable();
+	App->enemy->Enable();
 	
 	graphics = App->textures->Load("Assets/TileMap1.png");
 

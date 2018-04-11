@@ -152,11 +152,11 @@ bool ModulePlayer::CleanUp()
 
 void ModulePlayer::OnCollision(Collider* collider1, Collider* collider2) {
 
-	if (collider2->type != COLLIDER_PLAYER) {
+	//if (collider2->type != COLLIDER_PLAYER) {
 		if (!dead) {
 			App->particles->AddParticle(App->particles->explosion, position.x, position.y, COLLIDER_NONE);
 			dead = true;
 			start_time = SDL_GetTicks();
 		}
-	}
+	//}
 }
