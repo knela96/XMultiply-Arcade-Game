@@ -47,7 +47,7 @@ bool ModuleSceneStage1::Start()
 	back = App->textures->Load("Assets/FirstLvlMap3.png");
 
 	// Colliders ---
-	App->collision->AddCollider({ 0, 224, 3930, 16 }, COLLIDER_WALL);
+	App->collision->AddCollider({ 0, 208, 3930, 16 }, COLLIDER_WALL);
 	App->collision->AddCollider({ 1380, 0, 100, 100 }, COLLIDER_WALL);
 	App->collision->AddCollider({ 1380, 140, 100, 120 }, COLLIDER_WALL);
 	

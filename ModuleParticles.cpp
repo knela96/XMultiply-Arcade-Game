@@ -27,7 +27,6 @@ bool ModuleParticles::Start()
 	graphics = App->textures->Load("Assets/Player.png"); // arcade version
 
 	shoot.anim.PushBack({ 64, 30, 17, 18});
-	//shoot.fx = SHOOT_FX;
 	shoot.anim.loop = false;
 	shoot.anim.speed = 3.0f;
 	shoot.life = 2000;
@@ -93,13 +92,6 @@ update_status ModuleParticles::Update()
 				p->fx_played = true;
 				p->speed.x = 2;
 				App->audio->PlaySound(p->common_fx);
-				/*
-				switch (p->fx){
-				case EXPLOSION_FX:
-					App->audio->PlaySound(p->common_fx);
-				case SHOOT_FX:
-					App->audio->PlaySound(shoot.common_fx);
-				}*/
 			}
 		}
 	}
