@@ -23,7 +23,7 @@ ModuleEnemy::ModuleEnemy() {
 	anim.speed = 0.05f;
 
 	for (int i = 0; i < 30; ++i) {
-		enemies[i].collision = nullptr;
+		enemies[i].collider = nullptr;
 		// forward animation 
 		enemies[i].forward = anim;
 	}
@@ -53,24 +53,26 @@ update_status ModuleEnemy::Update()
 		
 		Animation* current_animation = &enemies[i].forward;
 
-		if (enemies[i].position.x < 100) {
-			enemies[i].collision = nullptr;
+		if (enemies[i].position.x <= 0) {
+			enemies[i].collider = nullptr;
 		}
 
-		if ((start_time - spawn_delay > 200) && enemies[i].collision == nullptr) {
+		if ((start_time - spawn_delay > 200) && enemies[i].collider == nullptr) {
 			spawn_delay = start_time;
 
            //HEY ERIC EN TEORIA AIXO ES UN INIT DEL COLLIDER PER CADA ENEMIC//
 			enemies[i].collider = App->collision->AddCollider({ enemies[i].position.x, enemies[i].position.y, 48, 16 }, COLLIDER_ENEMY, this);
-			enemies[i].collider->SetPos(enemies[i].position.x, enemies[i].position.y);
 			
 			enemies[i].position.x = SCREEN_WIDTH;
 			enemies[i].position.y = rand() % (SCREEN_HEIGHT-40)+30;
 		}
-
-		enemies[i].collision = &current_animation->GetCurrentFrame();
-		enemies[i].position.x -= 1;
-		App->render->Blit(enemies[i].graphics, enemies[i].position.x, enemies[i].position.y - enemies[i].collision->h, enemies[i].collision);
+		if (enemies[i].collider != nullptr) {
+			enemies[i].position.x -= 1;
+			enemies[i].collider->rect = current_animation->GetCurrentFrame();
+			enemies[i].collider->SetPos(enemies[i].position.x, enemies[i].position.y);
+			App->render->Blit(enemies[i].graphics, enemies[i].position.x, enemies[i].position.y, &enemies[i].collider->rect);
+		}
+		
 		
 	}
 	
@@ -80,14 +82,7 @@ update_status ModuleEnemy::Update()
 
 
 void ModuleEnemy::OnCollision(Collider* collider1, Collider* collider2){
-	for (int i = 0; i < 30; ++i) {
-		if (collider2->type == COLLIDER_PLAYER_SHOT) {
-
-			App->particles->AddParticle(App->particles->explosion, enemies[i].position.x, enemies[i].position.y, COLLIDER_NONE);
-
-			//AQUI FALTA POSAR LA LINIA QUE ELIMINA EL ENEMY ARA TORNO, TENIA PENSAT FICAR COM UNA PROPIETAT DEL ENEMY QUE FOS "ALAIVE" O ALGO PER L ESTIL//
-
-
-		}
+	if (collider2->type == COLLIDER_PLAYER_SHOT) {
+		App->particles->AddParticle(App->particles->explosion, collider2->rect.x, collider2->rect.y, COLLIDER_NONE);
 	}
 }

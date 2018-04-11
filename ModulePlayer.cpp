@@ -127,12 +127,12 @@ update_status ModulePlayer::Update()
 		&& App->input->keyboard[SDL_SCANCODE_W] == KEY_STATE::KEY_IDLE && (downwardreturn.islastframe() && upwardreturn.islastframe()))
 		current_animation = &idle;
 
-	r = current_animation->GetCurrentFrame();
+	collider->rect = current_animation->GetCurrentFrame();
 
 	collider->SetPos(position.x, position.y);
 	// Draw everything --------------------------------------
 	if (!dead)
-		App->render->Blit(graphics, position.x, position.y, &(current_animation->GetCurrentFrame()));
+		App->render->Blit(graphics, position.x, position.y, &current_animation->GetCurrentFrame());
 	else
 		if (SDL_GetTicks() - start_time >= 1000)
 			App->fade->FadeToBlack((Module*)App->scene_stage1, (Module*)App->scene_MainMenu);

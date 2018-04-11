@@ -11,7 +11,6 @@ struct Collider;
 typedef unsigned int Uint32;
 
 struct Enemy {
-	SDL_Rect* collision = nullptr;
 	SDL_Texture* graphics = nullptr;
 	Animation forward;
 	iPoint position;

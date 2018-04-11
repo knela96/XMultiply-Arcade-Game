@@ -31,7 +31,6 @@ public:
 	Animation upwardreturn;
 	Animation downwardreturn;
 	Animation* current_animation;
-	SDL_Rect r;
 	iPoint position;
 	Uint32 start_time; 
 	Collider* collider;
