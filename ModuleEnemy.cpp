@@ -68,9 +68,8 @@ update_status ModuleEnemy::Update()
 		}
 		if (enemies[i].collider != nullptr) {
 			enemies[i].position.x -= 1;
-			enemies[i].collider->rect = current_animation->GetCurrentFrame();
 			enemies[i].collider->SetPos(enemies[i].position.x, enemies[i].position.y);
-			App->render->Blit(enemies[i].graphics, enemies[i].position.x, enemies[i].position.y, &enemies[i].collider->rect);
+			App->render->Blit(enemies[i].graphics, enemies[i].position.x, enemies[i].position.y, &current_animation->GetCurrentFrame());
 		}
 		
 		

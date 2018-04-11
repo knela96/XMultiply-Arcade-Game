@@ -127,8 +127,6 @@ update_status ModulePlayer::Update()
 		&& App->input->keyboard[SDL_SCANCODE_W] == KEY_STATE::KEY_IDLE && (downwardreturn.islastframe() && upwardreturn.islastframe()))
 		current_animation = &idle;
 
-	collider->rect = current_animation->GetCurrentFrame();
-
 	collider->SetPos(position.x, position.y);
 	// Draw everything --------------------------------------
 	if (!dead)
