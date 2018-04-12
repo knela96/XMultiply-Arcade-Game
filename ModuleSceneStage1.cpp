@@ -82,6 +82,14 @@ update_status ModuleSceneStage1::Update()
 	}
 
 
+
+	int scroll_speed = 1;
+
+	App->player->position.x += 1;
+
+	App->render->camera.x -= 3;
+
+
 	App->render->Blit(back, ScrollingOffset, 0, &ground, 0.1f);
 
 	App->render->Blit(back, ScrollingOffset + 512, 0, &ground, 0.1f);

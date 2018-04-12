@@ -82,7 +82,7 @@ bool ModulePlayer::Start()
 update_status ModulePlayer::Update()
 {
 	int speed = 1;
-	//position.x += speed; //uncomment when camera moves
+	
 	if (App->input->keyboard[SDL_SCANCODE_D] == KEY_STATE::KEY_REPEAT)
 	{
 		position.x += speed;

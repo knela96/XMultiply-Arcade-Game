@@ -64,13 +64,7 @@ update_status ModuleRender::Update()
 
 	if (App->input->keyboard[SDL_SCANCODE_RIGHT] == KEY_STATE::KEY_REPEAT)
 		camera.x -= speed;
-	/*
-	if(App->scene_stage1->IsEnabled() || App->scene_stage2->IsEnabled())
-		camera.x -= speed;
-
-	if (camera.x <= -9132 && camera.x >= -11427)
-		camera.y -= 1;
-		*/
+	
 	
 	return update_status::UPDATE_CONTINUE;
 }
