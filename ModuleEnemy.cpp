@@ -70,7 +70,7 @@ update_status ModuleEnemy::Update()
 
 			enemies[i].collider = App->collision->AddCollider({ enemies[i].position.x, enemies[i].position.y, 43, 32 }, COLLIDER_ENEMY, this);
 			enemies[i].dead = false;
-			enemies[i].position.x = SCREEN_WIDTH;
+			enemies[i].position.x = SCREEN_WIDTH - App->render->camera.x;
 			enemies[i].position.y = rand() % (SCREEN_HEIGHT-80)+40;
 		}
 

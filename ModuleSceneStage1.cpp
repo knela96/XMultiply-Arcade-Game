@@ -82,7 +82,6 @@ update_status ModuleSceneStage1::Update()
 	}
 
 
-
 	int scroll_speed = 1;
 
 	App->player->position.x += 1;
