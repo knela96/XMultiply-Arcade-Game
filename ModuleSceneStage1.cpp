@@ -67,12 +67,10 @@ bool ModuleSceneStage1::Start()
 	App->enemies->AddEnemy(LITTLE_SHRIMP, 400, 150);
 	App->enemies->AddEnemy(LITTLE_SHRIMP, 400, 200);
 	App->enemies->AddEnemy(LITTLE_SHRIMP, 400, 200);
-	App->enemies->AddEnemy(NEMONA_TENTACLE, 500, 192);
+	App->enemies->AddEnemy(NEMONA_TENTACLE, 520, 148);
+
 	//POWERUPS
-	App->enemies->AddEnemy(POWERUPSHIP, 500, 200);
-	App->enemies->AddEnemy(POWERUPSHIP, 500, 200);
-	App->enemies->AddEnemy(POWERUPSHIP, 500, 200);
-	App->enemies->AddEnemy(POWERUPSHIP, 500, 200);
+	App->enemies->AddEnemy(POWERUPSHIP, 400, 150);
 	return ret;
 }
 
