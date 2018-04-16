@@ -63,6 +63,7 @@ public:
 	Particle shoot2;
 	Particle explosion;
 	Particle explosion_bullet;
+	Particle Powerup;
 
 private: 
 	SDL_Texture * graphics = nullptr;

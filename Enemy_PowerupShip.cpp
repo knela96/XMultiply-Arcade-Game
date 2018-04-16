@@ -1,6 +1,8 @@
 #include "Application.h"
 #include "Enemy_PowerupShip.h"
 #include "ModuleCollision.h"
+#include "ModuleParticles.h"
+#include "ModuleRender.h"
 
 Enemy_PowerupShip::Enemy_PowerupShip(int x, int y) : Enemy(x, y)
 {
@@ -21,4 +23,10 @@ Enemy_PowerupShip::Enemy_PowerupShip(int x, int y) : Enemy(x, y)
 void Enemy_PowerupShip::Move()
 {
 	position = original_position + path->GetCurrentPosition(&animation);
+}
+
+void Enemy_PowerupShip::OnCollision(Collider* collider)
+{
+	App->particles->AddParticle(App->particles->explosion, position.x, position.y);
+	App->particles->AddParticle(App->particles->Powerup, position.x, position.y);
 }

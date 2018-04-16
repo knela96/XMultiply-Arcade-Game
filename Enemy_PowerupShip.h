@@ -17,7 +17,7 @@ public:
 	iPoint original_position;
 	Path* path = new Path();
 	Enemy_PowerupShip(int x, int y);
-
+	virtual void OnCollision(Collider* collider);
 	void Move();
 };
 
