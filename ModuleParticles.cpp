@@ -26,11 +26,11 @@ bool ModuleParticles::Start()
 	
 	graphics = App->textures->Load("Assets/Player.png"); // arcade version
 
-	shoot.anim.PushBack({ 64, 30, 17, 18});
-	shoot.anim.loop = false;
-	shoot.anim.speed = 3.0f;
-	shoot.life = 2000;
-	shoot.common_fx = App->audio->LoadS("Assets/Audio Files/SFX in WAV/xmultipl-114.wav");
+	shoot1.anim.PushBack({ 64, 30, 17, 18});
+	shoot1.anim.loop = false;
+	shoot1.anim.speed = 3.0f;
+	shoot1.life = 2000;
+	shoot1.common_fx = App->audio->LoadS("Assets/Audio Files/SFX in WAV/xmultipl-114.wav");
 
 	explosion.anim.PushBack({ 0, 144, 16, 16 });
 	explosion.anim.PushBack({ 17, 144, 16, 16 });
@@ -55,7 +55,7 @@ bool ModuleParticles::CleanUp()
 {
 	LOG("Unloading particles");
 	App->textures->Unload(graphics);
-	App->audio->UnloadS(shoot.common_fx);
+	App->audio->UnloadS(shoot1.common_fx);
 
 	for (uint i = 0; i < MAX_ACTIVE_PARTICLES; ++i)
 	{
