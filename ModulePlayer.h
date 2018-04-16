@@ -36,7 +36,7 @@ public:
 	Uint32 start_time; 
 	Collider* collider;
 	bool shoot1 = true;
-	bool shoot2 = false;
+	bool shoot2 = true;
 	bool shoot3 = false;
 	bool dead = false;
 };
