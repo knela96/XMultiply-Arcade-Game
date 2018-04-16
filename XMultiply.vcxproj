@@ -75,7 +75,11 @@
     <ClInclude Include="Enemy.h" />
     <ClInclude Include="Enemy_BrownWorm.h" />
     <ClInclude Include="Enemy_LittleShrimp.h" />
+<<<<<<< HEAD
+    <ClInclude Include="Enemy_Nemona.h" />
+=======
     <ClInclude Include="Enemy_PowerupShip.h" />
+>>>>>>> fe199aa571b747c4f4220932e3410e9d11183f58
     <ClInclude Include="Globals.h" />
     <ClInclude Include="MemLeaks.h" />
     <ClInclude Include="Module.h" />
@@ -102,7 +106,11 @@
     <ClCompile Include="Enemy.cpp" />
     <ClCompile Include="Enemy_BrownWorm.cpp" />
     <ClCompile Include="Enemy_LittleShrimp.cpp" />
+<<<<<<< HEAD
+    <ClCompile Include="Enemy_Nemona.cpp" />
+=======
     <ClCompile Include="Enemy_PowerupShip.cpp" />
+>>>>>>> fe199aa571b747c4f4220932e3410e9d11183f58
     <ClCompile Include="Globals.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="ModuleAudio.cpp" />

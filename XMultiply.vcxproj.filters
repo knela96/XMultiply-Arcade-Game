@@ -64,7 +64,11 @@
     <ClCompile Include="Enemy_LittleShrimp.cpp">
       <Filter>Modules\Enemies</Filter>
     </ClCompile>
+<<<<<<< HEAD
+    <ClCompile Include="Enemy_Nemona.cpp">
+=======
     <ClCompile Include="Enemy_PowerupShip.cpp">
+>>>>>>> fe199aa571b747c4f4220932e3410e9d11183f58
       <Filter>Modules\Enemies</Filter>
     </ClCompile>
   </ItemGroup>
@@ -144,7 +148,11 @@
     <ClInclude Include="Enemy_LittleShrimp.h">
       <Filter>Modules\Enemies</Filter>
     </ClInclude>
+<<<<<<< HEAD
+    <ClInclude Include="Enemy_Nemona.h">
+=======
     <ClInclude Include="Enemy_PowerupShip.h">
+>>>>>>> fe199aa571b747c4f4220932e3410e9d11183f58
       <Filter>Modules\Enemies</Filter>
     </ClInclude>
   </ItemGroup>
