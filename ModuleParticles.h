@@ -59,7 +59,7 @@ public:
 public:
 	Uint32 * start_time = 0;
 	Uint32* shooting_delay;
-	Particle shoot;
+	Particle shoot1;
 	Particle explosion;
 	Particle explosion_bullet;
 

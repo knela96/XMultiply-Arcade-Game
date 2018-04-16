@@ -9,6 +9,7 @@
 struct SDL_Texture;
 struct Collider;
 
+
 class ModulePlayer : public Module
 {
 public:
@@ -34,6 +35,9 @@ public:
 	iPoint position;
 	Uint32 start_time; 
 	Collider* collider;
+	bool shoot1 = true;
+	bool shoot2 = false;
+	bool shoot3 = false;
 	bool dead = false;
 };
 

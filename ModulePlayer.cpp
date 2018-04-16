@@ -119,7 +119,11 @@ update_status ModulePlayer::Update()
 	if (App->input->keyboard[SDL_SCANCODE_SPACE] == KEY_STATE::KEY_DOWN) {
 		//if (start_time - SDL_GetTicks() > 250) {
 			//start_time = SDL_GetTicks();
-			App->particles->AddParticle(App->particles->shoot, position.x+40, position.y, COLLIDER_PLAYER_SHOT);
+			
+		if (shoot1 == true && shoot2 == false && shoot3 == false)
+			App->particles->AddParticle(App->particles->shoot1, position.x + 40, position.y, COLLIDER_PLAYER_SHOT);
+	
+		
 		//}
 	}
 
