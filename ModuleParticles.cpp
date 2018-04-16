@@ -170,6 +170,7 @@ bool Particle::Update()
 	else
 		if (anim.Finished())
 			ret = false;
+	
 
 	position.x += speed.x;
 	position.y += speed.y;
