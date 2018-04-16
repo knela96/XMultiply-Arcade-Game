@@ -122,7 +122,13 @@ update_status ModulePlayer::Update()
 			
 		if (shoot1 == true && shoot2 == false && shoot3 == false)
 			App->particles->AddParticle(App->particles->shoot1, position.x + 40, position.y, COLLIDER_PLAYER_SHOT);
-	
+		if (shoot1 == true && shoot2 == true && shoot3 == false)
+			App->particles->AddParticle(App->particles->shoot1, position.x + 40, position.y, COLLIDER_PLAYER_SHOT);
+		if (shoot1 == true && shoot2 == true && shoot3 == true)
+			App->particles->AddParticle(App->particles->shoot1, position.x + 40, position.y, COLLIDER_PLAYER_SHOT);
+		if (shoot1 == true && shoot2 == false && shoot3 == true)
+			App->particles->AddParticle(App->particles->shoot1, position.x + 40, position.y, COLLIDER_PLAYER_SHOT);
+		
 		
 		//}
 	}

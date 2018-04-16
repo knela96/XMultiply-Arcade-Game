@@ -18,14 +18,23 @@ ModuleEnemy::ModuleEnemy() {
 	srand(time(NULL));
 
 
-	anim.PushBack({ 0, 0, 43, 32 });
-	anim.PushBack({ 44, 0, 43, 32 });
-	anim.speed = 0.05f;
+	anim1.PushBack({ 0, 0, 43, 32 });
+	anim1.PushBack({ 44, 0, 43, 32 });
+	anim1.speed = 0.05f;
+
+	animpower.PushBack({68, 11,28,18 });
+	animpower.PushBack({ 68, 11,28,18 });
+	animpower.speed = 0.05f;
 
 	for (int i = 0; i < 30; ++i) {
 		enemies[i].collider = nullptr;
 		// forward animation 
-		enemies[i].forward = anim;
+		enemies[i].forward = anim1;	
+	}
+	for (int i = 0; i < 15; ++i) {
+		Powerups[i].collider = nullptr;
+		Powerups[i].forward = animpower;
+
 	}
 }
 
@@ -39,6 +48,10 @@ bool ModuleEnemy::Start()
 	bool ret = true;
 	for (int i = 0; i < 30; ++i) {
 		enemies[i].graphics = App->textures->Load("Assets/littleshrimp.png"); // arcade version
+		
+	}
+	for (int i = 0; i < 15; ++i) {
+		Powerups[i].graphics = App->textures->Load("Assets/Sprites/PowerUp/PowerUp.png");
 	}
 	return ret;
 }
@@ -51,7 +64,15 @@ bool ModuleEnemy::CleanUp()
 			App->textures->Unload(enemies[i].graphics);
 			enemies[i].collider = nullptr;
 		}
+
 	}
+	for (int i = 0; i < 15; ++i) {
+	if (Powerups[i].collider != nullptr) {
+		App->textures->Unload(Powerups[i].graphics);
+		Powerups[i].collider = nullptr;
+		}
+	}
+
 	return true;
 }
 
@@ -79,7 +100,16 @@ update_status ModuleEnemy::Update()
 			enemies[i].collider->SetPos(enemies[i].position.x, enemies[i].position.y);
 			App->render->Blit(enemies[i].graphics, enemies[i].position.x, enemies[i].position.y, &current_animation->GetCurrentFrame());
 		}
-		
+	/*	
+		if ((start_time - spawn_delay > 200) && Powerups[i].collider == nullptr) {
+			
+
+			Powerups[i].collider = App->collision->AddCollider({ Powerups[i].position.x, Powerups[i].position.y, 43, 32 }, COLLIDER_ENEMY, this);
+			Powerups[i].dead = false;
+			Powerups[i].position.x = SCREEN_WIDTH - App->render->camera.x;
+			Powerups[i].position.y = (SCREEN_HEIGHT - SCREEN_HEIGHT / 2);
+		}
+		*/
 		
 	}
 	
