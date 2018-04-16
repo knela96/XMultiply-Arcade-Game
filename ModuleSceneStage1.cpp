@@ -9,6 +9,7 @@
 #include "ModulePlayer.h"
 #include "ModuleEnemy.h"
 #include "ModuleParticles.h"
+#include "ModuleAudio.h"
 #include "ModuleCollision.h"
 
 ModuleSceneStage1::ModuleSceneStage1()
@@ -45,6 +46,10 @@ bool ModuleSceneStage1::Start()
 	graphics = App->textures->Load("Assets/TileMap1.png");
 
 	back = App->textures->Load("Assets/FirstLvlMap3.png");
+
+	music = App->audio->LoadM("Assets/Audio Files/Music in OGG/04_Into_the_Human_Body_Stage_1_.ogg");
+
+	App->audio->PlayMusic(music);
 
 	// Colliders ---
 	App->collision->AddCollider({ 0, 208, 3930, 16 }, COLLIDER_WALL);
