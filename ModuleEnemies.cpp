@@ -6,6 +6,7 @@
 #include "ModuleTextures.h"
 #include "Enemy.h"
 #include "Enemy_BrownWorm.h"
+#include "Enemy_LittleShrimp.h"
 
 #define SPAWN_MARGIN 50
 
@@ -145,6 +146,10 @@ void ModuleEnemies::SpawnEnemy(const EnemyInfo& info)
 		case ENEMY_TYPES::BROWN_WORM:
 			enemies[i] = new Enemy_BrownWorm(info.x, info.y);
 			enemies[i]->type = ENEMY_TYPES::BROWN_WORM;
+			break;
+		case ENEMY_TYPES::LITTLE_SHRIMP:
+			enemies[i] = new Enemy_BrownWorm(info.x, info.y);
+			enemies[i]->type = ENEMY_TYPES::LITTLE_SHRIMP;
 			break;
 		}
 	}

@@ -8,7 +8,7 @@ Enemy_BrownWorm::Enemy_BrownWorm(int x, int y) : Enemy(x, y)
 	fly.PushBack({ 32,0,32,32 });
 	fly.PushBack({ 64,0,32,32 });
 	fly.speed = 0.01f;
-	//
+	
 	animation = &fly;
 
 	path->PushBack({ 0 , 0 }, 2, &fly);
