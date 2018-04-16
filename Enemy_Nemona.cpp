@@ -13,7 +13,7 @@ Enemy_Nemona::Enemy_Nemona(int x, int y) : Enemy(x, y)
 
 	path->PushBack({ 0 , 0 }, 2, &fly);
 
-	collider = App->collision->AddCollider({ 0, 0, 48, 32 }, COLLIDER_TYPE::COLLIDER_ENEMY, (Module*)App->enemies);
+	collider = App->collision->AddCollider({ 0, 0, 48, 48 }, COLLIDER_TYPE::COLLIDER_ENEMY, (Module*)App->enemies);
 
 	original_position.x = x;
 	original_position.y = y;
