@@ -52,10 +52,15 @@ bool ModuleSceneStage1::Start()
 	App->collision->AddCollider({ 1380, 140, 100, 120 }, COLLIDER_WALL);
 
 	// Enemies
+	App->enemies->AddEnemy(BROWN_WORM, 300, 50);
+	App->enemies->AddEnemy(BROWN_WORM, 300, 100);
 	App->enemies->AddEnemy(BROWN_WORM, 300, 150);
-	App->enemies->AddEnemy(BROWN_WORM, 320, 150);
-	App->enemies->AddEnemy(BROWN_WORM, 340, 150);
-	App->enemies->AddEnemy(BROWN_WORM, 360, 150);
+	App->enemies->AddEnemy(BROWN_WORM, 300, 200);
+
+	App->enemies->AddEnemy(LITTLE_SHRIMP, 400, 50);
+	App->enemies->AddEnemy(LITTLE_SHRIMP, 400, 100);
+	App->enemies->AddEnemy(LITTLE_SHRIMP, 400, 150);
+	App->enemies->AddEnemy(LITTLE_SHRIMP, 400, 200);
 	
 	return ret;
 }

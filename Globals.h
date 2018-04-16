@@ -21,6 +21,7 @@ enum ENEMY_TYPES
 {
 	NO_TYPE,
 	BROWN_WORM,
+	LITTLE_SHRIMP,
 };
 
 // Useful typedefs ---------

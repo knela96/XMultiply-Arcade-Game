@@ -26,6 +26,7 @@ bool ModuleEnemies::Start()
 {
 	// Create a prototype for each enemy available so we can copy them around
 	sprites[ENEMY_TYPES::BROWN_WORM] = App->textures->Load("Assets/Sprites/Stage1/Enemies/monsterball.png");
+	sprites[ENEMY_TYPES::LITTLE_SHRIMP] = App->textures->Load("Assets/Sprites/Stage1/Enemies/littleshrimp.png");
 	return true;
 }
 
@@ -39,7 +40,7 @@ update_status ModuleEnemies::PreUpdate()
 			if (queue[i].x * SCREEN_SIZE < App->render->camera.x + (App->render->camera.w * SCREEN_SIZE) + SPAWN_MARGIN)
 			{
 				SpawnEnemy(queue[i]);
-				queue[i].type = ENEMY_TYPES::BROWN_WORM;
+				queue[i].type = ENEMY_TYPES::NO_TYPE;
 				LOG("Spawning enemy at %d", queue[i].x * SCREEN_SIZE);
 			}
 		}
@@ -59,6 +60,9 @@ update_status ModuleEnemies::Update()
 			switch(enemies[i]->type) {
 			case BROWN_WORM:
 				enemies[i]->Draw(sprites[BROWN_WORM]);
+				break;
+			case LITTLE_SHRIMP:
+				enemies[i]->Draw(sprites[LITTLE_SHRIMP]);
 				break;
 			}
 		}
