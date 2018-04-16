@@ -75,6 +75,7 @@
     <ClInclude Include="Enemy.h" />
     <ClInclude Include="Enemy_BrownWorm.h" />
     <ClInclude Include="Enemy_LittleShrimp.h" />
+    <ClInclude Include="Enemy_Nemona.h" />
     <ClInclude Include="Enemy_PowerupShip.h" />
     <ClInclude Include="Globals.h" />
     <ClInclude Include="MemLeaks.h" />
@@ -102,6 +103,7 @@
     <ClCompile Include="Enemy.cpp" />
     <ClCompile Include="Enemy_BrownWorm.cpp" />
     <ClCompile Include="Enemy_LittleShrimp.cpp" />
+    <ClCompile Include="Enemy_Nemona.cpp" />
     <ClCompile Include="Enemy_PowerupShip.cpp" />
     <ClCompile Include="Globals.cpp" />
     <ClCompile Include="Main.cpp" />

@@ -1,9 +1,10 @@
-#ifndef __ENEMY_POWERUPSHIP_H__
-#define __ENEMY_POWERUPSHIP_H__
+#ifndef __ENEMY_NEMONA_H__
+#define __ENEMY_NEMONA_H__
 
 #include "Enemy.h"
 
-class Enemy_PowerupShip : public Enemy
+
+class Enemy_Nemona : public Enemy
 {
 private:
 	float wave = -1.0f;
@@ -16,9 +17,9 @@ public:
 
 	iPoint original_position;
 	Path* path = new Path();
-	Enemy_PowerupShip(int x, int y);
+	Enemy_Nemona(int x, int y);
 
 	void Move();
 };
 
-#endif // __ENEMY_POWERUPSHIP_H_
+#endif // __ENEMY_NEMONA_H__

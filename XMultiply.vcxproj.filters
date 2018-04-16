@@ -67,6 +67,9 @@
     <ClCompile Include="Enemy_PowerupShip.cpp">
       <Filter>Modules\Enemies</Filter>
     </ClCompile>
+    <ClCompile Include="Enemy_Nemona.cpp">
+      <Filter>Modules\Enemies</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Animation.h">
@@ -145,6 +148,9 @@
       <Filter>Modules\Enemies</Filter>
     </ClInclude>
     <ClInclude Include="Enemy_PowerupShip.h">
+      <Filter>Modules\Enemies</Filter>
+    </ClInclude>
+    <ClInclude Include="Enemy_Nemona.h">
       <Filter>Modules\Enemies</Filter>
     </ClInclude>
   </ItemGroup>
