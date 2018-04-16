@@ -1,4 +1,3 @@
-
 #include "Globals.h"
 #include "Application.h"
 #include "ModuleTextures.h"
@@ -66,10 +65,7 @@ bool ModuleSceneStage1::Start()
 	App->enemies->AddEnemy(LITTLE_SHRIMP, 400, 100);
 	App->enemies->AddEnemy(LITTLE_SHRIMP, 400, 150);
 	App->enemies->AddEnemy(LITTLE_SHRIMP, 400, 200);
-	App->enemies->AddEnemy(POWERUPSHIP, 500, 200);
-	App->enemies->AddEnemy(POWERUPSHIP, 500, 200);
-	App->enemies->AddEnemy(POWERUPSHIP, 500, 200);
-	App->enemies->AddEnemy(POWERUPSHIP, 500, 200);
+	
 	return ret;
 }
 
@@ -84,6 +80,8 @@ bool ModuleSceneStage1::CleanUp()
 	App->enemies->Disable();
 	App->collision->Disable();
 	App->particles->Disable();
+	App->audio->UnloadM(music);
+	music = nullptr;
 
 	App->render->camera.x = App->render->camera.y = 0;
 	return ret;
