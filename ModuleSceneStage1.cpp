@@ -65,7 +65,17 @@ bool ModuleSceneStage1::Start()
 	App->enemies->AddEnemy(LITTLE_SHRIMP, 400, 100);
 	App->enemies->AddEnemy(LITTLE_SHRIMP, 400, 150);
 	App->enemies->AddEnemy(LITTLE_SHRIMP, 400, 200);
+<<<<<<< HEAD
 	
+=======
+	App->enemies->AddEnemy(LITTLE_SHRIMP, 400, 200);
+	App->enemies->AddEnemy(NEMONA_TENTACLE, 500, 192);
+	//POWERUPS
+	App->enemies->AddEnemy(POWERUPSHIP, 500, 200);
+	App->enemies->AddEnemy(POWERUPSHIP, 500, 200);
+	App->enemies->AddEnemy(POWERUPSHIP, 500, 200);
+	App->enemies->AddEnemy(POWERUPSHIP, 500, 200);
+>>>>>>> 0c78227c73cde2aec574f209fbfe4204a5700841
 	return ret;
 }
 
@@ -103,13 +113,12 @@ update_status ModuleSceneStage1::Update()
 
 	App->player->position.x += 1;
 
-	App->render->camera.x -= 3;
-
+	App->render->camera.x += 1 * SCREEN_SIZE;
 
 	App->render->Blit(back, ScrollingOffset, 0, &ground, 0.1f);
 
 	App->render->Blit(back, ScrollingOffset + 512, 0, &ground, 0.1f);
-
+	
 
 	App->render->Blit(graphics, 0, 0, &background);
 

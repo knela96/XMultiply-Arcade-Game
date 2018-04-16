@@ -8,6 +8,7 @@
 #include "Enemy_BrownWorm.h"
 #include "Enemy_LittleShrimp.h"
 #include "Enemy_PowerupShip.h"
+#include "Enemy_Nemona.h"
 
 #define SPAWN_MARGIN 50
 
@@ -29,6 +30,7 @@ bool ModuleEnemies::Start()
 	// Create a prototype for each enemy available so we can copy them around
 	sprites[ENEMY_TYPES::BROWN_WORM] = App->textures->Load("Assets/Sprites/Stage1/Enemies/monsterball.png");
 	sprites[ENEMY_TYPES::LITTLE_SHRIMP] = App->textures->Load("Assets/Sprites/Stage1/Enemies/littleshrimp.png");
+	sprites[ENEMY_TYPES::NEMONA_TENTACLE] = App->textures->Load("Assets/Sprites/Stage1/Enemies/nemona.png");
 	sprites[ENEMY_TYPES::POWERUPSHIP] = App->textures->Load("Assets/Sprites/PowerUp/PowerUp.png");
 	return true;
 }
@@ -40,6 +42,7 @@ update_status ModuleEnemies::PreUpdate()
 	{
 		if (queue[i].type != ENEMY_TYPES::NO_TYPE)
 		{
+			
 			if (queue[i].x * SCREEN_SIZE < App->render->camera.x + (App->render->camera.w * SCREEN_SIZE) + SPAWN_MARGIN)
 			{
 				SpawnEnemy(queue[i]);
@@ -66,6 +69,9 @@ update_status ModuleEnemies::Update()
 				break;
 			case LITTLE_SHRIMP:
 				enemies[i]->Draw(sprites[LITTLE_SHRIMP]);
+				break;
+			case NEMONA_TENTACLE:
+				enemies[i]->Draw(sprites[NEMONA_TENTACLE]);
 				break;
 			case POWERUPSHIP:
 				enemies[i]->Draw(sprites[POWERUPSHIP]);
@@ -156,13 +162,14 @@ void ModuleEnemies::SpawnEnemy(const EnemyInfo& info)
 			enemies[i] = new Enemy_LittleShrimp(info.x, info.y);
 			enemies[i]->type = ENEMY_TYPES::LITTLE_SHRIMP;
 			break;
-	
+		case ENEMY_TYPES::NEMONA_TENTACLE:
+			enemies[i] = new Enemy_Nemona(info.x, info.y);
+			enemies[i]->type = ENEMY_TYPES::NEMONA_TENTACLE;
+			break;
 		case ENEMY_TYPES::POWERUPSHIP:
-		enemies[i] = new Enemy_PowerupShip(info.x, info.y);
-		enemies[i]->type = ENEMY_TYPES::POWERUPSHIP;
-		break;
-
-
+			enemies[i] = new Enemy_PowerupShip(info.x, info.y);
+			enemies[i]->type = ENEMY_TYPES::POWERUPSHIP;
+			break;
 		}
 	}
 }
@@ -171,7 +178,7 @@ void ModuleEnemies::OnCollision(Collider* c1, Collider* c2)
 {
 	for (uint i = 0; i < MAX_ENEMIES; ++i)
 	{
-		if (enemies[i] != nullptr && enemies[i]->GetCollider() == c1 /*EPSA NO SE COM ES FA*/)
+		if (enemies[i] != nullptr && enemies[i]->GetCollider() == c1 && (c2->type == COLLIDER_PLAYER || c2->type == COLLIDER_PLAYER_SHOT))
 		{
 			enemies[i]->OnCollision(c2);
 			delete enemies[i];

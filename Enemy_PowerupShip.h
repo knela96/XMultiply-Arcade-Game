@@ -20,5 +20,5 @@ public:
 	virtual void OnCollision(Collider* collider);
 	void Move();
 };
-//meerge
+
 #endif // __ENEMY_POWERUPSHIP_H_
