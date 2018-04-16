@@ -1,4 +1,3 @@
-
 #include "Globals.h"
 #include "Application.h"
 #include "ModuleTextures.h"
@@ -66,11 +65,22 @@ bool ModuleSceneStage1::Start()
 	App->enemies->AddEnemy(LITTLE_SHRIMP, 400, 100);
 	App->enemies->AddEnemy(LITTLE_SHRIMP, 400, 150);
 	App->enemies->AddEnemy(LITTLE_SHRIMP, 400, 200);
+<<<<<<< HEAD
+	
+=======
 	App->enemies->AddEnemy(LITTLE_SHRIMP, 400, 200);
 	App->enemies->AddEnemy(NEMONA_TENTACLE, 520, 148);
 
 	//POWERUPS
+<<<<<<< HEAD
 	App->enemies->AddEnemy(POWERUPSHIP, 400, 150);
+=======
+	App->enemies->AddEnemy(POWERUPSHIP, 500, 200);
+	App->enemies->AddEnemy(POWERUPSHIP, 500, 200);
+	App->enemies->AddEnemy(POWERUPSHIP, 500, 200);
+	App->enemies->AddEnemy(POWERUPSHIP, 500, 200);
+>>>>>>> 0c78227c73cde2aec574f209fbfe4204a5700841
+>>>>>>> 655b2a7029169713bf9e0d494573265211868cd5
 	return ret;
 }
 
@@ -85,6 +95,8 @@ bool ModuleSceneStage1::CleanUp()
 	App->enemies->Disable();
 	App->collision->Disable();
 	App->particles->Disable();
+	App->audio->UnloadM(music);
+	music = nullptr;
 
 	App->render->camera.x = App->render->camera.y = 0;
 	return ret;
