@@ -7,6 +7,8 @@
 
 struct SDL_Texture;
 
+typedef struct _Mix_Music Mix_Music;
+
 class ModuleSceneStage1 : public Module
 {
 public:
@@ -21,6 +23,7 @@ public:
 	
 	SDL_Texture* graphics = nullptr;
 	SDL_Texture* back = nullptr;
+	Mix_Music * music = nullptr;
 	SDL_Rect ground;
 	SDL_Rect background;
 	Animation flag;
