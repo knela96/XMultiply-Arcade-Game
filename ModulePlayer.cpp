@@ -74,7 +74,10 @@ bool ModulePlayer::Start()
 
 	//Add a collider to the player
 	collider = App->collision->AddCollider({ position.x, position.y, 48, 16 }, COLLIDER_PLAYER, this);
-	
+
+	powerup[BASIC_SHOOT] = true;
+	powerup[PARABOLA_SHOOT] = true;
+
 	return ret;
 }
 
@@ -119,20 +122,14 @@ update_status ModulePlayer::Update()
 	if (App->input->keyboard[SDL_SCANCODE_SPACE] == KEY_STATE::KEY_DOWN) {
 		//if (start_time - SDL_GetTicks() > 250) {
 			//start_time = SDL_GetTicks();
-			
-		if (shoot1 == true && shoot2 == false && shoot3 == false)
+
+		if (powerup[BASIC_SHOOT] == true)
 			App->particles->AddParticle(App->particles->shoot1, position.x + 40, position.y, COLLIDER_PLAYER_SHOT);
-		if (shoot1 == true && shoot2 == true && shoot3 == false)
+		if (powerup[PARABOLA_SHOOT] == true) {
 			App->particles->AddParticle(App->particles->shoot1, position.x + 40, position.y, COLLIDER_PLAYER_SHOT);
 			App->particles->AddParticle(App->particles->shoot2, position.x + 40, position.y, COLLIDER_PLAYER_SHOT);
-		/*
-		if (shoot1 == true && shoot2 == true && shoot3 == true)
-			App->particles->AddParticle(App->particles->shoot1, position.x + 40, position.y, COLLIDER_PLAYER_SHOT);
-		if (shoot1 == true && shoot2 == false && shoot3 == true)
-			App->particles->AddParticle(App->particles->shoot1, position.x + 40, position.y, COLLIDER_PLAYER_SHOT);
-		*/
-		
-		//}
+		}
+
 	}
 
 	if (App->input->keyboard[SDL_SCANCODE_S] == KEY_STATE::KEY_IDLE

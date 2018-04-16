@@ -24,8 +24,8 @@ bool ModuleParticles::Start()
 	
 	LOG("Loading player textures");
 	
-	graphics = App->textures->Load("Assets/Player.png"); // arcade version
-	graphics = App->textures->Load("Assets/PowerUp/PowerUp.png");
+	graphics = App->textures->Load("Assets/Player.png");
+	//graphics = App->textures->Load("Assets/PowerUp/PowerUp.png");
 
 	shoot1.anim.PushBack({ 64, 30, 17, 18});
 	shoot1.anim.loop = false;

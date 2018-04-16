@@ -35,9 +35,7 @@ public:
 	iPoint position;
 	Uint32 start_time; 
 	Collider* collider;
-	bool shoot1 = true;
-	bool shoot2 = true;
-	bool shoot3 = false;
+	bool powerup[4];
 	bool dead = false;
 };
 
