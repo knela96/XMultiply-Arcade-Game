@@ -7,7 +7,7 @@
 #include "ModuleInput.h"
 #include "ModuleFadeToBlack.h"
 #include "ModulePlayer.h"
-#include "ModuleEnemy.h"
+#include "ModuleEnemies.h"
 #include "ModuleParticles.h"
 #include "ModuleAudio.h"
 #include "ModuleCollision.h"
@@ -41,7 +41,7 @@ bool ModuleSceneStage1::Start()
 	App->player->Enable();
 	App->particles->Enable();
 	App->collision->Enable();
-	App->enemy->Enable();
+	App->enemies->Enable();
 	
 	graphics = App->textures->Load("Assets/TileMap1.png");
 
@@ -55,6 +55,16 @@ bool ModuleSceneStage1::Start()
 	App->collision->AddCollider({ 0, 208, 3930, 16 }, COLLIDER_WALL);
 	App->collision->AddCollider({ 1380, 0, 100, 100 }, COLLIDER_WALL);
 	App->collision->AddCollider({ 1380, 140, 100, 120 }, COLLIDER_WALL);
+
+	// Enemies
+	App->enemies->AddEnemy(BROWN_WORM, 300, 50);
+	App->enemies->AddEnemy(BROWN_WORM, 300, 100);
+	App->enemies->AddEnemy(BROWN_WORM, 300, 150);
+	App->enemies->AddEnemy(BROWN_WORM, 300, 200);
+	App->enemies->AddEnemy(LITTLE_SHRIMP, 400, 50);
+	App->enemies->AddEnemy(LITTLE_SHRIMP, 400, 100);
+	App->enemies->AddEnemy(LITTLE_SHRIMP, 400, 150);
+	App->enemies->AddEnemy(LITTLE_SHRIMP, 400, 200);
 	
 	return ret;
 }
@@ -67,7 +77,7 @@ bool ModuleSceneStage1::CleanUp()
 	App->textures->Unload(graphics);
 	App->textures->Unload(back);
 	App->player->Disable();
-	App->enemy->Disable();
+	App->enemies->Disable();
 	App->collision->Disable();
 	App->particles->Disable();
 

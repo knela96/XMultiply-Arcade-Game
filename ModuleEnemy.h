@@ -32,12 +32,13 @@ public:
 
 public:
 	Enemy enemies[30];
+	Enemy Powerups[15];
 	Uint32* start_time = 0;
 	Uint32* spawn_delay;
 
 
-	Animation anim;
-
+	Animation anim1;
+	Animation animpower;
 };
 
 #endif // __ModuleEnemy_H__

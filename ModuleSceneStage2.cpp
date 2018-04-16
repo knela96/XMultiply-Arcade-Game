@@ -7,7 +7,7 @@
 #include "ModuleFadeToBlack.h"
 #include "ModuleSceneCongrats.h"
 #include "ModulePlayer.h"
-#include "ModuleEnemy.h"
+#include "ModuleEnemies.h"
 #include "ModuleParticles.h"
 
 
@@ -41,7 +41,7 @@ bool ModuleSceneStage2::Start()
 
 	App->player->Enable();
 
-	App->enemy->Enable();
+	App->enemies->Enable();
 
 	return ret;
 }
@@ -57,7 +57,7 @@ bool ModuleSceneStage2::CleanUp()
 
 	App->player->Disable();
 
-	App->enemy->Disable();
+	App->enemies->Disable();
 
 	return ret;
 
