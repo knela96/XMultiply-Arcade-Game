@@ -22,11 +22,7 @@ enum ENEMY_TYPES
 	NO_TYPE,
 	BROWN_WORM,
 	LITTLE_SHRIMP,
-<<<<<<< HEAD
-	NEMONA,
-=======
 	POWERUPSHIP,
->>>>>>> fe199aa571b747c4f4220932e3410e9d11183f58
 };
 
 // Useful typedefs ---------

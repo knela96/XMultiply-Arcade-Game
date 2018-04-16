@@ -20,5 +20,5 @@ public:
 
 	void Move();
 };
-
-#endif // __ENEMY_POWERUPSHIP_H__
+//meerge
+#endif // __ENEMY_POWERUPSHIP_H_
