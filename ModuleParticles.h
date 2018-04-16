@@ -8,7 +8,6 @@
 #include "ModuleAudio.h"
 #include "ModulePlayer.h"
 #include "ModuleCollision.h"
-#include "DynamicArray.h"
 
 #define MAX_ACTIVE_PARTICLES 100
 
@@ -43,7 +42,6 @@ struct Particle {
 	
 };
 
-
 class ModuleParticles : public Module
 {
 public:
@@ -67,9 +65,8 @@ public:
 
 private: 
 	SDL_Texture * graphics = nullptr;
-	DynamicArray<Particle *> active;
-	/*Particle * active[MAX_ACTIVE_PARTICLES];
-	uint last_particle = 0;*/
+	Particle * active[MAX_ACTIVE_PARTICLES];
+	uint last_particle = 0;
 };
 
 #endif // __ModuleInput_H__

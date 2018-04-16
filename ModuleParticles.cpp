@@ -11,7 +11,7 @@
 
 ModuleParticles::ModuleParticles() : Module() {
 
-	for (uint i = 0; i < active.size(); ++i)
+	for (uint i = 0; i < MAX_ACTIVE_PARTICLES; ++i)
 		active[i] = nullptr;
 }
 
@@ -57,7 +57,7 @@ bool ModuleParticles::CleanUp()
 	App->textures->Unload(graphics);
 	App->audio->UnloadS(shoot.common_fx);
 
-	for (uint i = 0; i < active.size(); ++i)
+	for (uint i = 0; i < MAX_ACTIVE_PARTICLES; ++i)
 	{
 		if (active[i] != nullptr)
 		{
@@ -72,7 +72,7 @@ bool ModuleParticles::CleanUp()
 // Update: draw background
 update_status ModuleParticles::Update()
 {
-	for (uint i = 0; i < active.size(); ++i)
+	for (uint i = 0; i < MAX_ACTIVE_PARTICLES; ++i)
 	{
 		Particle* p = active[i];
 
@@ -101,29 +101,25 @@ update_status ModuleParticles::Update()
 
 void ModuleParticles::AddParticle(const Particle& particle, int x, int y, COLLIDER_TYPE collider_type, Uint32 delay)
 {
-	Particle* p = new Particle(particle);
-	p->born = SDL_GetTicks() + delay;
-	p->position.x = x;
-	p->position.y = y;
-	if (collider_type != COLLIDER_NONE)
-		p->collider = App->collision->AddCollider(p->anim.GetCurrentFrame(), collider_type, this);
-	bool added = false;
-	for (uint i = 0; i < active.size(); ++i)
+	for (uint i = 0; i < MAX_ACTIVE_PARTICLES; ++i)
 	{
 		if (active[i] == nullptr)
 		{
+			Particle* p = new Particle(particle);
+			p->born = SDL_GetTicks() + delay;
+			p->position.x = x;
+			p->position.y = y;
+			if (collider_type != COLLIDER_NONE)
+				p->collider = App->collision->AddCollider(p->anim.GetCurrentFrame(), collider_type, this);
 			active[i] = p;
-			added = true;
 			break;
 		}
 	}
-	if (!added)
-		active.push_back(p);
 }
 
 void ModuleParticles::OnCollision(Collider* c1, Collider* c2)
 {
-	for (uint i = 0; i < active.size(); ++i)
+	for (uint i = 0; i < MAX_ACTIVE_PARTICLES; ++i)
 	{
 		// Always destroy particles that collide
 		if (active[i] != nullptr && active[i]->collider == c1)
