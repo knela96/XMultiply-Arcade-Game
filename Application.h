@@ -11,7 +11,7 @@ class ModuleInput;
 class ModuleTextures;
 class ModuleRender;
 class ModulePlayer;
-class ModuleEnemy;
+class ModuleEnemies;
 class ModuleAudio;
 class ModuleParticles;
 class ModuleFadeToBlack;
@@ -32,7 +32,7 @@ public:
 	ModuleInput* input = nullptr;
 	ModuleTextures* textures = nullptr;
 	ModulePlayer* player = nullptr;
-	ModuleEnemy* enemy = nullptr;
+	ModuleEnemies* enemies = nullptr;
 	ModuleAudio* audio = nullptr;
 	ModuleParticles* particles = nullptr;
 	ModuleFadeToBlack* fade = nullptr;
