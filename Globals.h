@@ -24,10 +24,6 @@ enum ENEMY_TYPES
 	BROWN_WORM,
 	LITTLE_SHRIMP,
 	NEMONA_TENTACLE,
-<<<<<<< HEAD
-
-=======
->>>>>>> 6fa0dde5a98f294badc779735438f764efdcb672
 };
 
 enum ENEMY_PARTICLES

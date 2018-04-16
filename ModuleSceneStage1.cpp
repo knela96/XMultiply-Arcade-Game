@@ -61,10 +61,10 @@ bool ModuleSceneStage1::Start()
 	App->enemies->AddEnemy(BROWN_WORM, 300, 100);
 	App->enemies->AddEnemy(BROWN_WORM, 300, 150);
 	App->enemies->AddEnemy(BROWN_WORM, 300, 200);
-	App->enemies->AddEnemy(LITTLE_SHRIMP, 400, 50);
-	App->enemies->AddEnemy(LITTLE_SHRIMP, 400, 100);
-	App->enemies->AddEnemy(LITTLE_SHRIMP, 400, 150);
 	App->enemies->AddEnemy(LITTLE_SHRIMP, 400, 200);
+	App->enemies->AddEnemy(LITTLE_SHRIMP, 415, 200);
+	App->enemies->AddEnemy(LITTLE_SHRIMP, 440, 200);
+	App->enemies->AddEnemy(LITTLE_SHRIMP, 465, 200);
 	App->enemies->AddEnemy(NEMONA_TENTACLE, 520, 148);
 
 	//POWERUPS
