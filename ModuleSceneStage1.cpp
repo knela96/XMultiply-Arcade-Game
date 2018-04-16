@@ -59,7 +59,8 @@ bool ModuleSceneStage1::Start()
 	App->enemies->AddEnemy(LITTLE_SHRIMP, 400, 50);
 	App->enemies->AddEnemy(LITTLE_SHRIMP, 400, 100);
 	App->enemies->AddEnemy(LITTLE_SHRIMP, 400, 150);
-	App->enemies->AddEnemy(LITTLE_SHRIMP, 400, 200);
+	App->enemies->AddEnemy(LITTLE_SHRIMP, 450, 150);
+	//App->enemies->AddEnemy(NEMONA, 400, 250);
 	
 	return ret;
 }
