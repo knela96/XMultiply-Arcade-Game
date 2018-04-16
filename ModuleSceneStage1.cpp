@@ -1,3 +1,5 @@
+
+
 #include "Globals.h"
 #include "Application.h"
 #include "ModuleTextures.h"
@@ -60,7 +62,10 @@ bool ModuleSceneStage1::Start()
 	App->enemies->AddEnemy(LITTLE_SHRIMP, 400, 100);
 	App->enemies->AddEnemy(LITTLE_SHRIMP, 400, 150);
 	App->enemies->AddEnemy(LITTLE_SHRIMP, 400, 200);
-	
+	App->enemies->AddEnemy(POWERUPSHIP, 500, 200);
+	App->enemies->AddEnemy(POWERUPSHIP, 500, 200);
+	App->enemies->AddEnemy(POWERUPSHIP, 500, 200);
+	App->enemies->AddEnemy(POWERUPSHIP, 500, 200);
 	return ret;
 }
 

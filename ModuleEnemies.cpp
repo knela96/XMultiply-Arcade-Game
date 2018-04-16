@@ -7,6 +7,7 @@
 #include "Enemy.h"
 #include "Enemy_BrownWorm.h"
 #include "Enemy_LittleShrimp.h"
+#include "Enemy_PowerupShip.h"
 
 #define SPAWN_MARGIN 50
 
@@ -28,6 +29,7 @@ bool ModuleEnemies::Start()
 	// Create a prototype for each enemy available so we can copy them around
 	sprites[ENEMY_TYPES::BROWN_WORM] = App->textures->Load("Assets/Sprites/Stage1/Enemies/monsterball.png");
 	sprites[ENEMY_TYPES::LITTLE_SHRIMP] = App->textures->Load("Assets/Sprites/Stage1/Enemies/littleshrimp.png");
+	sprites[ENEMY_TYPES::POWERUPSHIP] = App->textures->Load("Assets/Sprites/PowerUp/PowerUp.png");
 	return true;
 }
 
@@ -64,6 +66,9 @@ update_status ModuleEnemies::Update()
 				break;
 			case LITTLE_SHRIMP:
 				enemies[i]->Draw(sprites[LITTLE_SHRIMP]);
+				break;
+			case POWERUPSHIP:
+				enemies[i]->Draw(sprites[POWERUPSHIP]);
 				break;
 			}
 		}
@@ -148,9 +153,16 @@ void ModuleEnemies::SpawnEnemy(const EnemyInfo& info)
 			enemies[i]->type = ENEMY_TYPES::BROWN_WORM;
 			break;
 		case ENEMY_TYPES::LITTLE_SHRIMP:
-			enemies[i] = new Enemy_BrownWorm(info.x, info.y);
+			enemies[i] = new Enemy_LittleShrimp(info.x, info.y);
 			enemies[i]->type = ENEMY_TYPES::LITTLE_SHRIMP;
 			break;
+	
+		case ENEMY_TYPES::POWERUPSHIP:
+		enemies[i] = new Enemy_PowerupShip(info.x, info.y);
+		enemies[i]->type = ENEMY_TYPES::LITTLE_SHRIMP;
+		break;
+
+
 		}
 	}
 }
