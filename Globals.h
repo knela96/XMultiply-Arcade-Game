@@ -20,10 +20,17 @@ enum update_status
 enum ENEMY_TYPES
 {
 	NO_TYPE,
-	NEMONA_TENTACLE,
-	POWERUPSHIP,
 	BROWN_WORM,
 	LITTLE_SHRIMP,
+	POWERUPSHIP,
+};
+
+enum ENEMY_PARTICLES
+{
+	BASIC_SHOOT,
+	PARABOLA_SHOOT,
+	EXPLOSION_BULLET,
+	POWER_UP,
 };
 
 // Useful typedefs ---------
