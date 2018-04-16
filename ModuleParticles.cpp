@@ -32,6 +32,12 @@ bool ModuleParticles::Start()
 	shoot1.life = 2000;
 	shoot1.common_fx = App->audio->LoadS("Assets/Audio Files/SFX in WAV/xmultipl-114.wav");
 
+	shoot2.anim.PushBack({ 50, 82, 12, 18 });
+	shoot2.anim.loop = false;
+	shoot2.anim.speed = 3.0f;
+	shoot2.life = 2000;
+	shoot2.common_fx = App->audio->LoadS("Assets/Audio Files/SFX in WAV/xmultipl-114.wav");
+
 	explosion.anim.PushBack({ 0, 144, 16, 16 });
 	explosion.anim.PushBack({ 17, 144, 16, 16 });
 	explosion.anim.PushBack({ 33, 144, 16, 16 });

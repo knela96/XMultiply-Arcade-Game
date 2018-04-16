@@ -1,3 +1,4 @@
+
 #include "Globals.h"
 #include "Application.h"
 #include "ModuleTextures.h"
@@ -9,6 +10,7 @@
 #include "ModulePlayer.h"
 #include "ModuleEnemies.h"
 #include "ModuleParticles.h"
+#include "ModuleAudio.h"
 #include "ModuleCollision.h"
 
 ModuleSceneStage1::ModuleSceneStage1()
@@ -46,6 +48,10 @@ bool ModuleSceneStage1::Start()
 
 	back = App->textures->Load("Assets/FirstLvlMap3.png");
 
+	music = App->audio->LoadM("Assets/Audio Files/Music in OGG/04_Into_the_Human_Body_Stage_1_.ogg");
+
+	App->audio->PlayMusic(music);
+
 	// Colliders ---
 	App->collision->AddCollider({ 0, 208, 3930, 16 }, COLLIDER_WALL);
 	App->collision->AddCollider({ 1380, 0, 100, 100 }, COLLIDER_WALL);
@@ -59,9 +65,17 @@ bool ModuleSceneStage1::Start()
 	App->enemies->AddEnemy(LITTLE_SHRIMP, 400, 50);
 	App->enemies->AddEnemy(LITTLE_SHRIMP, 400, 100);
 	App->enemies->AddEnemy(LITTLE_SHRIMP, 400, 150);
+<<<<<<< HEAD
 	App->enemies->AddEnemy(LITTLE_SHRIMP, 450, 150);
 	//App->enemies->AddEnemy(NEMONA, 400, 250);
 	
+=======
+	App->enemies->AddEnemy(LITTLE_SHRIMP, 400, 200);
+	App->enemies->AddEnemy(POWERUPSHIP, 500, 200);
+	App->enemies->AddEnemy(POWERUPSHIP, 500, 200);
+	App->enemies->AddEnemy(POWERUPSHIP, 500, 200);
+	App->enemies->AddEnemy(POWERUPSHIP, 500, 200);
+>>>>>>> fe199aa571b747c4f4220932e3410e9d11183f58
 	return ret;
 }
 
