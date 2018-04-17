@@ -9,6 +9,7 @@ class Module;
 class ModuleWindow;
 class ModuleInput;
 class ModuleTextures;
+class ModuleFonts;
 class ModuleRender;
 class ModulePlayer;
 class ModuleEnemies;
@@ -32,6 +33,7 @@ public:
 	ModuleInput* input = nullptr;
 	ModuleTextures* textures = nullptr;
 	ModulePlayer* player = nullptr;
+	ModuleFonts* font = nullptr;
 	ModuleEnemies* enemies = nullptr;
 	ModuleAudio* audio = nullptr;
 	ModuleParticles* particles = nullptr;

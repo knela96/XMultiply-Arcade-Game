@@ -11,7 +11,15 @@ Enemy_BrownWorm::Enemy_BrownWorm(int x, int y) : Enemy(x, y)
 	
 	animation = &fly;
 
-	path->PushBack({ 0 , 0 }, 2, &fly);
+	
+	path->PushBack({ -1 , 0 }, 10, &fly);
+	path->PushBack({ -1 , -1 }, 10, &fly);
+	path->PushBack({ 0 , -1 }, 10, &fly);
+	path->PushBack({ -1 , -1 }, 10, &fly);
+	path->PushBack({ -1 , 0 }, 10, &fly);
+	path->PushBack({ -1 , 1 }, 10, &fly);
+	path->PushBack({ 0 , 1 }, 10, &fly);
+	path->PushBack({ -1 , 1 }, 10, &fly);
 	
 	collider = App->collision->AddCollider({ 0, 0, 32, 32 }, COLLIDER_TYPE::COLLIDER_ENEMY, (Module*)App->enemies);
 	
@@ -22,4 +30,5 @@ Enemy_BrownWorm::Enemy_BrownWorm(int x, int y) : Enemy(x, y)
 void Enemy_BrownWorm::Move()
 {
 	position = original_position + path->GetCurrentPosition(&animation);
+	
 }

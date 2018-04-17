@@ -10,7 +10,11 @@ Enemy_LittleShrimp::Enemy_LittleShrimp(int x, int y) : Enemy(x, y)
 
 	animation = &fly;
 
-	path->PushBack({ 0 , 0 }, 2, &fly);
+	path->PushBack({ -1 , -1 }, 30, &fly);
+	path->PushBack({ -1 , 0 }, 10, &fly);
+	path->PushBack({ -1 , 1 }, 30, &fly);
+	path->PushBack({ -1 , 0 }, 10, &fly);
+	
 
 	collider = App->collision->AddCollider({ 0, 0, 48, 32 }, COLLIDER_TYPE::COLLIDER_ENEMY, (Module*)App->enemies);
 
@@ -20,21 +24,5 @@ Enemy_LittleShrimp::Enemy_LittleShrimp(int x, int y) : Enemy(x, y)
 
 void Enemy_LittleShrimp::Move()
 {
-	if (going_up)
-	{
-		if (wave > 1.0f)
-			going_up = false;
-		else
-			wave += 0.05f;
-	}
-	else
-	{
-		if (wave < -1.0f)
-			going_up = true;
-		else
-			wave -= 0.05f;
-	}
-
-	position.y = int(float(original_y) + (25.0f * sinf(wave)));
-	position.x -= 1;
+	position = original_position + path->GetCurrentPosition(&animation);
 }

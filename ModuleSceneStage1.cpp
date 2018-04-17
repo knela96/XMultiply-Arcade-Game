@@ -101,12 +101,11 @@ update_status ModuleSceneStage1::Update()
 		}
 	}
 
-
-	int scroll_speed = 1;
-
 	App->player->position.x += 1;
 
 	App->render->camera.x += 1 * SCREEN_SIZE;
+
+	if (App->render->camera.x > 2657*SCREEN_SIZE && App->render->camera.x < 3428*SCREEN_SIZE) App->render->camera.y += 1 ;
 
 	App->render->Blit(back, ScrollingOffset, 0, &ground, 0.1f);
 

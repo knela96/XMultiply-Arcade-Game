@@ -14,6 +14,7 @@
 #include "ModuleSceneStage2.h"
 #include "ModuleSceneCongrats.h"
 #include "ModuleCollision.h"
+#include "ModuleFonts.h"
 
 Application::Application()
 {
@@ -23,6 +24,7 @@ Application::Application()
 	modules[i++] = input = new ModuleInput();
 	modules[i++] = textures = new ModuleTextures();
 	modules[i++] = audio = new ModuleAudio();
+	modules[i++] = font = new ModuleFonts();
 	modules[i++] = scene_MainMenu = new ModuleSceneMainMenu();
 	modules[i++] = scene_choosePlayer = new ModuleSceneChoosePlayer();
 	modules[i++] = scene_stage1 = new ModuleSceneStage1();

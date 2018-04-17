@@ -7,7 +7,9 @@
 #include "ModuleParticles.h"
 #include "ModuleCollision.h"
 #include "ModuleFadeToBlack.h"
+#include "ModuleFonts.h"
 
+#include <stdio.h>
 #include "SDL/include/SDL.h"
 
 
@@ -125,6 +127,7 @@ update_status ModulePlayer::Update()
 
 		if (powerup[BASIC_SHOOT] == true)
 			App->particles->AddParticle(App->particles->shoot1, position.x + 40, position.y, COLLIDER_PLAYER_SHOT);
+		
 		if (powerup[PARABOLA_SHOOT] == true) {
 			App->particles->AddParticle(App->particles->shoot1, position.x + 40, position.y, COLLIDER_PLAYER_SHOT);
 			App->particles->AddParticle(App->particles->shoot2, position.x + 40, position.y, COLLIDER_PLAYER_SHOT);
@@ -144,6 +147,9 @@ update_status ModulePlayer::Update()
 		if (SDL_GetTicks() - start_time >= 1000)
 			App->fade->FadeToBlack((Module*)App->scene_stage1, (Module*)App->scene_MainMenu);
 
+	//Draw UI 
+	sprintf_s(score_text, 10, "%7d", score);
+	App->font->BlitText(58, 248, font_score, score_text);
 
 	return UPDATE_CONTINUE;
 }

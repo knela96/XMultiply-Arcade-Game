@@ -7,7 +7,7 @@
 class Enemy_BrownWorm : public Enemy
 {
 private:
-	float wave = -1.0f;
+	int wave = 1;
 	bool going_up = true;
 	int original_y = 0;
 	Animation fly;
