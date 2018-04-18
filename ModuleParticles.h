@@ -8,6 +8,7 @@
 #include "ModuleAudio.h"
 #include "ModulePlayer.h"
 #include "ModuleCollision.h"
+#include "Path.h"
 
 #define MAX_ACTIVE_PARTICLES 100
 
@@ -32,6 +33,7 @@ struct Particle {
 	Uint32 born = 0;
 	Uint32 life = 0;
 	bool fx_played = false;
+	int id = 0;
 
 	Particle();
 	Particle(const Particle& p);
@@ -39,6 +41,13 @@ struct Particle {
 	bool Update();
 
 	Mix_Chunk* common_fx = nullptr;
+
+	bool operator==(const Particle &g) const
+	{
+		return this->id == g.id;
+	}
+
+	
 	
 };
 
@@ -55,7 +64,8 @@ public:
 	void OnCollision(Collider* c1, Collider* c2);
 
 	void AddParticle(const Particle& particle, int x, int y, COLLIDER_TYPE collider_type = COLLIDER_NONE, Uint32 delay = 0);
-
+	
+	
 public:
 	Uint32 * start_time = 0;
 	Uint32* shooting_delay;
@@ -64,7 +74,8 @@ public:
 	Particle explosion;
 	Particle explosion_bullet;
 	Particle Powerup;
-
+	Animation* animation = nullptr;
+	Path* path = new Path();
 private: 
 	SDL_Texture * graphics = nullptr;
 	Particle * active[MAX_ACTIVE_PARTICLES];
