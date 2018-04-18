@@ -11,6 +11,7 @@
 #include "ModuleParticles.h"
 #include "ModuleAudio.h"
 #include "ModuleCollision.h"
+#include "ModuleFonts.h"
 
 ModuleSceneStage1::ModuleSceneStage1()
 {
@@ -42,10 +43,13 @@ bool ModuleSceneStage1::Start()
 	App->particles->Enable();
 	App->collision->Enable();
 	App->enemies->Enable();
+	App->font->Enable();
 	
 	graphics = App->textures->Load("Assets/TileMap1.1.png");
 
 	back = App->textures->Load("Assets/FirstLvlMap3.png");
+
+	hud = App->textures->Load("Assets/UI.png");
 
 	music = App->audio->LoadM("Assets/Audio Files/Music in OGG/04_Into_the_Human_Body_Stage_1_.ogg");
 
@@ -115,6 +119,7 @@ bool ModuleSceneStage1::CleanUp()
 	App->collision->Disable();
 	App->particles->Disable();
 	App->audio->UnloadM(music);
+	App->font->Disable();
 	music = nullptr;
 
 	App->render->camera.x = App->render->camera.y = 0;
@@ -145,6 +150,7 @@ update_status ModuleSceneStage1::Update()
 
 	App->render->Blit(graphics, 0, 0, &background);
 
+	App->render->Blit(hud, 0, 224, NULL, 0.0f, false);
 
 	if (App->input->keyboard[SDL_SCANCODE_RETURN] == 1)
 	{

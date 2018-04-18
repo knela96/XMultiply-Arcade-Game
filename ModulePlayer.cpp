@@ -10,6 +10,8 @@
 #include "ModuleFonts.h"
 #include "Tentacles.h"
 
+#include<stdio.h>
+
 #include "SDL/include/SDL.h"
 
 ModulePlayer::ModulePlayer()
@@ -75,6 +77,7 @@ bool ModulePlayer::Start()
 	powerup[PARABOLA_SHOOT] = true;
 
 
+	font_score = App->font->Load("Assets/fonts.1.png", "0123456789ם.-=יט()ףעבת`´!?abcdefghijklmnopqrstuvwxyz", 2);
 
 	return ret;
 }
@@ -124,9 +127,10 @@ update_status ModulePlayer::Update()
 		if (powerup[BASIC_SHOOT] == true)
 			App->particles->AddParticle(App->particles->shoot1, position.x + 40, position.y, COLLIDER_PLAYER_SHOT);
 		
+		
 		if (powerup[PARABOLA_SHOOT] == true) {
 			App->particles->AddParticle(App->particles->shoot1, position.x + 40, position.y, COLLIDER_PLAYER_SHOT);
-		
+			//score += 13;
 		}
 
 	}
@@ -143,8 +147,12 @@ update_status ModulePlayer::Update()
 		if (SDL_GetTicks() - start_time >= 1000)
 			App->fade->FadeToBlack((Module*)App->scene_stage1, (Module*)App->scene_MainMenu);
 
+	
+	sprintf_s(score_text, 10, "%7d", score);
+
 	//Draw UI 
-	//App->font->BlitText(58, 248, font_score, "a");
+	App->font->BlitText(80, 240, font_score, score_text);
+	App->font->BlitText(32, 240, font_score, "score");
 
 	return UPDATE_CONTINUE;
 }

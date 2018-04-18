@@ -23,6 +23,7 @@ public:
 	
 	SDL_Texture* graphics = nullptr;
 	SDL_Texture* back = nullptr;
+	SDL_Texture* hud = nullptr;
 	Mix_Music * music = nullptr;
 	SDL_Rect ground;
 	SDL_Rect background;
