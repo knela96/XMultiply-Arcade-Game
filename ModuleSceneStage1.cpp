@@ -11,6 +11,7 @@
 #include "ModuleParticles.h"
 #include "ModuleAudio.h"
 #include "ModuleCollision.h"
+#include "ModuleTentacles.h"
 
 ModuleSceneStage1::ModuleSceneStage1()
 {
@@ -37,7 +38,7 @@ bool ModuleSceneStage1::Start()
 
 	bool ret = true;
 
-
+	App->tentacles->Enable();
 	App->player->Enable();
 	App->particles->Enable();
 	App->collision->Enable();
@@ -57,15 +58,15 @@ bool ModuleSceneStage1::Start()
 	App->collision->AddCollider({ 1380, 140, 100, 120 }, COLLIDER_WALL);
 
 	// Enemies
-	App->enemies->AddEnemy(BROWN_WORM, 300, 50);
-	App->enemies->AddEnemy(BROWN_WORM, 300, 100);
-	App->enemies->AddEnemy(BROWN_WORM, 300, 150);
-	App->enemies->AddEnemy(BROWN_WORM, 300, 200);
-	App->enemies->AddEnemy(LITTLE_SHRIMP, 400, 200);
-	App->enemies->AddEnemy(LITTLE_SHRIMP, 415, 200);
-	App->enemies->AddEnemy(LITTLE_SHRIMP, 440, 200);
-	App->enemies->AddEnemy(LITTLE_SHRIMP, 465, 200);
-	App->enemies->AddEnemy(NEMONA_TENTACLE, 520, 148);
+	/*app->enemies->addenemy(brown_worm, 300, 50);
+	app->enemies->addenemy(brown_worm, 300, 100);
+	app->enemies->addenemy(brown_worm, 300, 150);
+	app->enemies->addenemy(brown_worm, 300, 200);
+	app->enemies->addenemy(little_shrimp, 400, 200);
+	app->enemies->addenemy(little_shrimp, 415, 200);
+	app->enemies->addenemy(little_shrimp, 440, 200);
+	app->enemies->addenemy(little_shrimp, 465, 200);
+	app->enemies->addenemy(nemona_tentacle, 520, 148);*/
 
 	//POWERUPS
 	App->enemies->AddEnemy(POWERUPSHIP, 400, 150);

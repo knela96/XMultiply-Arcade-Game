@@ -14,6 +14,7 @@
 #include "ModuleSceneStage2.h"
 #include "ModuleSceneCongrats.h"
 #include "ModuleCollision.h"
+#include "ModuleTentacles.h"
 #include "ModuleFonts.h"
 
 Application::Application()
@@ -30,6 +31,7 @@ Application::Application()
 	modules[i++] = scene_stage1 = new ModuleSceneStage1();
 	modules[i++] = scene_stage2 = new ModuleSceneStage2();
 	modules[i++] = scene_congrats = new ModuleSceneCongrats();
+	modules[i++] = tentacles = new ModuleTentacles();
 	modules[i++] = player = new ModulePlayer();
 	modules[i++] = enemies = new ModuleEnemies();
 	modules[i++] = particles = new ModuleParticles();
@@ -58,6 +60,7 @@ bool Application::Init()
 	scene_congrats->Disable();
 
 
+	tentacles->Disable();
 	player->Disable();
 	enemies->Disable();
 
