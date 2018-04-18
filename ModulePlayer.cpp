@@ -8,21 +8,15 @@
 #include "ModuleCollision.h"
 #include "ModuleFadeToBlack.h"
 #include "ModuleFonts.h"
+#include "Tentacles.h"
 
-#include <stdio.h>
 #include "SDL/include/SDL.h"
-
-
-// Reference at https://www.youtube.com/watch?v=OEhmUuehGOA
 
 ModulePlayer::ModulePlayer()
 {
 
 	position.x = 100;
 	position.y = 130;
-
-
-	//({ 4, 4, 36, 10 })
 
 	// idle animation (arcade sprite sheet)
 	idle.PushBack({ 97, 0, 48, 16 });
@@ -79,6 +73,8 @@ bool ModulePlayer::Start()
 
 	powerup[BASIC_SHOOT] = true;
 	powerup[PARABOLA_SHOOT] = true;
+
+
 
 	return ret;
 }
@@ -148,8 +144,7 @@ update_status ModulePlayer::Update()
 			App->fade->FadeToBlack((Module*)App->scene_stage1, (Module*)App->scene_MainMenu);
 
 	//Draw UI 
-	sprintf_s(score_text, 10, "%7d", score);
-	App->font->BlitText(58, 248, font_score, score_text);
+	//App->font->BlitText(58, 248, font_score, "a");
 
 	return UPDATE_CONTINUE;
 }

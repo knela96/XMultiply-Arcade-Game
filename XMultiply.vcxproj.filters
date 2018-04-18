@@ -73,6 +73,9 @@
     <ClCompile Include="ModuleFonts.cpp">
       <Filter>Modules</Filter>
     </ClCompile>
+    <ClCompile Include="Tentacles.cpp">
+      <Filter>Modules\Player</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Animation.h">
@@ -159,6 +162,9 @@
     <ClInclude Include="ModuleFonts.h">
       <Filter>Modules</Filter>
     </ClInclude>
+    <ClInclude Include="Tentacles.h">
+      <Filter>Modules\Player</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Containers">
@@ -175,6 +181,9 @@
     </Filter>
     <Filter Include="Modules\Enemies">
       <UniqueIdentifier>{9aec73b3-5c58-487a-8da3-c1e0b4a7bebb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Modules\Player">
+      <UniqueIdentifier>{7d2384dd-dbc3-4b0e-96e0-12829cf0ec7a}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

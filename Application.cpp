@@ -35,6 +35,10 @@ Application::Application()
 	modules[i++] = particles = new ModuleParticles();
 	modules[i++] = collision = new ModuleCollision();
 	modules[i++] = fade = new ModuleFadeToBlack();//Must be after all scenes
+
+	if (i != NUM_MODULES)
+		LOG("-----------------------------------MODULES ERROR--------------------------------------");
+
 }	
 
 Application::~Application()

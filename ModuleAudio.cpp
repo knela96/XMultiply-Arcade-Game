@@ -55,7 +55,8 @@ Mix_Music* const ModuleAudio::LoadM(const char* path)
 }
 bool ModuleAudio::UnloadM(Mix_Music * music) 
 {
-	Mix_FreeMusic(music);
+	if (music != nullptr)
+		Mix_FreeMusic(music);
 	return true;
 }
 Mix_Chunk *const ModuleAudio::LoadS(const char* path)
@@ -66,7 +67,8 @@ Mix_Chunk *const ModuleAudio::LoadS(const char* path)
 }
 bool ModuleAudio::UnloadS(Mix_Chunk * sound)
 {
-	Mix_FreeChunk(sound);
+	if (sound != nullptr)
+		Mix_FreeChunk(sound);
 	return true;
 }
 

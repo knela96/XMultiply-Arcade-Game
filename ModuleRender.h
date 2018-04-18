@@ -25,7 +25,6 @@ public:
 public:
 	SDL_Renderer* renderer = nullptr;
 	SDL_Rect camera;
-	SDL_Rect* section;
 
 };
 
