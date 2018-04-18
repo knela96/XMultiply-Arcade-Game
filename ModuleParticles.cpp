@@ -43,12 +43,12 @@ bool ModuleParticles::Start()
 
 	animation = &shoot2.anim;
 
-	path->PushBack({ 0 , 0 }, 10, &shoot2.anim);
-	path->PushBack({ 1 , -1 }, 10, &shoot2.anim);
-	path->PushBack({ 1.41f , -2 }, 10, &shoot2.anim);
-	path->PushBack({ 1.73f, -3 }, 10, &shoot2.anim);
-	path->PushBack({ 2, -4 }, 10, &shoot2.anim);
-	path->PushBack({ 2.24f , -5}, 10, &shoot2.anim);
+	path->PushBack({ 0 , 0 }, 1, &shoot2.anim);
+	path->PushBack({ 1 , -1 }, 1, &shoot2.anim);
+	path->PushBack({ 1.41f , -2 }, 1, &shoot2.anim);
+	path->PushBack({ 1.73f, -3 }, 1, &shoot2.anim);
+	path->PushBack({ 2, -4 }, 1, &shoot2.anim);
+	path->PushBack({ 2.24f , -5}, 1, &shoot2.anim);
 	
 
 
@@ -130,7 +130,7 @@ void ModuleParticles::AddParticle(const Particle& particle, int x, int y, COLLID
 	{
 		if (active[i] == nullptr)
 		{
-			if(particle.id != 0){
+			/*if(particle.id != 0){
 			
 				Particle* p = new Particle(particle);
 				p->born = SDL_GetTicks() + delay;
@@ -144,7 +144,7 @@ void ModuleParticles::AddParticle(const Particle& particle, int x, int y, COLLID
 			
 				
 				
-			}else {	
+			}else {	*/
 			Particle* p = new Particle(particle);
 			p->born = SDL_GetTicks() + delay;
 			p->position.x = x;
@@ -157,7 +157,7 @@ void ModuleParticles::AddParticle(const Particle& particle, int x, int y, COLLID
 			}
 		}
 	}
-}
+//}
 
 
 void ModuleParticles::OnCollision(Collider* c1, Collider* c2)
