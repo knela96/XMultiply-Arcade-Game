@@ -44,11 +44,11 @@ bool ModuleParticles::Start()
 	animation = &shoot2.anim;
 
 	path->PushBack({ 0 , 0 }, 1, &shoot2.anim);
-	path->PushBack({ 1 , -1 }, 1, &shoot2.anim);
-	path->PushBack({ 1.41f , -2 }, 1, &shoot2.anim);
-	path->PushBack({ 1.73f, -3 }, 1, &shoot2.anim);
-	path->PushBack({ 2, -4 }, 1, &shoot2.anim);
-	path->PushBack({ 2.24f , -5}, 1, &shoot2.anim);
+	path->PushBack({ 1 , 1 }, 1, &shoot2.anim);
+	path->PushBack({ 1.41f , 2 }, 1, &shoot2.anim);
+	path->PushBack({ 1.73f, 3 }, 1, &shoot2.anim);
+	path->PushBack({ 2, 4 }, 1, &shoot2.anim);
+	path->PushBack({ 2.24f , 5}, 1, &shoot2.anim);
 	
 
 
@@ -130,7 +130,7 @@ void ModuleParticles::AddParticle(const Particle& particle, int x, int y, COLLID
 	{
 		if (active[i] == nullptr)
 		{
-			/*if(particle.id != 0){
+		/*	if(particle.id != 0){
 			
 				Particle* p = new Particle(particle);
 				p->born = SDL_GetTicks() + delay;
@@ -193,7 +193,7 @@ Particle::Particle(const Particle& p) :
 
 Particle::~Particle()
 {
-	if (collider != nullptr && collider->gettype != COLLIDER_POWERUP)
+	if (collider != nullptr /*&& collider->gettype != COLLIDER_POWERUP*/)
 		collider->to_delete = true;
 }
 

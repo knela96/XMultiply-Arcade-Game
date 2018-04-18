@@ -40,10 +40,16 @@ struct Collider
 	}
 	
 	
+	
 
 	bool CheckCollision(const SDL_Rect& r) const;
 };
-
+/*
+bool operator==(const Collider &o1, const Collider &o2)
+{
+	return o1.gettype() == o2.gettype();
+}
+*/
 class ModuleCollision : public Module
 {
 public:

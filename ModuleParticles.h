@@ -46,6 +46,8 @@ struct Particle {
 	{
 		return this->id == g.id;
 	}
+
+	
 	
 };
 
