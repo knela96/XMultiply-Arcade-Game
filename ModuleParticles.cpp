@@ -39,6 +39,17 @@ bool ModuleParticles::Start()
 	shoot2.life = 2000;
 	shoot2.common_fx = App->audio->LoadS("Assets/Audio Files/SFX in WAV/xmultipl-114.wav");
 
+	animation = &shoot2.anim;
+
+	path->PushBack({ 0 , 0 }, 10, &shoot2.anim);
+	path->PushBack({ 1 , -1 }, 10, &shoot2.anim);
+	path->PushBack({ 1.41f , -2 }, 10, &shoot2.anim);
+	path->PushBack({ 1.73f, -3 }, 10, &shoot2.anim);
+	path->PushBack({ 2, -4 }, 10, &shoot2.anim);
+	path->PushBack({ 2.24f , -5}, 10, &shoot2.anim);
+	
+
+
 	explosion.anim.PushBack({ 0, 144, 16, 16 });
 	explosion.anim.PushBack({ 17, 144, 16, 16 });
 	explosion.anim.PushBack({ 33, 144, 16, 16 });
@@ -111,12 +122,26 @@ update_status ModuleParticles::Update()
 	return UPDATE_CONTINUE;
 }
 
-void ModuleParticles::AddParticle(const Particle& particle, int x, int y, COLLIDER_TYPE collider_type, Uint32 delay)
+void ModuleParticles::AddParticle( Particle& particle, int x, int y, COLLIDER_TYPE collider_type, Uint32 delay)
 {
 	for (uint i = 0; i < MAX_ACTIVE_PARTICLES; ++i)
 	{
 		if (active[i] == nullptr)
 		{
+			if(particle == shoot2){
+			
+				Particle* p = new Particle(particle);
+				p->born = SDL_GetTicks() + delay;
+				p->position.x = x;
+				p->position.y = y;
+				if (collider_type != COLLIDER_NONE)
+					p->collider = App->collision->AddCollider(p->anim.GetCurrentFrame(), collider_type, this);
+				active[i] = p;
+				break;
+			
+				p->position = p->position + path->GetCurrentPosition(&animation);
+				
+			}else {	
 			Particle* p = new Particle(particle);
 			p->born = SDL_GetTicks() + delay;
 			p->position.x = x;
@@ -125,9 +150,11 @@ void ModuleParticles::AddParticle(const Particle& particle, int x, int y, COLLID
 				p->collider = App->collision->AddCollider(p->anim.GetCurrentFrame(), collider_type, this);
 			active[i] = p;
 			break;
+			
+			}
 		}
 	}
-}
+
 
 void ModuleParticles::OnCollision(Collider* c1, Collider* c2)
 {
