@@ -73,7 +73,7 @@
     <ClCompile Include="ModuleFonts.cpp">
       <Filter>Modules</Filter>
     </ClCompile>
-    <ClCompile Include="Tentacles.cpp">
+    <ClCompile Include="ModuleTentacles.cpp">
       <Filter>Modules\Player</Filter>
     </ClCompile>
   </ItemGroup>
@@ -162,7 +162,7 @@
     <ClInclude Include="ModuleFonts.h">
       <Filter>Modules</Filter>
     </ClInclude>
-    <ClInclude Include="Tentacles.h">
+    <ClInclude Include="ModuleTentacles.h">
       <Filter>Modules\Player</Filter>
     </ClInclude>
   </ItemGroup>

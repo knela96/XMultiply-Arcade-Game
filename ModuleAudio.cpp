@@ -68,7 +68,7 @@ Mix_Chunk *const ModuleAudio::LoadS(const char* path)
 bool ModuleAudio::UnloadS(Mix_Chunk * sound)
 {
 	if (sound != nullptr)
-		Mix_FreeChunk(sound);
+		//Mix_FreeChunk(sound);
 	return true;
 }
 

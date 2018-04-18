@@ -12,6 +12,8 @@
 #include "ModuleAudio.h"
 #include "ModuleCollision.h"
 #include "ModuleFonts.h"
+#include "ModuleTentacles.h"
+
 
 ModuleSceneStage1::ModuleSceneStage1()
 {
@@ -38,7 +40,7 @@ bool ModuleSceneStage1::Start()
 
 	bool ret = true;
 
-
+	App->tentacles->Enable();
 	App->player->Enable();
 	App->particles->Enable();
 	App->collision->Enable();

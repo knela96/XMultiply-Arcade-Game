@@ -99,7 +99,7 @@
     <ClInclude Include="ModuleWindow.h" />
     <ClInclude Include="p2Point.h" />
     <ClInclude Include="Path.h" />
-    <ClInclude Include="Tentacles.h" />
+    <ClInclude Include="ModuleTentacles.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Application.cpp" />
@@ -126,7 +126,7 @@
     <ClCompile Include="ModuleSceneStage2.cpp" />
     <ClCompile Include="ModuleTextures.cpp" />
     <ClCompile Include="ModuleWindow.cpp" />
-    <ClCompile Include="Tentacles.cpp" />
+    <ClCompile Include="ModuleTentacles.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

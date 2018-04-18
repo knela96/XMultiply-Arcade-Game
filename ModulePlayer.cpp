@@ -8,7 +8,7 @@
 #include "ModuleCollision.h"
 #include "ModuleFadeToBlack.h"
 #include "ModuleFonts.h"
-#include "Tentacles.h"
+#include "ModuleTentacles.h"
 
 #include<stdio.h>
 
@@ -55,6 +55,9 @@ ModulePlayer::ModulePlayer()
 	downwardreturn.speed = 0.075f;
 
 	current_animation = &idle;
+
+
+
 }
 
 ModulePlayer::~ModulePlayer()
@@ -76,8 +79,23 @@ bool ModulePlayer::Start()
 	powerup[BASIC_SHOOT] = true;
 	powerup[PARABOLA_SHOOT] = true;
 
-
 	font_score = App->font->Load("Assets/fonts.1.png", "0123456789ם.-=יט()ףעבת`´!?abcdefghijklmnopqrstuvwxyz", 2);
+
+
+	App->tentacles->AddTentacle(App->tentacles->tentacle, position.x, position.y, false);
+	App->tentacles->AddTentacle(App->tentacles->tentacle, position.x, position.y, false);
+	App->tentacles->AddTentacle(App->tentacles->tentacle, position.x, position.y, false);
+	App->tentacles->AddTentacle(App->tentacles->tentacle, position.x, position.y, false);
+	App->tentacles->AddTentacle(App->tentacles->tentacle, position.x, position.y, false);
+	App->tentacles->AddTentacle(App->tentacles->tentacle, position.x, position.y, false);
+	App->tentacles->AddTentacle(App->tentacles->tentacle, position.x, position.y, true);
+	App->tentacles->AddTentacle(App->tentacles->tentacle, position.x, position.y, true);
+	App->tentacles->AddTentacle(App->tentacles->tentacle, position.x, position.y, true);
+	App->tentacles->AddTentacle(App->tentacles->tentacle, position.x, position.y, true);
+	App->tentacles->AddTentacle(App->tentacles->tentacle, position.x, position.y, true);
+	App->tentacles->AddTentacle(App->tentacles->tentacle, position.x, position.y, true);
+
+
 
 	return ret;
 }
@@ -132,7 +150,6 @@ update_status ModulePlayer::Update()
 			App->particles->AddParticle(App->particles->shoot1, position.x + 40, position.y, COLLIDER_PLAYER_SHOT);
 			//score += 13;
 		}
-
 	}
 
 	if (App->input->keyboard[SDL_SCANCODE_S] == KEY_STATE::KEY_IDLE
@@ -140,6 +157,8 @@ update_status ModulePlayer::Update()
 		current_animation = &idle;
 
 	collider->SetPos(position.x, position.y);
+
+
 	// Draw everything --------------------------------------
 	if (!dead)
 		App->render->Blit(graphics, position.x, position.y, &current_animation->GetCurrentFrame());
