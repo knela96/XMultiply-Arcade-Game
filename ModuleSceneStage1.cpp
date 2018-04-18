@@ -43,7 +43,7 @@ bool ModuleSceneStage1::Start()
 	App->collision->Enable();
 	App->enemies->Enable();
 	
-	graphics = App->textures->Load("Assets/TileMap1.png");
+	graphics = App->textures->Load("Assets/TileMap1.1.png");
 
 	back = App->textures->Load("Assets/FirstLvlMap3.png");
 
@@ -52,9 +52,40 @@ bool ModuleSceneStage1::Start()
 	App->audio->PlayMusic(music);
 
 	// Colliders ---
-	App->collision->AddCollider({ 0, 208, 3930, 16 }, COLLIDER_WALL);
-	App->collision->AddCollider({ 1380, 0, 100, 100 }, COLLIDER_WALL);
-	App->collision->AddCollider({ 1380, 140, 100, 120 }, COLLIDER_WALL);
+	App->collision->AddCollider({ 0, 213, 2540, 10 }, COLLIDER_WALL);
+	App->collision->AddCollider({ 503, 0, 2025, 10 }, COLLIDER_WALL);
+	App->collision->AddCollider({ 412, 195, 50, 30 }, COLLIDER_WALL);
+	App->collision->AddCollider({ 422, 184, 19, 12 }, COLLIDER_WALL);
+	App->collision->AddCollider({ 499, 189, 80, 36 }, COLLIDER_WALL);
+	App->collision->AddCollider({ 578, 201, 19, 25 }, COLLIDER_WALL);
+	App->collision->AddCollider({ 642, 1, 66, 24 }, COLLIDER_WALL);
+	App->collision->AddCollider({ 764, 1, 50, 30 }, COLLIDER_WALL);
+	App->collision->AddCollider({ 773, 31, 19, 12 }, COLLIDER_WALL);
+	App->collision->AddCollider({ 1026, 201, 67, 24 }, COLLIDER_WALL);
+	App->collision->AddCollider({ 1011, 1, 80, 36 }, COLLIDER_WALL);
+	App->collision->AddCollider({ 1091, 1, 19, 25 }, COLLIDER_WALL);
+	App->collision->AddCollider({ 1154, 1, 67, 24 }, COLLIDER_WALL);
+	App->collision->AddCollider({ 1267, 189, 80, 36 }, COLLIDER_WALL);
+	App->collision->AddCollider({ 1347, 201, 19, 25 }, COLLIDER_WALL);
+	App->collision->AddCollider({ 1484, 1, 63, 96 }, COLLIDER_WALL);
+	App->collision->AddCollider({ 1484, 129, 63, 96 }, COLLIDER_WALL);
+	App->collision->AddCollider({ 1450, 1, 34, 89 }, COLLIDER_WALL);
+	App->collision->AddCollider({ 1450, 136, 34, 99 }, COLLIDER_WALL);
+	App->collision->AddCollider({ 1422, 190, 28, 35 }, COLLIDER_WALL);
+	App->collision->AddCollider({ 1422, 1, 28, 35 }, COLLIDER_WALL);
+	App->collision->AddCollider({ 1667, 1, 67, 24 }, COLLIDER_WALL);
+	App->collision->AddCollider({ 1788, 197, 50, 30 }, COLLIDER_WALL);
+	App->collision->AddCollider({ 1797, 184, 19, 12 }, COLLIDER_WALL);
+	App->collision->AddCollider({ 2010, 1, 129, 95 }, COLLIDER_WALL);
+	App->collision->AddCollider({ 2010, 130, 129, 95 }, COLLIDER_WALL);
+	App->collision->AddCollider({ 2139, 1, 39, 62 }, COLLIDER_WALL);
+	App->collision->AddCollider({ 2139, 164, 39, 62 }, COLLIDER_WALL);
+	App->collision->AddCollider({ 2178, 1, 33, 52 }, COLLIDER_WALL);
+	App->collision->AddCollider({ 2178, 172, 33, 52 }, COLLIDER_WALL);
+	App->collision->AddCollider({ 2428, 1, 50, 30 }, COLLIDER_WALL);
+	App->collision->AddCollider({ 2437, 31, 19, 12 }, COLLIDER_WALL);
+	App->collision->AddCollider({ 2545, 189, 80, 36 }, COLLIDER_WALL);
+	App->collision->AddCollider({ 2617, 201, 19, 25 }, COLLIDER_WALL);
 
 	// Enemies
 	App->enemies->AddEnemy(BROWN_WORM, 300, 50);
