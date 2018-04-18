@@ -46,6 +46,7 @@ struct Particle {
 	{
 		return this->id == g.id;
 	}
+	
 };
 
 class ModuleParticles : public Module

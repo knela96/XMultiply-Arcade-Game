@@ -27,6 +27,6 @@ void Enemy_PowerupShip::Move()
 
 void Enemy_PowerupShip::OnCollision(Collider* collider)
 {
-	App->particles->AddParticle(App->particles->explosion, position.x, position.y);
-	App->particles->AddParticle(App->particles->Powerup, position.x, position.y);
+	
+	App->particles->AddParticle(App->particles->Powerup, position.x, position.y,COLLIDER_POWERUP);
 }

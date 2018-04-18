@@ -69,7 +69,7 @@ bool ModuleParticles::Start()
 	explosion_bullet.anim.speed = 0.2f;
 
 	Powerup.anim.PushBack({ 0, 120, 16, 16 });
-	Powerup.anim.loop = false;
+	Powerup.anim.loop = true;
 	Powerup.anim.speed = 0.2f;
 
 	return ret;
@@ -84,7 +84,7 @@ bool ModuleParticles::CleanUp()
 
 	for (uint i = 0; i < MAX_ACTIVE_PARTICLES; ++i)
 	{
-		if (active[i] != nullptr)
+		if (active[i] != nullptr && active[i] != &Powerup)
 		{
 			delete active[i];
 			active[i] = nullptr;
@@ -168,10 +168,12 @@ void ModuleParticles::OnCollision(Collider* c1, Collider* c2)
 		if (active[i] != nullptr && active[i]->collider == c1)
 		{
 			AddParticle(explosion_bullet, c1->rect.x, c1->rect.y, COLLIDER_NONE);
+			
 			delete active[i];
 			active[i] = nullptr;
 			break;
 		}
+		
 	}
 }
 
@@ -191,7 +193,7 @@ Particle::Particle(const Particle& p) :
 
 Particle::~Particle()
 {
-	if (collider != nullptr)
+	if (collider != nullptr && collider->gettype != COLLIDER_POWERUP)
 		collider->to_delete = true;
 }
 
