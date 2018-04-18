@@ -13,6 +13,7 @@ enum COLLIDER_TYPE
 	COLLIDER_ENEMY,
 	COLLIDER_PLAYER_SHOT,
 	COLLIDER_ENEMY_SHOT,
+	COLLIDER_POWERUP,
 
 	COLLIDER_MAX
 };
@@ -29,16 +30,26 @@ struct Collider
 		type(type),
 		callback(callback)
 	{}
+	
+	COLLIDER_TYPE gettype() { return type; }
 
 	void SetPos(int x, int y)
 	{
 		rect.x = x;
 		rect.y = y;
 	}
+	
+	
+	
 
 	bool CheckCollision(const SDL_Rect& r) const;
 };
-
+/*
+bool operator==(const Collider &o1, const Collider &o2)
+{
+	return o1.gettype() == o2.gettype();
+}
+*/
 class ModuleCollision : public Module
 {
 public:

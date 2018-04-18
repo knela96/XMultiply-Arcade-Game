@@ -142,7 +142,7 @@ update_status ModulePlayer::Update()
 		
 		if (powerup[PARABOLA_SHOOT] == true) {
 			App->particles->AddParticle(App->particles->shoot1, position.x + 40, position.y, COLLIDER_PLAYER_SHOT);
-			App->particles->AddParticle(App->particles->shoot2, position.x + 40, position.y, COLLIDER_PLAYER_SHOT);
+		
 		}
 	}
 

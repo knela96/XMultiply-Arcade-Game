@@ -33,11 +33,24 @@ bool ModuleParticles::Start()
 	shoot1.life = 2000;
 	shoot1.common_fx = App->audio->LoadS("Assets/Audio Files/SFX in WAV/xmultipl-114.wav");
 
+	shoot2.id = 1;
+
 	shoot2.anim.PushBack({ 50, 82, 12, 18 });
 	shoot2.anim.loop = false;
 	shoot2.anim.speed = 3.0f;
 	shoot2.life = 2000;
 	shoot2.common_fx = App->audio->LoadS("Assets/Audio Files/SFX in WAV/xmultipl-114.wav");
+
+	animation = &shoot2.anim;
+
+	path->PushBack({ 0 , 0 }, 1, &shoot2.anim);
+	path->PushBack({ 1 , 1 }, 1, &shoot2.anim);
+	path->PushBack({ 1.41f , 2 }, 1, &shoot2.anim);
+	path->PushBack({ 1.73f, 3 }, 1, &shoot2.anim);
+	path->PushBack({ 2, 4 }, 1, &shoot2.anim);
+	path->PushBack({ 2.24f , 5}, 1, &shoot2.anim);
+	
+
 
 	explosion.anim.PushBack({ 0, 144, 16, 16 });
 	explosion.anim.PushBack({ 17, 144, 16, 16 });
@@ -56,7 +69,7 @@ bool ModuleParticles::Start()
 	explosion_bullet.anim.speed = 0.2f;
 
 	Powerup.anim.PushBack({ 0, 120, 16, 16 });
-	Powerup.anim.loop = false;
+	Powerup.anim.loop = true;
 	Powerup.anim.speed = 0.2f;
 
 	return ret;
@@ -71,7 +84,7 @@ bool ModuleParticles::CleanUp()
 
 	for (uint i = 0; i < MAX_ACTIVE_PARTICLES; ++i)
 	{
-		if (active[i] != nullptr)
+		if (active[i] != nullptr && active[i] != &Powerup)
 		{
 			delete active[i];
 			active[i] = nullptr;
@@ -117,6 +130,21 @@ void ModuleParticles::AddParticle(const Particle& particle, int x, int y, COLLID
 	{
 		if (active[i] == nullptr)
 		{
+		/*	if(particle.id != 0){
+			
+				Particle* p = new Particle(particle);
+				p->born = SDL_GetTicks() + delay;
+				p->position.x = x;
+				p->position.y = y;
+				p->position = p->position + path->GetCurrentPosition(&animation);
+				if (collider_type != COLLIDER_NONE)
+					p->collider = App->collision->AddCollider(p->anim.GetCurrentFrame(), collider_type, this);
+				active[i] = p;
+				break;
+			
+				
+				
+			}else {	*/
 			Particle* p = new Particle(particle);
 			p->born = SDL_GetTicks() + delay;
 			p->position.x = x;
@@ -125,9 +153,12 @@ void ModuleParticles::AddParticle(const Particle& particle, int x, int y, COLLID
 				p->collider = App->collision->AddCollider(p->anim.GetCurrentFrame(), collider_type, this);
 			active[i] = p;
 			break;
+			
+			}
 		}
 	}
-}
+//}
+
 
 void ModuleParticles::OnCollision(Collider* c1, Collider* c2)
 {
@@ -137,10 +168,12 @@ void ModuleParticles::OnCollision(Collider* c1, Collider* c2)
 		if (active[i] != nullptr && active[i]->collider == c1)
 		{
 			AddParticle(explosion_bullet, c1->rect.x, c1->rect.y, COLLIDER_NONE);
+			
 			delete active[i];
 			active[i] = nullptr;
 			break;
 		}
+		
 	}
 }
 
@@ -160,7 +193,7 @@ Particle::Particle(const Particle& p) :
 
 Particle::~Particle()
 {
-	if (collider != nullptr)
+	if (collider != nullptr /*&& collider->gettype != COLLIDER_POWERUP*/)
 		collider->to_delete = true;
 }
 
