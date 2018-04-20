@@ -74,13 +74,14 @@ bool ModulePlayer::Start()
 	dead = false;
 
 	//Add a collider to the player
-	collider = App->collision->AddCollider({ position.x, position.y, 48, 16 }, COLLIDER_PLAYER, this);
+	collider = App->collision->AddCollider({ position.x, position.y, 10, 10 }, COLLIDER_PLAYER, this);
 
 	powerup[BASIC_SHOOT] = true;
 	powerup[PARABOLA_SHOOT] = true;
 
 	font_score = App->font->Load("Assets/fonts.1.png", "0123456789ם.-=יט()ףעבת`´!?abcdefghijklmnopqrstuvwxyz", 2);
 
+	
 
 	App->tentacles->AddTentacle(App->tentacles->tentacle, position.x, position.y, false);
 	App->tentacles->AddTentacle(App->tentacles->tentacle, position.x, position.y, false);
@@ -95,7 +96,7 @@ bool ModulePlayer::Start()
 	App->tentacles->AddTentacle(App->tentacles->tentacle, position.x, position.y, true);
 	App->tentacles->AddTentacle(App->tentacles->tentacle, position.x, position.y, true);
 
-
+	
 
 	return ret;
 }
@@ -156,7 +157,9 @@ update_status ModulePlayer::Update()
 		&& App->input->keyboard[SDL_SCANCODE_W] == KEY_STATE::KEY_IDLE && (downwardreturn.islastframe() && upwardreturn.islastframe()))
 		current_animation = &idle;
 
-	collider->SetPos(position.x, position.y);
+
+	//Collider nau
+	collider->SetPos(position.x+10, position.y+6);
 
 
 	// Draw everything --------------------------------------
