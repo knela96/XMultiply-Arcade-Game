@@ -66,6 +66,8 @@ ModulePlayer::~ModulePlayer()
 // Load assets
 bool ModulePlayer::Start()
 {
+
+
 	LOG("Loading player textures");
 	bool ret = true;
 	graphics = App->textures->Load("Assets/Player.png"); // arcade version
@@ -74,13 +76,12 @@ bool ModulePlayer::Start()
 	dead = false;
 
 	//Add a collider to the player
-	collider = App->collision->AddCollider({ position.x, position.y, 48, 16 }, COLLIDER_PLAYER, this);
+	collider = App->collision->AddCollider({ position.x+4, position.y+1, 22, 14 }, COLLIDER_PLAYER, this);
 
 	powerup[BASIC_SHOOT] = true;
 	powerup[PARABOLA_SHOOT] = true;
 
 	font_score = App->font->Load("Assets/fonts.1.png", "0123456789ם.-=יט()ףעבת`´!?abcdefghijklmnopqrstuvwxyz", 2);
-
 
 	App->tentacles->AddTentacle(App->tentacles->tentacle, position.x, position.y);
 	App->tentacles->AddTentacle(App->tentacles->tentacle, position.x+16, position.y);
@@ -88,15 +89,15 @@ bool ModulePlayer::Start()
 	App->tentacles->AddTentacle(App->tentacles->tentacle, position.x + 16, position.y);
 	App->tentacles->AddTentacle(App->tentacles->tentacle, position.x + 16, position.y);
 	App->tentacles->AddTentacle(App->tentacles->tentacle, position.x + 16, position.y);
-	App->tentacles->AddTentacle(App->tentacles->anchor, position.x + 16, position.y, false,true);
+	App->tentacles->AddTentacle(App->tentacles->anchor_top, position.x + 16, position.y, false,true);
 
-	App->tentacles->AddTentacle(App->tentacles->tentacle, position.x, position.y);
+	App->tentacles->AddTentacle(App->tentacles->tentacle, position.x, position.y,true);
 	App->tentacles->AddTentacle(App->tentacles->tentacle, position.x + 16, position.y, true);
 	App->tentacles->AddTentacle(App->tentacles->tentacle, position.x + 16, position.y, true);
 	App->tentacles->AddTentacle(App->tentacles->tentacle, position.x + 16, position.y, true);
 	App->tentacles->AddTentacle(App->tentacles->tentacle, position.x + 16, position.y, true);
 	App->tentacles->AddTentacle(App->tentacles->tentacle, position.x + 16, position.y, true);
-	App->tentacles->AddTentacle(App->tentacles->anchor, position.x + 16, position.y, false, true);
+	App->tentacles->AddTentacle(App->tentacles->anchor_bottom, position.x + 16, position.y, false, true);
 
 
 
@@ -107,7 +108,7 @@ bool ModulePlayer::Start()
 // Update: draw background
 update_status ModulePlayer::Update()
 {
-	int speed = 1;
+	int speed = 3;
 	
 	if (App->input->keyboard[SDL_SCANCODE_D] == KEY_STATE::KEY_REPEAT)
 	{
@@ -126,7 +127,6 @@ update_status ModulePlayer::Update()
 	if (App->input->keyboard[SDL_SCANCODE_W] == KEY_STATE::KEY_UP) {
 		if (current_animation == &upward || current_animation == &upwardreturn) {
 			current_animation = &upwardreturn;
-			current_animation->Reset();
 		}
 	}
 
@@ -143,26 +143,23 @@ update_status ModulePlayer::Update()
 	}
 
 	if (App->input->keyboard[SDL_SCANCODE_SPACE] == KEY_STATE::KEY_DOWN) {
-		//if (start_time - SDL_GetTicks() > 250) {
-			//start_time = SDL_GetTicks();
-
 		if (powerup[BASIC_SHOOT] == true)
-			App->particles->AddParticle(App->particles->shoot1, position.x + 40, position.y, COLLIDER_PLAYER_SHOT);
+			App->particles->AddParticle(App->particles->shoot1, PARTICLES_PLAYER, position.x + 40, position.y, COLLIDER_PLAYER_SHOT);
 		
 		
 		if (powerup[PARABOLA_SHOOT] == true) {
-			App->particles->AddParticle(App->particles->shoot1, position.x + 40, position.y, COLLIDER_PLAYER_SHOT);
-			//score += 13;
+			App->particles->AddParticle(App->particles->shoot1, PARTICLES_PLAYER, position.x + 40, position.y, COLLIDER_PLAYER_SHOT);
 		}
 
 		App->tentacles->ShootLaser();
 	}
 
-	if (App->input->keyboard[SDL_SCANCODE_S] == KEY_STATE::KEY_IDLE
-		&& App->input->keyboard[SDL_SCANCODE_W] == KEY_STATE::KEY_IDLE && (downwardreturn.islastframe() && upwardreturn.islastframe()))
+	if (App->input->keyboard[SDL_SCANCODE_S] == KEY_STATE::KEY_IDLE	&& App->input->keyboard[SDL_SCANCODE_W] == KEY_STATE::KEY_IDLE
+		&& (downwardreturn.islastframe() && upwardreturn.islastframe())) {
 		current_animation = &idle;
+		current_animation->Reset();
+	}
 
-	collider->SetPos(position.x, position.y);
 
 
 	// Draw everything --------------------------------------
@@ -172,12 +169,15 @@ update_status ModulePlayer::Update()
 		if (SDL_GetTicks() - start_time >= 1000)
 			App->fade->FadeToBlack((Module*)App->scene_stage1, (Module*)App->scene_MainMenu);
 
+	collider->SetPos(position.x + 4, position.y + 1);//SET POS PLAYER_COLLIDER
 	
 	sprintf_s(score_text, 10, "%7d", score);
+
 
 	//Draw UI 
 	App->font->BlitText(80, 240, font_score, score_text);
 	App->font->BlitText(32, 240, font_score, "score");
+
 
 	return UPDATE_CONTINUE;
 }
@@ -194,9 +194,11 @@ bool ModulePlayer::CleanUp()
 void ModulePlayer::OnCollision(Collider* collider1, Collider* collider2) {
 
 	if (!dead) {
-		App->particles->AddParticle(App->particles->explosion, position.x, position.y, COLLIDER_NONE);
+		App->particles->AddParticle(App->particles->explosion_player, PARTICLES_PLAYER, position.x, position.y, COLLIDER_NONE);
 		dead = true;
-		collider1->to_delete = true;
+		App->tentacles->removeCollider();
+		App->tentacles->CleanUp();
+		collider->to_delete = true;
 		start_time = SDL_GetTicks();
 	}
 }

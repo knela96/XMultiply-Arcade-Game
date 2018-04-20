@@ -24,8 +24,10 @@ bool ModuleParticles::Start()
 	
 	LOG("Loading player textures");
 	
-	graphics = App->textures->Load("Assets/Player.png");
-	//graphics = App->textures->Load("Assets/PowerUp/PowerUp.png");
+	graphics[PARTICLES_PLAYER] = App->textures->Load("Assets/Sprites/Character/Player.png");
+	graphics[PARTICLES_LASERS] = App->textures->Load("Assets/Sprites/Character/Lasers.png");
+	graphics[PARTICLES_EXPLOSION] = App->textures->Load("Assets/Sprites/Explosions/Explosions1.png");
+	graphics[POWERUP] = App->textures->Load("Assets/PowerUp/PowerUp.png");
 
 	shoot1.anim.PushBack({ 64, 30, 17, 18});
 	shoot1.anim.loop = false;
@@ -38,34 +40,43 @@ bool ModuleParticles::Start()
 	shoot2.anim.speed = 3.0f;
 	shoot2.life = 2000;
 	shoot2.common_fx = App->audio->LoadS("Assets/Audio Files/SFX in WAV/xmultipl-114.wav");
-
-	basic_laser.anim.PushBack({ 64, 30, 17, 18 });
-	basic_laser.anim.loop = false;
-	basic_laser.anim.speed = 3.0f;
-	basic_laser.life = 2000;
-	basic_laser.common_fx = App->audio->LoadS("Assets/Audio Files/SFX in WAV/xmultipl-114.wav");
-
-	animation = &shoot2.anim;
-
 	path->PushBack({ 0 , 0 }, 1, &shoot2.anim);
 	path->PushBack({ 1 , 1 }, 1, &shoot2.anim);
 	path->PushBack({ 1.41f , 2 }, 1, &shoot2.anim);
 	path->PushBack({ 1.73f, 3 }, 1, &shoot2.anim);
 	path->PushBack({ 2, 4 }, 1, &shoot2.anim);
-	path->PushBack({ 2.24f , 5}, 1, &shoot2.anim);
+	path->PushBack({ 2.24f , 5 }, 1, &shoot2.anim);
+
+
+	basic_laser.anim.PushBack({ 0, 4, 23, 7 });
+	basic_laser.anim.loop = false;
+	basic_laser.anim.speed = 3.0f;
+	basic_laser.life = 2000;
+	//basic_laser.common_fx = App->audio->LoadS("Assets/Audio Files/SFX in WAV/xmultipl-114.wav");
+
+	animation = &shoot2.anim;
 	
+	explosion_player.anim.PushBack({ 0, 144, 16, 16 });
+	explosion_player.anim.PushBack({ 17, 144, 16, 16 });
+	explosion_player.anim.PushBack({ 33, 144, 16, 16 });
+	explosion_player.anim.PushBack({ 49, 144, 16, 16 });
+	explosion_player.anim.PushBack({ 65, 144, 16, 16 });
+	explosion_player.anim.PushBack({ 81, 144, 16, 16 });
+	explosion_player.anim.PushBack({ 97, 144, 16, 16 });
+	explosion_player.anim.PushBack({ 113, 144, 16, 16 });
+	explosion_player.anim.loop = false;
+	explosion_player.anim.speed = 0.2f;
 
-
-	explosion.anim.PushBack({ 0, 144, 16, 16 });
-	explosion.anim.PushBack({ 17, 144, 16, 16 });
-	explosion.anim.PushBack({ 33, 144, 16, 16 });
-	explosion.anim.PushBack({ 49, 144, 16, 16 });
-	explosion.anim.PushBack({ 65, 144, 16, 16 });
-	explosion.anim.PushBack({ 81, 144, 16, 16 });
-	explosion.anim.PushBack({ 97, 144, 16, 16 });
-	explosion.anim.PushBack({ 113, 144, 16, 16 });
-	explosion.anim.loop = false;
-	explosion.anim.speed = 0.2f;
+	explosion_enemy.anim.PushBack({ 0, 64, 32, 48 });
+	explosion_enemy.anim.PushBack({ 32, 64, 32, 48 });
+	explosion_enemy.anim.PushBack({ 64, 64, 48, 48 });
+	explosion_enemy.anim.PushBack({ 112, 64, 48, 48 });
+	explosion_enemy.anim.PushBack({ 160, 64, 48, 48 });
+	explosion_enemy.anim.PushBack({ 0, 112, 48, 48 });
+	explosion_enemy.anim.PushBack({ 97, 112, 48, 48 });
+	explosion_enemy.anim.PushBack({ 113, 112, 48, 48 });
+	explosion_enemy.anim.loop = false;
+	explosion_enemy.anim.speed = 0.2f;
 
 	explosion_bullet.anim.PushBack({ 80, 32, 16, 16 });
 	explosion_bullet.anim.PushBack({ 97, 32, 16, 16 });
@@ -83,7 +94,13 @@ bool ModuleParticles::Start()
 bool ModuleParticles::CleanUp()
 {
 	LOG("Unloading particles");
-	App->textures->Unload(graphics);
+	for (uint i = 0; i < MAX_TEXTURES; ++i) {
+		if (graphics[i] != nullptr)
+		{
+			App->textures->Unload(graphics[i]);
+		}
+	}
+
 	App->audio->UnloadS(shoot1.common_fx);
 
 	for (uint i = 0; i < MAX_ACTIVE_PARTICLES; ++i)
@@ -115,11 +132,31 @@ update_status ModuleParticles::Update()
 		}
 		else if (SDL_GetTicks() >= p->born)
 		{
-			App->render->Blit(graphics, p->position.x, p->position.y, &(p->anim.GetCurrentFrame()));
+			SDL_Texture* texture = nullptr;
+			switch (p->type) {
+			case PARTICLES_PLAYER:
+				texture = graphics[PARTICLES_PLAYER];
+				break;
+			case PARTICLES_LASERS:
+				texture = graphics[PARTICLES_LASERS];
+				break;
+			case PARTICLES_EXPLOSION:
+				texture = graphics[PARTICLES_EXPLOSION];
+				break;
+			default:
+				texture = graphics[NONE];
+				break;
+			}
+			if(texture != nullptr)
+ 				App->render->Blit(texture, p->position.x, p->position.y, &(p->anim.GetCurrentFrame()));
+
 			if (p->fx_played == false)
 			{
+				if (p->type == PARTICLES_EXPLOSION || p->type == POWERUP)
+					p->speed.x = 1;
+				else
+					p->speed.x = 5;
 				p->fx_played = true;
-				p->speed.x = 2;
 				App->audio->PlaySound(p->common_fx);
 			}
 		}
@@ -128,28 +165,13 @@ update_status ModuleParticles::Update()
 	return UPDATE_CONTINUE;
 }
 
-void ModuleParticles::AddParticle(const Particle& particle, int x, int y, COLLIDER_TYPE collider_type, Uint32 delay)
+void ModuleParticles::AddParticle(const Particle& particle, PARTICLE_TYPE type, int x, int y, COLLIDER_TYPE collider_type, Uint32 delay)
 {
 	for (uint i = 0; i < MAX_ACTIVE_PARTICLES; ++i)
 	{
 		if (active[i] == nullptr)
 		{
-		/*	if(particle.id != 0){
-			
-				Particle* p = new Particle(particle);
-				p->born = SDL_GetTicks() + delay;
-				p->position.x = x;
-				p->position.y = y;
-				p->position = p->position + path->GetCurrentPosition(&animation);
-				if (collider_type != COLLIDER_NONE)
-					p->collider = App->collision->AddCollider(p->anim.GetCurrentFrame(), collider_type, this);
-				active[i] = p;
-				break;
-			
-				
-				
-			}else {	*/
-			Particle* p = new Particle(particle);
+			Particle* p = new Particle(particle, type);
 			p->born = SDL_GetTicks() + delay;
 			p->position.x = x;
 			p->position.y = y;
@@ -158,20 +180,28 @@ void ModuleParticles::AddParticle(const Particle& particle, int x, int y, COLLID
 			active[i] = p;
 			break;
 			
-			}
 		}
 	}
-//}
+}
 
 
 void ModuleParticles::OnCollision(Collider* c1, Collider* c2)
 {
+	PARTICLE_TYPE bullet_type = NONE;
 	for (uint i = 0; i < MAX_ACTIVE_PARTICLES; ++i)
 	{
 		// Always destroy particles that collide
 		if (active[i] != nullptr && active[i]->collider == c1)
 		{
-			AddParticle(explosion_bullet, c1->rect.x, c1->rect.y, COLLIDER_NONE);
+			switch (active[i]->type) {
+			case PARTICLES_PLAYER:
+				bullet_type = PARTICLES_PLAYER;
+				break;
+			case PARTICLES_LASERS:
+				bullet_type = PARTICLES_LASERS;
+				break;
+			}
+			AddParticle(explosion_bullet,bullet_type, c1->rect.x, c1->rect.y, COLLIDER_NONE);
 			
 			delete active[i];
 			active[i] = nullptr;
@@ -190,9 +220,9 @@ Particle::Particle()
 	speed.SetToZero();
 }
 
-Particle::Particle(const Particle& p) :
+Particle::Particle(const Particle& p, PARTICLE_TYPE type) :
 	anim(p.anim), position(p.position), speed(p.speed),
-	fx(p.fx), born(p.born), life(p.life), common_fx(p.common_fx)
+	fx(p.fx), born(p.born), life(p.life), common_fx(p.common_fx), type(type)
 {}
 
 Particle::~Particle()

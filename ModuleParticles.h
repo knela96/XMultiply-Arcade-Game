@@ -12,17 +12,21 @@
 
 #define MAX_ACTIVE_PARTICLES 100
 
+#define MAX_PARTICLE_TEXTURES 5
+
 struct SDL_Rect;
 struct SDL_Texture;
 struct Mix_Chunk;
 struct Collider;
-enum COLLIDER_TYPE;
 
-/*enum FX
+enum PARTICLE_TYPE
 {
-	EXPLOSION_FX = 0,
-	SHOOT_FX
-};*/
+	NONE,
+	PARTICLES_PLAYER,
+	PARTICLES_LASERS,
+	POWERUP,
+	PARTICLES_EXPLOSION,
+};
 
 struct Particle {
 	Collider* collider = nullptr;
@@ -34,9 +38,10 @@ struct Particle {
 	Uint32 life = 0;
 	bool fx_played = false;
 	int id = 0;
+	PARTICLE_TYPE type = NONE;
 
 	Particle();
-	Particle(const Particle& p);
+	Particle(const Particle& p, PARTICLE_TYPE type);
 	~Particle();
 	bool Update();
 
@@ -63,7 +68,7 @@ public:
 	bool CleanUp();
 	void OnCollision(Collider* c1, Collider* c2);
 
-	void AddParticle(const Particle& particle, int x, int y, COLLIDER_TYPE collider_type = COLLIDER_NONE, Uint32 delay = 0);
+	void AddParticle(const Particle& particle, PARTICLE_TYPE type, int x, int y, COLLIDER_TYPE collider_type = COLLIDER_NONE, Uint32 delay = 0);
 	
 	
 public:
@@ -71,14 +76,15 @@ public:
 	Uint32* shooting_delay;
 	Particle shoot1;
 	Particle shoot2;
-	Particle explosion;
+	Particle explosion_player;
+	Particle explosion_enemy;
 	Particle explosion_bullet;
 	Particle basic_laser;
 	Particle Powerup;
 	Animation* animation = nullptr;
 	Path* path = new Path();
 private: 
-	SDL_Texture * graphics = nullptr;
+	SDL_Texture * graphics[MAX_PARTICLE_TEXTURES];
 	Particle * active[MAX_ACTIVE_PARTICLES];
 	uint last_particle = 0;
 };

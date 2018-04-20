@@ -30,7 +30,8 @@ class ModuleTentacles : public Module
 public:
 	Tentacle tentacle;
 	Tentacle tentacle2;
-	Tentacle anchor;
+	Tentacle anchor_top;
+	Tentacle anchor_bottom;
 	Tentacle* tentacles[MAX_TENTACLES];
 private:
 	SDL_Texture * graphics = nullptr;
@@ -43,6 +44,7 @@ public:
 	void AddTentacle(const Tentacle& tentacle, int x, int y, bool flip = false, bool anchor = false);
 	void setPosition(int x, int y);
 	void ShootLaser();
+	void removeCollider();
 };
 
 #endif // __ENEMY_H__

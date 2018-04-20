@@ -31,8 +31,8 @@ Application::Application()
 	modules[i++] = scene_stage1 = new ModuleSceneStage1();
 	modules[i++] = scene_stage2 = new ModuleSceneStage2();
 	modules[i++] = scene_congrats = new ModuleSceneCongrats();
-	modules[i++] = tentacles = new ModuleTentacles();
 	modules[i++] = player = new ModulePlayer();
+	modules[i++] = tentacles = new ModuleTentacles();
 	modules[i++] = enemies = new ModuleEnemies();
 	modules[i++] = particles = new ModuleParticles();
 	modules[i++] = collision = new ModuleCollision();

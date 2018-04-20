@@ -117,6 +117,7 @@ bool ModuleSceneStage1::CleanUp()
 	App->textures->Unload(graphics);
 	App->textures->Unload(back);
 	App->player->Disable();
+	App->tentacles->Disable();
 	App->enemies->Disable();
 	App->collision->Disable();
 	App->particles->Disable();
