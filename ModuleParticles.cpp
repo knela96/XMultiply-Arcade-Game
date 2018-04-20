@@ -119,7 +119,7 @@ update_status ModuleParticles::Update()
 			if (p->fx_played == false)
 			{
 				p->fx_played = true;
-				p->speed.x = 2;
+				p->speed.x = 3.5f;
 				App->audio->PlaySound(p->common_fx);
 			}
 		}
@@ -198,7 +198,7 @@ Particle::Particle(const Particle& p) :
 Particle::~Particle()
 {
 	if (collider != nullptr /*&& collider->gettype != COLLIDER_POWERUP*/)
-		collider->to_delete = true;
+		collider->to_delete = true; //BUG quan sona el sonido de dispar i es presiona ESC
 }
 
 bool Particle::Update()
