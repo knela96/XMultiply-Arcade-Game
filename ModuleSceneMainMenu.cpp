@@ -27,13 +27,15 @@ bool ModuleSceneMainMenu::Start()
 
 	bool ret = true;
 
-
-	music = App->audio->LoadM(MUS_PATH);
+	App->audio->PlayMusic(MUS_PATH, 1.0f);
+	fx = App->audio->LoadFx("rtype/starting.wav");
+	
+	//music = App->audio->LoadFx(MUS_PATH);
 
 	graphics = App->textures->Load("Assets/Menu.png");
 
 
-	App->audio->PlayMusic(music);//plays background music in a loop
+	App->audio->PlayMusic(MUS_PATH);//plays background music in a loop
 
 	return ret;
 }
@@ -60,8 +62,9 @@ bool ModuleSceneMainMenu::CleanUp()
 	LOG("Unloading MainMenu stage");
 	App->textures->Unload(graphics);
 	graphics = nullptr;
-	App->audio->UnloadM(music);
-	music = nullptr;
+	App->audio->UnLoadFx(fx);
+	//App->audio->UnloadM(music);
+	//music = nullptr;
 	
 	return true;
 }

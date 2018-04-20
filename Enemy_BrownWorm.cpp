@@ -21,7 +21,7 @@ Enemy_BrownWorm::Enemy_BrownWorm(int x, int y) : Enemy(x, y)
 	path->PushBack({ 0 , 1 }, 10, &fly);
 	path->PushBack({ -1 , 1 }, 10, &fly);
 	
-	collider = App->collision->AddCollider({ 0, 0, 32, 32 }, COLLIDER_TYPE::COLLIDER_ENEMY, (Module*)App->enemies);
+	collider = App->collision->AddCollider({ 5, 5, 25, 25 }, COLLIDER_TYPE::COLLIDER_ENEMY, (Module*)App->enemies);
 	
 	original_position.x = x;
 	original_position.y = y;

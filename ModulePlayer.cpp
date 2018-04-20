@@ -100,7 +100,7 @@ bool ModulePlayer::Start()
 	App->tentacles->AddTentacle(App->tentacles->anchor_bottom, position.x + 16, position.y, false, true);
 
 
-
+	
 
 	return ret;
 }
@@ -118,6 +118,13 @@ update_status ModulePlayer::Update()
 	{
 		position.x -= speed;
 	}
+	if (App->input->keyboard[SDL_SCANCODE_W] == KEY_STATE::KEY_DOWN)
+	{
+		position.y -= speed;
+		current_animation = &upward;
+		current_animation->Reset();
+
+	}
 	if (App->input->keyboard[SDL_SCANCODE_W] == KEY_STATE::KEY_REPEAT)
 	{
 		position.y -= speed;
@@ -129,7 +136,13 @@ update_status ModulePlayer::Update()
 			current_animation = &upwardreturn;
 		}
 	}
+	if (App->input->keyboard[SDL_SCANCODE_S] == KEY_STATE::KEY_DOWN)
+	{
+		position.y -= speed;
+		current_animation = &downward;
+		current_animation->Reset();
 
+	}
 	if (App->input->keyboard[SDL_SCANCODE_S] == KEY_STATE::KEY_REPEAT)
 	{
 		position.y += speed; 
@@ -159,7 +172,8 @@ update_status ModulePlayer::Update()
 		current_animation = &idle;
 		current_animation->Reset();
 	}
-
+	//Collider nau
+	collider->SetPos(position.x+10, position.y+3);
 
 
 	// Draw everything --------------------------------------

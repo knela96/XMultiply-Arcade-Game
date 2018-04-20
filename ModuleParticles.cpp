@@ -33,13 +33,22 @@ bool ModuleParticles::Start()
 	shoot1.anim.loop = false;
 	shoot1.anim.speed = 3.0f;
 	shoot1.life = 2000;
-	shoot1.common_fx = App->audio->LoadS("Assets/Audio Files/SFX in WAV/xmultipl-114.wav");
+	shoot1.fx = App->audio->LoadFx("Assets/Audio Files/SFX in WAV/xmultipl-114.wav");
 
 	shoot2.anim.PushBack({ 50, 82, 12, 18 });
 	shoot2.anim.loop = false;
 	shoot2.anim.speed = 3.0f;
 	shoot2.life = 2000;
-	shoot2.common_fx = App->audio->LoadS("Assets/Audio Files/SFX in WAV/xmultipl-114.wav");
+	shoot2.fx = App->audio->LoadFx("Assets/Audio Files/SFX in WAV/xmultipl-114.wav");
+
+	basic_laser.anim.PushBack({ 64, 30, 17, 18 });
+	basic_laser.anim.loop = false;
+	basic_laser.anim.speed = 3.0f;
+	basic_laser.life = 2000;
+	basic_laser.fx = App->audio->LoadFx("Assets/Audio Files/SFX in WAV/xmultipl-114.wav");
+
+	animation = &shoot2.anim;
+
 	path->PushBack({ 0 , 0 }, 1, &shoot2.anim);
 	path->PushBack({ 1 , 1 }, 1, &shoot2.anim);
 	path->PushBack({ 1.41f , 2 }, 1, &shoot2.anim);
@@ -52,7 +61,6 @@ bool ModuleParticles::Start()
 	basic_laser.anim.loop = false;
 	basic_laser.anim.speed = 3.0f;
 	basic_laser.life = 2000;
-	//basic_laser.common_fx = App->audio->LoadS("Assets/Audio Files/SFX in WAV/xmultipl-114.wav");
 
 	animation = &shoot2.anim;
 	
@@ -101,7 +109,7 @@ bool ModuleParticles::CleanUp()
 		}
 	}
 
-	App->audio->UnloadS(shoot1.common_fx);
+	App->audio->UnLoadFx(shoot1.fx);
 
 	for (uint i = 0; i < MAX_ACTIVE_PARTICLES; ++i)
 	{
@@ -155,9 +163,9 @@ update_status ModuleParticles::Update()
 				if (p->type == PARTICLES_EXPLOSION || p->type == POWERUP)
 					p->speed.x = 1;
 				else
-					p->speed.x = 5;
+					p->speed.x = 3;
 				p->fx_played = true;
-				App->audio->PlaySound(p->common_fx);
+				App->audio->PlayFx(p->fx);
 			}
 		}
 	}
@@ -222,13 +230,13 @@ Particle::Particle()
 
 Particle::Particle(const Particle& p, PARTICLE_TYPE type) :
 	anim(p.anim), position(p.position), speed(p.speed),
-	fx(p.fx), born(p.born), life(p.life), common_fx(p.common_fx), type(type)
+	fx(p.fx), born(p.born), life(p.life), type(type)//, common_fx(p.common_fx)
 {}
 
 Particle::~Particle()
 {
 	if (collider != nullptr /*&& collider->gettype != COLLIDER_POWERUP*/)
-		collider->to_delete = true;
+		collider->to_delete = true; //BUG quan sona el sonido de dispar i es presiona ESC
 }
 
 bool Particle::Update()

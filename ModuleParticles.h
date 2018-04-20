@@ -18,6 +18,7 @@ struct SDL_Rect;
 struct SDL_Texture;
 struct Mix_Chunk;
 struct Collider;
+enum COLLIDER_TYPE;
 
 enum PARTICLE_TYPE
 {
@@ -29,6 +30,7 @@ enum PARTICLE_TYPE
 };
 
 struct Particle {
+
 	Collider* collider = nullptr;
 	Animation anim;
 	uint fx = 0;
@@ -45,7 +47,7 @@ struct Particle {
 	~Particle();
 	bool Update();
 
-	Mix_Chunk* common_fx = nullptr;
+	//Mix_Chunk* common_fx = nullptr;
 
 	bool operator==(const Particle &g) const
 	{
@@ -72,6 +74,7 @@ public:
 	
 	
 public:
+
 	Uint32 * start_time = 0;
 	Uint32* shooting_delay;
 	Particle shoot1;
@@ -83,6 +86,7 @@ public:
 	Particle Powerup;
 	Animation* animation = nullptr;
 	Path* path = new Path();
+
 private: 
 	SDL_Texture * graphics[MAX_PARTICLE_TEXTURES];
 	Particle * active[MAX_ACTIVE_PARTICLES];
