@@ -35,7 +35,7 @@ bool ModuleSceneMainMenu::Start()
 	graphics = App->textures->Load("Assets/Menu.png");
 
 
-	//App->audio->PlayMusic(music);//plays background music in a loop
+	App->audio->PlayMusic(MUS_PATH);//plays background music in a loop
 
 	return ret;
 }
