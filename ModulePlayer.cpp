@@ -74,7 +74,7 @@ bool ModulePlayer::Start()
 	dead = false;
 
 	//Add a collider to the player
-	collider = App->collision->AddCollider({ position.x, position.y, 10, 10 }, COLLIDER_PLAYER, this);
+	collider = App->collision->AddCollider({ position.x, position.y, 15, 10 }, COLLIDER_PLAYER, this);
 
 	powerup[BASIC_SHOOT] = true;
 	powerup[PARABOLA_SHOOT] = true;
@@ -165,7 +165,7 @@ update_status ModulePlayer::Update()
 
 
 	//Collider nau
-	collider->SetPos(position.x+10, position.y+6);
+	collider->SetPos(position.x+10, position.y+3);
 
 
 	// Draw everything --------------------------------------

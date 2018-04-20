@@ -25,6 +25,7 @@ enum COLLIDER_TYPE;
 };*/
 
 struct Particle {
+
 	Collider* collider = nullptr;
 	Animation anim;
 	uint fx = 0;
@@ -67,6 +68,7 @@ public:
 	
 	
 public:
+
 	Uint32 * start_time = 0;
 	Uint32* shooting_delay;
 	Particle shoot1;
@@ -77,6 +79,7 @@ public:
 	Particle Powerup;
 	Animation* animation = nullptr;
 	Path* path = new Path();
+
 private: 
 	SDL_Texture * graphics = nullptr;
 	Particle * active[MAX_ACTIVE_PARTICLES];

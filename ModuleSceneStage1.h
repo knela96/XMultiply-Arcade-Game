@@ -30,8 +30,6 @@ public:
 	Animation flag;
 	SDL_Rect ship;
 	Animation people;
-	int ScrollingOffset = 0;
-
 };
 
 #endif // __MODULESCENESTAGE1_H__

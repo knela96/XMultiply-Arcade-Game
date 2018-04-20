@@ -49,7 +49,7 @@ bool ModuleSceneStage1::Start()
 	
 	graphics = App->textures->Load("Assets/TileMap1.2.png");
 
-	back = App->textures->Load("Assets/FirstLvlMap3.png");
+	back = App->textures->Load("Assets/FirstLvlMap3.1.png");
 
 	hud = App->textures->Load("Assets/UI.png");
 
@@ -209,13 +209,6 @@ bool ModuleSceneStage1::CleanUp()
 // Update: draw background
 update_status ModuleSceneStage1::Update()
 {
-	if (!App->player->dead) {
-		--ScrollingOffset;
-		if (ScrollingOffset <= -512)
-		{
- 			ScrollingOffset = 0;
-		}
-	}
 
 	App->player->position.x += 1;
 
@@ -223,9 +216,7 @@ update_status ModuleSceneStage1::Update()
 
 	if (App->render->camera.x > 2657*SCREEN_SIZE && App->render->camera.x < 3428*SCREEN_SIZE) App->render->camera.y += 1 ;
 
-	App->render->Blit(back, ScrollingOffset, 0, &ground, 0.1f);
-
-	App->render->Blit(back, ScrollingOffset + 512, 0, &ground, 0.1f);
+	App->render->Blit(back, 0, 0, &ground, 3.0f);
 	
 
 	App->render->Blit(graphics, 0, 0, &background);
