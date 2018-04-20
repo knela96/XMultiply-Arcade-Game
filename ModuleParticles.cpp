@@ -33,13 +33,17 @@ bool ModuleParticles::Start()
 	shoot1.life = 2000;
 	shoot1.common_fx = App->audio->LoadS("Assets/Audio Files/SFX in WAV/xmultipl-114.wav");
 
-	shoot2.id = 1;
-
 	shoot2.anim.PushBack({ 50, 82, 12, 18 });
 	shoot2.anim.loop = false;
 	shoot2.anim.speed = 3.0f;
 	shoot2.life = 2000;
 	shoot2.common_fx = App->audio->LoadS("Assets/Audio Files/SFX in WAV/xmultipl-114.wav");
+
+	basic_laser.anim.PushBack({ 64, 30, 17, 18 });
+	basic_laser.anim.loop = false;
+	basic_laser.anim.speed = 3.0f;
+	basic_laser.life = 2000;
+	basic_laser.common_fx = App->audio->LoadS("Assets/Audio Files/SFX in WAV/xmultipl-114.wav");
 
 	animation = &shoot2.anim;
 
@@ -115,7 +119,7 @@ update_status ModuleParticles::Update()
 			if (p->fx_played == false)
 			{
 				p->fx_played = true;
-				p->speed.x = 2;
+				p->speed.x = 3.5f;
 				App->audio->PlaySound(p->common_fx);
 			}
 		}
@@ -194,7 +198,7 @@ Particle::Particle(const Particle& p) :
 Particle::~Particle()
 {
 	if (collider != nullptr /*&& collider->gettype != COLLIDER_POWERUP*/)
-		collider->to_delete = true;
+		collider->to_delete = true; //BUG quan sona el sonido de dispar i es presiona ESC
 }
 
 bool Particle::Update()

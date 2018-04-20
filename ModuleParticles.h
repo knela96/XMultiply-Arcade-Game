@@ -73,6 +73,7 @@ public:
 	Particle shoot2;
 	Particle explosion;
 	Particle explosion_bullet;
+	Particle basic_laser;
 	Particle Powerup;
 	Animation* animation = nullptr;
 	Path* path = new Path();

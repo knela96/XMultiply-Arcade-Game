@@ -213,9 +213,9 @@ update_status ModuleSceneStage1::Update()
 {
 	if (!App->player->dead) {
 		--ScrollingOffset;
-		if (ScrollingOffset < -512)
+		if (ScrollingOffset <= -512)
 		{
-			ScrollingOffset = 0;
+ 			ScrollingOffset = 0;
 		}
 	}
 

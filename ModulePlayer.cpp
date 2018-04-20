@@ -83,18 +83,22 @@ bool ModulePlayer::Start()
 
 	
 
-	App->tentacles->AddTentacle(App->tentacles->tentacle, position.x, position.y, false);
-	App->tentacles->AddTentacle(App->tentacles->tentacle, position.x, position.y, false);
-	App->tentacles->AddTentacle(App->tentacles->tentacle, position.x, position.y, false);
-	App->tentacles->AddTentacle(App->tentacles->tentacle, position.x, position.y, false);
-	App->tentacles->AddTentacle(App->tentacles->tentacle, position.x, position.y, false);
-	App->tentacles->AddTentacle(App->tentacles->tentacle, position.x, position.y, false);
-	App->tentacles->AddTentacle(App->tentacles->tentacle, position.x, position.y, true);
-	App->tentacles->AddTentacle(App->tentacles->tentacle, position.x, position.y, true);
-	App->tentacles->AddTentacle(App->tentacles->tentacle, position.x, position.y, true);
-	App->tentacles->AddTentacle(App->tentacles->tentacle, position.x, position.y, true);
-	App->tentacles->AddTentacle(App->tentacles->tentacle, position.x, position.y, true);
-	App->tentacles->AddTentacle(App->tentacles->tentacle, position.x, position.y, true);
+	App->tentacles->AddTentacle(App->tentacles->tentacle, position.x, position.y);
+	App->tentacles->AddTentacle(App->tentacles->tentacle, position.x+16, position.y);
+	App->tentacles->AddTentacle(App->tentacles->tentacle, position.x + 16, position.y);
+	App->tentacles->AddTentacle(App->tentacles->tentacle, position.x + 16, position.y);
+	App->tentacles->AddTentacle(App->tentacles->tentacle, position.x + 16, position.y);
+	App->tentacles->AddTentacle(App->tentacles->tentacle, position.x + 16, position.y);
+	App->tentacles->AddTentacle(App->tentacles->anchor, position.x + 16, position.y, false,true);
+
+	App->tentacles->AddTentacle(App->tentacles->tentacle, position.x, position.y);
+	App->tentacles->AddTentacle(App->tentacles->tentacle, position.x + 16, position.y, true);
+	App->tentacles->AddTentacle(App->tentacles->tentacle, position.x + 16, position.y, true);
+	App->tentacles->AddTentacle(App->tentacles->tentacle, position.x + 16, position.y, true);
+	App->tentacles->AddTentacle(App->tentacles->tentacle, position.x + 16, position.y, true);
+	App->tentacles->AddTentacle(App->tentacles->tentacle, position.x + 16, position.y, true);
+	App->tentacles->AddTentacle(App->tentacles->anchor, position.x + 16, position.y, false, true);
+
 
 	
 
@@ -151,6 +155,8 @@ update_status ModulePlayer::Update()
 			App->particles->AddParticle(App->particles->shoot1, position.x + 40, position.y, COLLIDER_PLAYER_SHOT);
 			//score += 13;
 		}
+
+		App->tentacles->ShootLaser();
 	}
 
 	if (App->input->keyboard[SDL_SCANCODE_S] == KEY_STATE::KEY_IDLE

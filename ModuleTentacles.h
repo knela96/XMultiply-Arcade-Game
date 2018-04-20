@@ -5,7 +5,7 @@
 #include "Animation.h"
 #include "ModuleCollision.h"
 
-#define MAX_TENTACLES 12
+#define MAX_TENTACLES 14
 
 struct SDL_Texture;
 struct SDL_Rect;
@@ -29,6 +29,8 @@ class ModuleTentacles : public Module
 {
 public:
 	Tentacle tentacle;
+	Tentacle tentacle2;
+	Tentacle anchor;
 	Tentacle* tentacles[MAX_TENTACLES];
 private:
 	SDL_Texture * graphics = nullptr;
@@ -38,8 +40,9 @@ public:
 	bool Start();
 	update_status Update();
 	bool CleanUp();
-	void AddTentacle(const Tentacle& tentacle, int x, int y,bool flip);
+	void AddTentacle(const Tentacle& tentacle, int x, int y, bool flip = false, bool anchor = false);
 	void setPosition(int x, int y);
+	void ShootLaser();
 };
 
 #endif // __ENEMY_H__
