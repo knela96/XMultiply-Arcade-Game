@@ -53,9 +53,8 @@ bool ModuleSceneStage1::Start()
 
 	hud = App->textures->Load("Assets/UI.png");
 
-	music = App->audio->LoadM("Assets/Audio Files/Music in OGG/04_Into_the_Human_Body_Stage_1_.ogg");
+	 App->audio->PlayMusic("Assets/Audio Files/Music in OGG/04_Into_the_Human_Body_Stage_1_.ogg");
 
-	App->audio->PlayMusic(music);
 
 	
 
@@ -199,9 +198,8 @@ bool ModuleSceneStage1::CleanUp()
 	App->enemies->Disable();
 	App->collision->Disable();
 	App->particles->Disable();
-	App->audio->UnloadM(music);
 	App->font->Disable();
-	music = nullptr;
+
 
 	App->render->camera.x = App->render->camera.y = 0;
 	

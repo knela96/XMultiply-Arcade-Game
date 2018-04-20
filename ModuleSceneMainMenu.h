@@ -6,7 +6,7 @@
 #include "Globals.h"
 
 struct SDL_Texture;
-typedef struct _Mix_Music Mix_Music;
+//typedef struct _Mix_Music Mix_Music;
 
 class ModuleSceneMainMenu : public Module
 {
@@ -21,12 +21,13 @@ public:
 public:
 
 	SDL_Texture* graphics = nullptr;
-	Mix_Music * music;
+//	Mix_Music * music;
 	SDL_Rect ground;
 	SDL_Rect roof;
 	SDL_Rect foreground;
 	SDL_Rect background;
 	Animation water;
+	uint fx = 0;
 };
 
 #endif // __MODULESCENEMAINMENU_H__

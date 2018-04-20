@@ -15,7 +15,7 @@
 struct SDL_Rect;
 struct SDL_Texture;
 struct Mix_Chunk;
-struct Collider;
+//struct Collider;
 enum COLLIDER_TYPE;
 
 /*enum FX
@@ -40,7 +40,7 @@ struct Particle {
 	~Particle();
 	bool Update();
 
-	Mix_Chunk* common_fx = nullptr;
+	//Mix_Chunk* common_fx = nullptr;
 
 	bool operator==(const Particle &g) const
 	{

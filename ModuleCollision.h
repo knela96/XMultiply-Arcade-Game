@@ -1,11 +1,8 @@
 #ifndef __ModuleCollision_H__
 #define __ModuleCollision_H__
 
-<<<<<<< HEAD
-#define MAX_COLLIDERS 100
-=======
+
 #define MAX_COLLIDERS 150
->>>>>>> 6f5b44cd2460e79c179d85346aa672b08ab70907
 
 #include "Module.h"
 
