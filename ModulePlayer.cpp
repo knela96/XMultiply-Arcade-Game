@@ -90,6 +90,15 @@ bool ModulePlayer::Start()
 	App->tentacles->AddTentacle(App->tentacles->tentacle, position.x + 16, position.y);
 	App->tentacles->AddTentacle(App->tentacles->anchor, position.x + 16, position.y, false,true);
 
+	App->tentacles->AddTentacle(App->tentacles->tentacle, position.x, position.y);
+	App->tentacles->AddTentacle(App->tentacles->tentacle, position.x + 16, position.y, true);
+	App->tentacles->AddTentacle(App->tentacles->tentacle, position.x + 16, position.y, true);
+	App->tentacles->AddTentacle(App->tentacles->tentacle, position.x + 16, position.y, true);
+	App->tentacles->AddTentacle(App->tentacles->tentacle, position.x + 16, position.y, true);
+	App->tentacles->AddTentacle(App->tentacles->tentacle, position.x + 16, position.y, true);
+	App->tentacles->AddTentacle(App->tentacles->anchor, position.x + 16, position.y, false, true);
+
+
 
 
 	return ret;

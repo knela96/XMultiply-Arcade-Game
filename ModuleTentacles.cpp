@@ -63,10 +63,7 @@ update_status ModuleTentacles::Update() {
 			tentacles[i] = nullptr;
 		}else{
 			setPosition(App->player->position.x, App->player->position.y);
-			if(!p->flip)
-				App->render->Blit(graphics, p->first_point.x, p->first_point.y, &p->anim.GetCurrentFrame(),1.0f, 0.0f);
-			else
-				App->render->Blit(graphics, p->first_point.x, p->first_point.y, &p->anim.GetCurrentFrame(), 1.0f, 180.0f,false,true);
+			App->render->Blit(graphics, p->first_point.x, p->first_point.y, &p->anim.GetCurrentFrame(),1.0f, 0.0f);
 
 		}
 	}
@@ -105,8 +102,6 @@ void ModuleTentacles::setPosition(int x, int y) {
 			if (i != 0 && i != MAX_TENTACLES/2) {
 				p->first_point.x = tentacles[i - 1]->second_point.x;
 				p->first_point.y = tentacles[i - 1]->second_point.y;
-				p->second_point.x = p->first_point.x+4;
-				p->second_point.y = p->first_point.y - p->anim.GetCurrentFrame().h * invert;
 			}
 			else {
 				if (tentacles[i]->flip) {
@@ -116,10 +111,10 @@ void ModuleTentacles::setPosition(int x, int y) {
 					p->first_point.y = y - 4;
 				}
 				p->first_point.x = x + 20;
-				
-				p->second_point.x = p->first_point.x+4;
-				p->second_point.y = p->first_point.y - p->anim.GetCurrentFrame().h * invert;
 			}
+
+			p->second_point.x = p->first_point.x + 4;
+			p->second_point.y = p->first_point.y - p->anim.GetCurrentFrame().h * invert;
 			tentacles[i] = p;
 		}
 	}
@@ -130,9 +125,14 @@ void ModuleTentacles::ShootLaser() {
 	{
 		if (tentacles[i] != nullptr)
 		{
+			int invert = 0;
+			if (i >= MAX_TENTACLES / 2)
+				invert = -1;
+			else
+				invert = -1;
 			Tentacle* p = tentacles[i];
 			if (p->anchor) {
-				App->particles->AddParticle(App->particles->basic_laser, p->first_point.x, p->first_point.y - App->particles->basic_laser.anim.GetCurrentFrame().h / 2, COLLIDER_PLAYER_SHOT);
+				App->particles->AddParticle(App->particles->basic_laser, p->first_point.x, p->first_point.y - (App->particles->basic_laser.anim.GetCurrentFrame().h / 2) * invert, COLLIDER_PLAYER_SHOT);
 			}
 		}
 	}

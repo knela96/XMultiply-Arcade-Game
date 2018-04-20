@@ -29,6 +29,7 @@ class ModuleTentacles : public Module
 {
 public:
 	Tentacle tentacle;
+	Tentacle tentacle2;
 	Tentacle anchor;
 	Tentacle* tentacles[MAX_TENTACLES];
 private:
