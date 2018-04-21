@@ -14,6 +14,8 @@
 #include "ModuleFonts.h"
 #include "ModuleTentacles.h"
 #include "SDL/include/SDL_timer.h"
+#include "SDL/include/SDL_render.h"
+
 
 
 ModuleSceneStage1::ModuleSceneStage1()
@@ -282,78 +284,23 @@ update_status ModuleSceneStage1::Update()
 		App->fade->FadeToBlack(App->scene_stage1, App->scene_stage2, 1);
 	}
 	
-	/*
+	
 	if(App->player->score > 150)
 	{
-		
-		start_time = 0;
 		App->particles->Disable();
-		App->collision->Disable();
+	//	App->collision->Disable();
 		App->enemies->Disable();
-
-		App->audio->PlayMusic("Assets/Audio Files/Music in OGG/06_Stage_Clear.ogg");
-
-		if(SDL_GetTicks() - start_time >= 14000)
-		App->font->BlitText(120 -30, 100, font_gameover, "s");
-
-
-
-		if (SDL_GetTicks() - start_time >= 20500)
-		App->font->BlitText(105 - 30, 136, font_gameover, "s");
-
-		if (SDL_GetTicks() - start_time >= 21000)
-		App->font->BlitText(115 - 30, 136, font_gameover, "t");
-
-		if (SDL_GetTicks() - start_time >= 21500)
-		App->font->BlitText(130 - 30, 136, font_gameover, "a");
-
-		if (SDL_GetTicks() - start_time >= 22000)
-		App->font->BlitText(145 - 30, 136, font_gameover, "g");
-
-		if (SDL_GetTicks() - start_time >= 22500)
-		App->font->BlitText(160 - 30, 136, font_gameover, "e");
-
-		if (SDL_GetTicks() - start_time >= 23000)
-		App->font->BlitText(175 - 30, 136, font_gameover, " ");
-
-		if (SDL_GetTicks() - start_time >= 23500)
-		App->font->BlitText(190 - 30, 136, font_gameover, "b");
-
-		if (SDL_GetTicks() - start_time >= 24000)
-		App->font->BlitText(205 - 30, 136, font_gameover, "o");
-
-		if (SDL_GetTicks() - start_time >= 24500)
-		App->font->BlitText(220 - 30, 136, font_gameover, "n");
-
-		if (SDL_GetTicks() - start_time >= 25000)
-		App->font->BlitText(235 - 30, 136, font_gameover, "u");
-
-		if (SDL_GetTicks() - start_time >= 25500)
-		App->font->BlitText(250 - 30, 136, font_gameover, "s");
-
-		if (SDL_GetTicks() - start_time >= 26000)
-		App->font->BlitText(265 - 30, 136, font_gameover, " ");
-
-		if (SDL_GetTicks() - start_time >= 26500)
-		App->font->BlitText(280 - 30, 136, font_gameover, "1");
-
-		if (SDL_GetTicks() - start_time >= 27000)
-		App->font->BlitText(295 - 30, 136, font_gameover, "0");
-
-		if (SDL_GetTicks() - start_time >= 27500)
-		App->font->BlitText(310 - 30, 136, font_gameover, "0");
-
-		if (SDL_GetTicks() - start_time >= 28000)
-		App->font->BlitText(325 - 30, 136, font_gameover, "0");
-
-		if (SDL_GetTicks() - start_time >= 28500)
-		App->font->BlitText(340 - 30, 136, font_gameover, "0");
 		
-		
-		
+		SDL_SetTextureColorMod(graphics,0,0,0);
+		SDL_SetTextureColorMod(back, 0, 0, 0);
 
+		App->font->BlitText(100, 100, font_gameover, "stage clear");
+		App->font->BlitText(75, 136, font_gameover, "stage bonus 10000");
 		
-	}*/
+	
+	
+		
+	}
 	
 	return UPDATE_CONTINUE;
 }

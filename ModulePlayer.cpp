@@ -181,6 +181,8 @@ update_status ModulePlayer::Update()
 	if (!dead)
 		App->render->Blit(graphics, position.x, position.y, &current_animation->GetCurrentFrame());
 	else{
+		App->particles->Disable();
+		App->collision->Disable();
 		App->font->BlitText(120, 100, font_gameover, "game over");
 		if (SDL_GetTicks() - start_time >= 1000) {
 

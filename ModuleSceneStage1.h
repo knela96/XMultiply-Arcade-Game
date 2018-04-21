@@ -47,7 +47,7 @@ public:
 	SDL_Rect ship;
 	Animation people;
 	Uint32 start_time;
-
+	SDL_Rect screen;
 
 	bool down = false;
 
