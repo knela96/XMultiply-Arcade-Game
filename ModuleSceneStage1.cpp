@@ -29,6 +29,17 @@ ModuleSceneStage1::ModuleSceneStage1()
 	background.y = 1;
 	background.w = 4961;
 	background.h = 513;	
+
+	//injection 
+	injection.PushBack({ 0, 0, 48, 102});
+	injection.PushBack({ 79, 0, 48, 105});
+	injection.PushBack({ 160, 0, 48, 103});
+	injection.PushBack({ 238, 0, 48, 112 });
+	injection.PushBack({ 307, 0, 48, 120 });
+	injection.PushBack({ 386, 0, 48, 120});
+	injection.speed = 2.0f;
+	entering = { 0, 0, 48, 102 };
+
 }
 
 ModuleSceneStage1::~ModuleSceneStage1()
@@ -41,13 +52,25 @@ bool ModuleSceneStage1::Start()
 
 	bool ret = true;
 
+
+	down = false;
+
+	right = false;
+
+	injected = false;
+
+	shipdeployed = false;
+
+
 	App->tentacles->Enable();
-	App->player->Enable();
+	App->player->Disable();
 	App->particles->Enable();
 	App->collision->Enable();
 	App->enemies->Enable();
 	App->font->Enable();
 	
+	injectiontex = App->textures->Load("Assets/Sprites/Stage1/Tilemap/Injection.png");
+
 	graphics = App->textures->Load("Assets/TileMap1.2.png");
 	font_gameover = App->font->Load("Assets/Sprites/UI/fonts.2.png", "0123456789·' ºººººººººººººabcdefghijklmnopqrstuvwxyz", 2);
 	back = App->textures->Load("Assets/FirstLvlMap3.1.png");
@@ -55,6 +78,10 @@ bool ModuleSceneStage1::Start()
 	hud = App->textures->Load("Assets/UI.png");
 
 	App->audio->PlayMusic("Assets/Audio Files/Music in OGG/04_Into_the_Human_Body_Stage_1_.ogg");	
+
+	 injectxy.x = 100;
+
+	 injectxy.y = -30;
 
 	// Colliders ---
 	App->collision->AddCollider({ 0, 213, 2540, 10 }, COLLIDER_WALL);
@@ -208,20 +235,48 @@ bool ModuleSceneStage1::CleanUp()
 // Update: draw background
 update_status ModuleSceneStage1::Update()
 {
+	if (right)
+	{
+		App->player->position.x += 1;
 
-	App->player->position.x += 1;
+		App->render->camera.x += 1 * SCREEN_SIZE;
+	}
 
-	App->render->camera.x += 1 * SCREEN_SIZE;
+	if (down)
+	{
+		App->render->camera.y += 1;
+	}
 
-	if (App->render->camera.x > 2657*SCREEN_SIZE && App->render->camera.x < 3428*SCREEN_SIZE) App->render->camera.y += 1 ;
 
-	App->render->Blit(back, 0, 0, &ground, 1.0f, true);
+	if (App->render->camera.x > 2657 * SCREEN_SIZE && App->render->camera.x < 3428 * SCREEN_SIZE) 
+	{
+		down = true;
+
+	}
+
+	else down = false;
+		
+
+	App->render->Blit(back, 0, 0, &ground, 0.5f , 0, true, false);
 	
 
 	App->render->Blit(graphics, 0, 0, &background);
 
+
 	App->render->Blit(hud, 0, 224, NULL, 0.0f, false);
 
+<<<<<<< HEAD
+=======
+	if (!injected) {
+
+
+		injectpos();
+
+
+		App->render->Blit(injectiontex, injectxy.x, injectxy.y, &entering, 0.5f);
+
+	}
+>>>>>>> c3369ed3c412af67132479a9a5ba0ca01e2551f9
 
 	if (App->input->keyboard[SDL_SCANCODE_RETURN] == 1)
 	{
@@ -340,4 +395,37 @@ update_status ModuleSceneStage1::Update()
 	}
 
 	return UPDATE_CONTINUE;
+}
+
+void ModuleSceneStage1::injectpos() {
+
+	switch (shipdeployed) {
+
+	case false:
+		if (injectxy.y == 0) {
+			
+			App->player->Enable();
+
+			shipdeployed = true;
+
+			right = true;
+
+			injectxy.y--;
+		}
+		else injectxy.y++;
+
+		break;
+
+	case true:
+		if (injectxy.y == -100) {
+
+			injected = true;
+		}
+		else { 
+
+			entering = injection.GetCurrentFrame();
+			
+			injectxy.y--; }
+	}
+
 }
