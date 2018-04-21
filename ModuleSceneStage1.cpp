@@ -329,15 +329,17 @@ update_status ModuleSceneStage1::Update()
 		char _stageend[15] = "stage clear";
 		char _stageendblit[15];
 		
-		if (SDL_GetTicks() - start_time >= 500) {
+		
+		/*if (SDL_GetTicks() - start_time >= 500) {
    			start_time = SDL_GetTicks();
 
-			for (int i = 0; i < 12 ; ++i) {
+		
 
-				_stageendblit[i] = _stageend[i];	
-			}
+ 				_stageendblit[i] = _stageend[i];	
+			
 			
 		}
+		*/
 		App->font->BlitText(100, 100, font_gameover, _stageendblit);
 		
 		
