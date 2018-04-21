@@ -265,8 +265,7 @@ update_status ModuleSceneStage1::Update()
 
 	App->render->Blit(hud, 0, 224, NULL, 0.0f, false);
 
-<<<<<<< HEAD
-=======
+
 	if (!injected) {
 
 
@@ -276,16 +275,17 @@ update_status ModuleSceneStage1::Update()
 		App->render->Blit(injectiontex, injectxy.x, injectxy.y, &entering, 0.5f);
 
 	}
->>>>>>> c3369ed3c412af67132479a9a5ba0ca01e2551f9
+
 
 	if (App->input->keyboard[SDL_SCANCODE_RETURN] == 1)
 	{
 		App->fade->FadeToBlack(App->scene_stage1, App->scene_stage2, 1);
 	}
 	
-	
+	/*
 	if(App->player->score > 150)
 	{
+		
 		start_time = 0;
 		App->particles->Disable();
 		App->collision->Disable();
@@ -296,45 +296,6 @@ update_status ModuleSceneStage1::Update()
 		if(SDL_GetTicks() - start_time >= 14000)
 		App->font->BlitText(120 -30, 100, font_gameover, "s");
 
-		if (SDL_GetTicks() - start_time >= 14500)
-		App->font->BlitText(135 - 30, 100, font_gameover, "t");
-
-		if (SDL_GetTicks() - start_time >= 15000)
-		App->font->BlitText(150 - 30, 100, font_gameover, "a");
-
-		if (SDL_GetTicks() - start_time >= 15500)
-		App->font->BlitText(165 - 30, 100, font_gameover, "g");
-
-		if (SDL_GetTicks() - start_time >= 16000){
-		App->font->BlitText(180 -30, 100, font_gameover, "e");
-		App->font->BlitText(195 - 30, 100, font_gameover, " ");
-		}
-
-		if (SDL_GetTicks() - start_time >= 16500)
-		App->font->BlitText(210 - 30, 100, font_gameover, "1");
-
-		if (SDL_GetTicks() - start_time >= 17000) {
-		App->font->BlitText(225 - 30, 100, font_gameover, " ");
-		App->font->BlitText(240 - 30, 100, font_gameover, "c");
-		}
-
-		if (SDL_GetTicks() - start_time >= 17500)
-		App->font->BlitText(255 - 30, 100, font_gameover, "l");
-
-		if (SDL_GetTicks() - start_time >= 18000)
-		App->font->BlitText(270 - 30, 100, font_gameover, "e");
-
-		if (SDL_GetTicks() - start_time >= 18500)
-		App->font->BlitText(285 - 30, 100, font_gameover, "a");
-
-		if (SDL_GetTicks() - start_time >= 19000)
-		App->font->BlitText(300 - 30, 100, font_gameover, "r");
-
-		if (SDL_GetTicks() - start_time >= 19500)
-		App->font->BlitText(315 - 30, 100, font_gameover, "e");
-
-		if (SDL_GetTicks() - start_time >= 20000)
-		App->font->BlitText(330 - 30, 100, font_gameover, "d");
 
 
 		if (SDL_GetTicks() - start_time >= 20500)
@@ -388,12 +349,12 @@ update_status ModuleSceneStage1::Update()
 		if (SDL_GetTicks() - start_time >= 28500)
 		App->font->BlitText(340 - 30, 136, font_gameover, "0");
 		
-
+		
 		
 
 		
-	}
-
+	}*/
+	
 	return UPDATE_CONTINUE;
 }
 

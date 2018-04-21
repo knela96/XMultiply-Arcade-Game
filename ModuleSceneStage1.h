@@ -28,13 +28,13 @@ public:
 	SDL_Texture* graphics = nullptr;
 	SDL_Texture* back = nullptr;
 	SDL_Texture* hud = nullptr;
-<<<<<<< HEAD
+
 	//Mix_Music * music = nullptr;
 	int font_gameover = -1;
-=======
+
 	SDL_Texture* injectiontex = nullptr;
 	//Mix_Music * music = nullptr;;
->>>>>>> c3369ed3c412af67132479a9a5ba0ca01e2551f9
+
 	SDL_Rect ground;
 	SDL_Rect entering;
 
@@ -42,12 +42,12 @@ public:
 
 	Animation injection;
 	SDL_Rect background;
-<<<<<<< HEAD
+
 	Animation flag;
 	SDL_Rect ship;
 	Animation people;
 	Uint32 start_time;
-=======
+
 
 	bool down = false;
 
@@ -58,7 +58,7 @@ public:
 	bool shipdeployed = false;
 
 	void injectpos();
->>>>>>> c3369ed3c412af67132479a9a5ba0ca01e2551f9
+
 };
 
 #endif // __MODULESCENESTAGE1_H__
