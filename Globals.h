@@ -26,14 +26,6 @@ enum ENEMY_TYPES
 	NEMONA_TENTACLE,
 };
 
-enum ENEMY_PARTICLES
-{
-	BASIC_SHOOT,
-	PARABOLA_SHOOT,
-	EXPLOSION_BULLET,
-	POWER_UP,
-};
-
 // Useful typedefs ---------
 typedef unsigned int uint;
 

@@ -79,7 +79,7 @@ bool ModulePlayer::Start()
 	collider = App->collision->AddCollider({ position.x+4, position.y+1, 22, 14 }, COLLIDER_PLAYER, this);
 
 	powerup[BASIC_SHOOT] = true;
-	powerup[PARABOLA_SHOOT] = true;
+	powerup[BOMB_SHOOT] = true;
 
 	font_score = App->font->Load("Assets/fonts.1.png", "0123456789ם.-=יט()ףעבת`´!?abcdefghijklmnopqrstuvwxyz", 2);
 
@@ -157,11 +157,11 @@ update_status ModulePlayer::Update()
 
 	if (App->input->keyboard[SDL_SCANCODE_SPACE] == KEY_STATE::KEY_DOWN) {
 		if (powerup[BASIC_SHOOT] == true)
-			App->particles->AddParticle(App->particles->shoot1, PARTICLES_PLAYER, position.x + 40, position.y, COLLIDER_PLAYER_SHOT);
+			App->particles->AddParticle(App->particles->basic_shoot, position.x + 40, position.y, COLLIDER_PLAYER_SHOT);
 		
 		
-		if (powerup[PARABOLA_SHOOT] == true) {
-			App->particles->AddParticle(App->particles->shoot1, PARTICLES_PLAYER, position.x + 40, position.y, COLLIDER_PLAYER_SHOT);
+		if (powerup[BOMB_SHOOT] == true) {
+			App->particles->AddParticle(App->particles->bomb, position.x + 40, position.y, COLLIDER_PLAYER_SHOT);
 		}
 
 		App->tentacles->ShootLaser();
@@ -208,7 +208,7 @@ bool ModulePlayer::CleanUp()
 void ModulePlayer::OnCollision(Collider* collider1, Collider* collider2) {
 
 	if (!dead) {
-		App->particles->AddParticle(App->particles->explosion_player, PARTICLES_PLAYER, position.x, position.y, COLLIDER_NONE);
+		App->particles->AddParticle(App->particles->explosion_player, position.x, position.y, COLLIDER_NONE);
 		dead = true;
 		App->tentacles->removeCollider();
 		App->tentacles->CleanUp();

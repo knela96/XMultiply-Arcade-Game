@@ -38,7 +38,7 @@ public:
 	iPoint position;
 	Uint32 start_time; 
 	Collider* collider;
-	bool powerup[4];
+	bool powerup[20];
 	bool dead = false;
 };
 
