@@ -177,33 +177,33 @@ bool ModuleSceneStage1::Start()
 
 
 	// Enemies
-	App->enemies->AddEnemy(BROWN_WORM, 455,50);
-	App->enemies->AddEnemy(BROWN_WORM, 465, 50);
-	App->enemies->AddEnemy(BROWN_WORM, 475,50);
-	App->enemies->AddEnemy(BROWN_WORM, 485, 50);
-	App->enemies->AddEnemy(BROWN_WORM, 495, 50);
-	App->enemies->AddEnemy(BROWN_WORM, 505, 50);
-	App->enemies->AddEnemy(BROWN_WORM, 515, 50);//
-
-	App->enemies->AddEnemy(BROWN_WORM, 425, 100);
-	App->enemies->AddEnemy(BROWN_WORM, 435, 100);
-	App->enemies->AddEnemy(BROWN_WORM, 445, 100);
+	App->enemies->AddEnemy(BROWN_WORM, 455, 100,true);
+	App->enemies->AddEnemy(BROWN_WORM, 465, 100, true);
+	App->enemies->AddEnemy(BROWN_WORM, 475, 100, true);
+	App->enemies->AddEnemy(BROWN_WORM, 485, 100, true);
+	App->enemies->AddEnemy(BROWN_WORM, 495, 100, true);
+	App->enemies->AddEnemy(BROWN_WORM, 505, 100, true);
+	App->enemies->AddEnemy(BROWN_WORM, 515, 100, true);//
+	
 	App->enemies->AddEnemy(BROWN_WORM, 455, 100);
 	App->enemies->AddEnemy(BROWN_WORM, 465, 100);
 	App->enemies->AddEnemy(BROWN_WORM, 475, 100);
 	App->enemies->AddEnemy(BROWN_WORM, 485, 100);
+	App->enemies->AddEnemy(BROWN_WORM, 495, 100);
+	App->enemies->AddEnemy(BROWN_WORM, 505, 100);
+	App->enemies->AddEnemy(BROWN_WORM, 515, 100);
+
+	App->enemies->AddEnemy(BROWN_WORM, 900, 100, true);
+	App->enemies->AddEnemy(BROWN_WORM, 910, 100, true);
+	App->enemies->AddEnemy(BROWN_WORM, 920, 100, true);
+	App->enemies->AddEnemy(BROWN_WORM, 930, 100, true);
+	App->enemies->AddEnemy(BROWN_WORM, 940, 100, true);
 
 	App->enemies->AddEnemy(BROWN_WORM, 900, 100);
 	App->enemies->AddEnemy(BROWN_WORM, 910, 100);
 	App->enemies->AddEnemy(BROWN_WORM, 920, 100);
 	App->enemies->AddEnemy(BROWN_WORM, 930, 100);
 	App->enemies->AddEnemy(BROWN_WORM, 940, 100);
-
-	App->enemies->AddEnemy(BROWN_WORM, 920, 50);
-	App->enemies->AddEnemy(BROWN_WORM, 930, 50);
-	App->enemies->AddEnemy(BROWN_WORM, 940, 50);
-	App->enemies->AddEnemy(BROWN_WORM, 950, 50);
-	App->enemies->AddEnemy(BROWN_WORM, 960, 50);
 
 
 	App->enemies->AddEnemy(LITTLE_SHRIMP, 530, 50);

@@ -136,7 +136,7 @@ bool ModuleEnemies::CleanUp()
 	return true;
 }
 
-bool ModuleEnemies::AddEnemy(ENEMY_TYPES type, int x, int y)
+bool ModuleEnemies::AddEnemy(ENEMY_TYPES type, int x, int y, bool move_up)
 {
 	bool ret = false;
 
@@ -145,6 +145,7 @@ bool ModuleEnemies::AddEnemy(ENEMY_TYPES type, int x, int y)
 		if (queue[i].type == ENEMY_TYPES::NO_TYPE)
 		{
 			queue[i].type = type;
+			queue[i].move_up = move_up;
 			queue[i].x = x;
 			queue[i].y = y;
 			ret = true;
@@ -157,7 +158,6 @@ bool ModuleEnemies::AddEnemy(ENEMY_TYPES type, int x, int y)
 
 void ModuleEnemies::SpawnEnemy(const EnemyInfo& info)
 {
-	// find room for the new enemy
 	uint i = 0;
 	for (; enemies[i] != nullptr && i < MAX_ENEMIES; ++i);
 
@@ -166,7 +166,7 @@ void ModuleEnemies::SpawnEnemy(const EnemyInfo& info)
 		switch (info.type)
 		{
 		case ENEMY_TYPES::BROWN_WORM:
-			enemies[i] = new Enemy_BrownWorm(info.x, info.y);
+			enemies[i] = new Enemy_BrownWorm(info.x, info.y, info.move_up);
 			enemies[i]->type = ENEMY_TYPES::BROWN_WORM;
 			break;
 		case ENEMY_TYPES::LITTLE_SHRIMP:
