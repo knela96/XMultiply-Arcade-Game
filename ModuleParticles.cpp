@@ -5,14 +5,17 @@
 #include "ModuleTextures.h"
 #include "ModuleRender.h"
 #include "ModuleCollision.h"
+#include "ModuleEnemies.h"
 
 #include "SDL/include/SDL.h"
 #include "SDL/include/SDL_timer.h"
 
 ModuleParticles::ModuleParticles() : Module() {
 
-	for (uint i = 0; i < MAX_ACTIVE_PARTICLES; ++i)
+	for (uint i = 0; i < MAX_ACTIVE_PARTICLES; ++i) {
 		active[i] = nullptr;
+	}
+
 }
 
 ModuleParticles::~ModuleParticles() {}
@@ -34,24 +37,26 @@ bool ModuleParticles::Start()
 	basic_shoot.anim.speed = 3.0f;
 	basic_shoot.life = 2000;
 	basic_shoot.type = BASIC_SHOOT;
-	basic_shoot.fx = App->audio->LoadFx("Assets/Audio Files/SFX in WAV/xmultipl-114.wav");
+	basic_shoot.fx = App->audio->LoadS("Assets/Audio Files/SFX in WAV/xmultipl-114.wav");
+	basic_shoot.hit_fx = App->audio->LoadS("Assets/Audio Files/SFX in WAV/xmultipl-079.wav");
 
 	tentacle_shoot.anim.PushBack({ 112, 32, 16, 16 });
 	tentacle_shoot.anim.loop = false;
 	tentacle_shoot.anim.speed = 3.0f;
 	tentacle_shoot.life = 2000;
 	tentacle_shoot.type = TENTACLE_SHOOT;
-	tentacle_shoot.fx = App->audio->LoadFx("Assets/Audio Files/SFX in WAV/xmultipl-114.wav");
+	tentacle_shoot.hit_fx = App->audio->LoadS("Assets/Audio Files/SFX in WAV/xmultipl-079.wav");
 
 	bomb.anim.PushBack({ 0, 160, 16, 16 });
 	bomb.anim.PushBack({ 16, 160, 16, 16 });
 	bomb.anim.PushBack({ 32, 160, 16, 16 });
 	bomb.anim.PushBack({ 48, 160, 16, 16 });
+	bomb.anim.PushBack({ 64, 160, 16, 16 });
 	bomb.anim.loop = false;
 	bomb.life = 2000;
-	bomb.anim.speed = 0.1f;
+	bomb.anim.speed = 0.08f;
 	bomb.type = BOMB_SHOOT;
-	bomb.fx = App->audio->LoadFx("Assets/Audio Files/SFX in WAV/xmultipl-114.wav");
+	bomb.hit_fx = App->audio->LoadS("Assets/Audio Files/SFX in WAV/xmultipl-118.wav");
 	
 	basic_laser.anim.PushBack({ 0, 4, 23, 7 });
 	basic_laser.anim.loop = false;
@@ -120,8 +125,6 @@ bool ModuleParticles::CleanUp()
 		}
 	}
 
-	App->audio->UnLoadFx(basic_shoot.fx);
-
 	for (uint i = 0; i < MAX_ACTIVE_PARTICLES; ++i)
 	{
 		if (active[i] != nullptr && active[i] != &Powerup)
@@ -133,6 +136,7 @@ bool ModuleParticles::CleanUp()
 
 	return true;
 }
+
 
 // Update: draw background
 update_status ModuleParticles::Update()
@@ -184,12 +188,11 @@ update_status ModuleParticles::Update()
 					p->speed.x = 7;
 					break;
 				case BOMB_SHOOT:
-					p->speed.x = 3;
-					p->speed.y = 2;
+					p->speed.x = 5;
+					p->speed.y = 0;
 					break;
 				}
 				p->fx_played = true;
-				App->audio->PlayFx(p->fx);
 			}
 		}
 	}
@@ -229,18 +232,22 @@ void ModuleParticles::OnCollision(Collider* c1, Collider* c2)
 			p = active[i];
 			switch (active[i]->type) {
 			case BASIC_SHOOT:
+				if(c2->type == COLLIDER_WALL)
+					App->audio->PlaySound(p->hit_fx);
 				p = &explosion_bullet;
 				break; 
 			case TENTACLE_SHOOT:
 				p = &explosion_tentacle_bullet;
 				break;
 			case BOMB_SHOOT:
+				if (c2->type == COLLIDER_WALL)
+					App->audio->PlaySound(p->hit_fx);
 				p = &explosion_bomb;
 				break;
 			}
+
 			p->speed.x = 1;
-			AddParticle(*p, c1->rect.x, c1->rect.y, COLLIDER_NONE);
-			
+			AddParticle(*p, c1->rect.x, c1->rect.y);
 			delete active[i];
 			active[i] = nullptr;
 			break;
@@ -260,13 +267,16 @@ Particle::Particle()
 
 Particle::Particle(const Particle& p) :
 	anim(p.anim), position(p.position), speed(p.speed),
-	fx(p.fx), born(p.born), life(p.life), type(p.type)//, common_fx(p.common_fx)
+	fx(p.fx), born(p.born), life(p.life), type(p.type), hit_fx(p.hit_fx)
 {}
 
 Particle::~Particle()
 {
-	if (collider != nullptr /*&& collider->gettype != COLLIDER_POWERUP*/)
-		collider->to_delete = true; //BUG quan sona el sonido de dispar i es presiona ESC
+	App->audio->UnloadS(fx);
+	App->audio->UnloadS(hit_fx);
+	if (collider != nullptr)
+		collider->to_delete = true;
+
 }
 
 bool Particle::Update()
@@ -288,6 +298,8 @@ bool Particle::Update()
 		position.x += speed.x;
 		break;
 	case BOMB_SHOOT:
+		if (speed.x > 2.0f) speed.x -= 0.055f;
+		if (speed.y < 3.0f) speed.y += 0.25f;
 		position.x += speed.x;
 		position.y += speed.y;
 		break;

@@ -53,7 +53,9 @@ bool ModuleSceneStage1::Start()
 
 	hud = App->textures->Load("Assets/UI.png");
 
-	 App->audio->PlayMusic("Assets/Audio Files/Music in OGG/04_Into_the_Human_Body_Stage_1_.ogg");	
+	music = App->audio->LoadM("");	//Assets/Audio Files/Music in OGG/04_Into_the_Human_Body_Stage_1_.ogg
+
+	App->audio->PlayMusic(music);
 
 	// Colliders ---
 	App->collision->AddCollider({ 0, 213, 2540, 10 }, COLLIDER_WALL);
@@ -198,6 +200,8 @@ bool ModuleSceneStage1::CleanUp()
 	App->particles->Disable();
 	App->font->Disable();
 
+	App->audio->UnloadM(music);
+	music = nullptr;
 
 	App->render->camera.x = App->render->camera.y = 0;
 	

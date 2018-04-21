@@ -5,7 +5,6 @@
 #include "Animation.h"
 #include "Globals.h"
 #include "p2Point.h"
-#include "ModuleAudio.h"
 #include "ModulePlayer.h"
 #include "ModuleCollision.h"
 #include "Path.h"
@@ -46,9 +45,10 @@ struct Particle {
 
 	Collider* collider = nullptr;
 	Animation anim;
-	uint fx = 0;
+	Mix_Chunk* fx = 0;
+	Mix_Chunk* hit_fx = 0;
 	iPoint position;
-	iPoint speed;
+	fPoint speed;
 	Uint32 born = 0;
 	Uint32 life = 0;
 	bool fx_played = false;
@@ -60,8 +60,6 @@ struct Particle {
 	Particle(const Particle& p);
 	~Particle();
 	bool Update();
-
-	//Mix_Chunk* common_fx = nullptr;
 
 	bool operator==(const Particle &g) const
 	{
@@ -95,7 +93,6 @@ public:
 	Particle basic_shoot;
 	Particle tentacle_shoot;
 	Particle bomb;
-
 	Particle explosion_player;
 	Particle explosion_enemy;
 	Particle explosion_bullet;

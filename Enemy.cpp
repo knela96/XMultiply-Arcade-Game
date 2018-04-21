@@ -4,9 +4,11 @@
 #include "ModuleParticles.h"
 #include "ModuleRender.h"
 #include "ModulePlayer.h"
+#include "ModuleAudio.h"
 
 Enemy::Enemy(int x, int y) : position(x, y)
-{}
+{
+}
 
 Enemy::~Enemy()
 {
@@ -32,5 +34,4 @@ void Enemy::OnCollision(Collider* collider)
 {
 	App->particles->AddParticle(App->particles->explosion_enemy, position.x, position.y);
 	App->player->score += 13;
-
 }

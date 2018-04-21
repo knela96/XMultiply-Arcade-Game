@@ -9,6 +9,7 @@
 #include "ModuleFadeToBlack.h"
 #include "ModuleFonts.h"
 #include "ModuleTentacles.h"
+#include "ModuleAudio.h"
 
 #include<stdio.h>
 
@@ -66,11 +67,11 @@ ModulePlayer::~ModulePlayer()
 // Load assets
 bool ModulePlayer::Start()
 {
-
-
 	LOG("Loading player textures");
 	bool ret = true;
 	graphics = App->textures->Load("Assets/Player.png"); // arcade version
+	
+	death_fx = App->audio->LoadS("Assets/Audio Files/SFX in WAV/xmultipl-044.wav");
 
 	start_time = 0;
 	dead = false;
@@ -156,15 +157,36 @@ update_status ModulePlayer::Update()
 	}
 
 	if (App->input->keyboard[SDL_SCANCODE_SPACE] == KEY_STATE::KEY_DOWN) {
-		if (powerup[BASIC_SHOOT] == true)
+		
+		if (powerup[BASIC_SHOOT] == true) {
 			App->particles->AddParticle(App->particles->basic_shoot, position.x + 40, position.y, COLLIDER_PLAYER_SHOT);
+			App->tentacles->ShootLaser();
+			App->audio->PlaySound(App->particles->basic_shoot.fx);
+		}
 		
-		
-		if (powerup[BOMB_SHOOT] == true) {
-			App->particles->AddParticle(App->particles->bomb, position.x + 40, position.y, COLLIDER_PLAYER_SHOT);
+		if (SDL_GetTicks() - start_time >= 1000) {
+			if (powerup[BOMB_SHOOT] == true) {
+				App->particles->AddParticle(App->particles->bomb, position.x + 20, position.y, COLLIDER_PLAYER_SHOT);
+			}
+		}
+		start_time = SDL_GetTicks();
+
+	}else if (App->input->keyboard[SDL_SCANCODE_SPACE] == KEY_STATE::KEY_REPEAT) {
+		if (powerup[BASIC_SHOOT] == true){
+			if (SDL_GetTicks() - start_time >= 500) {
+				start_time = SDL_GetTicks();
+				App->tentacles->ShootLaser();
+				App->particles->AddParticle(App->particles->basic_shoot, position.x + 40, position.y, COLLIDER_PLAYER_SHOT);
+				App->audio->PlaySound(App->particles->basic_shoot.fx);
+			}
 		}
 
-		App->tentacles->ShootLaser();
+		if (powerup[BOMB_SHOOT] == true) {
+			if (SDL_GetTicks() - aux_time >= 1000) {
+				aux_time = SDL_GetTicks();
+				App->particles->AddParticle(App->particles->bomb, position.x + 20, position.y, COLLIDER_PLAYER_SHOT);
+			}
+		}
 	}
 
 	if (App->input->keyboard[SDL_SCANCODE_S] == KEY_STATE::KEY_IDLE	&& App->input->keyboard[SDL_SCANCODE_W] == KEY_STATE::KEY_IDLE
@@ -200,6 +222,7 @@ bool ModulePlayer::CleanUp()
 {
 	LOG("Unloading Player assets");
 	App->textures->Unload(graphics);
+	App->audio->UnloadS(death_fx);
 	position.x = 100;
 	position.y = 130;
 	return true;
@@ -209,6 +232,7 @@ void ModulePlayer::OnCollision(Collider* collider1, Collider* collider2) {
 
 	if (!dead) {
 		App->particles->AddParticle(App->particles->explosion_player, position.x, position.y-24, COLLIDER_NONE);
+		App->audio->PlaySound(death_fx);
 		dead = true;
 		App->tentacles->removeCollider();
 		App->tentacles->CleanUp();

@@ -26,16 +26,14 @@ bool ModuleSceneMainMenu::Start()
 	LOG("Loading background assets");
 
 	bool ret = true;
-
-	App->audio->PlayMusic(MUS_PATH, 1.0f);
-	fx = App->audio->LoadFx("rtype/starting.wav");
 	
-	//music = App->audio->LoadFx(MUS_PATH);
 
 	graphics = App->textures->Load("Assets/Menu.png");
 
+	music = App->audio->LoadM("Assets/Audio Files/Music in OGG/01_X-Multiply_Title_.ogg");
 
-	App->audio->PlayMusic(MUS_PATH);//plays background music in a loop
+	App->audio->PlayMusic(music);
+
 
 	return ret;
 }
@@ -45,7 +43,6 @@ update_status ModuleSceneMainMenu::Update()
 {
 	// Draw everything --------------------------------------
 	App->render->Blit(graphics, 0, 0, &background, 1.0f); // back of the room
-	
 	
 	// TODO 2: make so pressing SPACE the KEN stage is loaded
 	if (App->input->keyboard[SDL_SCANCODE_RETURN] == 1)
@@ -62,9 +59,8 @@ bool ModuleSceneMainMenu::CleanUp()
 	LOG("Unloading MainMenu stage");
 	App->textures->Unload(graphics);
 	graphics = nullptr;
-	App->audio->UnLoadFx(fx);
-	//App->audio->UnloadM(music);
-	//music = nullptr;
+	App->audio->UnloadM(music);
+	music = nullptr;
 	
 	return true;
 }
