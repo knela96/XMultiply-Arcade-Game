@@ -161,9 +161,9 @@ bool ModuleSceneStage1::Start()
 
 
 	App->enemies->AddEnemy(LITTLE_SHRIMP, 400, 50);
-	App->enemies->AddEnemy(LITTLE_SHRIMP, 415, 50);
-	App->enemies->AddEnemy(LITTLE_SHRIMP, 440, 50);
-	App->enemies->AddEnemy(LITTLE_SHRIMP, 465, 50);//
+	App->enemies->AddEnemy(LITTLE_SHRIMP, 450, 40);
+	//App->enemies->AddEnemy(LITTLE_SHRIMP, 440, 50);
+	//App->enemies->AddEnemy(LITTLE_SHRIMP, 465, 50);//
 
 	App->enemies->AddEnemy(LITTLE_SHRIMP, 800, 100);
 	App->enemies->AddEnemy(LITTLE_SHRIMP, 815, 100);

@@ -10,10 +10,10 @@ Enemy_LittleShrimp::Enemy_LittleShrimp(int x, int y) : Enemy(x, y)
 
 	animation = &fly;
 
-	path->PushBack({ -1 , -1 }, 30, &fly);
-	path->PushBack({ -1 , 0 }, 10, &fly);
-	path->PushBack({ -1 , 1 }, 30, &fly);
-	path->PushBack({ -1 , 0 }, 10, &fly);
+	path->PushBack({ -1 , -1 }, 35, &fly);
+	path->PushBack({ -1 , 0 }, 15, &fly);
+	path->PushBack({ -1 , 1 }, 35, &fly);
+	path->PushBack({ -1 , 0 }, 15, &fly);
 	
 
 	collider = App->collision->AddCollider({ 0, 0, 48, 32 }, COLLIDER_TYPE::COLLIDER_ENEMY, (Module*)App->enemies);
