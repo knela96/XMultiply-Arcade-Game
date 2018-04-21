@@ -4,6 +4,7 @@
 #include "Module.h"
 #include "Animation.h"
 #include "Globals.h"
+#include "p2Point.h"
 
 struct SDL_Texture;
 
@@ -25,11 +26,13 @@ public:
 	SDL_Texture* back = nullptr;
 	SDL_Texture* hud = nullptr;
 	//Mix_Music * music = nullptr;
+	int font_gameover = -1;
 	SDL_Rect ground;
 	SDL_Rect background;
 	Animation flag;
 	SDL_Rect ship;
 	Animation people;
+	Uint32 start_time;
 };
 
 #endif // __MODULESCENESTAGE1_H__
