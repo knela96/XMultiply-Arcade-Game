@@ -32,11 +32,14 @@ enum PARTICLE_TYPE
 {
 	NONE,
 	BASIC_SHOOT,
+	TENTACLE_SHOOT,
 	BASIC_LASER,
 	BOMB_SHOOT,
 	BOMB_EXPLOSION,
 	PLAYER_EXPLOSION,
 	ENEMY_EXPLOSION,
+	TENTACLE_EXPLOSION,
+	BASIC_SHOOT_EXPLOSION,
 };
 
 struct Particle {
@@ -54,7 +57,7 @@ struct Particle {
 	Path* path = new Path();
 
 	Particle();
-	Particle(const Particle& p, PARTICLE_TYPE type);
+	Particle(const Particle& p);
 	~Particle();
 	bool Update();
 
@@ -88,13 +91,16 @@ public:
 
 	Uint32 * start_time = 0;
 	Uint32* shooting_delay;
+	Particle basic_laser;
 	Particle basic_shoot;
+	Particle tentacle_shoot;
 	Particle bomb;
+
 	Particle explosion_player;
 	Particle explosion_enemy;
 	Particle explosion_bullet;
+	Particle explosion_tentacle_bullet;
 	Particle explosion_bomb;
-	Particle basic_laser;
 	Particle Powerup;
 	Animation* animation = nullptr;
 

@@ -208,7 +208,7 @@ bool ModulePlayer::CleanUp()
 void ModulePlayer::OnCollision(Collider* collider1, Collider* collider2) {
 
 	if (!dead) {
-		App->particles->AddParticle(App->particles->explosion_player, position.x, position.y, COLLIDER_NONE);
+		App->particles->AddParticle(App->particles->explosion_player, position.x, position.y-24, COLLIDER_NONE);
 		dead = true;
 		App->tentacles->removeCollider();
 		App->tentacles->CleanUp();

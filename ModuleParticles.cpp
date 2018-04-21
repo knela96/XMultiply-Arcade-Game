@@ -29,12 +29,19 @@ bool ModuleParticles::Start()
 	graphics[PARTICLES_EXPLOSION] = App->textures->Load("Assets/Sprites/Explosions/Explosions1.png");
 	graphics[POWERUP] = App->textures->Load("Assets/PowerUp/PowerUp.png");
 
-	basic_shoot.anim.PushBack({ 64, 30, 17, 18});
+	basic_shoot.anim.PushBack({ 64, 32, 16, 16});
 	basic_shoot.anim.loop = false;
 	basic_shoot.anim.speed = 3.0f;
 	basic_shoot.life = 2000;
 	basic_shoot.type = BASIC_SHOOT;
 	basic_shoot.fx = App->audio->LoadFx("Assets/Audio Files/SFX in WAV/xmultipl-114.wav");
+
+	tentacle_shoot.anim.PushBack({ 112, 32, 16, 16 });
+	tentacle_shoot.anim.loop = false;
+	tentacle_shoot.anim.speed = 3.0f;
+	tentacle_shoot.life = 2000;
+	tentacle_shoot.type = TENTACLE_SHOOT;
+	tentacle_shoot.fx = App->audio->LoadFx("Assets/Audio Files/SFX in WAV/xmultipl-114.wav");
 
 	bomb.anim.PushBack({ 0, 160, 16, 16 });
 	bomb.anim.PushBack({ 16, 160, 16, 16 });
@@ -52,14 +59,11 @@ bool ModuleParticles::Start()
 	basic_laser.type = BASIC_LASER;
 	basic_laser.life = 2000;
 	
-	explosion_player.anim.PushBack({ 0, 144, 16, 16 });
-	explosion_player.anim.PushBack({ 17, 144, 16, 16 });
-	explosion_player.anim.PushBack({ 33, 144, 16, 16 });
-	explosion_player.anim.PushBack({ 49, 144, 16, 16 });
-	explosion_player.anim.PushBack({ 65, 144, 16, 16 });
-	explosion_player.anim.PushBack({ 81, 144, 16, 16 });
-	explosion_player.anim.PushBack({ 97, 144, 16, 16 });
-	explosion_player.anim.PushBack({ 113, 144, 16, 16 });
+	explosion_player.anim.PushBack({ 0, 175, 48, 65 });
+	explosion_player.anim.PushBack({ 48, 175, 48, 65 });
+	explosion_player.anim.PushBack({ 96, 175, 48, 65 });
+	explosion_player.anim.PushBack({ 144, 175, 48, 65 });
+	explosion_player.anim.PushBack({ 192, 175, 48, 65 });
 	explosion_player.anim.loop = false;
 	explosion_player.type = PLAYER_EXPLOSION;
 	explosion_player.anim.speed = 0.2f;
@@ -80,7 +84,14 @@ bool ModuleParticles::Start()
 	explosion_bullet.anim.PushBack({ 97, 32, 16, 16 });
 	explosion_bullet.anim.loop = false;
 	explosion_bullet.anim.speed = 0.2f;
-	explosion_bullet.type = BASIC_SHOOT;
+	explosion_bullet.type = BASIC_SHOOT_EXPLOSION;
+
+	explosion_tentacle_bullet.anim.PushBack({ 128, 32, 16, 16 });
+	explosion_tentacle_bullet.anim.PushBack({ 144, 32, 16, 16 });
+	explosion_tentacle_bullet.anim.PushBack({ 160, 32, 16, 16 });
+	explosion_tentacle_bullet.anim.loop = false;
+	explosion_tentacle_bullet.anim.speed = 0.2f;
+	explosion_tentacle_bullet.type = TENTACLE_EXPLOSION;
 
 	explosion_bomb.anim.PushBack({ 0, 0, 32, 32 });
 	explosion_bomb.anim.PushBack({ 32, 0, 32, 32 });
@@ -144,6 +155,7 @@ update_status ModuleParticles::Update()
 			switch (p->type) {
 			case BASIC_SHOOT:
 			case BOMB_SHOOT:
+			case TENTACLE_SHOOT:
 				texture = graphics[PARTICLES_PLAYER];
 				break;
 			case BASIC_LASER:
@@ -164,14 +176,16 @@ update_status ModuleParticles::Update()
 			{
 				switch (p->type) {
 				case ENEMY_EXPLOSION:
+				case PLAYER_EXPLOSION:
 					p->speed.x = 1;
 					break;
 				case BASIC_SHOOT:
-					p->speed.x = 3;
+				case TENTACLE_SHOOT:
+					p->speed.x = 7;
 					break;
 				case BOMB_SHOOT:
-					p->speed.x = 5;
-					p->speed.y = 3;
+					p->speed.x = 3;
+					p->speed.y = 2;
 					break;
 				}
 				p->fx_played = true;
@@ -193,8 +207,9 @@ void ModuleParticles::AddParticle(const Particle& particle, int x, int y, COLLID
 			p->born = SDL_GetTicks() + delay;
 			p->position.x = x;
 			p->position.y = y;
-			if (collider_type != COLLIDER_NONE)
+			if (collider_type != COLLIDER_NONE) {
 				p->collider = App->collision->AddCollider(p->anim.GetCurrentFrame(), collider_type, this);
+			}
 			active[i] = p;
 			break;
 			
@@ -205,20 +220,26 @@ void ModuleParticles::AddParticle(const Particle& particle, int x, int y, COLLID
 
 void ModuleParticles::OnCollision(Collider* c1, Collider* c2)
 {
-	PARTICLE_TYPE bullet_type = NONE;
+	Particle *p;
 	for (uint i = 0; i < MAX_ACTIVE_PARTICLES; ++i)
 	{
 		// Always destroy particles that collide
 		if (active[i] != nullptr && active[i]->collider == c1)
 		{
+			p = active[i];
 			switch (active[i]->type) {
 			case BASIC_SHOOT:
-				AddParticle(explosion_bullet, c1->rect.x, c1->rect.y, COLLIDER_NONE);
+				p = &explosion_bullet;
+				break; 
+			case TENTACLE_SHOOT:
+				p = &explosion_tentacle_bullet;
 				break;
 			case BOMB_SHOOT:
-				AddParticle(explosion_bomb, c1->rect.x, c1->rect.y, COLLIDER_NONE);
+				p = &explosion_bomb;
 				break;
 			}
+			p->speed.x = 1;
+			AddParticle(*p, c1->rect.x, c1->rect.y, COLLIDER_NONE);
 			
 			delete active[i];
 			active[i] = nullptr;
@@ -237,9 +258,9 @@ Particle::Particle()
 	speed.SetToZero();
 }
 
-Particle::Particle(const Particle& p, PARTICLE_TYPE type) :
+Particle::Particle(const Particle& p) :
 	anim(p.anim), position(p.position), speed(p.speed),
-	fx(p.fx), born(p.born), life(p.life), type(type)//, common_fx(p.common_fx)
+	fx(p.fx), born(p.born), life(p.life), type(p.type)//, common_fx(p.common_fx)
 {}
 
 Particle::~Particle()
@@ -258,11 +279,12 @@ bool Particle::Update()
 			ret = false;
 	}
 	else
-		if (anim.Finished())
+		if (anim.Finished() && type != PLAYER_EXPLOSION)
 			ret = false;
 
 	switch (type) {
 	case BASIC_SHOOT:
+	case TENTACLE_SHOOT:
 		position.x += speed.x;
 		break;
 	case BOMB_SHOOT:

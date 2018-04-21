@@ -162,7 +162,7 @@ void ModuleTentacles::ShootLaser() {
 		{
 			Tentacle* p = tentacles[i];
 			if (p->anchor) {
-				App->particles->AddParticle(App->particles->basic_shoot, p->first_point.x, p->first_point.y - 5, COLLIDER_PLAYER_SHOT);
+				App->particles->AddParticle(App->particles->tentacle_shoot, p->first_point.x, p->first_point.y - 5, COLLIDER_PLAYER_SHOT);
 			}
 		}
 	}
