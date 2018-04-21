@@ -4,9 +4,14 @@
 #include "Module.h"
 #include "Animation.h"
 #include "Globals.h"
+#include "p2Point.h"
 
 struct SDL_Texture;
 typedef struct _Mix_Music Mix_Music;
+
+struct position {
+	int x; int y;
+};
 
 class ModuleSceneStage1 : public Module
 {
@@ -23,12 +28,30 @@ public:
 	SDL_Texture* graphics = nullptr;
 	SDL_Texture* back = nullptr;
 	SDL_Texture* hud = nullptr;
+	int font_gameover = -1;
+	SDL_Texture* injectiontex = nullptr;
 	SDL_Rect ground;
+	SDL_Rect entering;
+	struct position injectxy;
+	Animation injection;
 	SDL_Rect background;
 	Animation flag;
 	SDL_Rect ship;
 	Animation people;
 	Mix_Music* music;
+	Uint32 start_time;
+	SDL_Rect screen;
+
+	bool down = false;
+
+	bool right = false;
+
+	bool injected = false;
+
+	bool shipdeployed = false;
+
+	void injectpos();
+
 };
 
 #endif // __MODULESCENESTAGE1_H__

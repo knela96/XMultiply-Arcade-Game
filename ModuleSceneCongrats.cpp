@@ -7,6 +7,15 @@
 #include "ModuleFadeToBlack.h"
 #include "ModuleSceneMainMenu.h"
 #include "ModuleSceneCongrats.h"
+#include "Globals.h"
+#include "Application.h"
+#include "ModuleTextures.h"
+#include "ModuleSceneStage1.h"
+#include "ModuleSceneStage2.h"
+#include "ModuleParticles.h"
+#include "ModuleAudio.h"
+
+#include "ModuleFonts.h"
 
 ModuleSceneCongrats::ModuleSceneCongrats()
 {
@@ -20,6 +29,11 @@ ModuleSceneCongrats::~ModuleSceneCongrats()
 // Load assets
 bool ModuleSceneCongrats::Start()
 {
+	
+	App->player->Enable();
+	App->particles->Enable();
+	App->font->Enable();
+
 	LOG("Loading background assets");
 	bool ret = true;
 	graphics = App->textures->Load("Assets/Credits.png");

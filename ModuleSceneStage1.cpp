@@ -13,6 +13,9 @@
 #include "ModuleCollision.h"
 #include "ModuleFonts.h"
 #include "ModuleTentacles.h"
+#include "SDL/include/SDL_timer.h"
+#include "SDL/include/SDL_render.h"
+
 
 
 ModuleSceneStage1::ModuleSceneStage1()
@@ -28,6 +31,17 @@ ModuleSceneStage1::ModuleSceneStage1()
 	background.y = 1;
 	background.w = 4961;
 	background.h = 513;	
+
+	//injection 
+	injection.PushBack({ 0, 0, 48, 102});
+	injection.PushBack({ 79, 0, 48, 105});
+	injection.PushBack({ 160, 0, 48, 103});
+	injection.PushBack({ 238, 0, 48, 112 });
+	injection.PushBack({ 307, 0, 48, 120 });
+	injection.PushBack({ 386, 0, 48, 120});
+	injection.speed = 2.0f;
+	entering = { 0, 0, 48, 102 };
+
 }
 
 ModuleSceneStage1::~ModuleSceneStage1()
@@ -40,22 +54,38 @@ bool ModuleSceneStage1::Start()
 
 	bool ret = true;
 
+
+	down = false;
+
+	right = false;
+
+	injected = false;
+
+	shipdeployed = false;
+
+
 	App->tentacles->Enable();
-	App->player->Enable();
+	App->player->Disable();
 	App->particles->Enable();
 	App->collision->Enable();
 	App->enemies->Enable();
 	App->font->Enable();
 	
-	graphics = App->textures->Load("Assets/TileMap1.2.png");
+	injectiontex = App->textures->Load("Assets/Sprites/Stage1/Tilemap/Injection.png");
 
+	graphics = App->textures->Load("Assets/TileMap1.2.png");
+	font_gameover = App->font->Load("Assets/Sprites/UI/fonts.2.png", "0123456789·' ºººººººººººººabcdefghijklmnopqrstuvwxyz", 2);
 	back = App->textures->Load("Assets/FirstLvlMap3.1.png");
 
 	hud = App->textures->Load("Assets/UI.png");
 
-	music = App->audio->LoadM("");	//Assets/Audio Files/Music in OGG/04_Into_the_Human_Body_Stage_1_.ogg
+	music = App->audio->LoadM("Assets/Audio Files/Music in OGG/04_Into_the_Human_Body_Stage_1_.ogg");	
 
 	App->audio->PlayMusic(music);
+
+	 injectxy.x = 100;
+
+	 injectxy.y = -30;
 
 	// Colliders ---
 	App->collision->AddCollider({ 0, 213, 2540, 10 }, COLLIDER_WALL);
@@ -147,42 +177,57 @@ bool ModuleSceneStage1::Start()
 
 
 	// Enemies
-	App->enemies->AddEnemy(BROWN_WORM, 600, 100);
-	App->enemies->AddEnemy(BROWN_WORM, 615, 100);
-	App->enemies->AddEnemy(BROWN_WORM, 630, 100);
-	App->enemies->AddEnemy(BROWN_WORM, 645, 100);
-	App->enemies->AddEnemy(BROWN_WORM, 660, 100);
-	App->enemies->AddEnemy(BROWN_WORM, 675, 100);
-	App->enemies->AddEnemy(BROWN_WORM, 690, 100);//
+	App->enemies->AddEnemy(BROWN_WORM, 455,50);
+	App->enemies->AddEnemy(BROWN_WORM, 465, 50);
+	App->enemies->AddEnemy(BROWN_WORM, 475,50);
+	App->enemies->AddEnemy(BROWN_WORM, 485, 50);
+	App->enemies->AddEnemy(BROWN_WORM, 495, 50);
+	App->enemies->AddEnemy(BROWN_WORM, 505, 50);
+	App->enemies->AddEnemy(BROWN_WORM, 515, 50);//
+
+	App->enemies->AddEnemy(BROWN_WORM, 425, 100);
+	App->enemies->AddEnemy(BROWN_WORM, 435, 100);
+	App->enemies->AddEnemy(BROWN_WORM, 445, 100);
+	App->enemies->AddEnemy(BROWN_WORM, 455, 100);
+	App->enemies->AddEnemy(BROWN_WORM, 465, 100);
+	App->enemies->AddEnemy(BROWN_WORM, 475, 100);
+	App->enemies->AddEnemy(BROWN_WORM, 485, 100);
 
 	App->enemies->AddEnemy(BROWN_WORM, 900, 100);
-	App->enemies->AddEnemy(BROWN_WORM, 915, 100);
+	App->enemies->AddEnemy(BROWN_WORM, 910, 100);
+	App->enemies->AddEnemy(BROWN_WORM, 920, 100);
 	App->enemies->AddEnemy(BROWN_WORM, 930, 100);
-	App->enemies->AddEnemy(BROWN_WORM, 945, 100);
-	App->enemies->AddEnemy(BROWN_WORM, 960, 100);
+	App->enemies->AddEnemy(BROWN_WORM, 940, 100);
+
+	App->enemies->AddEnemy(BROWN_WORM, 920, 50);
+	App->enemies->AddEnemy(BROWN_WORM, 930, 50);
+	App->enemies->AddEnemy(BROWN_WORM, 940, 50);
+	App->enemies->AddEnemy(BROWN_WORM, 950, 50);
+	App->enemies->AddEnemy(BROWN_WORM, 960, 50);
 
 
-	App->enemies->AddEnemy(LITTLE_SHRIMP, 400, 50);
-	App->enemies->AddEnemy(LITTLE_SHRIMP, 450, 40);
-	//App->enemies->AddEnemy(LITTLE_SHRIMP, 440, 50);
-	//App->enemies->AddEnemy(LITTLE_SHRIMP, 465, 50);//
+	App->enemies->AddEnemy(LITTLE_SHRIMP, 530, 50);
+	App->enemies->AddEnemy(LITTLE_SHRIMP, 545, 40);
+	
 
-	App->enemies->AddEnemy(LITTLE_SHRIMP, 800, 100);
-	App->enemies->AddEnemy(LITTLE_SHRIMP, 815, 100);
-	App->enemies->AddEnemy(LITTLE_SHRIMP, 840, 100);
-	App->enemies->AddEnemy(LITTLE_SHRIMP, 865, 100);//
+	App->enemies->AddEnemy(LITTLE_SHRIMP, 600, 50);
+	App->enemies->AddEnemy(LITTLE_SHRIMP, 615, 40);
 
-	App->enemies->AddEnemy(LITTLE_SHRIMP, 1100, 150);
-	App->enemies->AddEnemy(LITTLE_SHRIMP, 1115, 150);
-	App->enemies->AddEnemy(LITTLE_SHRIMP, 1140, 150);
-	App->enemies->AddEnemy(LITTLE_SHRIMP, 1165, 150);
+	App->enemies->AddEnemy(LITTLE_SHRIMP, 1100, 60);
+	App->enemies->AddEnemy(LITTLE_SHRIMP, 1150, 40);
+
+
+	
 
 	App->enemies->AddEnemy(NEMONA_TENTACLE, 520, 148);
 	App->enemies->AddEnemy(NEMONA_TENTACLE, 1038, 164);
-	App->enemies->AddEnemy(NEMONA_TENTACLE, 1280, 140);
+	App->enemies->AddEnemy(NEMONA_TENTACLE, 1280, 150);
 
 	//POWERUPS
-	App->enemies->AddEnemy(POWERUPSHIP, 400, 150);
+	App->enemies->AddEnemy(POWERUPSHIP, 600, 130);
+	App->enemies->AddEnemy(POWERUPSHIP, 1050, 100);
+	App->enemies->AddEnemy(POWERUPSHIP, 1075, 75);
+	App->enemies->AddEnemy(POWERUPSHIP, 1200, 100);
 	return ret;
 }
 
@@ -211,19 +256,47 @@ bool ModuleSceneStage1::CleanUp()
 // Update: draw background
 update_status ModuleSceneStage1::Update()
 {
+	if (right)
+	{
+		App->player->position.x += 1;
 
-	App->player->position.x += 1;
+		App->render->camera.x += 1 * SCREEN_SIZE;
+	}
 
-	App->render->camera.x += 1 * SCREEN_SIZE;
+	if (down)
+	{
+		App->render->camera.y += 1;
+	}
 
-	if (App->render->camera.x > 2657*SCREEN_SIZE && App->render->camera.x < 3428*SCREEN_SIZE) App->render->camera.y += 1 ;
 
-	App->render->Blit(back, 0, 0, &ground, 1.0f, true);
+	if (App->render->camera.x > 2657 * SCREEN_SIZE && App->render->camera.x < 3428 * SCREEN_SIZE) 
+	{
+		down = true;
+
+	}
+
+	else down = false;
+		
+
+	App->render->Blit(back, 0, 0, &ground, 0.5f , 0, true, false);
 	
 
 	App->render->Blit(graphics, 0, 0, &background);
 
+
 	App->render->Blit(hud, 0, 224, NULL, 0.0f, false);
+
+
+	if (!injected) {
+
+
+		injectpos();
+
+
+		App->render->Blit(injectiontex, injectxy.x, injectxy.y, &entering, 0.5f);
+
+	}
+
 
 	if (App->input->keyboard[SDL_SCANCODE_RETURN] == 1)
 	{
@@ -231,6 +304,55 @@ update_status ModuleSceneStage1::Update()
 	}
 	
 	
+	if(App->player->score > 150)
+	{
+		App->particles->Disable();
+	//	App->collision->Disable();
+		App->enemies->Disable();
+		
+		SDL_SetTextureColorMod(graphics,0,0,0);
+		SDL_SetTextureColorMod(back, 0, 0, 0);
 
+		App->font->BlitText(100, 100, font_gameover, "stage clear");
+		App->font->BlitText(75, 136, font_gameover, "stage bonus 10000");
+		
+	
+	
+		
+	}
+	
 	return UPDATE_CONTINUE;
+}
+
+void ModuleSceneStage1::injectpos() {
+
+	switch (shipdeployed) {
+
+	case false:
+		if (injectxy.y == 0) {
+			
+			App->player->Enable();
+
+			shipdeployed = true;
+
+			right = true;
+
+			injectxy.y--;
+		}
+		else injectxy.y++;
+
+		break;
+
+	case true:
+		if (injectxy.y == -100) {
+
+			injected = true;
+		}
+		else { 
+
+			entering = injection.GetCurrentFrame();
+			
+			injectxy.y--; }
+	}
+
 }
