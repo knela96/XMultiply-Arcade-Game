@@ -15,7 +15,8 @@
 #include "ModuleTentacles.h"
 #include "SDL/include/SDL_timer.h"
 #include "SDL/include/SDL_render.h"
-
+#include "ModulePlayer.h"
+#include <stdio.h>
 
 
 ModuleSceneStage1::ModuleSceneStage1()
@@ -286,6 +287,9 @@ update_status ModuleSceneStage1::Update()
 
 	App->render->Blit(hud, 0, 224, NULL, 0.0f, false);
 
+	
+	//Draw UI 
+	
 
 	if (!injected) {
 
@@ -304,21 +308,46 @@ update_status ModuleSceneStage1::Update()
 	}
 	
 	
-	if(App->player->score > 150)
+	
+	if(App->player->position.x >= 600 )
 	{
 		App->particles->Disable();
-	//	App->collision->Disable();
 		App->enemies->Disable();
+		//App->collision->Disable();
+		hud = nullptr;
 		
-		SDL_SetTextureColorMod(graphics,0,0,0);
-		SDL_SetTextureColorMod(back, 0, 0, 0);
+		//App->player->score = NULL;
+		
+		
 
-		App->font->BlitText(100, 100, font_gameover, "stage clear");
-		App->font->BlitText(75, 136, font_gameover, "stage bonus 10000");
+		SDL_SetTextureColorMod(graphics, 0 , 0, 0);
+
+		SDL_SetTextureColorMod(back, 0, 0, 0);
 		
-	
-	
+		char _stageend[15] = "stage clear";
+		char _stageendblit[15];
 		
+		if (SDL_GetTicks() - start_time >= 500) {
+   			start_time = SDL_GetTicks();
+
+			for (int i = 0; i < 12 ; ++i) {
+
+				_stageendblit[i] = _stageend[i];	
+			}
+			
+		}
+		App->font->BlitText(100, 100, font_gameover, _stageendblit);
+		
+		
+		//App->font->BlitText(100, 100, font_gameover, "stage clear");
+		App->font->BlitText(60, 136, font_gameover, "stage bonus 10000");
+		
+	}
+	else {
+		sprintf_s(App->player->score_text, 10, "%7d", App->player->score);
+		App->font->BlitText(80, 240, App->player->font_score, App->player->score_text);
+		App->font->BlitText(32, 240, App->player->font_score, "score");
+
 	}
 	
 	return UPDATE_CONTINUE;

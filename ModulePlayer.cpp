@@ -216,6 +216,7 @@ update_status ModulePlayer::Update()
 	}
 	collider->SetPos(position.x + 4, position.y + 1);//SET POS PLAYER_COLLIDER
 	
+	/*
 	sprintf_s(score_text, 10, "%7d", score);
 
 
@@ -223,7 +224,7 @@ update_status ModulePlayer::Update()
 	
 	App->font->BlitText(80, 240, font_score, score_text);
 	App->font->BlitText(32, 240, font_score, "score");
-
+	*/
 
 	return UPDATE_CONTINUE;
 }
