@@ -7,11 +7,11 @@
 #include "p2Point.h"
 
 struct SDL_Texture;
+typedef struct _Mix_Music Mix_Music;
 
 struct position {
 	int x; int y;
 };
-//typedef struct _Mix_Music Mix_Music;
 
 class ModuleSceneStage1 : public Module
 {
@@ -28,26 +28,20 @@ public:
 	SDL_Texture* graphics = nullptr;
 	SDL_Texture* back = nullptr;
 	SDL_Texture* hud = nullptr;
-
-	//Mix_Music * music = nullptr;
 	int font_gameover = -1;
-
 	SDL_Texture* injectiontex = nullptr;
-	//Mix_Music * music = nullptr;;
-
 	SDL_Rect ground;
 	SDL_Rect entering;
-
 	struct position injectxy;
-
 	Animation injection;
 	SDL_Rect background;
-
 	Animation flag;
 	SDL_Rect ship;
 	Animation people;
+	Mix_Music* music;
 	Uint32 start_time;
 	int timer;
+	SDL_Rect screen;
 
 	bool down = false;
 

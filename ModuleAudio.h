@@ -2,23 +2,15 @@
 #define __ModuleAudio_H__
 
 #include "Module.h"
-#include "Globals.h"
 
-#ifdef _WIN32
-#include "SDL_mixer/include/SDL_mixer.h"
-#else
-#include "SDL_mixer.h"
-#endif
-
-#define DEFAULT_MUSIC_FADE_TIME 2.0f
 #define MAX_FX 200
+#define MAX_MUSIC 10
 
-//struct Mix_Chunk;
+struct Mix_Chunk;
+typedef struct _Mix_Music Mix_Music;
 
-//typedef struct _Mix_Music Mix_Music;
 
-
-class ModuleAudio : public Module 
+class ModuleAudio : public Module
 {
 public:
 	ModuleAudio();
@@ -27,30 +19,20 @@ public:
 	bool Init();
 	bool CleanUp();
 
-//	bool PlayMusic(Mix_Music* music);
-	bool PlayMusic(const char* path, float fade_time = DEFAULT_MUSIC_FADE_TIME);
-	
-	//bool PlaySound(Mix_Chunk * wave);
-
-	// Load a WAV in memory
-	uint LoadFx(const char* path);
-	bool UnLoadFx(uint id);
-
-	// Play a previously loaded WAV
-	bool PlayFx(unsigned int fx, int repeat = 0);
+	bool PlayMusic(Mix_Music* music);
+	bool PlaySound(Mix_Chunk * wave);
 
 public:
 
-	Mix_Music * music = nullptr;
-	Mix_Chunk*	fx[MAX_FX];
-	uint			last_fx = 1;
-
-/*	Mix_Music * const LoadM(const char* path);
+	Mix_Music * const LoadM(const char* path);
 	bool UnloadM(Mix_Music * music);
 
 	Mix_Chunk * const LoadS(const char * path);
 	bool UnloadS(Mix_Chunk * sound);
-	*/
+
+	Mix_Chunk* fxs[MAX_FX];
+	Mix_Music* musics[MAX_MUSIC];
+
 };
 
 

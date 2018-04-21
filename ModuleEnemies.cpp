@@ -9,6 +9,7 @@
 #include "Enemy_LittleShrimp.h"
 #include "Enemy_PowerupShip.h"
 #include "Enemy_Nemona.h"
+#include "ModuleAudio.h"
 
 #define SPAWN_MARGIN 50
 
@@ -32,6 +33,12 @@ bool ModuleEnemies::Start()
 	sprites[ENEMY_TYPES::LITTLE_SHRIMP] = App->textures->Load("Assets/Sprites/Stage1/Enemies/littleshrimp.png");
 	sprites[ENEMY_TYPES::NEMONA_TENTACLE] = App->textures->Load("Assets/Sprites/Stage1/Enemies/nemona.png");
 	sprites[ENEMY_TYPES::POWERUPSHIP] = App->textures->Load("Assets/Sprites/PowerUp/PowerUp.png");
+
+	Brownworm_fx = App->audio->LoadS("Assets/Audio Files/SFX in WAV/xmultipl-100.wav");
+	LittleShrimp_fx = App->audio->LoadS("Assets/Audio Files/SFX in WAV/xmultipl-100.wav");
+	Nemona_fx = App->audio->LoadS("Assets/Audio Files/SFX in WAV/xmultipl-094.wav");
+	Powership_fx = App->audio->LoadS("Assets/Audio Files/SFX in WAV/xmultipl-055.wav");
+
 	return true;
 }
 
@@ -105,6 +112,10 @@ update_status ModuleEnemies::PostUpdate()
 bool ModuleEnemies::CleanUp()
 {
 	LOG("Freeing all enemies");
+	App->audio->UnloadS(Brownworm_fx);
+	App->audio->UnloadS(LittleShrimp_fx);
+	App->audio->UnloadS(Nemona_fx);
+	App->audio->UnloadS(Powership_fx);
 
 	for (uint i = 0; i < MAX_TEXTURES; ++i) {
 		if (sprites[i] != nullptr)
@@ -180,6 +191,21 @@ void ModuleEnemies::OnCollision(Collider* c1, Collider* c2)
 	{
 		if (enemies[i] != nullptr && enemies[i]->GetCollider() == c1 && (c2->type == COLLIDER_PLAYER || c2->type == COLLIDER_PLAYER_SHOT))
 		{
+			switch (enemies[i]->type) {
+				case ENEMY_TYPES::BROWN_WORM:
+					App->audio->PlaySound(Brownworm_fx);
+					break;
+				case ENEMY_TYPES::LITTLE_SHRIMP:
+					App->audio->PlaySound(LittleShrimp_fx);
+					break;
+				case ENEMY_TYPES::NEMONA_TENTACLE:
+					App->audio->PlaySound(Nemona_fx);
+					break;
+				case ENEMY_TYPES::POWERUPSHIP:
+					App->audio->PlaySound(Powership_fx);
+
+					break;
+			}
 			enemies[i]->OnCollision(c2);
 			delete enemies[i];
 			enemies[i] = nullptr;

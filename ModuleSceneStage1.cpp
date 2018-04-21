@@ -14,6 +14,8 @@
 #include "ModuleFonts.h"
 #include "ModuleTentacles.h"
 #include "SDL/include/SDL_timer.h"
+#include "SDL/include/SDL_render.h"
+
 
 
 ModuleSceneStage1::ModuleSceneStage1()
@@ -78,7 +80,9 @@ bool ModuleSceneStage1::Start()
 
 	hud = App->textures->Load("Assets/UI.png");
 
-	App->audio->PlayMusic("Assets/Audio Files/Music in OGG/04_Into_the_Human_Body_Stage_1_.ogg");	
+	music = App->audio->LoadM("Assets/Audio Files/Music in OGG/04_Into_the_Human_Body_Stage_1_.ogg");	
+
+	App->audio->PlayMusic(music);
 
 	 injectxy.x = 100;
 
@@ -174,42 +178,58 @@ bool ModuleSceneStage1::Start()
 
 
 	// Enemies
-	App->enemies->AddEnemy(BROWN_WORM, 600, 100);
-	App->enemies->AddEnemy(BROWN_WORM, 615, 100);
-	App->enemies->AddEnemy(BROWN_WORM, 630, 100);
-	App->enemies->AddEnemy(BROWN_WORM, 645, 100);
-	App->enemies->AddEnemy(BROWN_WORM, 660, 100);
-	App->enemies->AddEnemy(BROWN_WORM, 675, 100);
-	App->enemies->AddEnemy(BROWN_WORM, 690, 100);//
+	App->enemies->AddEnemy(BROWN_WORM, 455,50);
+	App->enemies->AddEnemy(BROWN_WORM, 465, 50);
+	App->enemies->AddEnemy(BROWN_WORM, 475,50);
+	App->enemies->AddEnemy(BROWN_WORM, 485, 50);
+	App->enemies->AddEnemy(BROWN_WORM, 495, 50);
+	App->enemies->AddEnemy(BROWN_WORM, 505, 50);
+	App->enemies->AddEnemy(BROWN_WORM, 515, 50);//
+
+	App->enemies->AddEnemy(BROWN_WORM, 425, 100);
+	App->enemies->AddEnemy(BROWN_WORM, 435, 100);
+	App->enemies->AddEnemy(BROWN_WORM, 445, 100);
+	App->enemies->AddEnemy(BROWN_WORM, 455, 100);
+	App->enemies->AddEnemy(BROWN_WORM, 465, 100);
+	App->enemies->AddEnemy(BROWN_WORM, 475, 100);
+	App->enemies->AddEnemy(BROWN_WORM, 485, 100);
 
 	App->enemies->AddEnemy(BROWN_WORM, 900, 100);
-	App->enemies->AddEnemy(BROWN_WORM, 915, 100);
+	App->enemies->AddEnemy(BROWN_WORM, 910, 100);
+	App->enemies->AddEnemy(BROWN_WORM, 920, 100);
 	App->enemies->AddEnemy(BROWN_WORM, 930, 100);
-	App->enemies->AddEnemy(BROWN_WORM, 945, 100);
-	App->enemies->AddEnemy(BROWN_WORM, 960, 100);
+	App->enemies->AddEnemy(BROWN_WORM, 940, 100);
+
+	App->enemies->AddEnemy(BROWN_WORM, 920, 50);
+	App->enemies->AddEnemy(BROWN_WORM, 930, 50);
+	App->enemies->AddEnemy(BROWN_WORM, 940, 50);
+	App->enemies->AddEnemy(BROWN_WORM, 950, 50);
+	App->enemies->AddEnemy(BROWN_WORM, 960, 50);
 
 
-	App->enemies->AddEnemy(LITTLE_SHRIMP, 400, 50);
-	App->enemies->AddEnemy(LITTLE_SHRIMP, 450, 40);
-	//App->enemies->AddEnemy(LITTLE_SHRIMP, 440, 50);
-	//App->enemies->AddEnemy(LITTLE_SHRIMP, 465, 50);//
+	App->enemies->AddEnemy(LITTLE_SHRIMP, 530, 50);
+	App->enemies->AddEnemy(LITTLE_SHRIMP, 545, 40);
+	
 
-	App->enemies->AddEnemy(LITTLE_SHRIMP, 800, 100);
-	App->enemies->AddEnemy(LITTLE_SHRIMP, 815, 100);
-	App->enemies->AddEnemy(LITTLE_SHRIMP, 840, 100);
-	App->enemies->AddEnemy(LITTLE_SHRIMP, 865, 100);//
+	App->enemies->AddEnemy(LITTLE_SHRIMP, 600, 50);
+	App->enemies->AddEnemy(LITTLE_SHRIMP, 615, 40);
 
-	App->enemies->AddEnemy(LITTLE_SHRIMP, 1100, 150);
-	App->enemies->AddEnemy(LITTLE_SHRIMP, 1115, 150);
-	App->enemies->AddEnemy(LITTLE_SHRIMP, 1140, 150);
-	App->enemies->AddEnemy(LITTLE_SHRIMP, 1165, 150);
+	App->enemies->AddEnemy(LITTLE_SHRIMP, 1100, 60);
+	App->enemies->AddEnemy(LITTLE_SHRIMP, 1150, 40);
+
+
+	
 
 	App->enemies->AddEnemy(NEMONA_TENTACLE, 520, 148);
 	App->enemies->AddEnemy(NEMONA_TENTACLE, 1038, 160);
+	App->enemies->AddEnemy(NEMONA_TENTACLE, 1038, 164);
 	App->enemies->AddEnemy(NEMONA_TENTACLE, 1280, 150);
 
 	//POWERUPS
-	App->enemies->AddEnemy(POWERUPSHIP, 400, 150);
+	App->enemies->AddEnemy(POWERUPSHIP, 600, 130);
+	App->enemies->AddEnemy(POWERUPSHIP, 1050, 100);
+	App->enemies->AddEnemy(POWERUPSHIP, 1075, 75);
+	App->enemies->AddEnemy(POWERUPSHIP, 1200, 100);
 	return ret;
 }
 
@@ -227,6 +247,8 @@ bool ModuleSceneStage1::CleanUp()
 	App->particles->Disable();
 	App->font->Disable();
 
+	App->audio->UnloadM(music);
+	music = nullptr;
 
 	App->render->camera.x = App->render->camera.y = 0;
 	
@@ -283,78 +305,23 @@ update_status ModuleSceneStage1::Update()
 		App->fade->FadeToBlack(App->scene_stage1, App->scene_stage2, 1);
 	}
 	
-	/*
+	
 	if(App->player->score > 150)
 	{
-		
-		start_time = 0;
 		App->particles->Disable();
-		App->collision->Disable();
+	//	App->collision->Disable();
 		App->enemies->Disable();
-
-		App->audio->PlayMusic("Assets/Audio Files/Music in OGG/06_Stage_Clear.ogg");
-
-		if(SDL_GetTicks() - start_time >= 14000)
-		App->font->BlitText(120 -30, 100, font_gameover, "s");
-
-
-
-		if (SDL_GetTicks() - start_time >= 20500)
-		App->font->BlitText(105 - 30, 136, font_gameover, "s");
-
-		if (SDL_GetTicks() - start_time >= 21000)
-		App->font->BlitText(115 - 30, 136, font_gameover, "t");
-
-		if (SDL_GetTicks() - start_time >= 21500)
-		App->font->BlitText(130 - 30, 136, font_gameover, "a");
-
-		if (SDL_GetTicks() - start_time >= 22000)
-		App->font->BlitText(145 - 30, 136, font_gameover, "g");
-
-		if (SDL_GetTicks() - start_time >= 22500)
-		App->font->BlitText(160 - 30, 136, font_gameover, "e");
-
-		if (SDL_GetTicks() - start_time >= 23000)
-		App->font->BlitText(175 - 30, 136, font_gameover, " ");
-
-		if (SDL_GetTicks() - start_time >= 23500)
-		App->font->BlitText(190 - 30, 136, font_gameover, "b");
-
-		if (SDL_GetTicks() - start_time >= 24000)
-		App->font->BlitText(205 - 30, 136, font_gameover, "o");
-
-		if (SDL_GetTicks() - start_time >= 24500)
-		App->font->BlitText(220 - 30, 136, font_gameover, "n");
-
-		if (SDL_GetTicks() - start_time >= 25000)
-		App->font->BlitText(235 - 30, 136, font_gameover, "u");
-
-		if (SDL_GetTicks() - start_time >= 25500)
-		App->font->BlitText(250 - 30, 136, font_gameover, "s");
-
-		if (SDL_GetTicks() - start_time >= 26000)
-		App->font->BlitText(265 - 30, 136, font_gameover, " ");
-
-		if (SDL_GetTicks() - start_time >= 26500)
-		App->font->BlitText(280 - 30, 136, font_gameover, "1");
-
-		if (SDL_GetTicks() - start_time >= 27000)
-		App->font->BlitText(295 - 30, 136, font_gameover, "0");
-
-		if (SDL_GetTicks() - start_time >= 27500)
-		App->font->BlitText(310 - 30, 136, font_gameover, "0");
-
-		if (SDL_GetTicks() - start_time >= 28000)
-		App->font->BlitText(325 - 30, 136, font_gameover, "0");
-
-		if (SDL_GetTicks() - start_time >= 28500)
-		App->font->BlitText(340 - 30, 136, font_gameover, "0");
 		
-		
-		
+		SDL_SetTextureColorMod(graphics,0,0,0);
+		SDL_SetTextureColorMod(back, 0, 0, 0);
 
+		App->font->BlitText(100, 100, font_gameover, "stage clear");
+		App->font->BlitText(75, 136, font_gameover, "stage bonus 10000");
 		
-	}*/
+	
+	
+		
+	}
 	
 	return UPDATE_CONTINUE;
 }

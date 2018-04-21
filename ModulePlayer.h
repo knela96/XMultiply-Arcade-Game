@@ -8,7 +8,7 @@
 
 struct SDL_Texture;
 struct Collider;
-
+struct Mix_Chunk;
 
 class ModulePlayer : public Module
 {
@@ -28,6 +28,7 @@ public:
 	int font_gameover = -1;
 	char score_text[10];
 	uint score = 0;
+	Mix_Chunk* death_fx;
 	Animation idle;
 	Animation forward;
 	Animation backward;
@@ -37,7 +38,8 @@ public:
 	Animation downwardreturn;
 	Animation* current_animation;
 	iPoint position;
-	Uint32 start_time; 
+	Uint32 start_time;
+	Uint32 aux_time;
 	Collider* collider;
 	bool powerup[20];
 	bool dead = false;

@@ -7,6 +7,7 @@
 
 #define MAX_ENEMIES 100
 
+struct Mix_Chunk;
 
 class Enemy;
 
@@ -41,6 +42,10 @@ private:
 	EnemyInfo queue[MAX_ENEMIES];
 	Enemy* enemies[MAX_ENEMIES];
 	SDL_Texture* sprites[MAX_TEXTURES];
+	Mix_Chunk* Brownworm_fx;
+	Mix_Chunk* LittleShrimp_fx;
+	Mix_Chunk* Nemona_fx;
+	Mix_Chunk* Powership_fx;
 };
 
 #endif // __ModuleEnemies_H__
