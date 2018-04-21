@@ -16,9 +16,6 @@
     <ClCompile Include="ModuleInput.cpp">
       <Filter>Modules</Filter>
     </ClCompile>
-    <ClCompile Include="ModulePlayer.cpp">
-      <Filter>Modules</Filter>
-    </ClCompile>
     <ClCompile Include="ModuleRender.cpp">
       <Filter>Modules</Filter>
     </ClCompile>
@@ -76,6 +73,9 @@
     <ClCompile Include="ModuleTentacles.cpp">
       <Filter>Modules\Player</Filter>
     </ClCompile>
+    <ClCompile Include="ModulePlayer.cpp">
+      <Filter>Modules\Player</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Animation.h">
@@ -100,9 +100,6 @@
       <Filter>Modules</Filter>
     </ClInclude>
     <ClInclude Include="ModuleInput.h">
-      <Filter>Modules</Filter>
-    </ClInclude>
-    <ClInclude Include="ModulePlayer.h">
       <Filter>Modules</Filter>
     </ClInclude>
     <ClInclude Include="ModuleRender.h">
@@ -163,6 +160,9 @@
       <Filter>Modules</Filter>
     </ClInclude>
     <ClInclude Include="ModuleTentacles.h">
+      <Filter>Modules\Player</Filter>
+    </ClInclude>
+    <ClInclude Include="ModulePlayer.h">
       <Filter>Modules\Player</Filter>
     </ClInclude>
   </ItemGroup>
