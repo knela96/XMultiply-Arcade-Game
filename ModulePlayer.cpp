@@ -180,14 +180,16 @@ update_status ModulePlayer::Update()
 	// Draw everything --------------------------------------
 	if (!dead)
 		App->render->Blit(graphics, position.x, position.y, &current_animation->GetCurrentFrame());
-	else
+	else{
+		App->font->BlitText(120, 100, font_gameover, "game over");
 		if (SDL_GetTicks() - start_time >= 1000) {
 
-			App->font->BlitText(120, 100, font_gameover, "game over");
+			
+			
 			App->fade->FadeToBlack((Module*)App->scene_stage1, (Module*)App->scene_MainMenu);
 
 		}
-
+	}
 	collider->SetPos(position.x + 4, position.y + 1);//SET POS PLAYER_COLLIDER
 	
 	sprintf_s(score_text, 10, "%7d", score);
