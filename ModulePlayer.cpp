@@ -75,6 +75,10 @@ bool ModulePlayer::Start()
 	start_time = 0;
 	dead = false;
 
+	for (int i = 0; i < 3; i++) {
+		life[i] = true;
+	}
+
 	//Add a collider to the player
 	collider = App->collision->AddCollider({ position.x+4, position.y+1, 22, 14 }, COLLIDER_PLAYER, this);
 
@@ -180,11 +184,11 @@ update_status ModulePlayer::Update()
 	// Draw everything --------------------------------------
 	if (!dead)
 		App->render->Blit(graphics, position.x, position.y, &current_animation->GetCurrentFrame());
+
+
 	else{
 		App->font->BlitText(120, 100, font_gameover, "game over");
 		if (SDL_GetTicks() - start_time >= 1000) {
-
-			
 			
 			App->fade->FadeToBlack((Module*)App->scene_stage1, (Module*)App->scene_MainMenu);
 
@@ -217,10 +221,19 @@ void ModulePlayer::OnCollision(Collider* collider1, Collider* collider2) {
 
 	if (!dead) {
 		App->particles->AddParticle(App->particles->explosion_player, position.x, position.y-24, COLLIDER_NONE);
-		dead = true;
-		App->tentacles->removeCollider();
-		App->tentacles->CleanUp();
-		collider->to_delete = true;
-		start_time = SDL_GetTicks();
+
+		if (life[0] == false && life[1] == false && life[2] == false) {
+			dead = true;
+			App->tentacles->removeCollider();
+			App->tentacles->CleanUp();
+			collider->to_delete = true;
+			start_time = SDL_GetTicks();
+		}
+		else {
+			for (int i = 0; life[i] == true; i++) {
+				life[i] = false;
+				
+			}
+		}
 	}
 }

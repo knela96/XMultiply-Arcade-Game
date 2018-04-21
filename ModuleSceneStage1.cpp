@@ -52,6 +52,7 @@ bool ModuleSceneStage1::Start()
 
 	bool ret = true;
 
+	timer = 0;
 
 	down = false;
 
@@ -204,8 +205,8 @@ bool ModuleSceneStage1::Start()
 	App->enemies->AddEnemy(LITTLE_SHRIMP, 1165, 150);
 
 	App->enemies->AddEnemy(NEMONA_TENTACLE, 520, 148);
-	App->enemies->AddEnemy(NEMONA_TENTACLE, 1038, 164);
-	App->enemies->AddEnemy(NEMONA_TENTACLE, 1280, 140);
+	App->enemies->AddEnemy(NEMONA_TENTACLE, 1038, 160);
+	App->enemies->AddEnemy(NEMONA_TENTACLE, 1280, 150);
 
 	//POWERUPS
 	App->enemies->AddEnemy(POWERUPSHIP, 400, 150);
@@ -384,8 +385,10 @@ void ModuleSceneStage1::injectpos() {
 		}
 		else { 
 
-			entering = injection.GetCurrentFrame();
-			
+			while (timer < 7) {
+				entering = injection.GetCurrentFrame();
+				timer++;
+			}
 			injectxy.y--; }
 	}
 
