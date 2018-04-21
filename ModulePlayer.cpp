@@ -81,7 +81,8 @@ bool ModulePlayer::Start()
 	powerup[BASIC_SHOOT] = true;
 	powerup[BOMB_SHOOT] = true;
 
-	font_score = App->font->Load("Assets/fonts.1.png", "0123456789í.-=éè()óòáú`´!?abcdefghijklmnopqrstuvwxyz", 2);
+	font_score = App->font->Load("Assets/Sprites/UI/fonts.1.png", "0123456789í.-=éè()óòáú`´!?abcdefghijklmnopqrstuvwxyz", 2);
+	font_gameover = App->font->Load("Assets/Sprites/UI/fonts.2.png", "0123456789·' ºººººººººººººabcdefghijklmnopqrstuvwxyz", 2);
 
 	App->tentacles->AddTentacle(App->tentacles->tentacle, position.x, position.y);
 	App->tentacles->AddTentacle(App->tentacles->tentacle, position.x+16, position.y);
@@ -180,8 +181,12 @@ update_status ModulePlayer::Update()
 	if (!dead)
 		App->render->Blit(graphics, position.x, position.y, &current_animation->GetCurrentFrame());
 	else
-		if (SDL_GetTicks() - start_time >= 1000)
+		if (SDL_GetTicks() - start_time >= 1000) {
+
+			App->font->BlitText(120, 100, font_gameover, "game over");
 			App->fade->FadeToBlack((Module*)App->scene_stage1, (Module*)App->scene_MainMenu);
+
+		}
 
 	collider->SetPos(position.x + 4, position.y + 1);//SET POS PLAYER_COLLIDER
 	
@@ -189,6 +194,7 @@ update_status ModulePlayer::Update()
 
 
 	//Draw UI 
+	
 	App->font->BlitText(80, 240, font_score, score_text);
 	App->font->BlitText(32, 240, font_score, "score");
 
