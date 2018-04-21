@@ -20,10 +20,10 @@ ModuleSceneStage1::ModuleSceneStage1()
 	//ground
 	ground.x = 0;
 	ground.y = 0;
-	ground.w = 512;
+	ground.w = 5120;
 	ground.h = 512;
 
-	// Background / sky
+	// Background 
 	background.x = 0;
 	background.y = 1;
 	background.w = 4961;
@@ -214,7 +214,7 @@ update_status ModuleSceneStage1::Update()
 
 	if (App->render->camera.x > 2657*SCREEN_SIZE && App->render->camera.x < 3428*SCREEN_SIZE) App->render->camera.y += 1 ;
 
-	App->render->Blit(back, 0, 0, &ground, 3.0f);
+	App->render->Blit(back, 0, 0, &ground, 1.0f, true);
 	
 
 	App->render->Blit(graphics, 0, 0, &background);
