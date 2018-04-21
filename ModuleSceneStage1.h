@@ -40,6 +40,7 @@ public:
 	Animation people;
 	Mix_Music* music;
 	Uint32 start_time;
+	int timer;
 	SDL_Rect screen;
 
 	bool down = false;

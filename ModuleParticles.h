@@ -16,7 +16,9 @@
 
 struct SDL_Rect;
 struct SDL_Texture;
+
 struct Mix_Chunk;
+
 struct Collider;
 enum COLLIDER_TYPE;
 
