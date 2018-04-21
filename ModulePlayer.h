@@ -25,6 +25,7 @@ public:
 
 	SDL_Texture * graphics = nullptr;
 	int font_score = -1;
+	int font_gameover = -1;
 	char score_text[10];
 	uint score = 0;
 	Animation idle;
