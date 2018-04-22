@@ -83,27 +83,9 @@ bool ModulePlayer::Start()
 
 	powerup[BASIC_SHOOT] = true;
 	powerup[BOMB_SHOOT] = false;
-	powerup[TENTACLE_SHOOT] = false;
 
 	font_score = App->font->Load("Assets/Sprites/UI/fonts.1.png", "0123456789í.-=éè()óòáú`´!?abcdefghijklmnopqrstuvwxyz", 2);
 	font_gameover = App->font->Load("Assets/Sprites/UI/fonts.2.png", "0123456789·' ºººººººººººººabcdefghijklmnopqrstuvwxyz", 2);
-	if (powerup[TENTACLE_SHOOT]) {
-		App->tentacles->AddTentacle(App->tentacles->tentacle, position.x, position.y);
-		App->tentacles->AddTentacle(App->tentacles->tentacle, position.x + 16, position.y);
-		App->tentacles->AddTentacle(App->tentacles->tentacle, position.x + 16, position.y);
-		App->tentacles->AddTentacle(App->tentacles->tentacle, position.x + 16, position.y);
-		App->tentacles->AddTentacle(App->tentacles->tentacle, position.x + 16, position.y);
-		App->tentacles->AddTentacle(App->tentacles->tentacle, position.x + 16, position.y);
-		App->tentacles->AddTentacle(App->tentacles->anchor_top, position.x + 16, position.y, false, true);
-
-		App->tentacles->AddTentacle(App->tentacles->tentacle, position.x, position.y, true);
-		App->tentacles->AddTentacle(App->tentacles->tentacle, position.x + 16, position.y, true);
-		App->tentacles->AddTentacle(App->tentacles->tentacle, position.x + 16, position.y, true);
-		App->tentacles->AddTentacle(App->tentacles->tentacle, position.x + 16, position.y, true);
-		App->tentacles->AddTentacle(App->tentacles->tentacle, position.x + 16, position.y, true);
-		App->tentacles->AddTentacle(App->tentacles->tentacle, position.x + 16, position.y, true);
-		App->tentacles->AddTentacle(App->tentacles->anchor_bottom, position.x + 16, position.y, false, true);
-	}
 
 	
 
@@ -113,6 +95,14 @@ bool ModulePlayer::Start()
 // Update: draw background
 update_status ModulePlayer::Update()
 {
+
+	if (App->input->keyboard[SDL_SCANCODE_F5] == KEY_DOWN)
+	{
+		godmode = !godmode;
+		if(godmode == true)
+		App->font->BlitText(0, 0, App->player->font_score, _godmode);
+	}
+
 	if (enable_movement) {
 		int speed = 3;
 
@@ -217,6 +207,7 @@ update_status ModulePlayer::Update()
 	}
 	collider->SetPos(position.x + 4, position.y + 1);//SET POS PLAYER_COLLIDER
 	
+	
 
 	return UPDATE_CONTINUE;
 }
@@ -233,7 +224,7 @@ bool ModulePlayer::CleanUp()
 
 void ModulePlayer::OnCollision(Collider* collider1, Collider* collider2) {
 
-	if (!dead) {
+	if (!dead && godmode == false) {
 
 		App->particles->AddParticle(App->particles->explosion_player, position.x, position.y-24, COLLIDER_NONE);
 		App->audio->PlaySound(death_fx);
@@ -253,4 +244,25 @@ void ModulePlayer::OnCollision(Collider* collider1, Collider* collider2) {
 		enable_movement = false;
 		
 	}
+}
+
+bool ModulePlayer::AddTentacles() {
+
+	App->tentacles->AddTentacle(App->tentacles->tentacle, position.x, position.y);
+	App->tentacles->AddTentacle(App->tentacles->tentacle, position.x + 16, position.y);
+	App->tentacles->AddTentacle(App->tentacles->tentacle, position.x + 16, position.y);
+	App->tentacles->AddTentacle(App->tentacles->tentacle, position.x + 16, position.y);
+	App->tentacles->AddTentacle(App->tentacles->tentacle, position.x + 16, position.y);
+	App->tentacles->AddTentacle(App->tentacles->tentacle, position.x + 16, position.y);
+	App->tentacles->AddTentacle(App->tentacles->anchor_top, position.x + 16, position.y, false, true);
+
+	App->tentacles->AddTentacle(App->tentacles->tentacle, position.x, position.y, true);
+	App->tentacles->AddTentacle(App->tentacles->tentacle, position.x + 16, position.y, true);
+	App->tentacles->AddTentacle(App->tentacles->tentacle, position.x + 16, position.y, true);
+	App->tentacles->AddTentacle(App->tentacles->tentacle, position.x + 16, position.y, true);
+	App->tentacles->AddTentacle(App->tentacles->tentacle, position.x + 16, position.y, true);
+	App->tentacles->AddTentacle(App->tentacles->tentacle, position.x + 16, position.y, true);
+	App->tentacles->AddTentacle(App->tentacles->anchor_bottom, position.x + 16, position.y, false, true);
+
+	return true;
 }

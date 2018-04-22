@@ -73,6 +73,15 @@
     <ClCompile Include="ModuleTentacles.cpp">
       <Filter>Modules\Player</Filter>
     </ClCompile>
+<<<<<<< HEAD
+=======
+    <ClCompile Include="ModulePlayer.cpp">
+      <Filter>Modules\Player</Filter>
+    </ClCompile>
+    <ClCompile Include="ModulePowerUp.cpp">
+      <Filter>Modules</Filter>
+    </ClCompile>
+>>>>>>> ec8a8e488207abc91a4e68d232d38abb0b8d9d1d
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Animation.h">
@@ -159,6 +168,15 @@
     <ClInclude Include="ModuleTentacles.h">
       <Filter>Modules\Player</Filter>
     </ClInclude>
+<<<<<<< HEAD
+=======
+    <ClInclude Include="ModulePlayer.h">
+      <Filter>Modules\Player</Filter>
+    </ClInclude>
+    <ClInclude Include="ModulePowerUp.h">
+      <Filter>Modules</Filter>
+    </ClInclude>
+>>>>>>> ec8a8e488207abc91a4e68d232d38abb0b8d9d1d
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Containers">

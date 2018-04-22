@@ -39,7 +39,9 @@ public:
 	SDL_Rect ship;
 	struct position injectxy;
 	Animation injection;
+
 	Animation injection_up;
+
 	SDL_Rect background;
 	Animation flag;
 	Animation people;
@@ -49,11 +51,16 @@ public:
 	Uint32 start_time;
 	Uint32 aux_time;
 	uint rgb = 255;
+
 	bool injecting = true;
+
 	SDL_Rect screen;
 	char _stageendblit[12] = "";
+
 	char _stageend[12] = "stage clear";
+
 	char _stageend2[18] = "stage bonus 10000";
+
 	char _stageendblit2[18] = "";
 
 

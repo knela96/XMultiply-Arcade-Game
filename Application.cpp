@@ -15,6 +15,7 @@
 #include "ModuleCollision.h"
 #include "ModuleTentacles.h"
 #include "ModuleFonts.h"
+#include "ModulePowerUp.h"
 
 Application::Application()
 {
@@ -32,6 +33,7 @@ Application::Application()
 	modules[i++] = player = new ModulePlayer();
 	modules[i++] = tentacles = new ModuleTentacles();
 	modules[i++] = enemies = new ModuleEnemies();
+	modules[i++] = powerup = new ModulePowerUp();
 	modules[i++] = particles = new ModuleParticles();
 	modules[i++] = collision = new ModuleCollision();
 	modules[i++] = fade = new ModuleFadeToBlack();//Must be after all scenes

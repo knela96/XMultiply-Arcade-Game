@@ -15,6 +15,7 @@
 #include "SDL/include/SDL_timer.h"
 #include "SDL/include/SDL_render.h"
 #include "ModulePlayer.h"
+#include "ModulePowerUp.h"
 #include <stdio.h>
 
 
@@ -77,6 +78,7 @@ bool ModuleSceneStage1::Start()
 	App->player->Disable();
 	App->particles->Enable();
 	App->collision->Enable();
+	App->powerup->Enable();
 	App->font->Enable();
 	
 	injectiontex = App->textures->Load("Assets/Sprites/Stage1/Tilemap/Injection.png");
@@ -87,7 +89,7 @@ bool ModuleSceneStage1::Start()
 
 	hud = App->textures->Load("Assets/UI.png");
 
-	music = App->audio->LoadM("Assets/Audio Files/Music in OGG/04_Into_the_Human_Body_Stage_1_.ogg");	
+	music = App->audio->LoadM("Assets/Audio Files/Music in OGG/04_Into_the_Human_Body_Stage_1_.ogg");
 	injection_fx = App->audio->LoadS("Assets/Audio Files/SFX in WAV/xmultipl-053.wav");
 	clear_stage = App->audio->LoadM("Assets/Audio Files/Music in OGG/06_Stage_Clear.ogg");
 
@@ -189,6 +191,58 @@ bool ModuleSceneStage1::Start()
 	
 
 	App->audio->PlaySound(injection_fx);
+
+	// Enemies
+	App->enemies->AddEnemy(BROWN_WORM, 455, 100, true);
+	App->enemies->AddEnemy(BROWN_WORM, 465, 100, true);
+	App->enemies->AddEnemy(BROWN_WORM, 475, 100, true);
+	App->enemies->AddEnemy(BROWN_WORM, 485, 100, true);
+	App->enemies->AddEnemy(BROWN_WORM, 495, 100, true);
+	App->enemies->AddEnemy(BROWN_WORM, 505, 100, true);
+	App->enemies->AddEnemy(BROWN_WORM, 515, 100, true);//
+	
+	App->enemies->AddEnemy(BROWN_WORM, 455, 100);
+	App->enemies->AddEnemy(BROWN_WORM, 465, 100);
+	App->enemies->AddEnemy(BROWN_WORM, 475, 100);
+	App->enemies->AddEnemy(BROWN_WORM, 485, 100);
+	App->enemies->AddEnemy(BROWN_WORM, 495, 100);
+	App->enemies->AddEnemy(BROWN_WORM, 505, 100);
+	App->enemies->AddEnemy(BROWN_WORM, 515, 100);
+
+	App->enemies->AddEnemy(BROWN_WORM, 900, 100, true);
+	App->enemies->AddEnemy(BROWN_WORM, 910, 100, true);
+	App->enemies->AddEnemy(BROWN_WORM, 920, 100, true);
+	App->enemies->AddEnemy(BROWN_WORM, 930, 100, true);
+	App->enemies->AddEnemy(BROWN_WORM, 940, 100, true);
+
+	App->enemies->AddEnemy(BROWN_WORM, 900, 100);
+	App->enemies->AddEnemy(BROWN_WORM, 910, 100);
+	App->enemies->AddEnemy(BROWN_WORM, 920, 100);
+	App->enemies->AddEnemy(BROWN_WORM, 930, 100);
+	App->enemies->AddEnemy(BROWN_WORM, 940, 100);
+
+
+	App->enemies->AddEnemy(LITTLE_SHRIMP, 530, 50);
+	App->enemies->AddEnemy(LITTLE_SHRIMP, 545, 40);
+	
+
+	App->enemies->AddEnemy(LITTLE_SHRIMP, 600, 50);
+	App->enemies->AddEnemy(LITTLE_SHRIMP, 615, 40);
+
+	App->enemies->AddEnemy(LITTLE_SHRIMP, 1100, 60);
+	App->enemies->AddEnemy(LITTLE_SHRIMP, 1150, 40);	
+
+	App->enemies->AddEnemy(NEMONA_TENTACLE, 520, 148);
+	App->enemies->AddEnemy(NEMONA_TENTACLE, 1038, 160);
+	App->enemies->AddEnemy(NEMONA_TENTACLE, 1038, 164);
+	App->enemies->AddEnemy(NEMONA_TENTACLE, 1280, 150);
+
+	//POWERUPS
+
+	App->enemies->AddEnemy(POWERUPSHIP, 600, 130, 1);
+	App->enemies->AddEnemy(POWERUPSHIP, 1050, 100, 2);
+	//App->enemies->AddEnemy(POWERUPSHIP, 1075, 75);
+	//App->enemies->AddEnemy(POWERUPSHIP, 1200, 100);
 
 	return ret;
 }
@@ -292,8 +346,12 @@ update_status ModuleSceneStage1::Update()
 
 			App->audio->PlayMusic(clear_stage);
 		}
-		
+
 		fadeBlack();
+
+		char _stageend[15] = "stage clear";
+
+		char _stageendblit[15];
 		
 		if (SDL_GetTicks() - start_time >= 500) {
    			start_time = SDL_GetTicks();
@@ -322,6 +380,7 @@ update_status ModuleSceneStage1::Update()
 }
 
 void ModuleSceneStage1::injectpos() {
+
 	if (injectxy.y == 0) {
 		App->player->position.y = entering.h;
 		App->player->Enable();

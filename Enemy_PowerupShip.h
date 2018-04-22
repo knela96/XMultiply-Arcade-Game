@@ -3,6 +3,9 @@
 
 #include "Enemy.h"
 
+
+struct PowerUp;
+
 class Enemy_PowerupShip : public Enemy
 {
 private:
@@ -10,13 +13,13 @@ private:
 	bool going_up = true;
 	int original_y = 0;
 	Animation fly;
-
+	PowerUp* p = nullptr;
 
 public:
 
 	iPoint original_position;
 	Path* path = new Path();
-	Enemy_PowerupShip(int x, int y);
+	Enemy_PowerupShip(int x, int y, uint PU);
 	virtual void OnCollision(Collider* collider);
 	void Move();
 };
