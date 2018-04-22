@@ -29,7 +29,7 @@ ModulePlayer::ModulePlayer()
 	nitro.PushBack({ 208,48,48,16});
 	nitro.PushBack({ 240,144,16,16 });
 	nitro.loop = true;
-	nitro.speed = 0.1f;
+	nitro.speed = 0.5f;
 
 	forward.PushBack({ 97, 0, 48, 16 });
 	forward.loop = false;
@@ -125,7 +125,7 @@ bool ModulePlayer::CleanUp()
 update_status ModulePlayer::Update()
 {
 	if (nitroanim) {
-		if (counter < 20) {
+		if (counter < 5) {
 			App->render->Blit(graphics, position.x - 40, position.y , &(nitro.GetCurrentFrame()));
 			counter +=1;
 		}
