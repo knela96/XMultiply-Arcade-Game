@@ -41,7 +41,7 @@ ModuleSceneStage1::ModuleSceneStage1()
 	injection.PushBack({ 238, 0, 48, 112 });
 	injection.PushBack({ 307, 0, 48, 120 });
 	injection.PushBack({ 386, 0, 48, 120 });
-	injection.speed = 0.75f;
+	injection.speed = 0.15f;
 	injection.loop = false;
 
 	injection_up.PushBack({ 386, 0, 48, 120 });
@@ -50,7 +50,7 @@ ModuleSceneStage1::ModuleSceneStage1()
 	injection_up.PushBack({ 160, 0, 48, 103 });
 	injection_up.PushBack({ 79, 0, 48, 105 });
 	injection_up.PushBack({ 0, 0, 48, 102 });
-	injection_up.speed = 0.75f;
+	injection_up.speed = 0.15f;
 	injection_up.loop = false;
 
 	entering = { 0, 0, 48, 102 };
@@ -286,7 +286,6 @@ update_status ModuleSceneStage1::Update()
 	
 	if(injecting){
 		if (!shipdeployed) {
-//			injectpos();
 			if (injectxy.y == 0) {
 				App->player->position.y = entering.h;
 				App->player->Enable();
@@ -296,18 +295,15 @@ update_status ModuleSceneStage1::Update()
 				injectxy.y++;
 		}
 		else {
-			while (SDL_GetTicks() - aux_time >= 100) {
-				/*if (injection_up.Finished()) {
-					injectxy.y -= 2;
-				}*/
-				if (injection.Finished()) {
-					entering = injection_up.GetCurrentFrame();
-				}
-				else {
-					entering = injection.GetCurrentFrame();
+			if (injection.Finished()) {
+				entering = injection_up.GetCurrentFrame();
+			}
+			else {
+				entering = injection.GetCurrentFrame();
+				while (SDL_GetTicks() - aux_time >= 40) {
 					App->player->position.y += 1;
+					aux_time = SDL_GetTicks();
 				}
-				aux_time = SDL_GetTicks();
 			}
 
 			if (injection_up.Finished()){
@@ -321,10 +317,12 @@ update_status ModuleSceneStage1::Update()
 
 			if (injection.Finished()) {
 				if (App->player->position.x < 150) {
+					App->player->nitroanim = false;
 					App->player->position.x += 1;
 					right = true;
 				}
 				else {
+					App->player->nitroanim = true;
 					App->player->enable_movement = true;
 				}
 			}
