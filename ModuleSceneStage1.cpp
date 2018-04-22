@@ -537,24 +537,24 @@ void ModuleSceneStage1::AddEnemies() {
 	App->enemies->AddEnemy(LITTLE_SHRIMP, 3200, 120, -1);
 	App->enemies->AddEnemy(LITTLE_SHRIMP, 3200, 200, -1);
 	//2 shrimps
+	App->enemies->AddEnemy(LITTLE_SHRIMP, 3300, 210, -1);
 	App->enemies->AddEnemy(LITTLE_SHRIMP, 3300, 190, -1);
-	App->enemies->AddEnemy(LITTLE_SHRIMP, 3300, 170, -1);
 	// shrimps
-	App->enemies->AddEnemy(LITTLE_SHRIMP, 3400, 200, -1);
+	App->enemies->AddEnemy(LITTLE_SHRIMP, 3400, 330, -1);
 	//2 shrimps
-	App->enemies->AddEnemy(LITTLE_SHRIMP, 3500, 270, -1);
-	App->enemies->AddEnemy(LITTLE_SHRIMP, 3500, 250, -1);
+	App->enemies->AddEnemy(LITTLE_SHRIMP, 3500, 400, -1);
+	App->enemies->AddEnemy(LITTLE_SHRIMP, 3500, 380, -1);
 	//2 shrimps
-	App->enemies->AddEnemy(LITTLE_SHRIMP, 3600, 280, -1);
-	App->enemies->AddEnemy(LITTLE_SHRIMP, 3600, 300, -1);
+	App->enemies->AddEnemy(LITTLE_SHRIMP, 3600, 350, -1);
+	App->enemies->AddEnemy(LITTLE_SHRIMP, 3600, 410, -1);
 	//2 shrimps
-	App->enemies->AddEnemy(LITTLE_SHRIMP, 3700, 280, -1);
-	App->enemies->AddEnemy(LITTLE_SHRIMP, 3750, 315, -1);
+	App->enemies->AddEnemy(LITTLE_SHRIMP, 3700, 380, -1);
+	App->enemies->AddEnemy(LITTLE_SHRIMP, 3750, 335, -1);
 	//2 shrimps
-	App->enemies->AddEnemy(LITTLE_SHRIMP, 3850, 315, -1);
-	App->enemies->AddEnemy(LITTLE_SHRIMP, 3900, 340, -1);
+	App->enemies->AddEnemy(LITTLE_SHRIMP, 3850, 405, -1);
+	App->enemies->AddEnemy(LITTLE_SHRIMP, 3900, 382, -1);
 	// powerup
-	App->enemies->AddEnemy(POWERUPSHIP, 4000, 330, 1);
+	App->enemies->AddEnemy(POWERUPSHIP, 4000, 400, 1);
 
 	//filler
 	
