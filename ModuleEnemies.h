@@ -5,7 +5,7 @@
 #include "Enemy_BrownWorm.h"
 #include "ModuleTextures.h"
 
-#define MAX_ENEMIES 100
+#define MAX_ENEMIES 200
 
 struct Mix_Chunk;
 
