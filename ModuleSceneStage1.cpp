@@ -21,6 +21,7 @@
 
 ModuleSceneStage1::ModuleSceneStage1()
 {
+
 	//ground
 	ground.x = 0;
 	ground.y = 0;
@@ -31,15 +32,15 @@ ModuleSceneStage1::ModuleSceneStage1()
 	background.x = 0;
 	background.y = 1;
 	background.w = 4961;
-	background.h = 513;	
+	background.h = 513;
 
 	//injection 
-	injection.PushBack({ 0, 0, 48, 102});
+	injection.PushBack({ 0, 0, 48, 102 });
 	injection.PushBack({ 79, 0, 48, 105 });
-	injection.PushBack({ 160, 0, 48, 103});
+	injection.PushBack({ 160, 0, 48, 103 });
 	injection.PushBack({ 238, 0, 48, 112 });
 	injection.PushBack({ 307, 0, 48, 120 });
-	injection.PushBack({ 386, 0, 48, 120});
+	injection.PushBack({ 386, 0, 48, 120 });
 	injection.speed = 0.75f;
 	injection.loop = false;
 
@@ -62,6 +63,7 @@ ModuleSceneStage1::~ModuleSceneStage1()
 // Load assets
 bool ModuleSceneStage1::Start()
 {
+
 	LOG("Loading background assets");
 
 	bool ret = true;
@@ -74,7 +76,10 @@ bool ModuleSceneStage1::Start()
 	injecting = true;
 	aux_time = 0;
 	start_time = 0;
-
+	index = 0;
+	clearstage_fx = false;
+	injection_up.Reset();
+	injection.Reset();
 
 	App->tentacles->Enable();
 	App->player->Disable();
@@ -222,6 +227,19 @@ bool ModuleSceneStage1::CleanUp()
 	return ret;
 
 }
+
+
+void ModuleSceneStage1::injectpos() {
+
+	if (injectxy.y == 0) {
+		App->player->position.y = entering.h;
+		App->player->Enable();
+		shipdeployed = true;
+	}
+	else
+		injectxy.y++;
+}
+
 // Update: draw background
 update_status ModuleSceneStage1::Update()
 {
@@ -254,16 +272,21 @@ update_status ModuleSceneStage1::Update()
 	
 	if(injecting){
 		if (!shipdeployed) {
-			injectpos();
-			injection_up.Reset();
-			injection.Reset();
+//			injectpos();
+			if (injectxy.y == 0) {
+				App->player->position.y = entering.h;
+				App->player->Enable();
+				shipdeployed = true;
+			}
+			else
+				injectxy.y++;
 		}
 		else {
 			while (SDL_GetTicks() - aux_time >= 100) {
-				if (injection_up.Finished()) {
-					injectxy.y--;
-				}
-				else if (injection.Finished()) {
+				/*if (injection_up.Finished()) {
+					injectxy.y -= 2;
+				}*/
+				if (injection.Finished()) {
 					entering = injection_up.GetCurrentFrame();
 				}
 				else {
@@ -274,7 +297,7 @@ update_status ModuleSceneStage1::Update()
 			}
 
 			if (injection_up.Finished()){
-				if (injectxy.y > -99) {
+				if (injectxy.y >= -99) {
 					injectxy.y--;
 				}
 				else {
@@ -297,12 +320,12 @@ update_status ModuleSceneStage1::Update()
 
 	App->render->Blit(injectiontex, injectxy.x, injectxy.y, &entering, 0.5f);	
 	
-	if(App->player->position.x >= 4700) //4700
+	if (App->player->position.x >= 4700) //4700
 	{
-
-		if (App->input->keyboard[SDL_SCANCODE_SPACE] == KEY_STATE::KEY_DOWN)
-			App->fade->FadeToBlack((Module*)App->scene_stage1, (Module*)App->scene_MainMenu);//CHECK FADE
-
+		if (App->input->keyboard[SDL_SCANCODE_SPACE] == KEY_STATE::KEY_DOWN){
+			App->fade->FadeToBlack((Module*)App->scene_stage1, (Module*)App->scene_MainMenu);
+		}
+		
 		hud = nullptr;
 		App->player->score = 0;
 		disableModules();
@@ -319,12 +342,13 @@ update_status ModuleSceneStage1::Update()
 			start_time = SDL_GetTicks();
 			
 			if (index < 17) {
-
-				_stageendblit[index] = _stageend[index];
+				_stageendblit2[index + 1] = _stageend2[17];
 				_stageendblit2[index] = _stageend2[index];
 			}
-			_stageendblit[index + 1] = _stageend[11];
-			_stageendblit2[index + 1] = _stageend2[17];
+			if (index < 11) {
+				_stageendblit[index + 1] = _stageend[11];
+				_stageendblit[index] = _stageend[index];
+			}
 			index++;
 
 		}
@@ -346,16 +370,6 @@ update_status ModuleSceneStage1::Update()
 	return UPDATE_CONTINUE;
 }
 
-void ModuleSceneStage1::injectpos() {
-
-	if (injectxy.y == 0) {
-		App->player->position.y = entering.h;
-		App->player->Enable();
-		shipdeployed = true;
-	}
-	else
-		injectxy.y++;
-}
 
 void ModuleSceneStage1::resetMap() {
 
@@ -365,20 +379,19 @@ void ModuleSceneStage1::resetMap() {
 	else {
 		if (!cleaned) {
 			disableModules();
+			App->player->dead = false;
 		}
 		else {
-			App->enemies->Enable();
-			App->powerup->Enable();
-			App->particles->Enable();
-			AddEnemies();
-			App->fade->isBlack = false;
-			App->fade->resetStep();
-			App->player->resetPlayer();
-			App->render->camera.x = 0;
-			App->render->camera.y = 0;
-			right = true;
-			resetmap = false;
-			cleaned = false;
+			if (App->player->position.x < 100) {
+				App->player->nitroanim = true;
+				App->player->position.x++;
+			}
+			else {
+				App->player->enable_movement = true;
+				right = true;
+				resetmap = false;
+				cleaned = false;
+			}
 		}
 	}
 }
@@ -387,13 +400,20 @@ void ModuleSceneStage1::disableModules() {
 
 	right = false;
 
-	App->player->enable_movement = false;
-
+	App->player->resetPlayer();
 	App->enemies->Disable();
-
 	App->powerup->Disable();
 	App->particles->removeParticles();
 	App->tentacles->RemoveTentacle();
+
+	App->enemies->Enable();
+	App->powerup->Enable();
+	App->particles->Enable();
+	AddEnemies();
+	App->fade->isBlack = true;
+	App->fade->resetStep();
+	App->render->camera.x = 0;
+	App->render->camera.y = 0;
 	cleaned = true;
 }
 

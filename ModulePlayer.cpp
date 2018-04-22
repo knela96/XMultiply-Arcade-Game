@@ -102,6 +102,24 @@ bool ModulePlayer::Start()
 	return ret;
 }
 
+bool ModulePlayer::CleanUp()
+{
+	position.x = 100;
+	position.y = 130;
+
+	LOG("Unloading Player assets");
+	App->textures->Unload(graphics);
+	graphics = nullptr;
+	App->font->UnLoad(font_score);
+	font_score = -1;
+	App->font->UnLoad(font_gameover);
+	font_gameover = -1;
+	App->audio->UnloadS(death_fx);
+	death_fx = nullptr;
+	App->audio->UnloadM(music);
+	music = nullptr;
+	return true;
+}
 // Update: draw background
 update_status ModulePlayer::Update()
 {
@@ -236,12 +254,12 @@ update_status ModulePlayer::Update()
 	collider->SetPos(position.x + 4, position.y + 1);//SET POS PLAYER_COLLIDER
 	
 	if (dead) {
-		if (life == 0) {
+		if (life < 1) {
 			if (text_delay == 0) {
-				App->audio->PlayMusic(music);
 				App->scene_stage1->disableModules();
+				App->audio->PlayMusic(music);
 			}
-			if (text_delay++ <= 150) {
+			if (text_delay++ <= 200) {
 				App->font->BlitText(120, 100, font_gameover, "game over");
 			}
 			else {
@@ -252,20 +270,12 @@ update_status ModulePlayer::Update()
 			App->scene_stage1->resetmap = true;
 		}
 	}
+	LOG("%i", life);
 	
 
 	return UPDATE_CONTINUE;
 }
 
-bool ModulePlayer::CleanUp()
-{
-	LOG("Unloading Player assets");
-	App->textures->Unload(graphics);
-	App->audio->UnloadS(death_fx);
-	position.x = 100;
-	position.y = 130;
-	return true;
-}
 
 void ModulePlayer::OnCollision(Collider* collider1, Collider* collider2) {
 
@@ -284,10 +294,10 @@ void ModulePlayer::OnCollision(Collider* collider1, Collider* collider2) {
 }
 
 void ModulePlayer::resetPlayer() {
-	dead = false;
-	position.x = 0;
+	position.x = 0 - App->player->current_animation->frames->w;
 	position.y = 100;
-	enable_movement = true;
+	speed = 2;
+	enable_movement = false;
 	current_animation = &idle;
 	App->audio->PlayMusic(App->scene_stage1->music);
 	powerup[TENTACLE_SHOOT] = false;

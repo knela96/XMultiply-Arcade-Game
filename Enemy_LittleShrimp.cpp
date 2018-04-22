@@ -2,6 +2,7 @@
 #include "Enemy_LittleShrimp.h"
 #include "ModuleCollision.h"
 #include "ModuleParticles.h"
+#include "SDL/include/SDL_timer.h"
 
 Enemy_LittleShrimp::Enemy_LittleShrimp(int x, int y) : Enemy(x, y)
 {
@@ -25,10 +26,10 @@ Enemy_LittleShrimp::Enemy_LittleShrimp(int x, int y) : Enemy(x, y)
 
 void Enemy_LittleShrimp::Move()
 {
-	shoot++;
 	position = original_position + path->GetCurrentPosition(&animation);
-	if (shoot % 53 == 0) 
+	if (SDL_GetTicks()-shoot_delay >= 1250) 
 	{
+		shoot_delay = SDL_GetTicks();
 		App->particles->AddParticle(App->particles->shrimp_shoot, position.x, position.y, COLLIDER_ENEMY_SHOT);
 	}
 }
