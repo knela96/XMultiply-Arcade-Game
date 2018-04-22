@@ -127,7 +127,6 @@ update_status ModulePlayer::Update()
 
 		if (App->input->keyboard[SDL_SCANCODE_D] == KEY_STATE::KEY_REPEAT)
 		{
-			if (position.x + camera_offset.x > App->render->camera.x)
 				position.x += speed;
 		}
 		if (App->input->keyboard[SDL_SCANCODE_A] == KEY_STATE::KEY_REPEAT)
