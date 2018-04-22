@@ -145,22 +145,21 @@ update_status ModulePlayer::Update()
 
 	if (enable_movement) {
 
-		if (App->input->keyboard[SDL_SCANCODE_D] == KEY_STATE::KEY_REPEAT)
+		if (App->input->keyboard[SDL_SCANCODE_D] == KEY_STATE::KEY_REPEAT && position.x < App->render->camera.x / SCREEN_SIZE + SCREEN_WIDTH-40)
 		{
-				position.x += speed;
+			position.x += speed;
 		}
-		if (App->input->keyboard[SDL_SCANCODE_A] == KEY_STATE::KEY_REPEAT &&position.x>App->render->camera.x/SCREEN_SIZE)
+		if (App->input->keyboard[SDL_SCANCODE_A] == KEY_STATE::KEY_REPEAT && position.x > App->render->camera.x / SCREEN_SIZE)
 		{
 			position.x -= speed;
 		}
-		if (App->input->keyboard[SDL_SCANCODE_W] == KEY_STATE::KEY_DOWN)
+		if (App->input->keyboard[SDL_SCANCODE_W] == KEY_STATE::KEY_DOWN && position.y > App->render->camera.y/SCREEN_SIZE)
 		{
 			position.y -= speed;
 			current_animation = &upward;
 			current_animation->Reset();
-
 		}
-		if (App->input->keyboard[SDL_SCANCODE_W] == KEY_STATE::KEY_REPEAT && position.y>App->render->camera.y)
+		if (App->input->keyboard[SDL_SCANCODE_W] == KEY_STATE::KEY_REPEAT && position.y > App->render->camera.y/SCREEN_SIZE)
 		{
 			position.y -= speed;
 			current_animation = &upward;
@@ -171,14 +170,14 @@ update_status ModulePlayer::Update()
 				current_animation = &upwardreturn;
 			}
 		}
-		if (App->input->keyboard[SDL_SCANCODE_S] == KEY_STATE::KEY_DOWN)
+		if (App->input->keyboard[SDL_SCANCODE_S] == KEY_STATE::KEY_DOWN && position.y < App->render->camera.y /SCREEN_SIZE + SCREEN_HEIGHT-50)
 		{
 			position.y += speed * 1.5f;
 			current_animation = &downward;
 			current_animation->Reset();
 
 		}
-		if (App->input->keyboard[SDL_SCANCODE_S] == KEY_STATE::KEY_REPEAT)
+		if (App->input->keyboard[SDL_SCANCODE_S] == KEY_STATE::KEY_REPEAT && position.y < App->render->camera.y /SCREEN_SIZE + SCREEN_HEIGHT - 50)
 		{
 			position.y += speed * 1.5f;
 			current_animation = &downward;
