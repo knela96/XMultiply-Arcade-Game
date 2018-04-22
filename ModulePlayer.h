@@ -22,7 +22,7 @@ public:
 	void OnCollision(Collider* collider1, Collider* collider2);
 
 public:
-
+	bool enable_movement = false;
 	SDL_Texture * graphics = nullptr;
 	int font_score = -1;
 	int font_gameover = -1;
@@ -43,9 +43,10 @@ public:
 	Collider* collider;
 	bool powerup[20];
 	bool dead = false;
-	bool life[3];
 
 	bool AddTentacles();
+
+	uint life = 3;
 };
 
 #endif

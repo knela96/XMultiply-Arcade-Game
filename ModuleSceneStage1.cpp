@@ -36,14 +36,24 @@ ModuleSceneStage1::ModuleSceneStage1()
 
 	//injection 
 	injection.PushBack({ 0, 0, 48, 102});
-	injection.PushBack({ 79, 0, 48, 105});
+	injection.PushBack({ 79, 0, 48, 105 });
 	injection.PushBack({ 160, 0, 48, 103});
 	injection.PushBack({ 238, 0, 48, 112 });
 	injection.PushBack({ 307, 0, 48, 120 });
 	injection.PushBack({ 386, 0, 48, 120});
-	injection.speed = 2.0f;
-	entering = { 0, 0, 48, 102 };
+	injection.speed = 0.75f;
+	injection.loop = false;
 
+	injection_up.PushBack({ 386, 0, 48, 120 });
+	injection_up.PushBack({ 307, 0, 48, 120 });
+	injection_up.PushBack({ 238, 0, 48, 112 });
+	injection_up.PushBack({ 160, 0, 48, 103 });
+	injection_up.PushBack({ 79, 0, 48, 105 });
+	injection_up.PushBack({ 0, 0, 48, 102 });
+	injection_up.speed = 0.75f;
+	injection_up.loop = false;
+
+	entering = { 0, 0, 48, 102 };
 }
 
 ModuleSceneStage1::~ModuleSceneStage1()
@@ -55,8 +65,6 @@ bool ModuleSceneStage1::Start()
 	LOG("Loading background assets");
 
 	bool ret = true;
-
-	timer = 0;
 
 	down = false;
 
@@ -83,13 +91,15 @@ bool ModuleSceneStage1::Start()
 
 	hud = App->textures->Load("Assets/UI.png");
 
-	music = App->audio->LoadM("Assets/Audio Files/Music in OGG/04_Into_the_Human_Body_Stage_1_.ogg");	
+	music = App->audio->LoadM("Assets/Audio Files/Music in OGG/04_Into_the_Human_Body_Stage_1_.ogg");
+	injection_fx = App->audio->LoadS("Assets/Audio Files/SFX in WAV/xmultipl-053.wav");
+	clear_stage = App->audio->LoadM("Assets/Audio Files/Music in OGG/06_Stage_Clear.ogg");
 
 	App->audio->PlayMusic(music);
 
 	 injectxy.x = 100;
 
-	 injectxy.y = -30;
+	 injectxy.y -= injection.frames->h;
 
 	// Colliders ---
 	App->collision->AddCollider({ 0, 213, 2540, 10 }, COLLIDER_WALL);
@@ -218,10 +228,7 @@ bool ModuleSceneStage1::Start()
 	App->enemies->AddEnemy(LITTLE_SHRIMP, 615, 40);
 
 	App->enemies->AddEnemy(LITTLE_SHRIMP, 1100, 60);
-	App->enemies->AddEnemy(LITTLE_SHRIMP, 1150, 40);
-
-
-	
+	App->enemies->AddEnemy(LITTLE_SHRIMP, 1150, 40);	
 
 	App->enemies->AddEnemy(NEMONA_TENTACLE, 520, 148);
 	App->enemies->AddEnemy(NEMONA_TENTACLE, 1038, 160);
@@ -229,10 +236,12 @@ bool ModuleSceneStage1::Start()
 	App->enemies->AddEnemy(NEMONA_TENTACLE, 1280, 150);
 
 	//POWERUPS
+
 	App->enemies->AddEnemy(POWERUPSHIP, 600, 130, 1);
 	App->enemies->AddEnemy(POWERUPSHIP, 1050, 100, 2);
 	//App->enemies->AddEnemy(POWERUPSHIP, 1075, 75);
 	//App->enemies->AddEnemy(POWERUPSHIP, 1200, 100);
+
 	return ret;
 }
 
@@ -240,7 +249,6 @@ bool ModuleSceneStage1::CleanUp()
 {
 	LOG("Cleaning backround assets");
 	bool ret = true;
-
 	App->textures->Unload(graphics);
 	App->textures->Unload(back);
 	App->player->Disable();
@@ -252,6 +260,8 @@ bool ModuleSceneStage1::CleanUp()
 
 	App->audio->UnloadM(music);
 	music = nullptr;
+	App->audio->UnloadM(clear_stage);
+	clear_stage = nullptr;
 
 	App->render->camera.x = App->render->camera.y = 0;
 	
@@ -277,33 +287,56 @@ update_status ModuleSceneStage1::Update()
 	if (App->render->camera.x > 2657 * SCREEN_SIZE && App->render->camera.x < 3428 * SCREEN_SIZE) 
 	{
 		down = true;
-
 	}
-
 	else down = false;
 		
-
-	App->render->Blit(back, 0, 0, &ground, 0.5f , 0, true, false);
-	
-
+	App->render->Blit(back, 0, 0, &ground, 0.5f, 0, true, false);
 	App->render->Blit(graphics, 0, 0, &background);
 
 
 	App->render->Blit(hud, 0, 224, NULL, 0.0f, false);
 
 	
-	//Draw UI 
-	
+	if(injecting){
+		if (!shipdeployed) {
+			injectpos();
+		}
+		else {
+			while (SDL_GetTicks() - aux_time >= 100) {
+				if (injection_up.Finished()) {
+					injectxy.y--;
+				}
+				else if (injection.Finished()) {
+					entering = injection_up.GetCurrentFrame();
+				}
+				else {
+					entering = injection.GetCurrentFrame();
+					App->player->position.y += 1;
+				}
+				aux_time = SDL_GetTicks();
+			}
 
-	if (!injected) {
+			if (injection_up.Finished()){
+				if (injectxy.y > -100) {
+					injectxy.y--;
+				}else
+					injecting = false;
+			}
 
-
-		injectpos();
-
-
-		App->render->Blit(injectiontex, injectxy.x, injectxy.y, &entering, 0.5f);
-
+			if (injection.Finished()) {
+				if (App->player->position.x < 150) {
+					App->player->position.x += 1;
+					right = true;
+				}
+				else {
+					App->player->enable_movement = true;
+				}
+			}
+		}
+			
 	}
+
+	App->render->Blit(injectiontex, injectxy.x, injectxy.y, &entering, 0.5f);
 
 
 	if (App->input->keyboard[SDL_SCANCODE_RETURN] == 1)
@@ -313,20 +346,23 @@ update_status ModuleSceneStage1::Update()
 	
 	
 	
-	if(App->player->position.x >= 600 )
+	if(App->player->position.x >= 400 ) //4700
 	{
+		if(rgb==255)
+			App->audio->PlayMusic(clear_stage);
+		
 		App->particles->Disable();
 		App->enemies->Disable();
 		//App->collision->Disable();
 		hud = nullptr;
-		
-		//App->player->score = NULL;
-		
-		
-
-		SDL_SetTextureColorMod(graphics, 0 , 0, 0);
-
-		SDL_SetTextureColorMod(back, 0, 0, 0);
+		if (rgb != 0) {
+			start_time = SDL_GetTicks();
+			SDL_SetTextureColorMod(graphics, rgb, rgb, rgb);
+			SDL_SetTextureColorMod(back, rgb, rgb, rgb);
+			rgb -= 5;
+			if (rgb < 0)
+				rgb = 0;
+		}
 		
 		char _stageend[15] = "stage clear";
 
@@ -334,18 +370,25 @@ update_status ModuleSceneStage1::Update()
 		
 		if (SDL_GetTicks() - start_time >= 500) {
    			start_time = SDL_GetTicks();
+			
+			if (index < 17){
 
-			for (int i = 0; i < 12 ; ++i) {
-
-				_stageendblit[i] = _stageend[i];	
+				_stageendblit[index] = _stageend[index];
+				_stageendblit2[index] = _stageend2[index];
 			}
+				_stageendblit[index + 1] = _stageend[11];
+				_stageendblit2[index + 1] = _stageend2[17];
+				index++;
+			
+
+			
 			
 		}
+
+		
+
 		App->font->BlitText(100, 100, font_gameover, _stageendblit);
-		
-		
-		//App->font->BlitText(100, 100, font_gameover, "stage clear");
-		App->font->BlitText(60, 136, font_gameover, "stage bonus 10000");
+		App->font->BlitText(60, 136, font_gameover, _stageendblit2);
 		
 	}
 	else {
@@ -355,44 +398,18 @@ update_status ModuleSceneStage1::Update()
 
 	}
 	
+	
+	
 	return UPDATE_CONTINUE;
 }
 
 void ModuleSceneStage1::injectpos() {
 
-	switch (shipdeployed) {
-
-	case false:
-
 		if (injectxy.y == 0) {
-			
+			App->player->position.y = entering.h;
 			App->player->Enable();
-
 			shipdeployed = true;
-
-			right = true;
-
-			injectxy.y--;
 		}
-		else injectxy.y++;
-
-		break;
-
-	case true:
-
-		if (injectxy.y == -100) {
-
-			injected = true;
-		}
-		else { 
-
-			if (timer < 7) {
-
-				entering = injection.GetCurrentFrame();
-
-				timer++;
-			}
-			injectxy.y--; }
+		else
+			injectxy.y++;
 	}
-
-}
