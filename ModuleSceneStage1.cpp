@@ -240,8 +240,6 @@ bool ModuleSceneStage1::Start()
 
 	App->enemies->AddEnemy(POWERUPSHIP, 600, 130, 1);
 	App->enemies->AddEnemy(POWERUPSHIP, 1050, 100, 2);
-	//App->enemies->AddEnemy(POWERUPSHIP, 1075, 75);
-	//App->enemies->AddEnemy(POWERUPSHIP, 1200, 100);
 
 	return ret;
 }
