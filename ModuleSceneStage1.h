@@ -8,6 +8,7 @@
 
 struct SDL_Texture;
 typedef struct _Mix_Music Mix_Music;
+struct Mix_Chunk;
 
 struct position {
 	int x; int y;
@@ -32,16 +33,19 @@ public:
 	SDL_Texture* injectiontex = nullptr;
 	SDL_Rect ground;
 	SDL_Rect entering;
+	SDL_Rect ship;
 	struct position injectxy;
 	Animation injection;
+	Animation injection_up;
 	SDL_Rect background;
 	Animation flag;
-	SDL_Rect ship;
 	Animation people;
 	Mix_Music* music;
+	Mix_Chunk* injection_fx;
 	Uint32 start_time;
 	Uint32 aux_time;
-	int timer;
+	uint rgb = 255;
+	bool injecting = true;
 	SDL_Rect screen;
 	char _stageendblit[12] = "";
 	char _stageend[12] = "stage clear";

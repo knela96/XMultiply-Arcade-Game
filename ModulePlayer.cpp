@@ -77,35 +77,32 @@ bool ModulePlayer::Start()
 	start_time = 0;
 	dead = false;
 
-	for (int i = 0; i < 3; i++) {
-		life[i] = true;
-	}
-
 	//Add a collider to the player
 	collider = App->collision->AddCollider({ position.x+4, position.y+1, 22, 14 }, COLLIDER_PLAYER, this);
 
 	powerup[BASIC_SHOOT] = true;
-	powerup[BOMB_SHOOT] = true;
+	powerup[BOMB_SHOOT] = false;
+	powerup[TENTACLE_SHOOT] = false;
 
 	font_score = App->font->Load("Assets/Sprites/UI/fonts.1.png", "0123456789í.-=éè()óòáú`´!?abcdefghijklmnopqrstuvwxyz", 2);
 	font_gameover = App->font->Load("Assets/Sprites/UI/fonts.2.png", "0123456789·' ºººººººººººººabcdefghijklmnopqrstuvwxyz", 2);
+	if (powerup[TENTACLE_SHOOT]) {
+		App->tentacles->AddTentacle(App->tentacles->tentacle, position.x, position.y);
+		App->tentacles->AddTentacle(App->tentacles->tentacle, position.x + 16, position.y);
+		App->tentacles->AddTentacle(App->tentacles->tentacle, position.x + 16, position.y);
+		App->tentacles->AddTentacle(App->tentacles->tentacle, position.x + 16, position.y);
+		App->tentacles->AddTentacle(App->tentacles->tentacle, position.x + 16, position.y);
+		App->tentacles->AddTentacle(App->tentacles->tentacle, position.x + 16, position.y);
+		App->tentacles->AddTentacle(App->tentacles->anchor_top, position.x + 16, position.y, false, true);
 
-	App->tentacles->AddTentacle(App->tentacles->tentacle, position.x, position.y);
-	App->tentacles->AddTentacle(App->tentacles->tentacle, position.x+16, position.y);
-	App->tentacles->AddTentacle(App->tentacles->tentacle, position.x + 16, position.y);
-	App->tentacles->AddTentacle(App->tentacles->tentacle, position.x + 16, position.y);
-	App->tentacles->AddTentacle(App->tentacles->tentacle, position.x + 16, position.y);
-	App->tentacles->AddTentacle(App->tentacles->tentacle, position.x + 16, position.y);
-	App->tentacles->AddTentacle(App->tentacles->anchor_top, position.x + 16, position.y, false,true);
-
-	App->tentacles->AddTentacle(App->tentacles->tentacle, position.x, position.y,true);
-	App->tentacles->AddTentacle(App->tentacles->tentacle, position.x + 16, position.y, true);
-	App->tentacles->AddTentacle(App->tentacles->tentacle, position.x + 16, position.y, true);
-	App->tentacles->AddTentacle(App->tentacles->tentacle, position.x + 16, position.y, true);
-	App->tentacles->AddTentacle(App->tentacles->tentacle, position.x + 16, position.y, true);
-	App->tentacles->AddTentacle(App->tentacles->tentacle, position.x + 16, position.y, true);
-	App->tentacles->AddTentacle(App->tentacles->anchor_bottom, position.x + 16, position.y, false, true);
-
+		App->tentacles->AddTentacle(App->tentacles->tentacle, position.x, position.y, true);
+		App->tentacles->AddTentacle(App->tentacles->tentacle, position.x + 16, position.y, true);
+		App->tentacles->AddTentacle(App->tentacles->tentacle, position.x + 16, position.y, true);
+		App->tentacles->AddTentacle(App->tentacles->tentacle, position.x + 16, position.y, true);
+		App->tentacles->AddTentacle(App->tentacles->tentacle, position.x + 16, position.y, true);
+		App->tentacles->AddTentacle(App->tentacles->tentacle, position.x + 16, position.y, true);
+		App->tentacles->AddTentacle(App->tentacles->anchor_bottom, position.x + 16, position.y, false, true);
+	}
 
 	
 
@@ -115,90 +112,94 @@ bool ModulePlayer::Start()
 // Update: draw background
 update_status ModulePlayer::Update()
 {
-	int speed = 3;
-	
-	if (App->input->keyboard[SDL_SCANCODE_D] == KEY_STATE::KEY_REPEAT)
-	{
-		position.x += speed;
-	}
-	if (App->input->keyboard[SDL_SCANCODE_A] == KEY_STATE::KEY_REPEAT)
-	{
-		position.x -= speed;
-	}
-	if (App->input->keyboard[SDL_SCANCODE_W] == KEY_STATE::KEY_DOWN)
-	{
-		position.y -= speed;
-		current_animation = &upward;
-		current_animation->Reset();
+	if (enable_movement) {
+		int speed = 3;
 
-	}
-	if (App->input->keyboard[SDL_SCANCODE_W] == KEY_STATE::KEY_REPEAT)
-	{
-		position.y -= speed;
-		current_animation = &upward;
-		
-	}
-	if (App->input->keyboard[SDL_SCANCODE_W] == KEY_STATE::KEY_UP) {
-		if (current_animation == &upward || current_animation == &upwardreturn) {
-			current_animation = &upwardreturn;
+		if (App->input->keyboard[SDL_SCANCODE_D] == KEY_STATE::KEY_REPEAT)
+		{
+			position.x += speed;
 		}
-	}
-	if (App->input->keyboard[SDL_SCANCODE_S] == KEY_STATE::KEY_DOWN)
-	{
-		position.y -= speed;
-		current_animation = &downward;
-		current_animation->Reset();
-
-	}
-	if (App->input->keyboard[SDL_SCANCODE_S] == KEY_STATE::KEY_REPEAT)
-	{
-		position.y += speed; 
-		current_animation = &downward;
-	}
-	if (App->input->keyboard[SDL_SCANCODE_S] == KEY_STATE::KEY_UP) {
-		if (current_animation == &downward || current_animation == &downwardreturn) {
-			current_animation = &downwardreturn;
+		if (App->input->keyboard[SDL_SCANCODE_A] == KEY_STATE::KEY_REPEAT)
+		{
+			position.x -= speed;
+		}
+		if (App->input->keyboard[SDL_SCANCODE_W] == KEY_STATE::KEY_DOWN)
+		{
+			position.y -= speed;
+			current_animation = &upward;
 			current_animation->Reset();
-		}
-	}
 
-	if (App->input->keyboard[SDL_SCANCODE_SPACE] == KEY_STATE::KEY_DOWN) {
-		
-		if (powerup[BASIC_SHOOT] == true) {
-			App->particles->AddParticle(App->particles->basic_shoot, position.x + 40, position.y, COLLIDER_PLAYER_SHOT);
-			App->tentacles->ShootLaser();
-			App->audio->PlaySound(App->particles->basic_shoot.fx);
 		}
-		
-		if (SDL_GetTicks() - start_time >= 1000) {
-			if (powerup[BOMB_SHOOT] == true) {
-				App->particles->AddParticle(App->particles->bomb, position.x + 20, position.y, COLLIDER_PLAYER_SHOT);
+		if (App->input->keyboard[SDL_SCANCODE_W] == KEY_STATE::KEY_REPEAT)
+		{
+			position.y -= speed;
+			current_animation = &upward;
+
+		}
+		if (App->input->keyboard[SDL_SCANCODE_W] == KEY_STATE::KEY_UP) {
+			if (current_animation == &upward || current_animation == &upwardreturn) {
+				current_animation = &upwardreturn;
 			}
 		}
-		start_time = SDL_GetTicks();
+		if (App->input->keyboard[SDL_SCANCODE_S] == KEY_STATE::KEY_DOWN)
+		{
+			position.y -= speed;
+			current_animation = &downward;
+			current_animation->Reset();
 
-	}else if (App->input->keyboard[SDL_SCANCODE_SPACE] == KEY_STATE::KEY_REPEAT) {
-		if (powerup[BASIC_SHOOT] == true){
-			if (SDL_GetTicks() - start_time >= 500) {
-				start_time = SDL_GetTicks();
-				App->tentacles->ShootLaser();
+		}
+		if (App->input->keyboard[SDL_SCANCODE_S] == KEY_STATE::KEY_REPEAT)
+		{
+			position.y += speed;
+			current_animation = &downward;
+		}
+		if (App->input->keyboard[SDL_SCANCODE_S] == KEY_STATE::KEY_UP) {
+			if (current_animation == &downward || current_animation == &downwardreturn) {
+				current_animation = &downwardreturn;
+				current_animation->Reset();
+			}
+		}
+
+		if (App->input->keyboard[SDL_SCANCODE_SPACE] == KEY_STATE::KEY_DOWN) {
+
+			if (powerup[BASIC_SHOOT] == true) {
 				App->particles->AddParticle(App->particles->basic_shoot, position.x + 40, position.y, COLLIDER_PLAYER_SHOT);
+				App->tentacles->ShootLaser();
 				App->audio->PlaySound(App->particles->basic_shoot.fx);
 			}
-		}
 
-		if (powerup[BOMB_SHOOT] == true) {
-			if (SDL_GetTicks() - aux_time >= 1000) {
-				aux_time = SDL_GetTicks();
-				App->particles->AddParticle(App->particles->bomb, position.x + 20, position.y, COLLIDER_PLAYER_SHOT);
+			if (SDL_GetTicks() - start_time >= 1000) {
+				if (powerup[BOMB_SHOOT] == true) {
+					App->particles->AddParticle(App->particles->bomb, position.x + 20, position.y, COLLIDER_PLAYER_SHOT);
+				}
+			}
+			start_time = SDL_GetTicks();
+
+		}
+		else if (App->input->keyboard[SDL_SCANCODE_SPACE] == KEY_STATE::KEY_REPEAT) {
+			if (powerup[BASIC_SHOOT] == true) {
+				if (SDL_GetTicks() - start_time >= 500) {
+					start_time = SDL_GetTicks();
+					App->tentacles->ShootLaser();
+					App->particles->AddParticle(App->particles->basic_shoot, position.x + 40, position.y, COLLIDER_PLAYER_SHOT);
+					App->audio->PlaySound(App->particles->basic_shoot.fx);
+				}
+			}
+
+			if (powerup[BOMB_SHOOT] == true) {
+				if (SDL_GetTicks() - aux_time >= 1000) {
+					aux_time = SDL_GetTicks();
+					App->particles->AddParticle(App->particles->bomb, position.x + 20, position.y, COLLIDER_PLAYER_SHOT);
+				}
 			}
 		}
-	}
 
-	if (App->input->keyboard[SDL_SCANCODE_S] == KEY_STATE::KEY_IDLE	&& App->input->keyboard[SDL_SCANCODE_W] == KEY_STATE::KEY_IDLE
-		&& (downwardreturn.islastframe() && upwardreturn.islastframe())) {
-		current_animation = &idle;
-		current_animation->Reset();
+		if (App->input->keyboard[SDL_SCANCODE_S] == KEY_STATE::KEY_IDLE	&& App->input->keyboard[SDL_SCANCODE_W] == KEY_STATE::KEY_IDLE
+			&& (downwardreturn.islastframe() && upwardreturn.islastframe())) {
+			current_animation = &idle;
+			current_animation->Reset();
+		}
+
 	}
 	//Collider nau
 	collider->SetPos(position.x+10, position.y+3);
@@ -207,8 +208,6 @@ update_status ModulePlayer::Update()
 	// Draw everything --------------------------------------
 	if (!dead)
 		App->render->Blit(graphics, position.x, position.y, &current_animation->GetCurrentFrame());
-
-
 	else{
 		
 		App->font->BlitText(120, 100, font_gameover, "game over");
@@ -221,15 +220,6 @@ update_status ModulePlayer::Update()
 	}
 	collider->SetPos(position.x + 4, position.y + 1);//SET POS PLAYER_COLLIDER
 	
-	/*
-	sprintf_s(score_text, 10, "%7d", score);
-
-
-	//Draw UI 
-	
-	App->font->BlitText(80, 240, font_score, score_text);
-	App->font->BlitText(32, 240, font_score, "score");
-	*/
 
 	return UPDATE_CONTINUE;
 }
@@ -251,24 +241,21 @@ void ModulePlayer::OnCollision(Collider* collider1, Collider* collider2) {
 		App->particles->AddParticle(App->particles->explosion_player, position.x, position.y-24, COLLIDER_NONE);
 		App->audio->PlaySound(death_fx);
 		dead = true;
-		App->tentacles->removeCollider();
-		App->tentacles->CleanUp();
 		collider->to_delete = true;
 		start_time = SDL_GetTicks();
 
 
-		if (life[0] == false && life[1] == false && life[2] == false) {
+		if (life==0) {
 			dead = true;
+			enable_movement = false;
 			App->tentacles->removeCollider();
 			App->tentacles->CleanUp();
 			collider->to_delete = true;
 			start_time = SDL_GetTicks();
 		}
 		else {
-			for (int i = 0; life[i] == true; i++) {
-				life[i] = false;
-				
-			}
+			life--;
+
 		}
 		
 	}
