@@ -39,22 +39,22 @@ ModulePlayer::ModulePlayer()
 	upward.PushBack({ 49 , 0 , 48 , 16 });
 	upward.PushBack({ 0, 0, 48 , 16 });
 	upward.loop = false;
-	upward.speed = 0.075f;
+	upward.speed = 0.06f;
 
 	upwardreturn.PushBack({ 49 , 0 , 48 , 16 });
 	upwardreturn.PushBack({ 97, 0, 48, 16 });
 	upwardreturn.loop = false;
-	upwardreturn.speed = 0.075f;
+	upwardreturn.speed = 0.06f;
 
 	downward.PushBack({ 145, 0, 48, 16 });
 	downward.PushBack({ 193, 0, 48, 16 });
 	downward.loop = false;
-	downward.speed = 0.075f;
+	downward.speed = 0.06f;
 
 	downwardreturn.PushBack({ 145, 0, 48, 16 });
 	downwardreturn.PushBack({ 97, 0, 48, 16 });
 	downwardreturn.loop = false;
-	downwardreturn.speed = 0.075f;
+	downwardreturn.speed = 0.06f;
 
 	current_animation = &idle;
 
@@ -103,7 +103,7 @@ update_status ModulePlayer::Update()
 	}
 
 	if (enable_movement) {
-		int speed = 3;
+		int speed = 2;
 
 		if (App->input->keyboard[SDL_SCANCODE_D] == KEY_STATE::KEY_REPEAT)
 		{
@@ -133,14 +133,14 @@ update_status ModulePlayer::Update()
 		}
 		if (App->input->keyboard[SDL_SCANCODE_S] == KEY_STATE::KEY_DOWN)
 		{
-			position.y -= speed;
+			position.y += speed * 1.5f;
 			current_animation = &downward;
 			current_animation->Reset();
 
 		}
 		if (App->input->keyboard[SDL_SCANCODE_S] == KEY_STATE::KEY_REPEAT)
 		{
-			position.y += speed;
+			position.y += speed * 1.5f;
 			current_animation = &downward;
 		}
 		if (App->input->keyboard[SDL_SCANCODE_S] == KEY_STATE::KEY_UP) {

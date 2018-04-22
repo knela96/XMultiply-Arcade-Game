@@ -35,7 +35,7 @@ Enemy_PowerupShip::Enemy_PowerupShip(int x, int y, uint PU) : Enemy(x, y)
 void Enemy_PowerupShip::Move()
 {
 	//position = original_position + path->GetCurrentPosition(&animation);
-	position.x--;
+	position.x = position.x -0.7f;
 }
 
 void Enemy_PowerupShip::OnCollision(Collider* collider)
