@@ -42,6 +42,7 @@ public:
 	update_status Update();
 	bool CleanUp();
 	void AddTentacle(const Tentacle& tentacle, int x, int y, bool flip = false, bool anchor = false);
+	void RemoveTentacle();
 	void setPosition(int x, int y);
 	void ShootLaser();
 	void removeCollider();

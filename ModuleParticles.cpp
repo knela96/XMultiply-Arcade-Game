@@ -156,6 +156,17 @@ bool ModuleParticles::CleanUp()
 	return true;
 }
 
+void ModuleParticles::removeParticles() {
+	for (uint i = 0; i < MAX_ACTIVE_PARTICLES; ++i)
+	{
+		if (active[i] != nullptr)
+		{
+			delete active[i];
+			active[i] = nullptr;
+		}
+	}
+}
+
 
 // Update: draw background
 update_status ModuleParticles::Update()

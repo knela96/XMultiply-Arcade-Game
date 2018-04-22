@@ -114,6 +114,17 @@ void ModuleTentacles::AddTentacle(const Tentacle& tentacle, int x, int y, bool f
 	}
 }
 
+void ModuleTentacles::RemoveTentacle(){
+	for (uint i = 0; i < MAX_TENTACLES; ++i)
+	{
+		if (tentacles[i] != nullptr)
+		{
+			delete tentacles[i];
+			tentacles[i] = nullptr;
+		}
+	}
+}
+
 void ModuleTentacles::setPosition(int x, int y) {
 	for (uint i = 0; i < MAX_TENTACLES; ++i)
 	{

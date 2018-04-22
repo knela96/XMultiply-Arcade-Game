@@ -18,10 +18,6 @@
 
 ModulePlayer::ModulePlayer()
 {
-
-	position.x = 100;
-	position.y = 130;
-
 	// idle animation (arcade sprite sheet)
 	idle.PushBack({ 97, 0, 48, 16 });
 	idle.loop = true;
@@ -84,8 +80,8 @@ bool ModulePlayer::Start()
 	 
 	nitroanim = false;
 
-
 	start_time = 0;
+	life = 3;
 	dead = false;
 
 	//Add a collider to the player
@@ -97,7 +93,7 @@ bool ModulePlayer::Start()
 	font_score = App->font->Load("Assets/Sprites/UI/fonts.1.png", "0123456789í.-=éè()óòáú`´!?abcdefghijklmnopqrstuvwxyz", 2);
 	font_gameover = App->font->Load("Assets/Sprites/UI/fonts.2.png", "0123456789·' ºººººººººººººabcdefghijklmnopqrstuvwxyz", 2);
 
-	
+	music = App->audio->LoadM("Assets/Audio Files/Music in OGG/16_Game_Over.ogg");
 
 	return ret;
 }
@@ -169,13 +165,14 @@ update_status ModulePlayer::Update()
 				current_animation->Reset();
 			}
 		}
+		if (App->input->keyboard[SDL_SCANCODE_F2] == KEY_DOWN) {
+			position.x = 4700;
+			position.y = 100;
+		}
 
-		if (App->input->keyboard[SDL_SCANCODE_F3] == KEY_DOWN && SDL_GetTicks() - start_time >= 5000) {
-				start_time = SDL_GetTicks();
-			
-				App->font->BlitText(120, 100, font_gameover, "game over");
-			
-			App->fade->FadeToBlack((Module*)App->scene_stage1, (Module*)App->scene_MainMenu);
+		if (App->input->keyboard[SDL_SCANCODE_F3] == KEY_DOWN && enable_movement) {
+			life = 0;
+			dead = true;
 		}
 
 		if (App->input->keyboard[SDL_SCANCODE_SPACE] == KEY_STATE::KEY_DOWN) {
@@ -229,18 +226,25 @@ update_status ModulePlayer::Update()
 	if (godmode == true)
 		App->font->BlitText(0, 0, App->player->font_score, _godmode);
 	
-	else {
-		
-		
-		if (life == 0 &&  SDL_GetTicks() - start_time >= 1000 ) {
-
-		App->font->BlitText(120, 100, font_gameover, "game over");
-			
-			App->fade->FadeToBlack((Module*)App->scene_stage1, (Module*)App->scene_MainMenu);
-		}
-	}
 	collider->SetPos(position.x + 4, position.y + 1);//SET POS PLAYER_COLLIDER
 	
+	if (dead) {
+		if (life == 0) {
+			if (text_delay == 0) {
+				App->audio->PlayMusic(music);
+				App->scene_stage1->disableModules();
+			}
+			if (text_delay++ <= 150) {
+				App->font->BlitText(120, 100, font_gameover, "game over");
+			}
+			else {
+				App->fade->FadeToBlack((Module*)App->scene_stage1, (Module*)App->scene_MainMenu);
+			}
+		}
+		else {
+			App->scene_stage1->resetmap = true;
+		}
+	}
 	
 
 	return UPDATE_CONTINUE;
@@ -263,30 +267,23 @@ void ModulePlayer::OnCollision(Collider* collider1, Collider* collider2) {
 
 		App->particles->AddParticle(App->particles->explosion_player, position.x, position.y-24, COLLIDER_NONE);
 		App->audio->PlaySound(death_fx);
-		App->tentacles->Disable();
 		dead = true;
 		App->scene_stage1->right = false;
-
-		if (life==0) {
-			//LOSE SCENE
-			collider->to_delete = true;
-		}
-		else {
-			life--;
-			App->scene_stage1->resetmap=true;
-			App->scene_stage1->start_time = SDL_GetTicks();
-		}
-
+		life--;
+		start_time = 0;
 		enable_movement = false;
 		
 	}
 }
 
 void ModulePlayer::resetPlayer() {
-	App->player->dead = false;
-	App->player->position.x = 0;
-	App->player->position.y = 100;
-	App->player->enable_movement = true;
+	dead = false;
+	position.x = 0;
+	position.y = 100;
+	enable_movement = true;
+	current_animation = &idle;
+	powerup[TENTACLE_SHOOT] = false;
+	powerup[BOMB_SHOOT] = false;
 }
 
 

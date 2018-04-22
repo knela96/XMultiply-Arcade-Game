@@ -24,6 +24,7 @@ public:
 	bool Start();
 	bool CleanUp();
 	update_status Update();
+	void disableModules();
 
 public:
 	int index = 0;
@@ -50,7 +51,6 @@ public:
 	Mix_Music* clear_stage;
 	Uint32 start_time;
 	Uint32 aux_time;
-	uint rgb = 255;
 
 	bool injecting = true;
 
@@ -73,7 +73,8 @@ public:
 	bool shipdeployed = false;
 
 	void injectpos();
-
+private:
+	bool clearstage_fx;
 };
 
 #endif // __MODULESCENESTAGE1_H__

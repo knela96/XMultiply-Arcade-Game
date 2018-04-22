@@ -9,6 +9,7 @@
 struct SDL_Texture;
 struct Collider;
 struct Mix_Chunk;
+typedef struct _Mix_Music Mix_Music;
 
 class ModulePlayer : public Module
 {
@@ -33,6 +34,7 @@ public:
 	char score_text[10];
 	uint score = 0;
 	Mix_Chunk* death_fx;
+	Mix_Music* music;
 	Animation idle;
 	Animation forward;
 	Animation nitro;
@@ -49,6 +51,7 @@ public:
 	bool powerup[20];
 	bool dead = false;
 	bool godmode = false;
+	int text_delay;
 	bool AddTentacles();
 	uint life = 3;
 	char _godmode[8] = "godmode";

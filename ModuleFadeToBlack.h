@@ -15,8 +15,8 @@ public:
 	bool Start();
 	update_status Update();
 	bool FadeToBlack(Module* module_off, Module* module_on, float time = 2.0f);
-	bool FadeToBlack(float time = 2.0f);
-	bool FadeonlyBlack(float time = 2.0f);
+	bool FadeToBlack(float time = 1.0f);
+	bool FadeonlyBlack(float time = 1.0f);
 	void resetStep();
 	bool isBlack = false;
 	bool isfadding = false;
