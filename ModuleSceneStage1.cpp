@@ -301,7 +301,7 @@ update_status ModuleSceneStage1::Update()
 			}
 			else {
 				entering = injection.GetCurrentFrame();
-				while (SDL_GetTicks() - aux_time >= 40) {
+				while (SDL_GetTicks() - aux_time >= 19) {
 					App->player->position.y += 1;
 					aux_time = SDL_GetTicks();
 				}
@@ -512,7 +512,7 @@ void ModuleSceneStage1::AddEnemies() {
 	App->enemies->AddEnemy(NEMONA_TENTACLE, 1300, 150, -1);
 
 	//anemona
-	App->enemies->AddEnemy(NEMONA_TENTACLE, 1350, 2, -1,false,180.0f); //GIRA
+	//App->enemies->AddEnemy(NEMONA_TENTACLE, 1350, 2, -1,false,180.0f); //GIRA
 
 // filler
 	App->enemies->AddEnemy(BROWN_WORM, 1450, 100, -1, true);
