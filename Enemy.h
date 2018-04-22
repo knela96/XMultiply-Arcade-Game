@@ -17,6 +17,7 @@ protected:
 public:
 	iPoint position;
 	ENEMY_TYPES type = NO_TYPE;
+	float flip = false;
 
 public:
 	Enemy(int x, int y);
@@ -25,7 +26,7 @@ public:
 	const Collider* GetCollider() const;
 
 	virtual void Move() {};
-	virtual void Draw(SDL_Texture* sprites);
+	virtual void Draw(SDL_Texture* sprites,float flip = 0.0f);
 	virtual void OnCollision(Collider* collider);
 };
 

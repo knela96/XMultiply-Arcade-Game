@@ -459,7 +459,7 @@ void ModuleSceneStage1::AddEnemies() {
 	App->enemies->AddEnemy(NEMONA_TENTACLE, 1300, 150, -1);
 
 	//anemona
-	App->enemies->AddEnemy(NEMONA_TENTACLE, 1350, 2, -1); //GIRA
+	App->enemies->AddEnemy(NEMONA_TENTACLE, 1350, 2, -1,false,180.0f); //GIRA
 
 // filler
 	App->enemies->AddEnemy(BROWN_WORM, 1450, 100, -1, true);

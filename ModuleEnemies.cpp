@@ -75,7 +75,7 @@ update_status ModuleEnemies::Update()
 				enemies[i]->Draw(sprites[BROWN_WORM]);
 				break;
 			case LITTLE_SHRIMP:
-				enemies[i]->Draw(sprites[LITTLE_SHRIMP]);
+				enemies[i]->Draw(sprites[LITTLE_SHRIMP],enemies[i]->flip);
 				break;
 			case NEMONA_TENTACLE:
 				enemies[i]->Draw(sprites[NEMONA_TENTACLE]);
@@ -140,7 +140,7 @@ bool ModuleEnemies::CleanUp()
 	return true;
 }
 
-bool ModuleEnemies::AddEnemy(ENEMY_TYPES type, int x, int y, uint PU, bool move_up)
+bool ModuleEnemies::AddEnemy(ENEMY_TYPES type, int x, int y, uint PU, bool move_up, bool flip)
 {
 	bool ret = false;
 
@@ -150,6 +150,7 @@ bool ModuleEnemies::AddEnemy(ENEMY_TYPES type, int x, int y, uint PU, bool move_
 		{
 			queue[i].type = type;
 			queue[i].move_up = move_up;
+			queue[i].flip = flip;
 			queue[i].x = x;
 			queue[i].y = y;
 			queue[i].PU = PU;

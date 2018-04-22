@@ -15,6 +15,7 @@ struct EnemyInfo
 {
 	ENEMY_TYPES type = ENEMY_TYPES::NO_TYPE;
 	bool move_up;
+	float flip;
 	int x, y;
 	uint PU;
 };
@@ -32,7 +33,7 @@ public:
 	update_status PostUpdate();
 	bool CleanUp();
 	void OnCollision(Collider* c1, Collider* c2);
-	bool AddEnemy(ENEMY_TYPES type, int x, int y, uint PU = -1, bool move_up = false);
+	bool AddEnemy(ENEMY_TYPES type, int x, int y, uint PU = -1, bool move_up = false, bool flip = false);
 
 private:
 

@@ -18,6 +18,7 @@
 
 ModulePlayer::ModulePlayer()
 {
+
 	// idle animation (arcade sprite sheet)
 	idle.PushBack({ 97, 0, 48, 16 });
 	idle.loop = true;
@@ -76,6 +77,9 @@ bool ModulePlayer::Start()
 
 	current_animation = &idle;
 
+	camera_offset.x = App->render->camera.x;
+	camera_offset.y = App->render->camera.y;
+
 	speed = 2;
 	 
 	nitroanim = false;
@@ -123,7 +127,8 @@ update_status ModulePlayer::Update()
 
 		if (App->input->keyboard[SDL_SCANCODE_D] == KEY_STATE::KEY_REPEAT)
 		{
-			position.x += speed;
+			if (position.x + camera_offset.x > App->render->camera.x)
+				position.x += speed;
 		}
 		if (App->input->keyboard[SDL_SCANCODE_A] == KEY_STATE::KEY_REPEAT)
 		{
@@ -173,6 +178,7 @@ update_status ModulePlayer::Update()
 		if (App->input->keyboard[SDL_SCANCODE_F3] == KEY_DOWN && enable_movement) {
 			life = 0;
 			dead = true;
+			text_delay = 0;
 		}
 
 		if (App->input->keyboard[SDL_SCANCODE_SPACE] == KEY_STATE::KEY_DOWN) {

@@ -45,6 +45,7 @@ public:
 	Animation downwardreturn;
 	Animation* current_animation;
 	iPoint position;
+	iPoint camera_offset;
 	Uint32 start_time;
 	Uint32 aux_time;
 	Collider* collider;
