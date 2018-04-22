@@ -131,7 +131,7 @@ update_status ModulePlayer::Update()
 		{
 				position.x += speed;
 		}
-		if (App->input->keyboard[SDL_SCANCODE_A] == KEY_STATE::KEY_REPEAT)
+		if (App->input->keyboard[SDL_SCANCODE_A] == KEY_STATE::KEY_REPEAT &&position.x>App->render->camera.x/SCREEN_SIZE)
 		{
 			position.x -= speed;
 		}
@@ -142,7 +142,7 @@ update_status ModulePlayer::Update()
 			current_animation->Reset();
 
 		}
-		if (App->input->keyboard[SDL_SCANCODE_W] == KEY_STATE::KEY_REPEAT)
+		if (App->input->keyboard[SDL_SCANCODE_W] == KEY_STATE::KEY_REPEAT && position.y>App->render->camera.y)
 		{
 			position.y -= speed;
 			current_animation = &upward;

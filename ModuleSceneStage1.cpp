@@ -384,9 +384,13 @@ void ModuleSceneStage1::resetMap() {
 }
 
 void ModuleSceneStage1::disableModules() {
+
 	right = false;
+
 	App->player->enable_movement = false;
+
 	App->enemies->Disable();
+
 	App->powerup->Disable();
 	App->particles->removeParticles();
 	App->tentacles->RemoveTentacle();
