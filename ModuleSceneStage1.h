@@ -24,7 +24,7 @@ public:
 	update_status Update();
 
 public:
-	
+	int index = 0;
 	SDL_Texture* graphics = nullptr;
 	SDL_Texture* back = nullptr;
 	SDL_Texture* hud = nullptr;
@@ -40,8 +40,11 @@ public:
 	Animation people;
 	Mix_Music* music;
 	Uint32 start_time;
+	Uint32 aux_time;
 	int timer;
 	SDL_Rect screen;
+	char _stageendblit[12] = "";
+	char _stageend[12] = "stage clear";
 
 	bool down = false;
 

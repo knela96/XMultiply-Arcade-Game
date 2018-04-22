@@ -238,7 +238,6 @@ bool ModuleSceneStage1::CleanUp()
 {
 	LOG("Cleaning backround assets");
 	bool ret = true;
-
 	App->textures->Unload(graphics);
 	App->textures->Unload(back);
 	App->player->Disable();
@@ -299,9 +298,17 @@ update_status ModuleSceneStage1::Update()
 		injectpos();
 
 
-		App->render->Blit(injectiontex, injectxy.x, injectxy.y, &entering, 0.5f);
 
 	}
+	else {
+		while (SDL_GetTicks() - aux_time <= 500) {
+			entering = injection.GetCurrentFrame();
+			aux_time = SDL_GetTicks();
+		}
+		injectxy.y--;
+	}
+
+	App->render->Blit(injectiontex, injectxy.x, injectxy.y, &entering, 0.5f);
 
 
 	if (App->input->keyboard[SDL_SCANCODE_RETURN] == 1)
@@ -326,23 +333,20 @@ update_status ModuleSceneStage1::Update()
 
 		SDL_SetTextureColorMod(back, 0, 0, 0);
 		
-		char _stageend[15] = "stage clear";
-		char _stageendblit[15];
 		
 		if (SDL_GetTicks() - start_time >= 500) {
    			start_time = SDL_GetTicks();
-
-			for (int i = 0; i < 12 ; ++i) {
-
-				_stageendblit[i] = _stageend[i];	
-			}
+			if (index < 11)
+				_stageendblit[index] = _stageend[index]; 
+				_stageendblit[index + 1] = _stageend[11]; 
+			index++;
 			
 		}
 		App->font->BlitText(100, 100, font_gameover, _stageendblit);
 		
 		
 		//App->font->BlitText(100, 100, font_gameover, "stage clear");
-		App->font->BlitText(60, 136, font_gameover, "stage bonus 10000");
+		//App->font->BlitText(60, 136, font_gameover, "stage bonus 10000");
 		
 	}
 	else {
@@ -358,7 +362,6 @@ update_status ModuleSceneStage1::Update()
 void ModuleSceneStage1::injectpos() {
 
 	switch (shipdeployed) {
-
 	case false:
 		if (injectxy.y == 0) {
 			
@@ -370,8 +373,8 @@ void ModuleSceneStage1::injectpos() {
 
 			injectxy.y--;
 		}
-		else injectxy.y++;
-
+		else 
+			injectxy.y++;
 		break;
 
 	case true:
@@ -379,13 +382,6 @@ void ModuleSceneStage1::injectpos() {
 
 			injected = true;
 		}
-		else { 
-
-			while (timer < 7) {
-				entering = injection.GetCurrentFrame();
-				timer++;
-			}
-			injectxy.y--; }
 	}
 
 }
