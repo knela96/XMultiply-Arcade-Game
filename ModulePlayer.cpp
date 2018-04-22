@@ -192,6 +192,7 @@ update_status ModulePlayer::Update()
 		if (App->input->keyboard[SDL_SCANCODE_F2] == KEY_DOWN) {
 			position.x = 4700;
 			position.y = 100;
+			App->scene_stage1->disableModules();
 		}
 
 		if (App->input->keyboard[SDL_SCANCODE_F3] == KEY_DOWN && enable_movement) {
@@ -294,9 +295,8 @@ void ModulePlayer::OnCollision(Collider* collider1, Collider* collider2) {
 }
 
 void ModulePlayer::resetPlayer() {
-	position.x = 0 - App->player->current_animation->frames->w;
-	position.y = 100;
 	speed = 2;
+	score = 0;
 	enable_movement = false;
 	current_animation = &idle;
 	App->audio->PlayMusic(App->scene_stage1->music);

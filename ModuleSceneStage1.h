@@ -25,6 +25,7 @@ public:
 	bool CleanUp();
 	update_status Update();
 	void disableModules();
+	void enableModules();
 
 public:
 	int index = 0;
@@ -51,6 +52,7 @@ public:
 	Mix_Music* clear_stage;
 	Uint32 start_time;
 	Uint32 aux_time;
+	int rgb = 255;
 
 	bool injecting = true;
 
