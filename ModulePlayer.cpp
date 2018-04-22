@@ -10,9 +10,8 @@
 #include "ModuleFonts.h"
 #include "ModuleTentacles.h"
 #include "ModuleSceneStage1.h"
-
 #include "ModuleAudio.h"
-
+#include <assert.h>
 #include<stdio.h>
 
 #include "SDL/include/SDL.h"
@@ -40,22 +39,22 @@ ModulePlayer::ModulePlayer()
 	upward.PushBack({ 49 , 0 , 48 , 16 });
 	upward.PushBack({ 0, 0, 48 , 16 });
 	upward.loop = false;
-	upward.speed = 0.075f;
+	upward.speed = 0.06f;
 
 	upwardreturn.PushBack({ 49 , 0 , 48 , 16 });
 	upwardreturn.PushBack({ 97, 0, 48, 16 });
 	upwardreturn.loop = false;
-	upwardreturn.speed = 0.075f;
+	upwardreturn.speed = 0.06f;
 
 	downward.PushBack({ 145, 0, 48, 16 });
 	downward.PushBack({ 193, 0, 48, 16 });
 	downward.loop = false;
-	downward.speed = 0.075f;
+	downward.speed = 0.06f;
 
 	downwardreturn.PushBack({ 145, 0, 48, 16 });
 	downwardreturn.PushBack({ 97, 0, 48, 16 });
 	downwardreturn.loop = false;
-	downwardreturn.speed = 0.075f;
+	downwardreturn.speed = 0.06f;
 
 	current_animation = &idle;
 
@@ -104,7 +103,7 @@ update_status ModulePlayer::Update()
 	}
 
 	if (enable_movement) {
-		int speed = 3;
+		int speed = 2;
 
 		if (App->input->keyboard[SDL_SCANCODE_D] == KEY_STATE::KEY_REPEAT)
 		{
@@ -134,14 +133,14 @@ update_status ModulePlayer::Update()
 		}
 		if (App->input->keyboard[SDL_SCANCODE_S] == KEY_STATE::KEY_DOWN)
 		{
-			position.y -= speed;
+			position.y += speed * 1.5f;
 			current_animation = &downward;
 			current_animation->Reset();
 
 		}
 		if (App->input->keyboard[SDL_SCANCODE_S] == KEY_STATE::KEY_REPEAT)
 		{
-			position.y += speed;
+			position.y += speed * 1.5f;
 			current_animation = &downward;
 		}
 		if (App->input->keyboard[SDL_SCANCODE_S] == KEY_STATE::KEY_UP) {
@@ -149,6 +148,13 @@ update_status ModulePlayer::Update()
 				current_animation = &downwardreturn;
 				current_animation->Reset();
 			}
+		}
+
+		if (App->input->keyboard[SDL_SCANCODE_F3] == KEY_DOWN && SDL_GetTicks() - start_time >= 5000) {
+
+			App->font->BlitText(120, 100, font_gameover, "game over");
+			
+			App->fade->FadeToBlack((Module*)App->scene_stage1, (Module*)App->scene_MainMenu);
 		}
 
 		if (App->input->keyboard[SDL_SCANCODE_SPACE] == KEY_STATE::KEY_DOWN) {
@@ -199,9 +205,14 @@ update_status ModulePlayer::Update()
 	// Draw everything --------------------------------------
 	if (!dead)
 		App->render->Blit(graphics, position.x, position.y, &current_animation->GetCurrentFrame());
-	else{
-		if (life == 0 && SDL_GetTicks() - start_time >= 1000) {
-			App->font->BlitText(120, 100, font_gameover, "game over");
+	
+	else {
+		
+		
+		if (life == 0 &&  SDL_GetTicks() - start_time >= 1000 ) {
+
+		App->font->BlitText(120, 100, font_gameover, "game over");
+			
 			App->fade->FadeToBlack((Module*)App->scene_stage1, (Module*)App->scene_MainMenu);
 		}
 	}
@@ -224,7 +235,8 @@ bool ModulePlayer::CleanUp()
 
 void ModulePlayer::OnCollision(Collider* collider1, Collider* collider2) {
 
-	if (!dead && godmode == false) {
+	
+	if (!dead && godmode == false && collider2->type != COLLIDER_POWERUP) {
 
 		App->particles->AddParticle(App->particles->explosion_player, position.x, position.y-24, COLLIDER_NONE);
 		App->audio->PlaySound(death_fx);

@@ -16,7 +16,7 @@ Enemy_PowerupShip::Enemy_PowerupShip(int x, int y, uint PU) : Enemy(x, y)
 
 	path->PushBack({ -1 , 0 }, 2, &fly);
 
-	collider = App->collision->AddCollider({ 0, 0, 48, 32 }, COLLIDER_TYPE::COLLIDER_ENEMY, (Module*)App->enemies);
+	collider = App->collision->AddCollider({ 0, 0, 30, 20 }, COLLIDER_TYPE::COLLIDER_ENEMY, (Module*)App->enemies);
 
 	original_position.x = x;
 	original_position.y = y;
@@ -34,7 +34,8 @@ Enemy_PowerupShip::Enemy_PowerupShip(int x, int y, uint PU) : Enemy(x, y)
 
 void Enemy_PowerupShip::Move()
 {
-	position = original_position + path->GetCurrentPosition(&animation);
+	//position = original_position + path->GetCurrentPosition(&animation);
+	position.x = position.x -0.7f;
 }
 
 void Enemy_PowerupShip::OnCollision(Collider* collider)

@@ -108,8 +108,6 @@ bool ModuleSceneStage1::Start()
 
 	App->audio->PlaySound(injection_fx);
 
-	
-
 	return ret;
 }
 
