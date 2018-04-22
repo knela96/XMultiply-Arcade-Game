@@ -9,6 +9,7 @@
 #include "ModuleFadeToBlack.h"
 #include "ModuleFonts.h"
 #include "ModuleTentacles.h"
+#include "ModuleSceneStage1.h"
 
 #include "ModuleAudio.h"
 
@@ -209,13 +210,9 @@ update_status ModulePlayer::Update()
 	if (!dead)
 		App->render->Blit(graphics, position.x, position.y, &current_animation->GetCurrentFrame());
 	else{
-		
-		App->font->BlitText(120, 100, font_gameover, "game over");
-
-		if (SDL_GetTicks() - start_time >= 1000) {
-			
+		if (life == 0 && SDL_GetTicks() - start_time >= 1000) {
+			App->font->BlitText(120, 100, font_gameover, "game over");
 			App->fade->FadeToBlack((Module*)App->scene_stage1, (Module*)App->scene_MainMenu);
-
 		}
 	}
 	collider->SetPos(position.x + 4, position.y + 1);//SET POS PLAYER_COLLIDER
@@ -242,21 +239,18 @@ void ModulePlayer::OnCollision(Collider* collider1, Collider* collider2) {
 		App->audio->PlaySound(death_fx);
 		dead = true;
 		collider->to_delete = true;
-		start_time = SDL_GetTicks();
-
+		App->scene_stage1->right = false;
 
 		if (life==0) {
-			dead = true;
-			enable_movement = false;
-			App->tentacles->removeCollider();
-			App->tentacles->CleanUp();
+			//LOSE SCENE
 			collider->to_delete = true;
-			start_time = SDL_GetTicks();
 		}
 		else {
 			life--;
-
+			App->scene_stage1->resetmap();
 		}
+
+		enable_movement = false;
 		
 	}
 }
