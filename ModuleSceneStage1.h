@@ -19,7 +19,9 @@ class ModuleSceneStage1 : public Module
 public:
 	ModuleSceneStage1();
 	~ModuleSceneStage1();
-
+	void resetmap();
+	void AddEnemies();
+	void fadeBlack();
 	bool Start();
 	bool CleanUp();
 	update_status Update();

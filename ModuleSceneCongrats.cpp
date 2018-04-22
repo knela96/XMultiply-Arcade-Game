@@ -11,7 +11,6 @@
 #include "Application.h"
 #include "ModuleTextures.h"
 #include "ModuleSceneStage1.h"
-#include "ModuleSceneStage2.h"
 #include "ModuleParticles.h"
 #include "ModuleAudio.h"
 
@@ -44,9 +43,7 @@ bool ModuleSceneCongrats::Start()
 update_status ModuleSceneCongrats::Update()
 {
 	// Draw everything --------------------------------------
-	App->render->Blit(graphics, 0, 0, &background, 1.0f); // back of the room
-
-														  // TODO 2: make so pressing SPACE the KEN stage is loaded
+	App->render->Blit(graphics, 0, 0, &background, 1.0f);
 	if (App->input->keyboard[SDL_SCANCODE_RETURN] == 1)
 	{
 		App->fade->FadeToBlack(App->scene_congrats, App->scene_MainMenu, 2);

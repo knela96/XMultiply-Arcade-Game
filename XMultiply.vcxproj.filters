@@ -16,6 +16,9 @@
     <ClCompile Include="ModuleInput.cpp">
       <Filter>Modules</Filter>
     </ClCompile>
+    <ClCompile Include="ModulePlayer.cpp">
+      <Filter>Modules</Filter>
+    </ClCompile>
     <ClCompile Include="ModuleRender.cpp">
       <Filter>Modules</Filter>
     </ClCompile>
@@ -38,9 +41,6 @@
       <Filter>Modules\Scenes</Filter>
     </ClCompile>
     <ClCompile Include="ModuleSceneStage1.cpp">
-      <Filter>Modules\Scenes</Filter>
-    </ClCompile>
-    <ClCompile Include="ModuleSceneStage2.cpp">
       <Filter>Modules\Scenes</Filter>
     </ClCompile>
     <ClCompile Include="ModuleParticles.cpp">
@@ -73,12 +73,15 @@
     <ClCompile Include="ModuleTentacles.cpp">
       <Filter>Modules\Player</Filter>
     </ClCompile>
+<<<<<<< HEAD
+=======
     <ClCompile Include="ModulePlayer.cpp">
       <Filter>Modules\Player</Filter>
     </ClCompile>
     <ClCompile Include="ModulePowerUp.cpp">
       <Filter>Modules</Filter>
     </ClCompile>
+>>>>>>> ec8a8e488207abc91a4e68d232d38abb0b8d9d1d
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Animation.h">
@@ -105,6 +108,9 @@
     <ClInclude Include="ModuleInput.h">
       <Filter>Modules</Filter>
     </ClInclude>
+    <ClInclude Include="ModulePlayer.h">
+      <Filter>Modules</Filter>
+    </ClInclude>
     <ClInclude Include="ModuleRender.h">
       <Filter>Modules</Filter>
     </ClInclude>
@@ -127,9 +133,6 @@
       <Filter>Modules\Scenes</Filter>
     </ClInclude>
     <ClInclude Include="ModuleSceneStage1.h">
-      <Filter>Modules\Scenes</Filter>
-    </ClInclude>
-    <ClInclude Include="ModuleSceneStage2.h">
       <Filter>Modules\Scenes</Filter>
     </ClInclude>
     <ClInclude Include="ModuleParticles.h">
@@ -165,12 +168,15 @@
     <ClInclude Include="ModuleTentacles.h">
       <Filter>Modules\Player</Filter>
     </ClInclude>
+<<<<<<< HEAD
+=======
     <ClInclude Include="ModulePlayer.h">
       <Filter>Modules\Player</Filter>
     </ClInclude>
     <ClInclude Include="ModulePowerUp.h">
       <Filter>Modules</Filter>
     </ClInclude>
+>>>>>>> ec8a8e488207abc91a4e68d232d38abb0b8d9d1d
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Containers">
