@@ -19,7 +19,7 @@ class ModuleSceneStage1 : public Module
 public:
 	ModuleSceneStage1();
 	~ModuleSceneStage1();
-	void resetmap();
+	void resetMap();
 	void AddEnemies();
 	void fadeBlack();
 	bool Start();
@@ -41,7 +41,8 @@ public:
 	Animation injection;
 
 	Animation injection_up;
-
+	bool resetmap = false;
+	bool cleaned = false;
 	SDL_Rect background;
 	Animation flag;
 	Animation people;

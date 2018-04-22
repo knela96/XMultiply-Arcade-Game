@@ -59,8 +59,6 @@ ModulePlayer::ModulePlayer()
 
 	current_animation = &idle;
 
-
-
 }
 
 ModulePlayer::~ModulePlayer()
@@ -74,6 +72,8 @@ bool ModulePlayer::Start()
 	graphics = App->textures->Load("Assets/Player.png"); // arcade version
 	
 	death_fx = App->audio->LoadS("Assets/Audio Files/SFX in WAV/xmultipl-044.wav");
+
+	current_animation = &idle;
 
 	start_time = 0;
 	dead = false;
@@ -238,7 +238,8 @@ void ModulePlayer::OnCollision(Collider* collider1, Collider* collider2) {
 		}
 		else {
 			life--;
-			App->scene_stage1->resetmap();
+			App->scene_stage1->resetmap=true;
+			App->scene_stage1->start_time = SDL_GetTicks();
 		}
 
 		enable_movement = false;

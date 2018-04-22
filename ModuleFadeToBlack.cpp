@@ -37,9 +37,6 @@ update_status ModuleFadeToBlack::Update()
 		{
 			if(now >= total_time)
 			{
-				// TODO 3: enable / disable the modules received when FadeToBlacks() gets called
-				
-				// ---
 				total_time += total_time;
 				start_time = SDL_GetTicks();
 				current_step = fade_step::fade_from_black;
@@ -50,6 +47,14 @@ update_status ModuleFadeToBlack::Update()
 				else {
 					isBlack = true;
 				}
+			}
+		} break;
+
+		case fade_step::fade_only_black:
+		{
+			if (now >= total_time)
+			{
+				isBlack = true;
 			}
 		} break;
 
@@ -123,4 +128,25 @@ bool ModuleFadeToBlack::FadeToBlack(float time)
 	}
 
 	return ret;
+}
+
+bool ModuleFadeToBlack::FadeonlyBlack(float time)
+{
+	bool ret = false;
+
+	if (current_step == fade_step::none && !isBlack)
+	{
+		current_step = fade_step::fade_only_black;
+		start_time = SDL_GetTicks();
+		total_time = (Uint32)(time * 0.5f * 1000.0f);
+		ret = true;
+		isfadding = true;
+	}
+
+	return ret;
+}
+
+void ModuleFadeToBlack::resetStep()
+{
+	current_step = fade_step::none;
 }
