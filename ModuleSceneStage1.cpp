@@ -293,27 +293,38 @@ update_status ModuleSceneStage1::Update()
 	
 	if(App->player->position.x >= 4700 || App->input->keyboard[SDL_SCANCODE_F2] == KEY_DOWN) //4700
 	{
-		if (rgb == 255) {
-
-			App->audio->PlayMusic(clear_stage);
-		}
+		App->particles->Disable();
+		App->enemies->Disable();
+		hud = nullptr;
+		//App->player->score = NULL;
 		
-		if (SDL_GetTicks() - start_time >= 500) {
-   			start_time = SDL_GetTicks();
+		
+		
+
+		App->audio->PlayMusic(clear_stage);
+		
+		SDL_SetTextureColorMod(graphics, 0, 0, 0);
+		SDL_SetTextureColorMod(back, 0, 0, 0);
+
+		if (SDL_GetTicks() - start_time >= 500 ) {
+			start_time = SDL_GetTicks();
 			
-			if (index < 17){
+			if (index < 17) {
 
 				_stageendblit[index] = _stageend[index];
 				_stageendblit2[index] = _stageend2[index];
 			}
-				_stageendblit[index + 1] = _stageend[11];
-				_stageendblit2[index + 1] = _stageend2[17];
-				index++;
-		}
+			_stageendblit[index + 1] = _stageend[11];
+			_stageendblit2[index + 1] = _stageend2[17];
+			index++;
 
+
+			
+
+		}
+		
 		App->font->BlitText(100, 100, font_gameover, _stageendblit);
 		App->font->BlitText(60, 136, font_gameover, _stageendblit2);
-		
 	}
 	else {
 		sprintf_s(App->player->score_text, 10, "%7d", App->player->score);
@@ -415,6 +426,51 @@ void ModuleSceneStage1::AddEnemies(){
 	App->enemies->AddEnemy(NEMONA_TENTACLE, 1038, 164, -1);
 	App->enemies->AddEnemy(NEMONA_TENTACLE, 1280, 150, -1);
 
+	App->enemies->AddEnemy(BROWN_WORM, 455, 100, -1, true);
+	App->enemies->AddEnemy(BROWN_WORM, 465, 100, -1, true);
+	App->enemies->AddEnemy(BROWN_WORM, 475, 100, -1, true);
+	App->enemies->AddEnemy(BROWN_WORM, 485, 100, -1, true);
+	App->enemies->AddEnemy(BROWN_WORM, 495, 100, -1, true);
+	App->enemies->AddEnemy(BROWN_WORM, 505, 100, -1, true);
+	App->enemies->AddEnemy(BROWN_WORM, 515, 100, -1, true);
+
+
+
+	App->enemies->AddEnemy(BROWN_WORM, 455, 100, -1);
+	App->enemies->AddEnemy(BROWN_WORM, 465, 100, -1);
+	App->enemies->AddEnemy(BROWN_WORM, 475, 100, -1);
+	App->enemies->AddEnemy(BROWN_WORM, 485, 100, -1);
+	App->enemies->AddEnemy(BROWN_WORM, 495, 100, -1);
+	App->enemies->AddEnemy(BROWN_WORM, 505, 100, -1);
+	App->enemies->AddEnemy(BROWN_WORM, 515, 100, -1);
+
+	App->enemies->AddEnemy(BROWN_WORM, 900, 100, -1, true);
+	App->enemies->AddEnemy(BROWN_WORM, 910, 100, -1, true);
+	App->enemies->AddEnemy(BROWN_WORM, 920, 100, -1, true);
+	App->enemies->AddEnemy(BROWN_WORM, 930, 100, -1, true);
+	App->enemies->AddEnemy(BROWN_WORM, 940, 100, -1, true);
+
+	App->enemies->AddEnemy(BROWN_WORM, 900, 100, -1);
+	App->enemies->AddEnemy(BROWN_WORM, 910, 100, -1);
+	App->enemies->AddEnemy(BROWN_WORM, 920, 100, -1);
+	App->enemies->AddEnemy(BROWN_WORM, 930, 100, -1);
+	App->enemies->AddEnemy(BROWN_WORM, 940, 100, -1);
+
+
+	App->enemies->AddEnemy(LITTLE_SHRIMP, 530, 50, -1);
+	App->enemies->AddEnemy(LITTLE_SHRIMP, 545, 40, -1);
+
+
+	App->enemies->AddEnemy(LITTLE_SHRIMP, 600, 50, -1);
+	App->enemies->AddEnemy(LITTLE_SHRIMP, 615, 40, -1);
+
+	App->enemies->AddEnemy(LITTLE_SHRIMP, 1100, 60, -1);
+	App->enemies->AddEnemy(LITTLE_SHRIMP, 1150, 40, -1);
+
+	App->enemies->AddEnemy(NEMONA_TENTACLE, 520, 148, -1);
+	App->enemies->AddEnemy(NEMONA_TENTACLE, 1038, 160, -1);
+	App->enemies->AddEnemy(NEMONA_TENTACLE, 1038, 164, -1);
+	App->enemies->AddEnemy(NEMONA_TENTACLE, 1280, 150, -1);
 	//POWERUPS
 
 	App->enemies->AddEnemy(POWERUPSHIP, 600, 130, 1);

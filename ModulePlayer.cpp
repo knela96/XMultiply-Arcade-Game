@@ -99,6 +99,8 @@ update_status ModulePlayer::Update()
 	{
 		godmode = !godmode;
 	}
+	if (godmode == true)
+	App->font->BlitText(0, 0, App->player->font_score, _godmode);
 
 	if (enable_movement) {
 		int speed = 2;
@@ -149,8 +151,9 @@ update_status ModulePlayer::Update()
 		}
 
 		if (App->input->keyboard[SDL_SCANCODE_F3] == KEY_DOWN && SDL_GetTicks() - start_time >= 5000) {
-
-			App->font->BlitText(120, 100, font_gameover, "game over");
+				start_time = SDL_GetTicks();
+			
+				App->font->BlitText(120, 100, font_gameover, "game over");
 			
 			App->fade->FadeToBlack((Module*)App->scene_stage1, (Module*)App->scene_MainMenu);
 		}
