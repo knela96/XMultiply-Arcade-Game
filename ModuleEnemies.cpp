@@ -178,7 +178,7 @@ void ModuleEnemies::SpawnEnemy(const EnemyInfo& info)
 			enemies[i]->type = ENEMY_TYPES::NEMONA_TENTACLE;
 			break;
 		case ENEMY_TYPES::POWERUPSHIP:
-			enemies[i] = new Enemy_PowerupShip(info.x, info.y);
+			enemies[i] = new Enemy_PowerupShip(info.x, info.y, info.PU);
 			enemies[i]->type = ENEMY_TYPES::POWERUPSHIP;
 			break;
 		}

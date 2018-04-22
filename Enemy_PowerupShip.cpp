@@ -3,8 +3,10 @@
 #include "ModuleCollision.h"
 #include "ModuleParticles.h"
 #include "ModuleRender.h"
+#include "ModulePowerUp.h"
 
-Enemy_PowerupShip::Enemy_PowerupShip(int x, int y) : Enemy(x, y)
+
+Enemy_PowerupShip::Enemy_PowerupShip(int x, int y, uint PU) : Enemy(x, y)
 {
 	fly.PushBack({ 68, 11,28,18 });
 	fly.PushBack({ 68, 11,28,18 });
@@ -12,12 +14,22 @@ Enemy_PowerupShip::Enemy_PowerupShip(int x, int y) : Enemy(x, y)
 
 	animation = &fly;
 
-	path->PushBack({ 0 , 0 }, 2, &fly);
+	path->PushBack({ -1 , 0 }, 2, &fly);
 
 	collider = App->collision->AddCollider({ 0, 0, 48, 32 }, COLLIDER_TYPE::COLLIDER_ENEMY, (Module*)App->enemies);
 
 	original_position.x = x;
 	original_position.y = y;
+
+	switch (PU)
+	{
+	case 1: 
+		p = App->powerup->AddPowerUp(App->powerup->tentacles_powerup, position.x + 2, position.y + 16, COLLIDER_POWERUP);
+		break;
+	case 2: 
+		p = App->powerup->AddPowerUp(App->powerup->bomb_powerup, position.x + 2, position.y + 16, COLLIDER_POWERUP); 
+		break;
+	}
 }
 
 void Enemy_PowerupShip::Move()
@@ -27,6 +39,6 @@ void Enemy_PowerupShip::Move()
 
 void Enemy_PowerupShip::OnCollision(Collider* collider)
 {
-	
-	App->particles->AddParticle(App->particles->Powerup, position.x, position.y,COLLIDER_POWERUP);
+	if (p != nullptr)p->enabled = true;
+
 }
