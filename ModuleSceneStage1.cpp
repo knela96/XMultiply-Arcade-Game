@@ -347,13 +347,8 @@ update_status ModuleSceneStage1::Update()
 	
 	if(App->player->position.x >= 400 ) //4700
 	{
-
-
-		App->audio->UnloadM(music);
-		music = nullptr;
-		App->audio->PlayMusic(clear_stage);
-		
-		
+		if(rgb==255)
+			App->audio->PlayMusic(clear_stage);
 		
 		App->particles->Disable();
 		App->enemies->Disable();
