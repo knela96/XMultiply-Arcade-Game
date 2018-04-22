@@ -10,7 +10,6 @@
 #include "ModuleFonts.h"
 #include "ModuleTentacles.h"
 #include "ModuleSceneStage1.h"
-
 #include "ModuleAudio.h"
 
 #include<stdio.h>
@@ -151,6 +150,13 @@ update_status ModulePlayer::Update()
 			}
 		}
 
+		if (App->input->keyboard[SDL_SCANCODE_F3] == KEY_DOWN && SDL_GetTicks() - start_time >= 5000) {
+
+			App->font->BlitText(120, 100, font_gameover, "game over");
+			
+			App->fade->FadeToBlack((Module*)App->scene_stage1, (Module*)App->scene_MainMenu);
+		}
+
 		if (App->input->keyboard[SDL_SCANCODE_SPACE] == KEY_STATE::KEY_DOWN) {
 
 			if (powerup[BASIC_SHOOT] == true) {
@@ -199,9 +205,14 @@ update_status ModulePlayer::Update()
 	// Draw everything --------------------------------------
 	if (!dead)
 		App->render->Blit(graphics, position.x, position.y, &current_animation->GetCurrentFrame());
-	else{
-		if (life == 0 && SDL_GetTicks() - start_time >= 1000) {
+	
+	else {
+		
+		
+		if (life == 0 &&  SDL_GetTicks() - start_time >= 1000 ) {
+
 			App->font->BlitText(120, 100, font_gameover, "game over");
+			
 			App->fade->FadeToBlack((Module*)App->scene_stage1, (Module*)App->scene_MainMenu);
 		}
 	}

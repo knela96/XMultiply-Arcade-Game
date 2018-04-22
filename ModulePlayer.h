@@ -45,7 +45,7 @@ public:
 	bool dead = false;
 	bool godmode = false;
 	bool AddTentacles();
-	uint life = 3;
+	uint life = 1;
 	char _godmode[8] = "godmode";
 };
 
