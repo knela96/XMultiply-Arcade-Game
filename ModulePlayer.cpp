@@ -23,12 +23,13 @@ ModulePlayer::ModulePlayer()
 	idle.PushBack({ 97, 0, 48, 16 });
 	idle.loop = true;
 	idle.speed = 0.1f;
-	
-	nitro.PushBack({146,174,42,14});
-	nitro.PushBack({146,145,42,14});
-	nitro.PushBack({146,160,42,14});
+
+	nitro.PushBack({ 208,80,48,16 });
+	nitro.PushBack({ 208,64,48,16 });
+	nitro.PushBack({ 208,48,48,16});
+	nitro.PushBack({ 240,144,16,16 });
 	nitro.loop = true;
-	nitro.speed = 0.2f;
+	nitro.speed = 0.1f;
 
 	forward.PushBack({ 97, 0, 48, 16 });
 	forward.loop = false;
@@ -71,7 +72,7 @@ bool ModulePlayer::Start()
 {
 	LOG("Loading player textures");
 	bool ret = true;
-	graphics = App->textures->Load("Assets/Player.png"); // arcade version
+	graphics = App->textures->Load("Assets/Sprites/Character/Player.png"); // arcade version
 	
 	death_fx = App->audio->LoadS("Assets/Audio Files/SFX in WAV/xmultipl-044.wav");
 
@@ -124,8 +125,8 @@ bool ModulePlayer::CleanUp()
 update_status ModulePlayer::Update()
 {
 	if (nitroanim) {
-		if (counter < 40) {
-			App->render->Blit(graphics, position.x - 35, position.y + 2, &(nitro.GetCurrentFrame()));
+		if (counter < 60) {
+			App->render->Blit(graphics, position.x - 25, position.y + 2, &(nitro.GetCurrentFrame()));
 			counter +=1;
 		}
 		else {
