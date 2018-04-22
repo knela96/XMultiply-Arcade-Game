@@ -125,8 +125,8 @@ bool ModulePlayer::CleanUp()
 update_status ModulePlayer::Update()
 {
 	if (nitroanim) {
-		if (counter < 60) {
-			App->render->Blit(graphics, position.x - 25, position.y + 2, &(nitro.GetCurrentFrame()));
+		if (counter < 20) {
+			App->render->Blit(graphics, position.x - 40, position.y , &(nitro.GetCurrentFrame()));
 			counter +=1;
 		}
 		else {
