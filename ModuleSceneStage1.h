@@ -21,7 +21,6 @@ public:
 	~ModuleSceneStage1();
 	void resetMap();
 	void AddEnemies();
-	void fadeBlack();
 	bool Start();
 	bool CleanUp();
 	update_status Update();

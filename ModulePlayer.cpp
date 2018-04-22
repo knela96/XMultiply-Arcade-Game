@@ -98,8 +98,6 @@ update_status ModulePlayer::Update()
 	if (App->input->keyboard[SDL_SCANCODE_F5] == KEY_DOWN)
 	{
 		godmode = !godmode;
-		if(godmode == true)
-		App->font->BlitText(0, 0, App->player->font_score, _godmode);
 	}
 
 	if (enable_movement) {
@@ -205,6 +203,8 @@ update_status ModulePlayer::Update()
 	// Draw everything --------------------------------------
 	if (!dead)
 		App->render->Blit(graphics, position.x, position.y, &current_animation->GetCurrentFrame());
+	if (godmode == true)
+		App->font->BlitText(0, 0, App->player->font_score, _godmode);
 	
 	else {
 		
@@ -240,8 +240,8 @@ void ModulePlayer::OnCollision(Collider* collider1, Collider* collider2) {
 
 		App->particles->AddParticle(App->particles->explosion_player, position.x, position.y-24, COLLIDER_NONE);
 		App->audio->PlaySound(death_fx);
+		App->tentacles->Disable();
 		dead = true;
-		collider->to_delete = true;
 		App->scene_stage1->right = false;
 
 		if (life==0) {
@@ -257,6 +257,13 @@ void ModulePlayer::OnCollision(Collider* collider1, Collider* collider2) {
 		enable_movement = false;
 		
 	}
+}
+
+void ModulePlayer::resetPlayer() {
+	App->player->dead = false;
+	App->player->position.x = 0;
+	App->player->position.y = 100;
+	App->player->enable_movement = true;
 }
 
 bool ModulePlayer::AddTentacles() {

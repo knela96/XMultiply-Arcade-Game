@@ -20,6 +20,7 @@ public:
 	update_status Update();
 	bool CleanUp();
 	void OnCollision(Collider* collider1, Collider* collider2);
+	void resetPlayer();
 
 public:
 	bool enable_movement = false;

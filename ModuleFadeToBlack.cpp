@@ -138,7 +138,7 @@ bool ModuleFadeToBlack::FadeonlyBlack(float time)
 	{
 		current_step = fade_step::fade_only_black;
 		start_time = SDL_GetTicks();
-		total_time = (Uint32)(time * 0.5f * 1000.0f);
+		total_time = (Uint32)(time * 1000.0f);
 		ret = true;
 		isfadding = true;
 	}
