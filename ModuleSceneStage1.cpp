@@ -345,7 +345,7 @@ update_status ModuleSceneStage1::Update()
 	
 	
 	
-	if(App->player->position.x >= 400 ) //4700
+	if(App->player->position.x >= 4700 ) //4700
 	{
 		if(rgb==255)
 			App->audio->PlayMusic(clear_stage);

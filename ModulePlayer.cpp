@@ -112,6 +112,14 @@ bool ModulePlayer::Start()
 // Update: draw background
 update_status ModulePlayer::Update()
 {
+
+	if (App->input->keyboard[SDL_SCANCODE_F5] == KEY_DOWN)
+	{
+		godmode = !godmode;
+		if(godmode == true)
+		App->font->BlitText(0, 0, App->player->font_score, _godmode);
+	}
+
 	if (enable_movement) {
 		int speed = 3;
 
@@ -220,6 +228,7 @@ update_status ModulePlayer::Update()
 	}
 	collider->SetPos(position.x + 4, position.y + 1);//SET POS PLAYER_COLLIDER
 	
+	
 
 	return UPDATE_CONTINUE;
 }
@@ -236,7 +245,7 @@ bool ModulePlayer::CleanUp()
 
 void ModulePlayer::OnCollision(Collider* collider1, Collider* collider2) {
 
-	if (!dead) {
+	if (!dead && godmode == false) {
 
 		App->particles->AddParticle(App->particles->explosion_player, position.x, position.y-24, COLLIDER_NONE);
 		App->audio->PlaySound(death_fx);
