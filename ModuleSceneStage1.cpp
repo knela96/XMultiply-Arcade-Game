@@ -301,7 +301,7 @@ update_status ModuleSceneStage1::Update()
 	{
 
 		if (App->input->keyboard[SDL_SCANCODE_SPACE] == KEY_STATE::KEY_DOWN)
-			App->fade->FadeToBlack((Module*)this, (Module*)App->scene_MainMenu);//CHECK FADE
+			App->fade->FadeToBlack((Module*)App->scene_stage1, (Module*)App->scene_MainMenu);//CHECK FADE
 
 		hud = nullptr;
 		App->player->score = 0;
