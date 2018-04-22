@@ -27,6 +27,12 @@ ModulePlayer::ModulePlayer()
 	idle.loop = true;
 	idle.speed = 0.1f;
 	
+	nitro.PushBack({146,174,42,14});
+	nitro.PushBack({146,145,42,14});
+	nitro.PushBack({146,160,42,14});
+	nitro.loop = true;
+	nitro.speed = 0.2f;
+
 	forward.PushBack({ 97, 0, 48, 16 });
 	forward.loop = false;
 	forward.speed = 0.1f;
@@ -74,6 +80,11 @@ bool ModulePlayer::Start()
 
 	current_animation = &idle;
 
+	speed = 2;
+	 
+	nitroanim = false;
+
+
 	start_time = 0;
 	dead = false;
 
@@ -94,7 +105,17 @@ bool ModulePlayer::Start()
 // Update: draw background
 update_status ModulePlayer::Update()
 {
+	if (nitroanim) {
+		if (counter < 40000) {
+			App->render->Blit(graphics, position.x - 35, position.y + 2, &(nitro.GetCurrentFrame()));
+			counter +=1;
+		}
+		else
+			counter = 0;
+			nitroanim = false;
+	}
 
+	
 	if (App->input->keyboard[SDL_SCANCODE_F5] == KEY_DOWN)
 	{
 		godmode = !godmode;
@@ -103,7 +124,6 @@ update_status ModulePlayer::Update()
 	App->font->BlitText(0, 0, App->player->font_score, _godmode);
 
 	if (enable_movement) {
-		int speed = 2;
 
 		if (App->input->keyboard[SDL_SCANCODE_D] == KEY_STATE::KEY_REPEAT)
 		{
@@ -268,6 +288,7 @@ void ModulePlayer::resetPlayer() {
 	App->player->position.y = 100;
 	App->player->enable_movement = true;
 }
+
 
 bool ModulePlayer::AddTentacles() {
 

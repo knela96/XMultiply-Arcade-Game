@@ -43,6 +43,12 @@ bool ModulePowerUp::Start()
 	tentacles_powerup.type = TENTACLES_POWERUP;
 	tentacles_powerup.enabled = false;
 
+	speed_powerup.anim.PushBack({68, 74, 24, 13});
+	speed_powerup.anim.PushBack({164, 74, 24, 13});
+	speed_powerup.anim.loop = true;
+	speed_powerup.anim.speed = 0.2f;
+	speed_powerup.type = SPEED_POWERUP;
+	speed_powerup.enabled = false;
 	return ret;
 }
 
@@ -161,6 +167,10 @@ void PowerUp::PU_Effect()
 		break;
 	case BOMB_POWERUP:
 		App->player->powerup[BOMB_SHOOT] = true;
+		break;
+	case SPEED_POWERUP:
+		App->player->speed += 1;
+		App->player->nitroanim=true;
 		break;
 	}
 }

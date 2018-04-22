@@ -24,6 +24,9 @@ public:
 
 public:
 	bool enable_movement = false;
+	bool nitroanim = false;
+	int counter = 0;
+	int speed = 2;
 	SDL_Texture * graphics = nullptr;
 	int font_score = -1;
 	int font_gameover = -1;
@@ -32,6 +35,7 @@ public:
 	Mix_Chunk* death_fx;
 	Animation idle;
 	Animation forward;
+	Animation nitro;
 	Animation backward;
 	Animation upward;
 	Animation downward;

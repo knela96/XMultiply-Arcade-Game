@@ -24,6 +24,7 @@ enum POWERUP_TYPE
 	_NONE,
 	TENTACLES_POWERUP,
 	BOMB_POWERUP,
+	SPEED_POWERUP
 };
 
 
@@ -67,6 +68,7 @@ public:
 
 	PowerUp bomb_powerup;
 	PowerUp tentacles_powerup;
+	PowerUp speed_powerup;
 
 private:
 
