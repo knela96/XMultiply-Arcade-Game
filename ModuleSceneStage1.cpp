@@ -76,7 +76,8 @@ bool ModuleSceneStage1::Start()
 	injecting = true;
 	aux_time = 0;
 	start_time = 0;
-	index = 0;
+	index1 = 0;
+	index2 = 0;
 	clearstage_fx = false;
 	injection_up.Reset();
 	injection.Reset();
@@ -354,16 +355,20 @@ update_status ModuleSceneStage1::Update()
 		
 		if (SDL_GetTicks() - start_time >= 250 ) {
 			start_time = SDL_GetTicks();
-			
-			if (index < 17) {
-				_stageendblit2[index + 1] = _stageend2[17];
-				_stageendblit2[index] = _stageend2[index];
+
+			if (index1 < 11) {
+				_stageendblit[index1 + 1] = _stageend[11];
+				_stageendblit[index1] = _stageend[index1];
+				index1++;
 			}
-			if (index < 11) {
-				_stageendblit[index + 1] = _stageend[11];
-				_stageendblit[index] = _stageend[index];
+			if (index1 == 11) {
+				show = true;
 			}
-			index++;
+			if (index2 < 17 && show) {
+				_stageendblit2[index2 + 1] = _stageend2[17];
+				_stageendblit2[index2] = _stageend2[index2];
+				index2++;
+			}
 
 		}
 		

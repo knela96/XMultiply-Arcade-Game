@@ -28,7 +28,8 @@ public:
 	void enableModules();
 
 public:
-	int index = 0;
+	uint index1 = 0;
+	uint index2 = 0;
 	
 	SDL_Texture* graphics = nullptr;
 	SDL_Texture* back = nullptr;
@@ -44,6 +45,7 @@ public:
 	Animation injection_up;
 	bool resetmap = false;
 	bool cleaned = false;
+	bool show = false;
 	SDL_Rect background;
 	Animation flag;
 	Animation people;
