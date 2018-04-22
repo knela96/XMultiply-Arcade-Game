@@ -28,6 +28,7 @@ enum PARTICLE_TEXTURE
 	PARTICLES_LASERS,
 	POWERUP,
 	PARTICLES_EXPLOSION,
+	PARTICLES_ENEMYSHOOT,
 };
 enum PARTICLE_TYPE
 {
@@ -41,6 +42,9 @@ enum PARTICLE_TYPE
 	ENEMY_EXPLOSION,
 	TENTACLE_EXPLOSION,
 	BASIC_SHOOT_EXPLOSION,
+	ANEMONA_SHOOT,
+	SHRIMP_SHOOT,
+
 };
 
 struct Particle {
@@ -100,6 +104,8 @@ public:
 	Particle explosion_bullet;
 	Particle explosion_tentacle_bullet;
 	Particle explosion_bomb;
+	Particle anemona_shoot;
+	Particle shrimp_shoot;
 	Particle Powerup;
 	Animation* animation = nullptr;
 

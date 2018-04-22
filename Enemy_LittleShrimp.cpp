@@ -1,6 +1,7 @@
 #include "Application.h"
 #include "Enemy_LittleShrimp.h"
 #include "ModuleCollision.h"
+#include "ModuleParticles.h"
 
 Enemy_LittleShrimp::Enemy_LittleShrimp(int x, int y) : Enemy(x, y)
 {
@@ -24,5 +25,10 @@ Enemy_LittleShrimp::Enemy_LittleShrimp(int x, int y) : Enemy(x, y)
 
 void Enemy_LittleShrimp::Move()
 {
+	shoot++;
 	position = original_position + path->GetCurrentPosition(&animation);
+	if (shoot % 53 == 0) 
+	{
+		App->particles->AddParticle(App->particles->shrimp_shoot, position.x, position.y, COLLIDER_ENEMY_SHOT);
+	}
 }

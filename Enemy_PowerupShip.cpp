@@ -24,10 +24,10 @@ Enemy_PowerupShip::Enemy_PowerupShip(int x, int y, uint PU) : Enemy(x, y)
 	switch (PU)
 	{
 	case 1: 
-		p = App->powerup->AddPowerUp(App->powerup->tentacles_powerup, position.x + 2, position.y + 16, COLLIDER_POWERUP);
+		p = App->powerup->AddPowerUp(App->powerup->tentacles_powerup, position.x + 2, position.y + 10, COLLIDER_POWERUP);
 		break;
 	case 2: 
-		p = App->powerup->AddPowerUp(App->powerup->bomb_powerup, position.x + 2, position.y + 16, COLLIDER_POWERUP); 
+		p = App->powerup->AddPowerUp(App->powerup->bomb_powerup, position.x + 2, position.y + 10, COLLIDER_POWERUP); 
 		break;
 	}
 }

@@ -30,6 +30,7 @@ bool ModuleParticles::Start()
 	graphics[PARTICLES_PLAYER] = App->textures->Load("Assets/Sprites/Character/Player.png");
 	graphics[PARTICLES_LASERS] = App->textures->Load("Assets/Sprites/Character/Lasers.png");
 	graphics[PARTICLES_EXPLOSION] = App->textures->Load("Assets/Sprites/Explosions/Explosions1.png");
+	graphics[PARTICLES_ENEMYSHOOT] = App->textures->Load("Assets/Sprites/Explosions/shots1.png");
 	graphics[POWERUP] = App->textures->Load("Assets/PowerUp/PowerUp.png");
 
 	basic_shoot.anim.PushBack({ 64, 32, 16, 16});
@@ -111,6 +112,24 @@ bool ModuleParticles::Start()
 	Powerup.anim.speed = 0.2f;
 	Powerup.type = NONE;
 
+	anemona_shoot.anim.PushBack({ 3, 2, 8, 8});
+	anemona_shoot.anim.PushBack({ 20, 2, 8, 8});
+	anemona_shoot.anim.PushBack({ 3, 17, 8, 8});
+	anemona_shoot.anim.PushBack({20, 17, 8, 8});
+	anemona_shoot.anim.loop = true;
+	anemona_shoot.anim.speed = 0.2f;
+	anemona_shoot.type = ANEMONA_SHOOT;
+	anemona_shoot.life = 2000;
+
+	shrimp_shoot.anim.PushBack({ 3, 2, 8, 8 });
+	shrimp_shoot.anim.PushBack({ 20, 2, 8, 8 });
+	shrimp_shoot.anim.PushBack({ 3, 17, 8, 8 });
+	shrimp_shoot.anim.PushBack({ 20, 17, 8, 8 });
+	shrimp_shoot.anim.loop = true;
+	shrimp_shoot.anim.speed = 0.2f;
+	shrimp_shoot.type = SHRIMP_SHOOT;
+	shrimp_shoot.life = 2000;
+
 	return ret;
 }
 
@@ -169,10 +188,17 @@ update_status ModuleParticles::Update()
 			case BOMB_EXPLOSION:
 				texture = graphics[PARTICLES_EXPLOSION];
 				break;
+			case ANEMONA_SHOOT:
+				texture = graphics[PARTICLES_ENEMYSHOOT];
+				break;
+			case SHRIMP_SHOOT:
+				texture = graphics[PARTICLES_ENEMYSHOOT];
+				break;
 			default:
 				texture = graphics[NONE];
 				break;
 			}
+
 			if(texture != nullptr)
  				App->render->Blit(texture, p->position.x, p->position.y, &(p->anim.GetCurrentFrame()));
 
@@ -190,6 +216,13 @@ update_status ModuleParticles::Update()
 				case BOMB_SHOOT:
 					p->speed.x = 5;
 					p->speed.y = 0;
+					break;
+				case SHRIMP_SHOOT:
+					p->speed.x = -3;
+					p->speed.y = 1;
+					break;
+				case ANEMONA_SHOOT:
+					p->speed.y = -2;
 					break;
 				}
 				p->fx_played = true;
@@ -232,11 +265,13 @@ void ModuleParticles::OnCollision(Collider* c1, Collider* c2)
 		{
 			p = active[i];
 			switch (active[i]->type) {
+
 			case BASIC_SHOOT:
 				if(c2->type == COLLIDER_WALL)
 					App->audio->PlaySound(p->hit_fx);
 				p = &explosion_bullet;
 				break; 
+
 			case TENTACLE_SHOOT:
 				p = &explosion_tentacle_bullet;
 				break;
@@ -301,6 +336,10 @@ bool Particle::Update()
 	case BOMB_SHOOT:
 		if (speed.x > 2.0f) speed.x -= 0.055f;
 		if (speed.y < 3.0f) speed.y += 0.25f;
+		position.x += speed.x;
+		position.y += speed.y;
+		break;
+	case SHRIMP_SHOOT:
 		position.x += speed.x;
 		position.y += speed.y;
 		break;
