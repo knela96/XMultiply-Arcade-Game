@@ -381,23 +381,43 @@ void ModuleSceneStage1::resetMap() {
 
 void ModuleSceneStage1::AddEnemies(){
 
-	// Enemies
-	App->enemies->AddEnemy(BROWN_WORM, 455, 100, -1, true);
-	App->enemies->AddEnemy(BROWN_WORM, 465, 100, -1, true);
-	App->enemies->AddEnemy(BROWN_WORM, 475, 100, -1, true);
-	App->enemies->AddEnemy(BROWN_WORM, 485, 100, -1, true);
-	App->enemies->AddEnemy(BROWN_WORM, 495, 100, -1, true);
-	App->enemies->AddEnemy(BROWN_WORM, 505, 100, -1, true);
-	App->enemies->AddEnemy(BROWN_WORM, 515, 100, -1, true);//
+//first spiral
+	App->enemies->AddEnemy(BROWN_WORM, 455, 50, -1, true);
+	App->enemies->AddEnemy(BROWN_WORM, 465, 50, -1, true);
+	App->enemies->AddEnemy(BROWN_WORM, 475, 50, -1, true);
+	App->enemies->AddEnemy(BROWN_WORM, 485, 50, -1, true);
+	App->enemies->AddEnemy(BROWN_WORM, 495, 50, -1, true);
+	App->enemies->AddEnemy(BROWN_WORM, 505, 50, -1, true);
+	App->enemies->AddEnemy(BROWN_WORM, 515, 50, -1, true);
 
-	App->enemies->AddEnemy(BROWN_WORM, 455, 100, -1);
-	App->enemies->AddEnemy(BROWN_WORM, 465, 100, -1);
-	App->enemies->AddEnemy(BROWN_WORM, 475, 100, -1);
-	App->enemies->AddEnemy(BROWN_WORM, 485, 100, -1);
-	App->enemies->AddEnemy(BROWN_WORM, 495, 100, -1);
-	App->enemies->AddEnemy(BROWN_WORM, 505, 100, -1);
-	App->enemies->AddEnemy(BROWN_WORM, 515, 100, -1);
 
+
+	App->enemies->AddEnemy(BROWN_WORM, 455, 50, -1);
+	App->enemies->AddEnemy(BROWN_WORM, 465, 50, -1);
+	App->enemies->AddEnemy(BROWN_WORM, 475, 50, -1);
+	App->enemies->AddEnemy(BROWN_WORM, 485, 50, -1);
+	App->enemies->AddEnemy(BROWN_WORM, 495, 50, -1);
+	App->enemies->AddEnemy(BROWN_WORM, 505, 50, -1);
+	App->enemies->AddEnemy(BROWN_WORM, 515, 50, -1);
+
+	
+	
+//2 shrimps
+
+	App->enemies->AddEnemy(LITTLE_SHRIMP, 600, 100, -1);
+	App->enemies->AddEnemy(LITTLE_SHRIMP, 645, 80, -1);
+
+//1 anemona
+	App->enemies->AddEnemy(NEMONA_TENTACLE, 520, 148, -1);
+
+// 2 shrimps
+	App->enemies->AddEnemy(LITTLE_SHRIMP, 760, 50, -1);
+	App->enemies->AddEnemy(LITTLE_SHRIMP, 805, 60, -1);
+
+//powerup1
+	App->enemies->AddEnemy(POWERUPSHIP, 800, 100, 3);
+	
+	//second spiral
 	App->enemies->AddEnemy(BROWN_WORM, 900, 100, -1, true);
 	App->enemies->AddEnemy(BROWN_WORM, 910, 100, -1, true);
 	App->enemies->AddEnemy(BROWN_WORM, 920, 100, -1, true);
@@ -410,71 +430,62 @@ void ModuleSceneStage1::AddEnemies(){
 	App->enemies->AddEnemy(BROWN_WORM, 930, 100, -1);
 	App->enemies->AddEnemy(BROWN_WORM, 940, 100, -1);
 
+//powerup
+	App->enemies->AddEnemy(POWERUPSHIP, 1000, 100, 2);
+//anemona
+	App->enemies->AddEnemy(NEMONA_TENTACLE, 1000, 168, -1);
+//powerup
+	App->enemies->AddEnemy(POWERUPSHIP, 1050, 100, 1);
 
-	App->enemies->AddEnemy(LITTLE_SHRIMP, 530, 50, -1);
-	App->enemies->AddEnemy(LITTLE_SHRIMP, 545, 40, -1);
+//2 shrimps
+	App->enemies->AddEnemy(LITTLE_SHRIMP, 1300, 50, -1);
+	App->enemies->AddEnemy(LITTLE_SHRIMP, 1300, 100, -1);
 
+//powerup
 
-	App->enemies->AddEnemy(LITTLE_SHRIMP, 600, 50, -1);
-	App->enemies->AddEnemy(LITTLE_SHRIMP, 615, 40, -1);
+	App->enemies->AddEnemy(POWERUPSHIP, 1350, 120, 1);
 
-	App->enemies->AddEnemy(LITTLE_SHRIMP, 1100, 60, -1);
-	App->enemies->AddEnemy(LITTLE_SHRIMP, 1150, 40, -1);
+//anemona
+	App->enemies->AddEnemy(NEMONA_TENTACLE, 1300, 150, -1);
 
-	App->enemies->AddEnemy(NEMONA_TENTACLE, 520, 148, -1);
-	App->enemies->AddEnemy(NEMONA_TENTACLE, 1038, 160, -1);
-	App->enemies->AddEnemy(NEMONA_TENTACLE, 1038, 164, -1);
-	App->enemies->AddEnemy(NEMONA_TENTACLE, 1280, 150, -1);
+//anemona
+	App->enemies->AddEnemy(NEMONA_TENTACLE, 1350, 2, -1); //GIRA
 
-	App->enemies->AddEnemy(BROWN_WORM, 455, 100, -1, true);
-	App->enemies->AddEnemy(BROWN_WORM, 465, 100, -1, true);
-	App->enemies->AddEnemy(BROWN_WORM, 475, 100, -1, true);
-	App->enemies->AddEnemy(BROWN_WORM, 485, 100, -1, true);
-	App->enemies->AddEnemy(BROWN_WORM, 495, 100, -1, true);
-	App->enemies->AddEnemy(BROWN_WORM, 505, 100, -1, true);
-	App->enemies->AddEnemy(BROWN_WORM, 515, 100, -1, true);
+//anemona
+	App->enemies->AddEnemy(NEMONA_TENTACLE, 2225, 170, -1);
+//anemona
+	App->enemies->AddEnemy(NEMONA_TENTACLE, 2275, 170, -1);
+//anemona
+	App->enemies->AddEnemy(NEMONA_TENTACLE, 2325, 170, -1);
+//anemona
+	App->enemies->AddEnemy(NEMONA_TENTACLE, 2400, 170, -1);
 
+//anemona
+	App->enemies->AddEnemy(NEMONA_TENTACLE, 3050, 30, -1); //Gira
+//powerup
+	App->enemies->AddEnemy(POWERUPSHIP, 3100, 120, 3);
+//2 shrimps
+	App->enemies->AddEnemy(LITTLE_SHRIMP, 3200, 120, -1);
+	App->enemies->AddEnemy(LITTLE_SHRIMP, 3200, 200, -1);
+//2 shrimps
+	App->enemies->AddEnemy(LITTLE_SHRIMP, 3300, 190, -1);
+	App->enemies->AddEnemy(LITTLE_SHRIMP, 3300, 170, -1);
+// shrimps
+	App->enemies->AddEnemy(LITTLE_SHRIMP, 3400, 200, -1);
+//2 shrimps
+	App->enemies->AddEnemy(LITTLE_SHRIMP, 3500, 300, -1);
+	App->enemies->AddEnemy(LITTLE_SHRIMP, 3500, 250, -1);
+//2 shrimps
+	App->enemies->AddEnemy(LITTLE_SHRIMP, 3600, 280, -1);
+	App->enemies->AddEnemy(LITTLE_SHRIMP, 3600, 300, -1);
+//2 shrimps
+	App->enemies->AddEnemy(LITTLE_SHRIMP, 3700, 280, -1);
+	App->enemies->AddEnemy(LITTLE_SHRIMP, 3750, 315, -1);
+//2 shrimps
+	App->enemies->AddEnemy(LITTLE_SHRIMP, 3850, 300, -1);
+	App->enemies->AddEnemy(LITTLE_SHRIMP, 3900, 330, -1);
+// powerup
+	App->enemies->AddEnemy(POWERUPSHIP, 4000, 330, 1);
 
-
-	App->enemies->AddEnemy(BROWN_WORM, 455, 100, -1);
-	App->enemies->AddEnemy(BROWN_WORM, 465, 100, -1);
-	App->enemies->AddEnemy(BROWN_WORM, 475, 100, -1);
-	App->enemies->AddEnemy(BROWN_WORM, 485, 100, -1);
-	App->enemies->AddEnemy(BROWN_WORM, 495, 100, -1);
-	App->enemies->AddEnemy(BROWN_WORM, 505, 100, -1);
-	App->enemies->AddEnemy(BROWN_WORM, 515, 100, -1);
-
-	App->enemies->AddEnemy(BROWN_WORM, 900, 100, -1, true);
-	App->enemies->AddEnemy(BROWN_WORM, 910, 100, -1, true);
-	App->enemies->AddEnemy(BROWN_WORM, 920, 100, -1, true);
-	App->enemies->AddEnemy(BROWN_WORM, 930, 100, -1, true);
-	App->enemies->AddEnemy(BROWN_WORM, 940, 100, -1, true);
-
-	App->enemies->AddEnemy(BROWN_WORM, 900, 100, -1);
-	App->enemies->AddEnemy(BROWN_WORM, 910, 100, -1);
-	App->enemies->AddEnemy(BROWN_WORM, 920, 100, -1);
-	App->enemies->AddEnemy(BROWN_WORM, 930, 100, -1);
-	App->enemies->AddEnemy(BROWN_WORM, 940, 100, -1);
-
-
-	App->enemies->AddEnemy(LITTLE_SHRIMP, 530, 50, -1);
-	App->enemies->AddEnemy(LITTLE_SHRIMP, 545, 40, -1);
-
-
-	App->enemies->AddEnemy(LITTLE_SHRIMP, 600, 50, -1);
-	App->enemies->AddEnemy(LITTLE_SHRIMP, 615, 40, -1);
-
-	App->enemies->AddEnemy(LITTLE_SHRIMP, 1100, 60, -1);
-	App->enemies->AddEnemy(LITTLE_SHRIMP, 1150, 40, -1);
-
-	App->enemies->AddEnemy(NEMONA_TENTACLE, 520, 148, -1);
-	App->enemies->AddEnemy(NEMONA_TENTACLE, 1038, 160, -1);
-	App->enemies->AddEnemy(NEMONA_TENTACLE, 1038, 164, -1);
-	App->enemies->AddEnemy(NEMONA_TENTACLE, 1280, 150, -1);
-	//POWERUPS
-
-	App->enemies->AddEnemy(POWERUPSHIP, 600, 130, 1);
-	App->enemies->AddEnemy(POWERUPSHIP, 1050, 100, 2);
-	App->enemies->AddEnemy(POWERUPSHIP, 1075, 75);
-	App->enemies->AddEnemy(POWERUPSHIP, 1200, 100);
+	
 }
