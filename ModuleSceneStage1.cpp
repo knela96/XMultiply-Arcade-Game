@@ -193,13 +193,12 @@ bool ModuleSceneStage1::Start()
 	App->audio->PlaySound(injection_fx);
 
 	// Enemies
-	App->enemies->AddEnemy(BROWN_WORM, 455, 100, true);
-	App->enemies->AddEnemy(BROWN_WORM, 465, 100, true);
-	App->enemies->AddEnemy(BROWN_WORM, 475, 100, true);
-	App->enemies->AddEnemy(BROWN_WORM, 485, 100, true);
-	App->enemies->AddEnemy(BROWN_WORM, 495, 100, true);
-	App->enemies->AddEnemy(BROWN_WORM, 505, 100, true);
-	App->enemies->AddEnemy(BROWN_WORM, 515, 100, true);//
+	App->enemies->AddEnemy(BROWN_WORM, 455, 100, -1,true);
+	App->enemies->AddEnemy(BROWN_WORM, 475, 100, -1,true);
+	App->enemies->AddEnemy(BROWN_WORM, 485, 100, -1,true);
+	App->enemies->AddEnemy(BROWN_WORM, 495, 100, -1,true);
+	App->enemies->AddEnemy(BROWN_WORM, 505, 100, -1,true);
+	App->enemies->AddEnemy(BROWN_WORM, 515, 100, -1,true);//
 	
 	App->enemies->AddEnemy(BROWN_WORM, 455, 100);
 	App->enemies->AddEnemy(BROWN_WORM, 465, 100);
@@ -209,11 +208,11 @@ bool ModuleSceneStage1::Start()
 	App->enemies->AddEnemy(BROWN_WORM, 505, 100);
 	App->enemies->AddEnemy(BROWN_WORM, 515, 100);
 
-	App->enemies->AddEnemy(BROWN_WORM, 900, 100, true);
-	App->enemies->AddEnemy(BROWN_WORM, 910, 100, true);
-	App->enemies->AddEnemy(BROWN_WORM, 920, 100, true);
-	App->enemies->AddEnemy(BROWN_WORM, 930, 100, true);
-	App->enemies->AddEnemy(BROWN_WORM, 940, 100, true);
+	App->enemies->AddEnemy(BROWN_WORM, 900, 100, -1,true);
+	App->enemies->AddEnemy(BROWN_WORM, 910, 100, -1,true);
+	App->enemies->AddEnemy(BROWN_WORM, 920, 100, -1,true);
+	App->enemies->AddEnemy(BROWN_WORM, 930, 100, -1,true);
+	App->enemies->AddEnemy(BROWN_WORM, 940, 100, -1,true);
 
 	App->enemies->AddEnemy(BROWN_WORM, 900, 100);
 	App->enemies->AddEnemy(BROWN_WORM, 910, 100);
