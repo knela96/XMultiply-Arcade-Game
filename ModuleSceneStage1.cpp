@@ -542,13 +542,13 @@ void ModuleSceneStage1::AddEnemies() {
 	// shrimps
 	App->enemies->AddEnemy(LITTLE_SHRIMP, 3400, 330, -1);
 	//2 shrimps
-	App->enemies->AddEnemy(LITTLE_SHRIMP, 3500, 400, -1);
-	App->enemies->AddEnemy(LITTLE_SHRIMP, 3500, 380, -1);
+	App->enemies->AddEnemy(LITTLE_SHRIMP, 3500, 335, -1);
+	App->enemies->AddEnemy(LITTLE_SHRIMP, 3500, 360, -1);
 	//2 shrimps
 	App->enemies->AddEnemy(LITTLE_SHRIMP, 3600, 350, -1);
-	App->enemies->AddEnemy(LITTLE_SHRIMP, 3600, 410, -1);
+	App->enemies->AddEnemy(LITTLE_SHRIMP, 3600, 380, -1);
 	//2 shrimps
-	App->enemies->AddEnemy(LITTLE_SHRIMP, 3700, 380, -1);
+	App->enemies->AddEnemy(LITTLE_SHRIMP, 3700, 370, -1);
 	App->enemies->AddEnemy(LITTLE_SHRIMP, 3750, 335, -1);
 	//2 shrimps
 	App->enemies->AddEnemy(LITTLE_SHRIMP, 3850, 405, -1);
@@ -557,6 +557,35 @@ void ModuleSceneStage1::AddEnemies() {
 	App->enemies->AddEnemy(POWERUPSHIP, 4000, 400, 1);
 
 	//filler
-	
+	App->enemies->AddEnemy(BROWN_WORM, 4200, 380, -1, true);
+	App->enemies->AddEnemy(BROWN_WORM, 4210, 380, -1, true);
+	App->enemies->AddEnemy(BROWN_WORM, 4220, 380, -1, true);
+	App->enemies->AddEnemy(BROWN_WORM, 4230, 380, -1, true);
+	App->enemies->AddEnemy(BROWN_WORM, 4240, 380, -1, true);
 
+	App->enemies->AddEnemy(BROWN_WORM, 4200, 380, -1);
+	App->enemies->AddEnemy(BROWN_WORM, 4210, 380, -1);
+	App->enemies->AddEnemy(BROWN_WORM, 4220, 380, -1);
+	App->enemies->AddEnemy(BROWN_WORM, 4230, 380, -1);
+	App->enemies->AddEnemy(BROWN_WORM, 4240, 380, -1);
+
+	App->enemies->AddEnemy(BROWN_WORM, 4300, 400, -1, true);
+	App->enemies->AddEnemy(BROWN_WORM, 4310, 400, -1, true);
+	App->enemies->AddEnemy(BROWN_WORM, 4320, 400, -1, true);
+	App->enemies->AddEnemy(BROWN_WORM, 4330, 400, -1, true);
+	App->enemies->AddEnemy(BROWN_WORM, 4340, 400, -1, true);
+
+	App->enemies->AddEnemy(BROWN_WORM, 4300, 400, -1);
+	App->enemies->AddEnemy(BROWN_WORM, 4310, 400, -1);
+	App->enemies->AddEnemy(BROWN_WORM, 4320, 400, -1);
+	App->enemies->AddEnemy(BROWN_WORM, 4330, 400, -1);
+	App->enemies->AddEnemy(BROWN_WORM, 4340, 400, -1);
+
+
+	App->enemies->AddEnemy(LITTLE_SHRIMP, 4400, 400, -1);
+	App->enemies->AddEnemy(LITTLE_SHRIMP, 4430, 420, -1);
+	App->enemies->AddEnemy(LITTLE_SHRIMP, 4490, 415, -1);
+	App->enemies->AddEnemy(LITTLE_SHRIMP, 4500, 380, -1);
+	App->enemies->AddEnemy(LITTLE_SHRIMP, 4520, 400, -1);
+	App->enemies->AddEnemy(LITTLE_SHRIMP, 4544, 375, -1);
 }
