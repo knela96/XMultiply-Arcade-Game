@@ -300,7 +300,7 @@ update_status ModuleSceneStage1::Update()
 			}
 			else {
 				entering = injection.GetCurrentFrame();
-				while (SDL_GetTicks() - aux_time >= 40) {
+				while (SDL_GetTicks() - aux_time >= 19) {
 					App->player->position.y += 1;
 					aux_time = SDL_GetTicks();
 				}
