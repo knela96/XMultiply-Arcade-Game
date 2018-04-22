@@ -206,10 +206,42 @@ bool ModuleSceneStage1::Start()
 
 bool ModuleSceneStage1::CleanUp()
 {
+	/*
+	injectiontex = App->textures->Load("Assets/Sprites/Stage1/Tilemap/Injection.png");
+
+	graphics = App->textures->Load("Assets/TileMap1.2.png");
+	font_gameover = App->font->Load("Assets/Sprites/UI/fonts.2.png", "0123456789·' ºººººººººººººabcdefghijklmnopqrstuvwxyz", 2);
+	back = App->textures->Load("Assets/FirstLvlMap3.1.png");
+
+	hud = App->textures->Load("Assets/UI.png");
+
+	music = App->audio->LoadM("Assets/Audio Files/Music in OGG/04_Into_the_Human_Body_Stage_1_.ogg");
+	injection_fx = App->audio->LoadS("Assets/Audio Files/SFX in WAV/xmultipl-053.wav");
+	clear_stage = App->audio->LoadM("Assets/Audio Files/Music in OGG/06_Stage_Clear.ogg");*/
+
+
 	LOG("Cleaning backround assets");
 	bool ret = true;
+	App->textures->Unload(injectiontex);
+	injectiontex = nullptr;
 	App->textures->Unload(graphics);
+	graphics = nullptr;
+	App->font->UnLoad(font_gameover);
+	font_gameover = -1;
 	App->textures->Unload(back);
+	back = nullptr;
+	App->audio->UnloadM(music);
+	music = nullptr;
+	App->audio->UnloadM(clear_stage);
+	clear_stage = nullptr;
+	App->textures->Unload(hud);
+	hud = nullptr;
+	App->audio->UnloadS(injection_fx);
+	injection_fx = nullptr;
+	App->audio->UnloadM(clear_stage);
+	clear_stage = nullptr;
+	
+
 	App->player->Disable();
 	App->tentacles->Disable();
 	App->enemies->Disable();
@@ -217,10 +249,6 @@ bool ModuleSceneStage1::CleanUp()
 	App->particles->Disable();
 	App->font->Disable();
 
-	App->audio->UnloadM(music);
-	music = nullptr;
-	App->audio->UnloadM(clear_stage);
-	clear_stage = nullptr;
 
 	App->render->camera.x = App->render->camera.y = 0;
 

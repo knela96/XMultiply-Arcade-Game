@@ -36,8 +36,11 @@ bool ModuleSceneChoosePlayer::CleanUp()
 	// TODO 5: Remove all memory leaks
 	LOG("Unloading ChoosePlayer stage");
 	App->textures->Unload(graphics);
+	graphics = nullptr;
 	App->textures->Unload(player1);
+	player1 = nullptr;
 	App->textures->Unload(player2);
+	player2 = nullptr;
 	return true;
 }
 

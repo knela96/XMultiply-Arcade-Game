@@ -45,6 +45,7 @@ bool ModuleTentacles::CleanUp()
 {
 	LOG("Unloading particles");
 	App->textures->Unload(graphics);
+	graphics = nullptr;
 
 	for (uint i = 0; i < MAX_TENTACLES; ++i)
 	{

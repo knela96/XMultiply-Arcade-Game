@@ -41,6 +41,42 @@ bool ModuleEnemies::Start()
 
 	return true;
 }
+// Called before quitting
+bool ModuleEnemies::CleanUp()
+{
+	LOG("Freeing all enemies");
+	App->audio->UnloadS(Brownworm_fx);
+	Brownworm_fx = nullptr;
+	App->audio->UnloadS(LittleShrimp_fx);
+	LittleShrimp_fx = nullptr;
+	App->audio->UnloadS(Nemona_fx);
+	Nemona_fx = nullptr;
+	App->audio->UnloadS(Powership_fx);
+	Powership_fx = nullptr;
+
+	for (uint i = 0; i < MAX_TEXTURES; ++i) {
+		if (sprites[i] != nullptr)
+		{
+			App->textures->Unload(sprites[i]);
+			sprites[i] = nullptr;
+		}
+	}
+
+	for (uint i = 0; i < MAX_ENEMIES; ++i)
+	{
+		if (enemies[i] != nullptr)
+		{
+			delete enemies[i];
+			enemies[i] = nullptr;
+		}
+		if (queue[i].type != ENEMY_TYPES::NO_TYPE) {
+			queue[i].type = ENEMY_TYPES::NO_TYPE;
+		}
+	}
+
+
+	return true;
+}
 
 update_status ModuleEnemies::PreUpdate()
 {
@@ -108,37 +144,7 @@ update_status ModuleEnemies::PostUpdate()
 	return UPDATE_CONTINUE;
 }
 
-// Called before quitting
-bool ModuleEnemies::CleanUp()
-{
-	LOG("Freeing all enemies");
-	App->audio->UnloadS(Brownworm_fx);
-	App->audio->UnloadS(LittleShrimp_fx);
-	App->audio->UnloadS(Nemona_fx);
-	App->audio->UnloadS(Powership_fx);
 
-	for (uint i = 0; i < MAX_TEXTURES; ++i) {
-		if (sprites[i] != nullptr)
-		{
-			App->textures->Unload(sprites[i]);
-		}
-	}
-	
-	for (uint i = 0; i < MAX_ENEMIES; ++i)
-	{
-		if (enemies[i] != nullptr)
-		{
-			delete enemies[i];
-			enemies[i] = nullptr;
-		}
-		if (queue[i].type != ENEMY_TYPES::NO_TYPE) {
-			queue[i].type = ENEMY_TYPES::NO_TYPE;
-		}
-	}
-	
-
-	return true;
-}
 
 bool ModuleEnemies::AddEnemy(ENEMY_TYPES type, int x, int y, uint PU, bool move_up, bool flip)
 {
