@@ -210,9 +210,9 @@ update_status ModulePlayer::Update()
 
 
 	else{
-		App->particles->Disable();
-		App->collision->Disable();
+		
 		App->font->BlitText(120, 100, font_gameover, "game over");
+
 		if (SDL_GetTicks() - start_time >= 1000) {
 			
 			App->fade->FadeToBlack((Module*)App->scene_stage1, (Module*)App->scene_MainMenu);

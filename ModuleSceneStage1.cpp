@@ -334,12 +334,13 @@ update_status ModuleSceneStage1::Update()
 		SDL_SetTextureColorMod(back, 0, 0, 0);
 		
 		
+		
 		if (SDL_GetTicks() - start_time >= 500) {
    			start_time = SDL_GetTicks();
 			if (index < 11)
 				_stageendblit[index] = _stageend[index]; 
 				_stageendblit[index + 1] = _stageend[11]; 
-			index++;
+				index++;
 			
 		}
 		App->font->BlitText(100, 100, font_gameover, _stageendblit);
