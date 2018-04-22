@@ -299,6 +299,10 @@ update_status ModuleSceneStage1::Update()
 	
 	if(App->player->position.x >= 4700) //4700
 	{
+
+		if (App->input->keyboard[SDL_SCANCODE_SPACE] == KEY_STATE::KEY_DOWN)
+			App->fade->FadeToBlack((Module*)this, (Module*)App->scene_MainMenu);//CHECK FADE
+
 		hud = nullptr;
 		App->player->score = 0;
 		disableModules();
@@ -311,7 +315,7 @@ update_status ModuleSceneStage1::Update()
 		SDL_SetTextureColorMod(back, 0, 0, 0);
 		SDL_SetTextureColorMod(injectiontex, 0, 0, 0);
 		
-		if (SDL_GetTicks() - start_time >= 500 ) {
+		if (SDL_GetTicks() - start_time >= 250 ) {
 			start_time = SDL_GetTicks();
 			
 			if (index < 17) {
@@ -540,7 +544,7 @@ void ModuleSceneStage1::AddEnemies() {
 	App->enemies->AddEnemy(LITTLE_SHRIMP, 2900, 120, -1);
 	App->enemies->AddEnemy(LITTLE_SHRIMP, 2970, 150, -1);
 	//anemona
-	App->enemies->AddEnemy(NEMONA_TENTACLE, 3050, 30, -1); //Gira
+	//App->enemies->AddEnemy(NEMONA_TENTACLE, 3050, 30, -1); //Gira
 //powerup
 	App->enemies->AddEnemy(POWERUPSHIP, 3100, 120, 3);
 	//2 shrimps

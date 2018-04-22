@@ -106,13 +106,15 @@ bool ModulePlayer::Start()
 update_status ModulePlayer::Update()
 {
 	if (nitroanim) {
-		if (counter < 40000) {
+		if (counter < 40) {
 			App->render->Blit(graphics, position.x - 35, position.y + 2, &(nitro.GetCurrentFrame()));
 			counter +=1;
 		}
-		else
+		else {
+			nitro.Reset();
 			counter = 0;
 			nitroanim = false;
+		}
 	}
 
 	
@@ -287,6 +289,7 @@ void ModulePlayer::resetPlayer() {
 	position.y = 100;
 	enable_movement = true;
 	current_animation = &idle;
+	App->audio->PlayMusic(App->scene_stage1->music);
 	powerup[TENTACLE_SHOOT] = false;
 	powerup[BOMB_SHOOT] = false;
 }
