@@ -28,8 +28,10 @@ void Enemy_BrownWorm::Move()
 		_return = true;
 	}
 
-	if (move_up) position.y = original_position.y + sinf(angle) *1.9f * radius;
-	else position.y = original_position.y + sinf(-angle) * 1.6f * radius;
+	if (move_up) 
+		position.y = original_position.y + sinf(angle) *1.9f * radius;
+	else 
+		position.y = original_position.y + sinf(-angle) * 1.6f * radius;
 
 	if (!_return) {
 		position.x -= 0.7f;

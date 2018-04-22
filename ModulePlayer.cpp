@@ -58,8 +58,6 @@ ModulePlayer::ModulePlayer()
 
 	current_animation = &idle;
 
-
-
 }
 
 ModulePlayer::~ModulePlayer()
@@ -73,6 +71,8 @@ bool ModulePlayer::Start()
 	graphics = App->textures->Load("Assets/Player.png"); // arcade version
 	
 	death_fx = App->audio->LoadS("Assets/Audio Files/SFX in WAV/xmultipl-044.wav");
+
+	current_animation = &idle;
 
 	start_time = 0;
 	dead = false;
@@ -98,9 +98,9 @@ update_status ModulePlayer::Update()
 	if (App->input->keyboard[SDL_SCANCODE_F5] == KEY_DOWN)
 	{
 		godmode = !godmode;
-		if(godmode == true)
-		App->font->BlitText(0, 0, App->player->font_score, _godmode);
 	}
+	if (godmode == true)
+	App->font->BlitText(0, 0, App->player->font_score, _godmode);
 
 	if (enable_movement) {
 		int speed = 2;
@@ -151,8 +151,9 @@ update_status ModulePlayer::Update()
 		}
 
 		if (App->input->keyboard[SDL_SCANCODE_F3] == KEY_DOWN && SDL_GetTicks() - start_time >= 5000) {
-
-			App->font->BlitText(120, 100, font_gameover, "game over");
+				start_time = SDL_GetTicks();
+			
+				App->font->BlitText(120, 100, font_gameover, "game over");
 			
 			App->fade->FadeToBlack((Module*)App->scene_stage1, (Module*)App->scene_MainMenu);
 		}
@@ -205,13 +206,15 @@ update_status ModulePlayer::Update()
 	// Draw everything --------------------------------------
 	if (!dead)
 		App->render->Blit(graphics, position.x, position.y, &current_animation->GetCurrentFrame());
+	if (godmode == true)
+		App->font->BlitText(0, 0, App->player->font_score, _godmode);
 	
 	else {
 		
 		
 		if (life == 0 &&  SDL_GetTicks() - start_time >= 1000 ) {
 
-			App->font->BlitText(120, 100, font_gameover, "game over");
+		App->font->BlitText(120, 100, font_gameover, "game over");
 			
 			App->fade->FadeToBlack((Module*)App->scene_stage1, (Module*)App->scene_MainMenu);
 		}
@@ -240,8 +243,8 @@ void ModulePlayer::OnCollision(Collider* collider1, Collider* collider2) {
 
 		App->particles->AddParticle(App->particles->explosion_player, position.x, position.y-24, COLLIDER_NONE);
 		App->audio->PlaySound(death_fx);
+		App->tentacles->Disable();
 		dead = true;
-		collider->to_delete = true;
 		App->scene_stage1->right = false;
 
 		if (life==0) {
@@ -250,12 +253,20 @@ void ModulePlayer::OnCollision(Collider* collider1, Collider* collider2) {
 		}
 		else {
 			life--;
-			App->scene_stage1->resetmap();
+			App->scene_stage1->resetmap=true;
+			App->scene_stage1->start_time = SDL_GetTicks();
 		}
 
 		enable_movement = false;
 		
 	}
+}
+
+void ModulePlayer::resetPlayer() {
+	App->player->dead = false;
+	App->player->position.x = 0;
+	App->player->position.y = 100;
+	App->player->enable_movement = true;
 }
 
 bool ModulePlayer::AddTentacles() {

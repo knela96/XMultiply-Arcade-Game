@@ -20,6 +20,7 @@ public:
 	update_status Update();
 	bool CleanUp();
 	void OnCollision(Collider* collider1, Collider* collider2);
+	void resetPlayer();
 
 public:
 	bool enable_movement = false;
@@ -45,7 +46,7 @@ public:
 	bool dead = false;
 	bool godmode = false;
 	bool AddTentacles();
-	uint life = 1;
+	uint life = 3;
 	char _godmode[8] = "godmode";
 };
 
