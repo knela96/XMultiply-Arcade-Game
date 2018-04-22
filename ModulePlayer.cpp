@@ -11,7 +11,7 @@
 #include "ModuleTentacles.h"
 #include "ModuleSceneStage1.h"
 #include "ModuleAudio.h"
-
+#include <assert.h>
 #include<stdio.h>
 
 #include "SDL/include/SDL.h"
@@ -235,7 +235,8 @@ bool ModulePlayer::CleanUp()
 
 void ModulePlayer::OnCollision(Collider* collider1, Collider* collider2) {
 
-	if (!dead && godmode == false) {
+	
+	if (!dead && godmode == false && collider2->type != COLLIDER_POWERUP) {
 
 		App->particles->AddParticle(App->particles->explosion_player, position.x, position.y-24, COLLIDER_NONE);
 		App->audio->PlaySound(death_fx);
