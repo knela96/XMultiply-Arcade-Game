@@ -44,6 +44,8 @@ public:
 	bool powerup[20];
 	bool dead = false;
 	bool life[3];
+
+	bool AddTentacles();
 };
 
 #endif

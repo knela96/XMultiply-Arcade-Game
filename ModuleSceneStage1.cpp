@@ -16,6 +16,7 @@
 #include "SDL/include/SDL_timer.h"
 #include "SDL/include/SDL_render.h"
 #include "ModulePlayer.h"
+#include "ModulePowerUp.h"
 #include <stdio.h>
 
 
@@ -70,6 +71,7 @@ bool ModuleSceneStage1::Start()
 	App->player->Disable();
 	App->particles->Enable();
 	App->collision->Enable();
+	App->powerup->Enable();
 	App->enemies->Enable();
 	App->font->Enable();
 	
@@ -179,7 +181,7 @@ bool ModuleSceneStage1::Start()
 
 
 	// Enemies
-	App->enemies->AddEnemy(BROWN_WORM, 455, 100,true);
+	App->enemies->AddEnemy(BROWN_WORM, 455, 100, true);
 	App->enemies->AddEnemy(BROWN_WORM, 465, 100, true);
 	App->enemies->AddEnemy(BROWN_WORM, 475, 100, true);
 	App->enemies->AddEnemy(BROWN_WORM, 485, 100, true);
@@ -227,10 +229,10 @@ bool ModuleSceneStage1::Start()
 	App->enemies->AddEnemy(NEMONA_TENTACLE, 1280, 150);
 
 	//POWERUPS
-	App->enemies->AddEnemy(POWERUPSHIP, 600, 130);
-	App->enemies->AddEnemy(POWERUPSHIP, 1050, 100);
-	App->enemies->AddEnemy(POWERUPSHIP, 1075, 75);
-	App->enemies->AddEnemy(POWERUPSHIP, 1200, 100);
+	App->enemies->AddEnemy(POWERUPSHIP, 600, 130, 1);
+	App->enemies->AddEnemy(POWERUPSHIP, 1050, 100, 2);
+	//App->enemies->AddEnemy(POWERUPSHIP, 1075, 75);
+	//App->enemies->AddEnemy(POWERUPSHIP, 1200, 100);
 	return ret;
 }
 
@@ -327,6 +329,7 @@ update_status ModuleSceneStage1::Update()
 		SDL_SetTextureColorMod(back, 0, 0, 0);
 		
 		char _stageend[15] = "stage clear";
+
 		char _stageendblit[15];
 		
 		if (SDL_GetTicks() - start_time >= 500) {
@@ -360,6 +363,7 @@ void ModuleSceneStage1::injectpos() {
 	switch (shipdeployed) {
 
 	case false:
+
 		if (injectxy.y == 0) {
 			
 			App->player->Enable();
@@ -375,14 +379,17 @@ void ModuleSceneStage1::injectpos() {
 		break;
 
 	case true:
+
 		if (injectxy.y == -100) {
 
 			injected = true;
 		}
 		else { 
 
-			while (timer < 7) {
+			if (timer < 7) {
+
 				entering = injection.GetCurrentFrame();
+
 				timer++;
 			}
 			injectxy.y--; }

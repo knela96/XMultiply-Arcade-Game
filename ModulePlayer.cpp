@@ -85,28 +85,10 @@ bool ModulePlayer::Start()
 	collider = App->collision->AddCollider({ position.x+4, position.y+1, 22, 14 }, COLLIDER_PLAYER, this);
 
 	powerup[BASIC_SHOOT] = true;
-	powerup[BOMB_SHOOT] = true;
+	powerup[BOMB_SHOOT] = false;
 
 	font_score = App->font->Load("Assets/Sprites/UI/fonts.1.png", "0123456789í.-=éè()óòáú`´!?abcdefghijklmnopqrstuvwxyz", 2);
 	font_gameover = App->font->Load("Assets/Sprites/UI/fonts.2.png", "0123456789·' ºººººººººººººabcdefghijklmnopqrstuvwxyz", 2);
-
-	App->tentacles->AddTentacle(App->tentacles->tentacle, position.x, position.y);
-	App->tentacles->AddTentacle(App->tentacles->tentacle, position.x+16, position.y);
-	App->tentacles->AddTentacle(App->tentacles->tentacle, position.x + 16, position.y);
-	App->tentacles->AddTentacle(App->tentacles->tentacle, position.x + 16, position.y);
-	App->tentacles->AddTentacle(App->tentacles->tentacle, position.x + 16, position.y);
-	App->tentacles->AddTentacle(App->tentacles->tentacle, position.x + 16, position.y);
-	App->tentacles->AddTentacle(App->tentacles->anchor_top, position.x + 16, position.y, false,true);
-
-	App->tentacles->AddTentacle(App->tentacles->tentacle, position.x, position.y,true);
-	App->tentacles->AddTentacle(App->tentacles->tentacle, position.x + 16, position.y, true);
-	App->tentacles->AddTentacle(App->tentacles->tentacle, position.x + 16, position.y, true);
-	App->tentacles->AddTentacle(App->tentacles->tentacle, position.x + 16, position.y, true);
-	App->tentacles->AddTentacle(App->tentacles->tentacle, position.x + 16, position.y, true);
-	App->tentacles->AddTentacle(App->tentacles->tentacle, position.x + 16, position.y, true);
-	App->tentacles->AddTentacle(App->tentacles->anchor_bottom, position.x + 16, position.y, false, true);
-
-
 	
 
 	return ret;
@@ -272,4 +254,25 @@ void ModulePlayer::OnCollision(Collider* collider1, Collider* collider2) {
 		}
 		
 	}
+}
+
+bool ModulePlayer::AddTentacles() {
+
+	App->tentacles->AddTentacle(App->tentacles->tentacle, position.x, position.y);
+	App->tentacles->AddTentacle(App->tentacles->tentacle, position.x + 16, position.y);
+	App->tentacles->AddTentacle(App->tentacles->tentacle, position.x + 16, position.y);
+	App->tentacles->AddTentacle(App->tentacles->tentacle, position.x + 16, position.y);
+	App->tentacles->AddTentacle(App->tentacles->tentacle, position.x + 16, position.y);
+	App->tentacles->AddTentacle(App->tentacles->tentacle, position.x + 16, position.y);
+	App->tentacles->AddTentacle(App->tentacles->anchor_top, position.x + 16, position.y, false, true);
+
+	App->tentacles->AddTentacle(App->tentacles->tentacle, position.x, position.y, true);
+	App->tentacles->AddTentacle(App->tentacles->tentacle, position.x + 16, position.y, true);
+	App->tentacles->AddTentacle(App->tentacles->tentacle, position.x + 16, position.y, true);
+	App->tentacles->AddTentacle(App->tentacles->tentacle, position.x + 16, position.y, true);
+	App->tentacles->AddTentacle(App->tentacles->tentacle, position.x + 16, position.y, true);
+	App->tentacles->AddTentacle(App->tentacles->tentacle, position.x + 16, position.y, true);
+	App->tentacles->AddTentacle(App->tentacles->anchor_bottom, position.x + 16, position.y, false, true);
+
+	return true;
 }

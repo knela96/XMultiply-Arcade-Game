@@ -16,6 +16,7 @@ struct EnemyInfo
 	ENEMY_TYPES type = ENEMY_TYPES::NO_TYPE;
 	bool move_up;
 	int x, y;
+	uint PU;
 };
 
 class ModuleEnemies : public Module
