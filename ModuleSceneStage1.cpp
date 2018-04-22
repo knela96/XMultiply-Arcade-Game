@@ -344,10 +344,7 @@ update_status ModuleSceneStage1::Update()
 			
 		}
 		App->font->BlitText(100, 100, font_gameover, _stageendblit);
-		
-		
-		//App->font->BlitText(100, 100, font_gameover, "stage clear");
-		//App->font->BlitText(60, 136, font_gameover, "stage bonus 10000");
+		App->font->BlitText(60, 136, font_gameover, "stage bonus 10000");
 		
 	}
 	else {
