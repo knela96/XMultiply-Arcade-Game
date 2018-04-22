@@ -91,6 +91,7 @@ bool ModuleSceneStage1::Start()
 
 	music = App->audio->LoadM("Assets/Audio Files/Music in OGG/04_Into_the_Human_Body_Stage_1_.ogg");	
 	injection_fx = App->audio->LoadS("Assets/Audio Files/SFX in WAV/xmultipl-053.wav");
+	clear_stage = App->audio->LoadM("Assets/Audio Files/Music in OGG/06_Stage_Clear.ogg");
 
 	App->audio->PlayMusic(music);
 
@@ -258,6 +259,8 @@ bool ModuleSceneStage1::CleanUp()
 
 	App->audio->UnloadM(music);
 	music = nullptr;
+	App->audio->UnloadM(clear_stage);
+	clear_stage = nullptr;
 
 	App->render->camera.x = App->render->camera.y = 0;
 	
@@ -342,15 +345,20 @@ update_status ModuleSceneStage1::Update()
 	
 	
 	
-	if(App->player->position.x >= 600 )
+	if(App->player->position.x >= 400 ) //4700
 	{
+
+
+		App->audio->UnloadM(music);
+		music = nullptr;
+		App->audio->PlayMusic(clear_stage);
+		
+		
+		
 		App->particles->Disable();
 		App->enemies->Disable();
 		//App->collision->Disable();
 		hud = nullptr;
-		
-		//App->player->score = NULL;
-		
 		if (rgb != 0) {
 			start_time = SDL_GetTicks();
 			SDL_SetTextureColorMod(graphics, rgb, rgb, rgb);
@@ -364,14 +372,25 @@ update_status ModuleSceneStage1::Update()
 		
 		if (SDL_GetTicks() - start_time >= 500) {
    			start_time = SDL_GetTicks();
-			if (index < 11)
-				_stageendblit[index] = _stageend[index]; 
-				_stageendblit[index + 1] = _stageend[11]; 
+			
+			if (index < 17){
+
+				_stageendblit[index] = _stageend[index];
+				_stageendblit2[index] = _stageend2[index];
+			}
+				_stageendblit[index + 1] = _stageend[11];
+				_stageendblit2[index + 1] = _stageend2[17];
 				index++;
 			
+
+			
+			
 		}
+
+		
+
 		App->font->BlitText(100, 100, font_gameover, _stageendblit);
-		App->font->BlitText(60, 136, font_gameover, "stage bonus 10000");
+		App->font->BlitText(60, 136, font_gameover, _stageendblit2);
 		
 	}
 	else {
@@ -380,6 +399,8 @@ update_status ModuleSceneStage1::Update()
 		App->font->BlitText(32, 240, App->player->font_score, "score");
 
 	}
+	
+	
 	
 	return UPDATE_CONTINUE;
 }
