@@ -20,4 +20,5 @@ There are currently three power-ups, each of them specified inside the wiki
 Èric Canela
 Rafel Brau
 Ferran Barnes
+Pol Cortés
 
