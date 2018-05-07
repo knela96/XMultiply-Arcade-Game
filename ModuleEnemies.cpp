@@ -9,6 +9,7 @@
 #include "Enemy_LittleShrimp.h"
 #include "Enemy_PowerupShip.h"
 #include "Enemy_Nemona.h"
+#include "Enemy_Bouncer.h"
 #include "ModuleAudio.h"
 #include "ModuleSceneStage1.h"
 
@@ -45,6 +46,7 @@ bool ModuleEnemies::Start()
 	LittleShrimp_fx = App->audio->LoadS("Assets/Audio Files/SFX in WAV/xmultipl-100.wav");
 	Nemona_fx = App->audio->LoadS("Assets/Audio Files/SFX in WAV/xmultipl-094.wav");
 	Powership_fx = App->audio->LoadS("Assets/Audio Files/SFX in WAV/xmultipl-055.wav");
+	Bouncer_fx = App->audio->LoadS("Assets/Audio Files/SFX in WAV/xmultipl-057.wav");
 
 	return true;
 }
@@ -60,6 +62,8 @@ bool ModuleEnemies::CleanUp()
 	Nemona_fx = nullptr;
 	App->audio->UnloadS(Powership_fx);
 	Powership_fx = nullptr;
+	App->audio->UnloadS(Bouncer_fx);
+	Bouncer_fx = nullptr;
 
 	for (uint i = 0; i < MAX_TEXTURES; ++i) {
 		if (sprites[i] != nullptr)
@@ -257,7 +261,7 @@ void ModuleEnemies::SpawnEnemy(const EnemyInfo& info)
 			break;
 
 		case ENEMY_TYPES::BOUNCER:
-			//enemies[i] = new Enemy_Bouncer(info.x, info.y);
+			enemies[i] = new Enemy_Bouncer(info.x, info.y);
 			enemies[i]->type = ENEMY_TYPES::BOUNCER;
 			break;
 
@@ -287,6 +291,9 @@ void ModuleEnemies::OnCollision(Collider* c1, Collider* c2)
 					break;
 				case ENEMY_TYPES::POWERUPSHIP:
 					App->audio->PlaySound(Powership_fx);
+				case ENEMY_TYPES::BOUNCER:
+					App->audio->PlaySound(Bouncer_fx);
+
 
 					break;
 			}

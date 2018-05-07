@@ -28,9 +28,6 @@
     <ClCompile Include="ModuleSceneStage1.cpp">
       <Filter>Modules\Scenes</Filter>
     </ClCompile>
-    <ClCompile Include="ModuleSceneStage2.cpp">
-      <Filter>Modules\Scenes</Filter>
-    </ClCompile>
     <ClCompile Include="ModuleParticles.cpp">
       <Filter>Modules</Filter>
     </ClCompile>
@@ -79,6 +76,9 @@
     <ClCompile Include="ModuleCollision.cpp">
       <Filter>Modules\Screen</Filter>
     </ClCompile>
+    <ClCompile Include="Enemy_Bouncer.cpp">
+      <Filter>Modules\Enemies</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Animation.h">
@@ -115,9 +115,6 @@
       <Filter>Modules\Scenes</Filter>
     </ClInclude>
     <ClInclude Include="ModuleSceneStage1.h">
-      <Filter>Modules\Scenes</Filter>
-    </ClInclude>
-    <ClInclude Include="ModuleSceneStage2.h">
       <Filter>Modules\Scenes</Filter>
     </ClInclude>
     <ClInclude Include="ModuleParticles.h">
@@ -170,6 +167,9 @@
     </ClInclude>
     <ClInclude Include="ModuleCollision.h">
       <Filter>Modules\Screen</Filter>
+    </ClInclude>
+    <ClInclude Include="Enemy_Bouncer.h">
+      <Filter>Modules\Enemies</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

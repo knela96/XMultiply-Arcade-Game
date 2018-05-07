@@ -49,6 +49,7 @@ private:
 	Mix_Chunk* LittleShrimp_fx;
 	Mix_Chunk* Nemona_fx;
 	Mix_Chunk* Powership_fx;
+	Mix_Chunk* Bouncer_fx;
 };
 
 #endif // __ModuleEnemies_H__
