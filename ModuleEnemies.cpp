@@ -237,32 +237,32 @@ void ModuleEnemies::SpawnEnemy(const EnemyInfo& info)
 			break;
 
 		case ENEMY_TYPES::BIG_EYE:
-			enemies[i] = new Enemy_BigEye(info.x, info.y);
+			//enemies[i] = new Enemy_BigEye(info.x, info.y);
 			enemies[i]->type = ENEMY_TYPES::BIG_EYE;
 			break;
 
 		case ENEMY_TYPES::BIG_SHRIMP:
-			enemies[i] = new Enemy_Big_Shrimp(info.x, info.y);
+			//enemies[i] = new Enemy_Big_Shrimp(info.x, info.y);
 			enemies[i]->type = ENEMY_TYPES::BIG_SHRIMP;
 			break;
 
 		case ENEMY_TYPES::BLUE_MOUTH:
-			enemies[i] = new Enemy_BigMouth(info.x, info.y);
+			//enemies[i] = new Enemy_BigMouth(info.x, info.y);
 			enemies[i]->type = ENEMY_TYPES::BLUE_MOUTH;
 			break;
 
 		case ENEMY_TYPES::BLUE_SENTINEL:
-			enemies[i] = new Enemy_BlueSentinel(info.x, info.y);
+			//enemies[i] = new Enemy_BlueSentinel(info.x, info.y);
 			enemies[i]->type = ENEMY_TYPES::BLUE_SENTINEL;
 			break;
 
 		case ENEMY_TYPES::BOUNCER:
-			enemies[i] = new Enemy_Bouncer(info.x, info.y);
+			//enemies[i] = new Enemy_Bouncer(info.x, info.y);
 			enemies[i]->type = ENEMY_TYPES::BOUNCER;
 			break;
 
 		case ENEMY_TYPES::YELLOW_BALL:
-			enemies[i] = new Enemy_YellowBall(info.x, info.y);
+			//enemies[i] = new Enemy_YellowBall(info.x, info.y);
 			enemies[i]->type = ENEMY_TYPES::YELLOW_BALL;
 			break;
 		}

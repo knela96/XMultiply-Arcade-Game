@@ -43,11 +43,7 @@ bool ModuleWindow::Init()
 		if(WIN_FULLSCREEN_DESKTOP == true)
 			flags |= SDL_WINDOW_FULLSCREEN_DESKTOP;
 
-<<<<<<< HEAD
 		window = SDL_CreateWindow("XMultiply - v0.5 Prototype", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, width, height, flags);
-=======
-		window = SDL_CreateWindow("XMultiply - v0.5", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, width, height, flags);
->>>>>>> 83846bf5790e57cc64874a48063ae25c6d5ca640
 
 		if(window == NULL)
 		{
