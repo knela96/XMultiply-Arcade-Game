@@ -239,7 +239,6 @@ void ModuleEnemies::SpawnEnemy(const EnemyInfo& info)
 			enemies[i]->type = ENEMY_TYPES::POWERUPSHIP;
 			break;
 
-<<<<<<< HEAD
 	/*	case ENEMY_TYPES::BIG_EYE:
 			enemies[i] = new Enemy_BigEye(info.x, info.y);
 			enemies[i]->type = ENEMY_TYPES::BIG_EYE;
@@ -280,11 +279,8 @@ void ModuleEnemies::SpawnEnemy(const EnemyInfo& info)
 			break;
 */
 		case ENEMY_TYPES::YELLOW_BALL:
-<<<<<<< HEAD
+
 			enemies[i] = new Enemy_Yellow_Ball(info.x, info.y);
-=======
-			//enemies[i] = new Enemy_YellowBall(info.x, info.y);
->>>>>>> 1ab24802a1d8cabd2cbf760f84b8f714375b66d4
 			enemies[i]->type = ENEMY_TYPES::YELLOW_BALL;
 			break;
 		}
