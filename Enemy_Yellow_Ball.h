@@ -1,10 +1,10 @@
-#ifndef __ENEMY_NEMONA_H__
-#define __ENEMY_NEMONA_H__
+#ifndef __ENEMY_YELLOW_BALL_H__
+#define __ENEMY_YELLOW_BALL_H__
 
 #include "Enemy.h"
 
 
-class Enemy_Nemona : public Enemy
+class Enemy_Yellow_Ball : public Enemy
 {
 private:
 	float wave = -1.0f;
@@ -13,14 +13,13 @@ private:
 	Animation fly;
 	Uint32 shoot_delay = 0;
 
-
 public:
 
 	iPoint original_position;
 	Path* path = new Path();
-	Enemy_Nemona(int x, int y);
+	Enemy_Yellow_Ball(int x, int y);
 
 	void Move();
 };
 
-#endif // __ENEMY_NEMONA_H__
+#endif // __ENEMY_BROWNWORM_H__

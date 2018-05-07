@@ -229,11 +229,9 @@ update_status ModuleParticles::Update()
 					p->speed.y = 0;
 					break;
 				case SHRIMP_SHOOT:
-					p->speed.x = -3;
-					p->speed.y = 1;
-					break;
 				case ANEMONA_SHOOT:
-					p->speed.y = -2;
+					p->speed.x = p->direction_speed.x;
+					p->speed.y = p->direction_speed.y;
 					break;
 				}
 				p->fx_played = true;
@@ -245,7 +243,7 @@ update_status ModuleParticles::Update()
 }
 
 
-void ModuleParticles::AddParticle(const Particle& particle, int x, int y, COLLIDER_TYPE collider_type, Uint32 delay)
+void ModuleParticles::AddParticle(const Particle& particle, int x, int y, COLLIDER_TYPE collider_type, fPoint direction_speed, Uint32 delay)
 {
 	for (uint i = 0; i < MAX_ACTIVE_PARTICLES; ++i)
 	{
@@ -255,6 +253,7 @@ void ModuleParticles::AddParticle(const Particle& particle, int x, int y, COLLID
 			p->born = SDL_GetTicks() + delay;
 			p->position.x = x;
 			p->position.y = y;
+			p->direction_speed = direction_speed;
 			if (collider_type != COLLIDER_NONE) {
 				p->collider = App->collision->AddCollider(p->anim.GetCurrentFrame(), collider_type, this);
 			}
@@ -278,10 +277,10 @@ void ModuleParticles::OnCollision(Collider* c1, Collider* c2)
 			switch (active[i]->type) {
 
 			case BASIC_SHOOT:
-				if(c2->type == COLLIDER_WALL)
+				if (c2->type == COLLIDER_WALL)
 					App->audio->PlaySound(p->hit_fx);
 				p = &explosion_bullet;
-				break; 
+				break;
 
 			case TENTACLE_SHOOT:
 				p = &explosion_tentacle_bullet;
@@ -291,15 +290,18 @@ void ModuleParticles::OnCollision(Collider* c1, Collider* c2)
 					App->audio->PlaySound(p->hit_fx);
 				p = &explosion_bomb;
 				break;
+			default:
+				p = nullptr;
 			}
-
-			p->speed.x = 1;
-			AddParticle(*p, c1->rect.x, c1->rect.y);
+			if (p != nullptr) {
+				p->speed.x = 1;
+				AddParticle(*p, c1->rect.x, c1->rect.y);
+			}
 			delete active[i];
 			active[i] = nullptr;
 			break;
 		}
-		
+
 	}
 }
 

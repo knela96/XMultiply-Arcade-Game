@@ -76,7 +76,11 @@
     <ClCompile Include="ModuleCollision.cpp">
       <Filter>Modules\Screen</Filter>
     </ClCompile>
+<<<<<<< HEAD
     <ClCompile Include="Enemy_Bouncer.cpp">
+=======
+    <ClCompile Include="Enemy_Yellow_Ball.cpp">
+>>>>>>> 6c90234a4aca57296cdfd62cf4c296e31ec26d4e
       <Filter>Modules\Enemies</Filter>
     </ClCompile>
   </ItemGroup>
@@ -168,7 +172,11 @@
     <ClInclude Include="ModuleCollision.h">
       <Filter>Modules\Screen</Filter>
     </ClInclude>
+<<<<<<< HEAD
     <ClInclude Include="Enemy_Bouncer.h">
+=======
+    <ClInclude Include="Enemy_Yellow_Ball.h">
+>>>>>>> 6c90234a4aca57296cdfd62cf4c296e31ec26d4e
       <Filter>Modules\Enemies</Filter>
     </ClInclude>
   </ItemGroup>

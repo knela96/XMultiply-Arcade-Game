@@ -55,6 +55,7 @@ struct Particle {
 	Mix_Chunk* hit_fx = 0;
 	iPoint position;
 	fPoint speed;
+	fPoint direction_speed;
 	Uint32 born = 0;
 	Uint32 life = 0;
 	bool fx_played = false;
@@ -89,7 +90,7 @@ public:
 	void OnCollision(Collider* c1, Collider* c2);
 	void removeParticles();
 
-	void AddParticle(const Particle& particle, int x, int y, COLLIDER_TYPE collider_type = COLLIDER_NONE, Uint32 delay = 0);
+	void AddParticle(const Particle& particle, int x, int y, COLLIDER_TYPE collider_type = COLLIDER_NONE, fPoint direction_speed = { 0,0 }, Uint32 delay = 0);
 	
 	
 public:

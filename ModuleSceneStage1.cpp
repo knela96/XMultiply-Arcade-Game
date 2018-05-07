@@ -652,5 +652,7 @@ void ModuleSceneStage1::AddEnemies() {
 	App->enemies->AddEnemy(LITTLE_SHRIMP, 4520, 400, -1);
 	App->enemies->AddEnemy(LITTLE_SHRIMP, 4544, 375, -1);
 
+
+	//Trying bouncer implementation
 	App->enemies->AddEnemy(BOUNCER, 300, 100, -1);
 }

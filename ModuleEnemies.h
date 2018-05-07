@@ -49,7 +49,11 @@ private:
 	Mix_Chunk* LittleShrimp_fx;
 	Mix_Chunk* Nemona_fx;
 	Mix_Chunk* Powership_fx;
+<<<<<<< HEAD
 	Mix_Chunk* Bouncer_fx;
+=======
+	Mix_Chunk* Yellowball_fx;
+>>>>>>> 6c90234a4aca57296cdfd62cf4c296e31ec26d4e
 };
 
 #endif // __ModuleEnemies_H__
