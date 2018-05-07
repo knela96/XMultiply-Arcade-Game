@@ -45,7 +45,7 @@ update_status ModuleSceneMainMenu::Update()
 	App->render->Blit(graphics, 0, 0, &background, 1.0f); // back of the room
 	
 	
-	if (App->input->keyboard[SDL_SCANCODE_RETURN] == 1)
+	if (App->input->keyboard[SDL_SCANCODE_RETURN] == KEY_STATE::KEY_DOWN || App->input->controller[START] == KEY_STATE::KEY_DOWN)
 	{
 		App->fade->FadeToBlack(App->scene_MainMenu, App->scene_choosePlayer, 0.5);
 	}

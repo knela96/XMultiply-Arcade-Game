@@ -335,7 +335,7 @@ update_status ModuleSceneStage1::Update()
 	
 	if (App->player->position.x >= 4700) //4700
 	{
-		if (App->input->keyboard[SDL_SCANCODE_RETURN] == KEY_STATE::KEY_DOWN){
+		if (App->input->keyboard[SDL_SCANCODE_RETURN] == KEY_STATE::KEY_DOWN || App->input->controller[START] == KEY_STATE::KEY_DOWN){
 			App->fade->FadeToBlack((Module*)App->scene_stage1, (Module*)App->scene_MainMenu);
 		}
 		if (!clearstage_fx) {
