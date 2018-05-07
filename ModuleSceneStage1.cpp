@@ -453,7 +453,11 @@ void ModuleSceneStage1::AddEnemies() {
 	App->enemies->AddEnemy(BROWN_WORM, 505, 50, -1, true);
 	App->enemies->AddEnemy(BROWN_WORM, 515, 50, -1, true);
 
+<<<<<<< HEAD
 	App->enemies->AddEnemy(BIG_EYE, 455, 50, -1);
+=======
+
+>>>>>>> f83889125c2d24eeeadd0506c7baf8a52ddf4de8
 
 	App->enemies->AddEnemy(BROWN_WORM, 455, 50, -1);
 	App->enemies->AddEnemy(BROWN_WORM, 465, 50, -1);
@@ -651,4 +655,8 @@ void ModuleSceneStage1::AddEnemies() {
 	App->enemies->AddEnemy(LITTLE_SHRIMP, 4500, 380, -1);
 	App->enemies->AddEnemy(LITTLE_SHRIMP, 4520, 400, -1);
 	App->enemies->AddEnemy(LITTLE_SHRIMP, 4544, 375, -1);
+
+
+	//Trying bouncer implementation
+	App->enemies->AddEnemy(BOUNCER, 300, 100, -1);
 }
