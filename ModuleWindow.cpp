@@ -40,7 +40,7 @@ bool ModuleWindow::Init()
 		if(WIN_RESIZABLE == true)
 			flags |= SDL_WINDOW_RESIZABLE;
 
-		if(WIN_FULLSCREEN_DESKTOP == false)
+		if(WIN_FULLSCREEN_DESKTOP == true)
 			flags |= SDL_WINDOW_FULLSCREEN_DESKTOP;
 
 		window = SDL_CreateWindow("XMultiply - v0.5 Prototype", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, width, height, flags);

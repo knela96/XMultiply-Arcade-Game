@@ -9,11 +9,8 @@
 #include "Enemy_LittleShrimp.h"
 #include "Enemy_PowerupShip.h"
 #include "Enemy_Nemona.h"
-<<<<<<< HEAD
 #include "Enemy_Big_Eye.h"
-=======
 #include "Enemy_Bouncer.h"
->>>>>>> f83889125c2d24eeeadd0506c7baf8a52ddf4de8
 #include "ModuleAudio.h"
 #include "ModuleSceneStage1.h"
 
@@ -50,15 +47,9 @@ bool ModuleEnemies::Start()
 	LittleShrimp_fx = App->audio->LoadS("Assets/Audio Files/SFX in WAV/xmultipl-100.wav");
 	Nemona_fx = App->audio->LoadS("Assets/Audio Files/SFX in WAV/xmultipl-094.wav");
 	Powership_fx = App->audio->LoadS("Assets/Audio Files/SFX in WAV/xmultipl-055.wav");
-<<<<<<< HEAD
 	Yellowball_fx = App->audio->LoadS("Assets/Audio Files/SFX in WAV/xmultipl-093.wav");
 	BigEye_fx = App->audio->LoadS("Assets/Audio Files/SFX in WAV/xmultipl-094.wav");
-=======
-
-
 	Bouncer_fx = App->audio->LoadS("Assets/Audio Files/SFX in WAV/xmultipl-057.wav");
->>>>>>> f83889125c2d24eeeadd0506c7baf8a52ddf4de8
-
 	return true;
 }
 // Called before quitting
@@ -250,16 +241,10 @@ void ModuleEnemies::SpawnEnemy(const EnemyInfo& info)
 			enemies[i] = new Enemy_PowerupShip(info.x, info.y, info.PU);
 			enemies[i]->type = ENEMY_TYPES::POWERUPSHIP;
 			break;
-
-<<<<<<< HEAD
-	
-=======
->>>>>>> f83889125c2d24eeeadd0506c7baf8a52ddf4de8
 		case ENEMY_TYPES::BIG_EYE:
 			enemies[i] = new Enemy_Big_Eye(info.x, info.y);
 			enemies[i]->type = ENEMY_TYPES::BIG_EYE;
 			break;
-/*
 		case ENEMY_TYPES::BIG_SHRIMP:
 			//enemies[i] = new Enemy_Big_Shrimp(info.x, info.y);
 			enemies[i]->type = ENEMY_TYPES::BIG_SHRIMP;
@@ -306,18 +291,13 @@ void ModuleEnemies::OnCollision(Collider* c1, Collider* c2)
 					break;
 				case ENEMY_TYPES::POWERUPSHIP:
 					App->audio->PlaySound(Powership_fx);
-<<<<<<< HEAD
 				case ENEMY_TYPES::YELLOW_BALL:
 					App->audio->PlaySound(Yellowball_fx);
 					break;
 				case ENEMY_TYPES::BIG_EYE:
 					App->audio->PlaySound(BigEye_fx);
-=======
 				case ENEMY_TYPES::BOUNCER:
 					App->audio->PlaySound(Bouncer_fx);
-
-
->>>>>>> f83889125c2d24eeeadd0506c7baf8a52ddf4de8
 					break;
 			}
 			enemies[i]->OnCollision(c2);

@@ -74,11 +74,8 @@
     <ClInclude Include="Animation.h" />
     <ClInclude Include="Application.h" />
     <ClInclude Include="Enemy.h" />
-<<<<<<< HEAD
     <ClInclude Include="Enemy_Big_Eye.h" />
-=======
     <ClInclude Include="Enemy_Bouncer.h" />
->>>>>>> f83889125c2d24eeeadd0506c7baf8a52ddf4de8
     <ClInclude Include="Enemy_BrownWorm.h" />
     <ClInclude Include="Enemy_Yellow_Ball.h" />
     <ClInclude Include="Enemy_LittleShrimp.h" />
@@ -110,11 +107,8 @@
   <ItemGroup>
     <ClCompile Include="Application.cpp" />
     <ClCompile Include="Enemy.cpp" />
-<<<<<<< HEAD
     <ClCompile Include="Enemy_Big_Eye.cpp" />
-=======
     <ClCompile Include="Enemy_Bouncer.cpp" />
->>>>>>> f83889125c2d24eeeadd0506c7baf8a52ddf4de8
     <ClCompile Include="Enemy_BrownWorm.cpp" />
     <ClCompile Include="Enemy_Yellow_Ball.cpp" />
     <ClCompile Include="Enemy_LittleShrimp.cpp" />
