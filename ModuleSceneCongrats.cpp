@@ -44,7 +44,7 @@ update_status ModuleSceneCongrats::Update()
 {
 	// Draw everything --------------------------------------
 	App->render->Blit(graphics, 0, 0, &background, 1.0f);
-	if (App->input->keyboard[SDL_SCANCODE_RETURN] == 1)
+	if (App->input->keyboard[SDL_SCANCODE_RETURN] == 1 || App->input->controller[START] == KEY_STATE::KEY_DOWN)
 	{
 		App->fade->FadeToBlack(App->scene_congrats, App->scene_MainMenu, 2);
 	}

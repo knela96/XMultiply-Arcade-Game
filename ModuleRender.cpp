@@ -71,6 +71,7 @@ update_status ModuleRender::Update()
 update_status ModuleRender::PostUpdate()
 {
 	SDL_RenderPresent(renderer);
+	int a = SDL_RenderSetLogicalSize(renderer,SCREEN_WIDTH,SCREEN_HEIGHT);
 	return update_status::UPDATE_CONTINUE;
 }
 
