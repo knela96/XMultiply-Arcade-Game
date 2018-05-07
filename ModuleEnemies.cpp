@@ -33,6 +33,12 @@ bool ModuleEnemies::Start()
 	sprites[ENEMY_TYPES::LITTLE_SHRIMP] = App->textures->Load("Assets/Sprites/Stage1/Enemies/littleshrimp.png");
 	sprites[ENEMY_TYPES::NEMONA_TENTACLE] = App->textures->Load("Assets/Sprites/Stage1/Enemies/nemona.png");
 	sprites[ENEMY_TYPES::POWERUPSHIP] = App->textures->Load("Assets/Sprites/PowerUp/PowerUp.png");
+	sprites[ENEMY_TYPES::BIG_EYE] = App->textures->Load("Assets/Sprites/Stage1/Enemies/BigEye.png");
+	sprites[ENEMY_TYPES::BIG_SHRIMP] = App->textures->Load("Assets/Sprites/Stage1/Enemies/BigShrimp.png");
+	sprites[ENEMY_TYPES::BLUE_MOUTH] = App->textures->Load("Assets/Sprites/Stage1/Enemies/BlueMouth.png");
+	sprites[ENEMY_TYPES::BLUE_SENTINEL] = App->textures->Load("Assets/Sprites/Stage1/Enemies/2ndlvlmonster.png");
+	sprites[ENEMY_TYPES::YELLOW_BALL] = App->textures->Load("Assets/Sprites/Stage1/Enemies/YellowBall.png");
+	sprites[ENEMY_TYPES::BOUNCER] = App->textures->Load("Assets/Sprites/Stage1/Enemies/Yelloweye.png");
 
 	Brownworm_fx = App->audio->LoadS("Assets/Audio Files/SFX in WAV/xmultipl-100.wav");
 	LittleShrimp_fx = App->audio->LoadS("Assets/Audio Files/SFX in WAV/xmultipl-100.wav");
@@ -119,6 +125,24 @@ update_status ModuleEnemies::Update()
 			case POWERUPSHIP:
 				enemies[i]->Draw(sprites[POWERUPSHIP]);
 				break;
+			case BIG_EYE:
+				enemies[i]->Draw(sprites[BIG_EYE]);
+				break;
+			case BIG_SHRIMP:
+				enemies[i]->Draw(sprites[BIG_SHRIMP]);
+				break;
+			case BOUNCER:
+				enemies[i]->Draw(sprites[BOUNCER]);
+				break;
+			case YELLOW_BALL:
+				enemies[i]->Draw(sprites[YELLOW_BALL]);
+				break;
+			case BLUE_SENTINEL:
+				enemies[i]->Draw(sprites[BLUE_SENTINEL]);
+				break;
+			case BLUE_MOUTH:
+				enemies[i]->Draw(sprites[BLUE_MOUTH]);
+				break;
 			}
 		}
 
@@ -192,6 +216,36 @@ void ModuleEnemies::SpawnEnemy(const EnemyInfo& info)
 		case ENEMY_TYPES::POWERUPSHIP:
 			enemies[i] = new Enemy_PowerupShip(info.x, info.y, info.PU);
 			enemies[i]->type = ENEMY_TYPES::POWERUPSHIP;
+			break;
+
+		case ENEMY_TYPES::BIG_EYE:
+			enemies[i] = new Enemy_BigEye(info.x, info.y);
+			enemies[i]->type = ENEMY_TYPES::BIG_EYE;
+			break;
+
+		case ENEMY_TYPES::BIG_SHRIMP:
+			enemies[i] = new Enemy_Big_Shrimp(info.x, info.y);
+			enemies[i]->type = ENEMY_TYPES::BIG_SHRIMP;
+			break;
+
+		case ENEMY_TYPES::BLUE_MOUTH:
+			enemies[i] = new Enemy_BigMouth(info.x, info.y);
+			enemies[i]->type = ENEMY_TYPES::BLUE_MOUTH;
+			break;
+
+		case ENEMY_TYPES::BLUE_SENTINEL:
+			enemies[i] = new Enemy_BlueSentinel(info.x, info.y);
+			enemies[i]->type = ENEMY_TYPES::BLUE_SENTINEL;
+			break;
+
+		case ENEMY_TYPES::BOUNCER:
+			enemies[i] = new Enemy_Bouncer(info.x, info.y);
+			enemies[i]->type = ENEMY_TYPES::BOUNCER;
+			break;
+
+		case ENEMY_TYPES::YELLOW_BALL:
+			enemies[i] = new Enemy_YellowBall(info.x, info.y);
+			enemies[i]->type = ENEMY_TYPES::YELLOW_BALL;
 			break;
 		}
 	}
