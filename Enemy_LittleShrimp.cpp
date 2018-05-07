@@ -30,6 +30,6 @@ void Enemy_LittleShrimp::Move()
 	if (SDL_GetTicks()-shoot_delay >= 1250) 
 	{
 		shoot_delay = SDL_GetTicks();
-		App->particles->AddParticle(App->particles->shrimp_shoot, position.x, position.y, COLLIDER_ENEMY_SHOT);
+		App->particles->AddParticle(App->particles->shrimp_shoot, position.x, position.y, COLLIDER_ENEMY_SHOT, { -3,1 });
 	}
 }
