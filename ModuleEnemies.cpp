@@ -9,6 +9,7 @@
 #include "Enemy_LittleShrimp.h"
 #include "Enemy_PowerupShip.h"
 #include "Enemy_Nemona.h"
+#include "Enemy_Big_Eye.h"
 #include "ModuleAudio.h"
 #include "Enemy_Yellow_Ball.h"
 #include "ModuleSceneStage1.h"
@@ -48,6 +49,7 @@ bool ModuleEnemies::Start()
 	Nemona_fx = App->audio->LoadS("Assets/Audio Files/SFX in WAV/xmultipl-094.wav");
 	Powership_fx = App->audio->LoadS("Assets/Audio Files/SFX in WAV/xmultipl-055.wav");
 	Yellowball_fx = App->audio->LoadS("Assets/Audio Files/SFX in WAV/xmultipl-093.wav");
+	BigEye_fx = App->audio->LoadS("Assets/Audio Files/SFX in WAV/xmultipl-094.wav");
 
 	return true;
 }
@@ -239,24 +241,12 @@ void ModuleEnemies::SpawnEnemy(const EnemyInfo& info)
 			enemies[i]->type = ENEMY_TYPES::POWERUPSHIP;
 			break;
 
-	/*	case ENEMY_TYPES::BIG_EYE:
-			enemies[i] = new Enemy_BigEye(info.x, info.y);
-			enemies[i]->type = ENEMY_TYPES::BIG_EYE;
-			break;
-*/
-	/*	case ENEMY_TYPES::BIG_SHRIMP:
-			enemies[i] = new Enemy_Big_Shrimp(info.x, info.y);
-			enemies[i]->type = ENEMY_TYPES::BIG_SHRIMP;
-			break;
-*/
-	/*	case ENEMY_TYPES::BLUE_MOUTH:
-			enemies[i] = new Enemy_BigMouth(info.x, info.y);
-=======
+	
 		case ENEMY_TYPES::BIG_EYE:
-			//enemies[i] = new Enemy_BigEye(info.x, info.y);
+			enemies[i] = new Enemy_Big_Eye(info.x, info.y);
 			enemies[i]->type = ENEMY_TYPES::BIG_EYE;
 			break;
-
+/*
 		case ENEMY_TYPES::BIG_SHRIMP:
 			//enemies[i] = new Enemy_Big_Shrimp(info.x, info.y);
 			enemies[i]->type = ENEMY_TYPES::BIG_SHRIMP;
@@ -264,15 +254,14 @@ void ModuleEnemies::SpawnEnemy(const EnemyInfo& info)
 
 		case ENEMY_TYPES::BLUE_MOUTH:
 			//enemies[i] = new Enemy_BigMouth(info.x, info.y);
->>>>>>> 1ab24802a1d8cabd2cbf760f84b8f714375b66d4
 			enemies[i]->type = ENEMY_TYPES::BLUE_MOUTH;
 			break;
-*//*
+
 		case ENEMY_TYPES::BLUE_SENTINEL:
 			//enemies[i] = new Enemy_BlueSentinel(info.x, info.y);
 			enemies[i]->type = ENEMY_TYPES::BLUE_SENTINEL;
 			break;
-*//*
+
 		case ENEMY_TYPES::BOUNCER:
 			//enemies[i] = new Enemy_Bouncer(info.x, info.y);
 			enemies[i]->type = ENEMY_TYPES::BOUNCER;
@@ -308,7 +297,8 @@ void ModuleEnemies::OnCollision(Collider* c1, Collider* c2)
 				case ENEMY_TYPES::YELLOW_BALL:
 					App->audio->PlaySound(Yellowball_fx);
 					break;
-
+				case ENEMY_TYPES::BIG_EYE:
+					App->audio->PlaySound(BigEye_fx);
 					break;
 			}
 			enemies[i]->OnCollision(c2);

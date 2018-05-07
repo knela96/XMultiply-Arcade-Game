@@ -50,6 +50,7 @@ private:
 	Mix_Chunk* Nemona_fx;
 	Mix_Chunk* Powership_fx;
 	Mix_Chunk* Yellowball_fx;
+	Mix_Chunk* BigEye_fx;
 };
 
 #endif // __ModuleEnemies_H__
