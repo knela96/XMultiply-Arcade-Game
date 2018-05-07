@@ -23,12 +23,13 @@ ModulePlayer::ModulePlayer()
 	idle.PushBack({ 97, 0, 48, 16 });
 	idle.loop = true;
 	idle.speed = 0.1f;
-	
-	nitro.PushBack({146,174,42,14});
-	nitro.PushBack({146,145,42,14});
-	nitro.PushBack({146,160,42,14});
+
+	nitro.PushBack({ 208,80,48,16 });
+	nitro.PushBack({ 208,64,48,16 });
+	nitro.PushBack({ 208,48,48,16});
+	nitro.PushBack({ 240,144,16,16 });
 	nitro.loop = true;
-	nitro.speed = 0.2f;
+	nitro.speed = 0.5f;
 
 	forward.PushBack({ 97, 0, 48, 16 });
 	forward.loop = false;
@@ -71,7 +72,7 @@ bool ModulePlayer::Start()
 {
 	LOG("Loading player textures");
 	bool ret = true;
-	graphics = App->textures->Load("Assets/Player.png"); // arcade version
+	graphics = App->textures->Load("Assets/Sprites/Character/Player.png"); // arcade version
 	
 	death_fx = App->audio->LoadS("Assets/Audio Files/SFX in WAV/xmultipl-044.wav");
 
@@ -124,8 +125,8 @@ bool ModulePlayer::CleanUp()
 update_status ModulePlayer::Update()
 {
 	if (nitroanim) {
-		if (counter < 40) {
-			App->render->Blit(graphics, position.x - 35, position.y + 2, &(nitro.GetCurrentFrame()));
+		if (counter < 5) {
+			App->render->Blit(graphics, position.x - 40, position.y , &(nitro.GetCurrentFrame()));
 			counter +=1;
 		}
 		else {
@@ -191,6 +192,7 @@ update_status ModulePlayer::Update()
 		if (App->input->keyboard[SDL_SCANCODE_F2] == KEY_DOWN) {
 			position.x = 4700;
 			position.y = 100;
+			App->scene_stage1->disableModules();
 		}
 
 		if (App->input->keyboard[SDL_SCANCODE_F3] == KEY_DOWN && enable_movement) {
@@ -293,9 +295,8 @@ void ModulePlayer::OnCollision(Collider* collider1, Collider* collider2) {
 }
 
 void ModulePlayer::resetPlayer() {
-	position.x = 0 - App->player->current_animation->frames->w;
-	position.y = 100;
 	speed = 2;
+	score = 0;
 	enable_movement = false;
 	current_animation = &idle;
 	App->audio->PlayMusic(App->scene_stage1->music);

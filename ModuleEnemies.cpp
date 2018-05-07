@@ -10,6 +10,7 @@
 #include "Enemy_PowerupShip.h"
 #include "Enemy_Nemona.h"
 #include "ModuleAudio.h"
+#include "ModuleSceneStage1.h"
 
 #define SPAWN_MARGIN 50
 
@@ -82,6 +83,23 @@ bool ModuleEnemies::CleanUp()
 
 
 	return true;
+}
+
+void ModuleEnemies::removeEnemies()
+{
+	LOG("Rmoving enemies");
+	for (uint i = 0; i < MAX_ENEMIES; ++i)
+	{
+		if (enemies[i] != nullptr)
+		{
+			delete enemies[i];
+			enemies[i] = nullptr;
+		}
+		if (queue[i].type != ENEMY_TYPES::NO_TYPE) {
+			queue[i].type = ENEMY_TYPES::NO_TYPE;
+		}
+	}
+
 }
 
 update_status ModuleEnemies::PreUpdate()

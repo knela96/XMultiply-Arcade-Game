@@ -25,9 +25,11 @@ public:
 	bool CleanUp();
 	update_status Update();
 	void disableModules();
+	void enableModules();
 
 public:
-	int index = 0;
+	uint index1 = 0;
+	uint index2 = 0;
 	
 	SDL_Texture* graphics = nullptr;
 	SDL_Texture* back = nullptr;
@@ -43,6 +45,7 @@ public:
 	Animation injection_up;
 	bool resetmap = false;
 	bool cleaned = false;
+	bool show = false;
 	SDL_Rect background;
 	Animation flag;
 	Animation people;
@@ -51,6 +54,7 @@ public:
 	Mix_Music* clear_stage;
 	Uint32 start_time;
 	Uint32 aux_time;
+	int rgb = 255;
 
 	bool injecting = true;
 

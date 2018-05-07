@@ -41,7 +41,7 @@ ModuleSceneStage1::ModuleSceneStage1()
 	injection.PushBack({ 238, 0, 48, 112 });
 	injection.PushBack({ 307, 0, 48, 120 });
 	injection.PushBack({ 386, 0, 48, 120 });
-	injection.speed = 0.75f;
+	injection.speed = 0.15f;
 	injection.loop = false;
 
 	injection_up.PushBack({ 386, 0, 48, 120 });
@@ -50,7 +50,7 @@ ModuleSceneStage1::ModuleSceneStage1()
 	injection_up.PushBack({ 160, 0, 48, 103 });
 	injection_up.PushBack({ 79, 0, 48, 105 });
 	injection_up.PushBack({ 0, 0, 48, 102 });
-	injection_up.speed = 0.75f;
+	injection_up.speed = 0.15f;
 	injection_up.loop = false;
 
 	entering = { 0, 0, 48, 102 };
@@ -76,7 +76,8 @@ bool ModuleSceneStage1::Start()
 	injecting = true;
 	aux_time = 0;
 	start_time = 0;
-	index = 0;
+	index1 = 0;
+	index2 = 0;
 	clearstage_fx = false;
 	injection_up.Reset();
 	injection.Reset();
@@ -206,20 +207,6 @@ bool ModuleSceneStage1::Start()
 
 bool ModuleSceneStage1::CleanUp()
 {
-	/*
-	injectiontex = App->textures->Load("Assets/Sprites/Stage1/Tilemap/Injection.png");
-
-	graphics = App->textures->Load("Assets/TileMap1.2.png");
-	font_gameover = App->font->Load("Assets/Sprites/UI/fonts.2.png", "0123456789·' ºººººººººººººabcdefghijklmnopqrstuvwxyz", 2);
-	back = App->textures->Load("Assets/FirstLvlMap3.1.png");
-
-	hud = App->textures->Load("Assets/UI.png");
-
-	music = App->audio->LoadM("Assets/Audio Files/Music in OGG/04_Into_the_Human_Body_Stage_1_.ogg");
-	injection_fx = App->audio->LoadS("Assets/Audio Files/SFX in WAV/xmultipl-053.wav");
-	clear_stage = App->audio->LoadM("Assets/Audio Files/Music in OGG/06_Stage_Clear.ogg");*/
-
-
 	LOG("Cleaning backround assets");
 	bool ret = true;
 	App->textures->Unload(injectiontex);
@@ -300,7 +287,6 @@ update_status ModuleSceneStage1::Update()
 	
 	if(injecting){
 		if (!shipdeployed) {
-//			injectpos();
 			if (injectxy.y == 0) {
 				App->player->position.y = entering.h;
 				App->player->Enable();
@@ -310,18 +296,15 @@ update_status ModuleSceneStage1::Update()
 				injectxy.y++;
 		}
 		else {
-			while (SDL_GetTicks() - aux_time >= 100) {
-				/*if (injection_up.Finished()) {
-					injectxy.y -= 2;
-				}*/
-				if (injection.Finished()) {
-					entering = injection_up.GetCurrentFrame();
-				}
-				else {
-					entering = injection.GetCurrentFrame();
+			if (injection.Finished()) {
+				entering = injection_up.GetCurrentFrame();
+			}
+			else {
+				entering = injection.GetCurrentFrame();
+				while (SDL_GetTicks() - aux_time >= 19) {
 					App->player->position.y += 1;
+					aux_time = SDL_GetTicks();
 				}
-				aux_time = SDL_GetTicks();
 			}
 
 			if (injection_up.Finished()){
@@ -335,10 +318,12 @@ update_status ModuleSceneStage1::Update()
 
 			if (injection.Finished()) {
 				if (App->player->position.x < 150) {
+					App->player->nitroanim = false;
 					App->player->position.x += 1;
 					right = true;
 				}
 				else {
+					App->player->nitroanim = true;
 					App->player->enable_movement = true;
 				}
 			}
@@ -350,34 +335,40 @@ update_status ModuleSceneStage1::Update()
 	
 	if (App->player->position.x >= 4700) //4700
 	{
-		if (App->input->keyboard[SDL_SCANCODE_SPACE] == KEY_STATE::KEY_DOWN){
+		if (App->input->keyboard[SDL_SCANCODE_RETURN] == KEY_STATE::KEY_DOWN){
 			App->fade->FadeToBlack((Module*)App->scene_stage1, (Module*)App->scene_MainMenu);
 		}
-		
-		hud = nullptr;
-		App->player->score = 0;
-		disableModules();
 		if (!clearstage_fx) {
 			App->audio->PlayMusic(App->scene_stage1->clear_stage);
 			clearstage_fx = true;
 		}
-		
-		SDL_SetTextureColorMod(graphics, 0, 0, 0);
-		SDL_SetTextureColorMod(back, 0, 0, 0);
-		SDL_SetTextureColorMod(injectiontex, 0, 0, 0);
+		if (rgb < 1) {
+			rgb = 0;
+		}
+		else {
+			rgb--;
+		}
+		SDL_SetTextureColorMod(graphics, rgb, rgb, rgb);
+		SDL_SetTextureColorMod(back, rgb, rgb, rgb);
+		SDL_SetTextureColorMod(injectiontex, rgb, rgb, rgb);
+		SDL_SetTextureColorMod(hud, rgb, rgb, rgb);
 		
 		if (SDL_GetTicks() - start_time >= 250 ) {
 			start_time = SDL_GetTicks();
-			
-			if (index < 17) {
-				_stageendblit2[index + 1] = _stageend2[17];
-				_stageendblit2[index] = _stageend2[index];
+
+			if (index1 < 11) {
+				_stageendblit[index1 + 1] = _stageend[11];
+				_stageendblit[index1] = _stageend[index1];
+				index1++;
 			}
-			if (index < 11) {
-				_stageendblit[index + 1] = _stageend[11];
-				_stageendblit[index] = _stageend[index];
+			if (index1 == 11) {
+				show = true;
 			}
-			index++;
+			if (index2 < 17 && show) {
+				_stageendblit2[index2 + 1] = _stageend2[17];
+				_stageendblit2[index2] = _stageend2[index2];
+				index2++;
+			}
 
 		}
 		
@@ -407,12 +398,17 @@ void ModuleSceneStage1::resetMap() {
 	else {
 		if (!cleaned) {
 			disableModules();
+			enableModules();
 			App->player->dead = false;
+			App->player->position.x = 0 - App->player->current_animation->frames->w;
+			App->player->position.y = 100;
 		}
 		else {
 			if (App->player->position.x < 100) {
 				App->player->nitroanim = true;
 				App->player->position.x++;
+				App->render->camera.x = 0;
+				App->render->camera.y = 0;
 			}
 			else {
 				App->player->enable_movement = true;
@@ -425,15 +421,16 @@ void ModuleSceneStage1::resetMap() {
 }
 
 void ModuleSceneStage1::disableModules() {
-
 	right = false;
-
 	App->player->resetPlayer();
 	App->enemies->Disable();
 	App->powerup->Disable();
 	App->particles->removeParticles();
 	App->tentacles->RemoveTentacle();
 
+}
+
+void ModuleSceneStage1::enableModules() {
 	App->enemies->Enable();
 	App->powerup->Enable();
 	App->particles->Enable();
@@ -515,7 +512,7 @@ void ModuleSceneStage1::AddEnemies() {
 	App->enemies->AddEnemy(NEMONA_TENTACLE, 1300, 150, -1);
 
 	//anemona
-	App->enemies->AddEnemy(NEMONA_TENTACLE, 1350, 2, -1,false,180.0f); //GIRA
+	//App->enemies->AddEnemy(NEMONA_TENTACLE, 1350, 2, -1,false,180.0f); //GIRA
 
 // filler
 	App->enemies->AddEnemy(BROWN_WORM, 1450, 100, -1, true);
