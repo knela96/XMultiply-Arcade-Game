@@ -6,20 +6,18 @@
 
 Enemy_Yellow_Ball::Enemy_Yellow_Ball(int x, int y) : Enemy(x, y)
 {
-	fly.PushBack({ 0,0,68,60 });
-	fly.PushBack({ 0,75,68,125 });
-	fly.PushBack({ 0,140,68,190 });
-	fly.speed = 0.1f;
+	fly.PushBack({ 10,5,70,30 });
+	fly.PushBack({ 10,40,70,30 });
+	fly.PushBack({ 10,79,70,32 });
+	fly.speed = 0.13f;
 
 	animation = &fly;
 
 	
 	path->PushBack({ -1 , 0 }, 15, &fly);
 	
-	
 
-
-	collider = App->collision->AddCollider({ 0, 0, 48, 32 }, COLLIDER_TYPE::COLLIDER_ENEMY, (Module*)App->enemies);
+	collider = App->collision->AddCollider({ 10, 0, 40, 32 }, COLLIDER_TYPE::COLLIDER_ENEMY, (Module*)App->enemies);
 
 	original_position.x = x;
 	original_position.y = y;
