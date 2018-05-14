@@ -69,6 +69,9 @@
     <ClCompile Include="ModuleFonts.cpp">
       <Filter>Scenes</Filter>
     </ClCompile>
+    <ClCompile Include="Enemy_Blue_Mouth.cpp">
+      <Filter>Enemies</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Application.h" />
@@ -150,6 +153,9 @@
     </ClInclude>
     <ClInclude Include="Animation.h">
       <Filter>Globals</Filter>
+    </ClInclude>
+    <ClInclude Include="Enemy_Blue_Mouth.h">
+      <Filter>Enemies</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

@@ -1,10 +1,10 @@
-#ifndef __ENEMY_BIG_EYE_H_
-#define __ENEMY_BG_EYE_H__
+#ifndef __ENEMY_BLUE_MOUTH_H__
+#define __ENEMY_BLUE_MOUTH_H__
 
 #include "Enemy.h"
 
 
-class Enemy_Big_Eye : public Enemy
+class Enemy_Blue_Mouth : public Enemy
 {
 private:
 	float wave = -1.0f;
@@ -18,9 +18,9 @@ public:
 
 	iPoint original_position;
 	Path* path = new Path();
-	Enemy_Big_Eye(int x, int y);
+	Enemy_Blue_Mouth(int x, int y);
 
 	void Move();
 };
 
-#endif // __ENEMY_BIG_EYE_H__
+#endif // __ENEMY_BLUE_MOUTH_H__

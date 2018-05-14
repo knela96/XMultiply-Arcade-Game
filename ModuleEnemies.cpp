@@ -10,9 +10,11 @@
 #include "Enemy_PowerupShip.h"
 #include "Enemy_Nemona.h"
 #include "Enemy_Big_Eye.h"
+#include "Enemy_Blue_Mouth.h"
 #include "Enemy_Bouncer.h"
 #include "ModuleAudio.h"
 #include "ModuleSceneStage1.h"
+
 
 #define SPAWN_MARGIN 50
 
@@ -251,7 +253,7 @@ void ModuleEnemies::SpawnEnemy(const EnemyInfo& info)
 			break;
 
 		case ENEMY_TYPES::BLUE_MOUTH:
-			//enemies[i] = new Enemy_BigMouth(info.x, info.y);
+			enemies[i] = new Enemy_Blue_Mouth(info.x, info.y);
 			enemies[i]->type = ENEMY_TYPES::BLUE_MOUTH;
 			break;
 
