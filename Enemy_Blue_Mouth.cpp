@@ -4,6 +4,9 @@
 #include "ModuleParticles.h"
 #include "SDL/include/SDL_timer.h"
 
+
+/* FALTA CAMBIAR EL SPRITE DEL DISPAR*/
+
 Enemy_Blue_Mouth::Enemy_Blue_Mouth(int x, int y) : Enemy(x, y)
 {
 	fly.PushBack({ 5,5,56,50 });
@@ -26,10 +29,17 @@ Enemy_Blue_Mouth::Enemy_Blue_Mouth(int x, int y) : Enemy(x, y)
 void Enemy_Blue_Mouth::Move()
 {
 	position = original_position + path->GetCurrentPosition(&animation);
-	if (SDL_GetTicks() - shoot_delay >= 1000)
+	if (SDL_GetTicks() - shoot_delay >= 2000)
 	{
 		shoot_delay = SDL_GetTicks();
-		App->particles->AddParticle(App->particles->shrimp_shoot, position.x + fly.frames->w / 2, position.y + fly.frames->h / 2, COLLIDER_ENEMY_SHOT, { -3,0 });
+		App->particles->AddParticle(App->particles->shrimp_shoot, position.x + fly.frames->w / 2.3, position.y + fly.frames->h / 2, COLLIDER_ENEMY, { -2,0 });
+		App->particles->AddParticle(App->particles->shrimp_shoot, position.x + fly.frames->w / 2.3, position.y + fly.frames->h / 2, COLLIDER_ENEMY, { -2,-1 });
+		App->particles->AddParticle(App->particles->shrimp_shoot, position.x + fly.frames->w / 2.3, position.y + fly.frames->h / 2, COLLIDER_ENEMY, { -1,-2 });
+		App->particles->AddParticle(App->particles->shrimp_shoot, position.x + fly.frames->w / 2.3, position.y + fly.frames->h / 2, COLLIDER_ENEMY, { 0,-2 });
+		App->particles->AddParticle(App->particles->shrimp_shoot, position.x + fly.frames->w / 2.3, position.y + fly.frames->h / 2, COLLIDER_ENEMY, { 1,-2 });
+		App->particles->AddParticle(App->particles->shrimp_shoot, position.x + fly.frames->w / 2.3, position.y + fly.frames->h / 2, COLLIDER_ENEMY, { 2,-1 });
+		App->particles->AddParticle(App->particles->shrimp_shoot, position.x + fly.frames->w / 2.3, position.y + fly.frames->h / 2, COLLIDER_ENEMY, { 2 ,0 });
+
 
 	}
 }
