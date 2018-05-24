@@ -72,22 +72,16 @@
     <ClCompile Include="Enemy_Blue_Mouth.cpp">
       <Filter>Enemies</Filter>
     </ClCompile>
-    <ClCompile Include="Enemy_BossS4.cpp">
+    <ClCompile Include="Enemy_Rock.cpp">
       <Filter>Enemies</Filter>
     </ClCompile>
-    <ClCompile Include="Enemy_BossS4Arm.cpp">
+    <ClCompile Include="Enemy_Worm_Head.cpp">
       <Filter>Enemies</Filter>
     </ClCompile>
-    <ClCompile Include="Enemy_BossS4Face.cpp">
+    <ClCompile Include="Enemy_Worm_Body.cpp">
       <Filter>Enemies</Filter>
     </ClCompile>
-    <ClCompile Include="Enemy_BossS4Heart.cpp">
-      <Filter>Enemies</Filter>
-    </ClCompile>
-    <ClCompile Include="Enemy_BossS4Tenta.cpp">
-      <Filter>Enemies</Filter>
-    </ClCompile>
-    <ClCompile Include="Enemy_BossS4Disp.cpp">
+    <ClCompile Include="Enemy_Worm_Base.cpp">
       <Filter>Enemies</Filter>
     </ClCompile>
   </ItemGroup>
@@ -175,22 +169,16 @@
     <ClInclude Include="Enemy_Blue_Mouth.h">
       <Filter>Enemies</Filter>
     </ClInclude>
-    <ClInclude Include="Enemy_BossS4.h">
+    <ClInclude Include="Enemy_Rock.h">
       <Filter>Enemies</Filter>
     </ClInclude>
-    <ClInclude Include="Enemy_BossS4Arm.h">
+    <ClInclude Include="Enemy_Worm_Head.h">
       <Filter>Enemies</Filter>
     </ClInclude>
-    <ClInclude Include="Enemy_BossS4Face.h">
+    <ClInclude Include="Enemy_Worm_Body.h">
       <Filter>Enemies</Filter>
     </ClInclude>
-    <ClInclude Include="Enemy_BossS4Heart.h">
-      <Filter>Enemies</Filter>
-    </ClInclude>
-    <ClInclude Include="Enemy_BossS4Tenta.h">
-      <Filter>Enemies</Filter>
-    </ClInclude>
-    <ClInclude Include="Enemy_BossS4Disp.h">
+    <ClInclude Include="Enemy_Worm_Base.h">
       <Filter>Enemies</Filter>
     </ClInclude>
   </ItemGroup>

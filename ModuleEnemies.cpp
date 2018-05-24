@@ -13,6 +13,10 @@
 #include "Enemy_Blue_Mouth.h"
 #include "Enemy_Yellow_Ball.h"
 #include "Enemy_Bouncer.h"
+#include "Enemy_Rock.h"
+#include "Enemy_Worm_Body.h"
+#include "Enemy_Worm_Head.h"
+#include "Enemy_Worm_Base.h"
 #include "Enemy_BossS4.h"
 #include "Enemy_BossS4Arm.h"
 #include "Enemy_BossS4Disp.h"
@@ -58,6 +62,10 @@ bool ModuleEnemies::Start()
 	sprites[ENEMY_TYPES::BOSSFACE] = App->textures->Load("Assets/Sprites/Stage4/Boss/boss4_3.png");
 	sprites[ENEMY_TYPES::BOSSHEART] = sprites[ENEMY_TYPES::BOSSFACE];
 	sprites[ENEMY_TYPES::BOSSDISP] = sprites[ENEMY_TYPES::BOSSFACE];
+	sprites[ENEMY_TYPES::WORM_HEAD] = App->textures->Load("Assets/Sprites/Stage4/Enemies/Worm_Head.png");
+	sprites[ENEMY_TYPES::WORM_BODY] = App->textures->Load("Assets/Sprites/Stage4/Enemies/Worm_Body.png");
+	sprites[ENEMY_TYPES::WORM_BASE] = App->textures->Load("Assets/Sprites/Stage4/Enemies/Worm_Base.png");
+
 
 	Brownworm_fx = App->audio->LoadS("Assets/Audio Files/SFX in WAV/xmultipl-100.wav");
 	LittleShrimp_fx = App->audio->LoadS("Assets/Audio Files/SFX in WAV/xmultipl-100.wav");
@@ -204,6 +212,15 @@ update_status ModuleEnemies::Update()
 				break;
 			case BOSSHEART:
 				enemies[i]->Draw(sprites[BOSSHEART]);
+				break;
+			case WORM_BASE:
+				enemies[i]->Draw(sprites[WORM_BASE]);
+				break;
+			case WORM_BODY:
+				enemies[i]->Draw(sprites[WORM_BODY]);
+				break;
+			case WORM_HEAD:
+				enemies[i]->Draw(sprites[WORM_HEAD]);
 				break;
 
 			}
