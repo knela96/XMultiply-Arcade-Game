@@ -11,7 +11,18 @@
 #include "Enemy_Nemona.h"
 #include "Enemy_Big_Eye.h"
 #include "Enemy_Blue_Mouth.h"
+#include "Enemy_Yellow_Ball.h"
 #include "Enemy_Bouncer.h"
+#include "Enemy_Rock.h"
+#include "Enemy_Worm_Body.h"
+#include "Enemy_Worm_Head.h"
+#include "Enemy_Worm_Base.h"
+#include "Enemy_BossS4.h"
+#include "Enemy_BossS4Arm.h"
+#include "Enemy_BossS4Disp.h"
+#include "Enemy_BossS4Face.h"
+#include "Enemy_BossS4Heart.h"
+#include "Enemy_BossS4Tenta.h"
 #include "ModuleAudio.h"
 #include "ModuleSceneStage1.h"
 
@@ -33,6 +44,7 @@ ModuleEnemies::~ModuleEnemies()
 
 bool ModuleEnemies::Start()
 {
+	
 	// Create a prototype for each enemy available so we can copy them around
 	sprites[ENEMY_TYPES::BROWN_WORM] = App->textures->Load("Assets/Sprites/Stage1/Enemies/monsterball.png");
 	sprites[ENEMY_TYPES::LITTLE_SHRIMP] = App->textures->Load("Assets/Sprites/Stage1/Enemies/littleshrimp.png");
@@ -44,6 +56,16 @@ bool ModuleEnemies::Start()
 	sprites[ENEMY_TYPES::BLUE_SENTINEL] = App->textures->Load("Assets/Sprites/Stage1/Enemies/2ndlvlmonster.png");
 	sprites[ENEMY_TYPES::YELLOW_BALL] = App->textures->Load("Assets/Sprites/Stage1/Enemies/YellowBall.png");
 	sprites[ENEMY_TYPES::BOUNCER] = App->textures->Load("Assets/Sprites/Stage1/Enemies/Yelloweye.png");
+	sprites[ENEMY_TYPES::BOSS1] = App->textures->Load("Assets/Sprites/Stage4/Boss/boss4_1.png");
+	sprites[ENEMY_TYPES::BOSSTENT] = sprites[ENEMY_TYPES::BOSS1];
+	sprites[ENEMY_TYPES::BOSSARM] = App->textures->Load("Assets/Sprites/Stage4/Boss/boss4_2.png");
+	sprites[ENEMY_TYPES::BOSSFACE] = App->textures->Load("Assets/Sprites/Stage4/Boss/boss4_3.png");
+	sprites[ENEMY_TYPES::BOSSHEART] = sprites[ENEMY_TYPES::BOSSFACE];
+	sprites[ENEMY_TYPES::BOSSDISP] = sprites[ENEMY_TYPES::BOSSFACE];
+	sprites[ENEMY_TYPES::WORM_HEAD] = App->textures->Load("Assets/Sprites/Stage4/Enemies/Worm_Head.png");
+	sprites[ENEMY_TYPES::WORM_BODY] = App->textures->Load("Assets/Sprites/Stage4/Enemies/Worm_Body.png");
+	sprites[ENEMY_TYPES::WORM_BASE] = App->textures->Load("Assets/Sprites/Stage4/Enemies/Worm_Base.png");
+
 
 	Brownworm_fx = App->audio->LoadS("Assets/Audio Files/SFX in WAV/xmultipl-100.wav");
 	LittleShrimp_fx = App->audio->LoadS("Assets/Audio Files/SFX in WAV/xmultipl-100.wav");
@@ -68,6 +90,10 @@ bool ModuleEnemies::CleanUp()
 	Powership_fx = nullptr;
 	App->audio->UnloadS(Bouncer_fx);
 	Bouncer_fx = nullptr;
+	App->audio->UnloadS(Yellowball_fx);
+	Yellowball_fx = nullptr;
+	App->audio->UnloadS(BigEye_fx);
+	BigEye_fx = nullptr;
 
 	for (uint i = 0; i < MAX_TEXTURES; ++i) {
 		if (sprites[i] != nullptr)
@@ -169,6 +195,34 @@ update_status ModuleEnemies::Update()
 			case BLUE_MOUTH:
 				enemies[i]->Draw(sprites[BLUE_MOUTH]);
 				break;
+			case BOSS1:
+				enemies[i]->Draw(sprites[BOSS1]);
+				break;
+			case BOSSARM:
+				enemies[i]->Draw(sprites[BOSSARM]);
+				break;
+			case BOSSDISP:
+				enemies[i]->Draw(sprites[BOSSDISP]);
+				break;
+			case BOSSTENT:
+				enemies[i]->Draw(sprites[BOSSTENT]);
+				break;
+			case BOSSFACE:
+				enemies[i]->Draw(sprites[BOSSFACE]);
+				break;
+			case BOSSHEART:
+				enemies[i]->Draw(sprites[BOSSHEART]);
+				break;
+			case WORM_BASE:
+				enemies[i]->Draw(sprites[WORM_BASE]);
+				break;
+			case WORM_BODY:
+				enemies[i]->Draw(sprites[WORM_BODY]);
+				break;
+			case WORM_HEAD:
+				enemies[i]->Draw(sprites[WORM_HEAD]);
+				break;
+
 			}
 		}
 
@@ -268,9 +322,42 @@ void ModuleEnemies::SpawnEnemy(const EnemyInfo& info)
 			break;
 
 		case ENEMY_TYPES::YELLOW_BALL:
-			//enemies[i] = new Enemy_YellowBall(info.x, info.y);
+			enemies[i] = new Enemy_Yellow_Ball(info.x, info.y);
 			enemies[i]->type = ENEMY_TYPES::YELLOW_BALL;
 			break;
+		case ENEMY_TYPES::BOSS1:
+			//enemies[i] = new Enemy_BossS4(info.x, info.y);
+			enemies[i]->type = ENEMY_TYPES::BOSS1;
+			break;
+		case ENEMY_TYPES::BOSSARM:
+			//enemies[i] = new Enemy_BossS4Arm(info.x, info.y);
+			enemies[i]->type = ENEMY_TYPES::BOSSARM;
+			break;
+
+		case ENEMY_TYPES::BOSSDISP:
+			//enemies[i] = new Enemy_BossS4Disp(info.x, info.y);
+			enemies[i]->type = ENEMY_TYPES::BOSSDISP;
+			break;
+
+		case ENEMY_TYPES::BOSSTENT:
+			//enemies[i] = new Enemy_BossS4Tenta(info.x, info.y);
+			enemies[i]->type = ENEMY_TYPES::BOSSTENT;
+			break;
+
+		case ENEMY_TYPES::BOSSFACE:
+			//enemies[i] = new Enemy_BossS4Face(info.x, info.y);
+			enemies[i]->type = ENEMY_TYPES::BOSSFACE;
+			break;
+
+		case ENEMY_TYPES::BOSSHEART:
+			//enemies[i] = new Enemy_BossS4Heart(info.x, info.y);
+			enemies[i]->type = ENEMY_TYPES::BOSSHEART;
+			break;
+
+
+
+		
+		
 		}
 	}
 }

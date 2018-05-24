@@ -78,6 +78,10 @@
     <ClInclude Include="Enemy_Blue_Mouth.h" />
     <ClInclude Include="Enemy_Bouncer.h" />
     <ClInclude Include="Enemy_BrownWorm.h" />
+    <ClInclude Include="Enemy_Rock.h" />
+    <ClInclude Include="Enemy_Worm_Base.h" />
+    <ClInclude Include="Enemy_Worm_Body.h" />
+    <ClInclude Include="Enemy_Worm_Head.h" />
     <ClInclude Include="Enemy_Yellow_Ball.h" />
     <ClInclude Include="Enemy_LittleShrimp.h" />
     <ClInclude Include="Enemy_Nemona.h" />
@@ -113,6 +117,10 @@
     <ClCompile Include="Enemy_Blue_Mouth.cpp" />
     <ClCompile Include="Enemy_Bouncer.cpp" />
     <ClCompile Include="Enemy_BrownWorm.cpp" />
+    <ClCompile Include="Enemy_Rock.cpp" />
+    <ClCompile Include="Enemy_Worm_Base.cpp" />
+    <ClCompile Include="Enemy_Worm_Body.cpp" />
+    <ClCompile Include="Enemy_Worm_Head.cpp" />
     <ClCompile Include="Enemy_Yellow_Ball.cpp" />
     <ClCompile Include="Enemy_LittleShrimp.cpp" />
     <ClCompile Include="Enemy_Nemona.cpp" />
