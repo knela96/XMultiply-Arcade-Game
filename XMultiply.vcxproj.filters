@@ -72,6 +72,9 @@
     <ClCompile Include="Enemy_Blue_Mouth.cpp">
       <Filter>Enemies</Filter>
     </ClCompile>
+    <ClCompile Include="ModuleSceneStage4.cpp">
+      <Filter>Scenes</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Application.h" />
@@ -156,6 +159,9 @@
     </ClInclude>
     <ClInclude Include="Enemy_Blue_Mouth.h">
       <Filter>Enemies</Filter>
+    </ClInclude>
+    <ClInclude Include="ModuleSceneStage4.h">
+      <Filter>Scenes</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

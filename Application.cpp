@@ -11,6 +11,7 @@
 #include "ModuleSceneMainMenu.h"
 #include "ModuleSceneChoosePlayer.h"
 #include "ModuleSceneStage1.h"
+#include "ModuleSceneStage4.h"
 #include "ModuleSceneCongrats.h"
 #include "ModuleCollision.h"
 #include "ModuleTentacles.h"
@@ -29,6 +30,7 @@ Application::Application()
 	modules[i++] = scene_MainMenu = new ModuleSceneMainMenu();
 	modules[i++] = scene_choosePlayer = new ModuleSceneChoosePlayer();
 	modules[i++] = scene_stage1 = new ModuleSceneStage1();
+	modules[i++] = scene_stage4 = new ModuleSceneStage4();
 	modules[i++] = scene_congrats = new ModuleSceneCongrats();
 	modules[i++] = player = new ModulePlayer();
 	modules[i++] = tentacles = new ModuleTentacles();
@@ -56,6 +58,7 @@ bool Application::Init()
 	// Disable the modules that do not want to start
 	scene_choosePlayer->Disable();
 	scene_stage1->Disable();
+	scene_stage4->Disable();
 	scene_congrats->Disable();
 
 
