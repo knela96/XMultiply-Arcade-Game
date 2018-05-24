@@ -453,7 +453,7 @@ void ModuleSceneStage1::AddEnemies() {
 	App->enemies->AddEnemy(BROWN_WORM, 505, 50, -1, true);
 	App->enemies->AddEnemy(BROWN_WORM, 515, 50, -1, true);
 
-	App->enemies->AddEnemy(BLUE_MOUTH, 455, 50, -1);
+	App->enemies->AddEnemy(BOSSARM, 455, 50, -1);
 
 	App->enemies->AddEnemy(BROWN_WORM, 455, 50, -1);
 	App->enemies->AddEnemy(BROWN_WORM, 465, 50, -1);

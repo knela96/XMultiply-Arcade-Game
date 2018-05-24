@@ -313,7 +313,7 @@ void ModuleEnemies::SpawnEnemy(const EnemyInfo& info)
 			enemies[i]->type = ENEMY_TYPES::BOSS1;
 			break;
 		case ENEMY_TYPES::BOSSARM:
-			//enemies[i] = new Enemy_BossS4Arm(info.x, info.y);
+			enemies[i] = new Enemy_BossS4Arm(info.x, info.y);
 			enemies[i]->type = ENEMY_TYPES::BOSSARM;
 			break;
 
