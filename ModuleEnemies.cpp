@@ -13,6 +13,12 @@
 #include "Enemy_Blue_Mouth.h"
 #include "Enemy_Yellow_Ball.h"
 #include "Enemy_Bouncer.h"
+#include "Enemy_BossS4.h"
+#include "Enemy_BossS4Arm.h"
+#include "Enemy_BossS4Disp.h"
+#include "Enemy_BossS4Face.h"
+#include "Enemy_BossS4Heart.h"
+#include "Enemy_BossS4Tenta.h"
 #include "ModuleAudio.h"
 #include "ModuleSceneStage1.h"
 
@@ -303,31 +309,31 @@ void ModuleEnemies::SpawnEnemy(const EnemyInfo& info)
 			enemies[i]->type = ENEMY_TYPES::YELLOW_BALL;
 			break;
 		case ENEMY_TYPES::BOSS1:
-			enemies[i] = new Enemy_Boss(info.x, info.y);
+			//enemies[i] = new Enemy_BossS4(info.x, info.y);
 			enemies[i]->type = ENEMY_TYPES::BOSS1;
 			break;
 		case ENEMY_TYPES::BOSSARM:
-			//enemies[i] = new Enemy_YellowBall(info.x, info.y);
+			//enemies[i] = new Enemy_BossS4Arm(info.x, info.y);
 			enemies[i]->type = ENEMY_TYPES::BOSSARM;
 			break;
 
 		case ENEMY_TYPES::BOSSDISP:
-			//enemies[i] = new Enemy_YellowBall(info.x, info.y);
+			//enemies[i] = new Enemy_BossS4Disp(info.x, info.y);
 			enemies[i]->type = ENEMY_TYPES::BOSSDISP;
 			break;
 
 		case ENEMY_TYPES::BOSSTENT:
-			//enemies[i] = new Enemy_YellowBall(info.x, info.y);
+			//enemies[i] = new Enemy_BossS4Tenta(info.x, info.y);
 			enemies[i]->type = ENEMY_TYPES::BOSSTENT;
 			break;
 
 		case ENEMY_TYPES::BOSSFACE:
-			//enemies[i] = new Enemy_YellowBall(info.x, info.y);
+			//enemies[i] = new Enemy_BossS4Face(info.x, info.y);
 			enemies[i]->type = ENEMY_TYPES::BOSSFACE;
 			break;
 
 		case ENEMY_TYPES::BOSSHEART:
-			//enemies[i] = new Enemy_YellowBall(info.x, info.y);
+			//enemies[i] = new Enemy_BossS4Heart(info.x, info.y);
 			enemies[i]->type = ENEMY_TYPES::BOSSHEART;
 			break;
 
