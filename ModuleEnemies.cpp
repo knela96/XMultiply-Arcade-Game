@@ -345,7 +345,7 @@ void ModuleEnemies::SpawnEnemy(const EnemyInfo& info)
 			break;
 
 		case ENEMY_TYPES::BOSSFACE:
-			//enemies[i] = new Enemy_BossS4Face(info.x, info.y);
+			enemies[i] = new Enemy_BossS4Face(info.x, info.y);
 			enemies[i]->type = ENEMY_TYPES::BOSSFACE;
 			break;
 

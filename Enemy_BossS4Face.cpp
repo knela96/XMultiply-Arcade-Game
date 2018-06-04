@@ -9,14 +9,26 @@
 
 Enemy_BossS4Face::Enemy_BossS4Face(int x, int y) : Enemy(x, y)
 {
-	fly.PushBack({ 5,5,56,50 });
-	fly.PushBack({ 5,52,56,50 });
-	fly.PushBack({ 66,5,56,50 });
-	fly.PushBack({ 5,52,56,50 });
-	fly.PushBack({ 5,5,56,50 });
-	fly.speed = 0.05f;
+
+	fly.PushBack({360,157,56,50 });
+	fly.PushBack({ 305,155,52,50 });
+	fly.PushBack({ 255,155,56,50 });
+	fly.PushBack({ 210,155,56,50 });
+
+	fly.PushBack({ 370,105,56,50 });
+
+	fly.PushBack({ 320,105,56,50 });
+	fly.PushBack({ 270,105,56,50 });
+	fly.PushBack({ 215,105,56,50 });
+	fly.PushBack({ 160,105,56,50 });
+
+	fly.speed = 0.08f;
+
+	fly.loop = false;
 
 	animation = &fly;
+
+	//path to do
 
 	path->PushBack({ 0 , 0 }, 2, &fly);
 
