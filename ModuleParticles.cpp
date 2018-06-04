@@ -141,7 +141,7 @@ bool ModuleParticles::Start()
 	missile.anim.loop = false;
 	missile.anim.speed = 0.08f;
 	missile.type = MISSILE_SHOOT;
-	missile.life = 20000000;
+	missile.life = 8000;
 /*
 	Stage4Boss_shoot.anim.PushBack({ 2, 132, 46, 46 });
 	Stage4Boss_shoot.anim.loop = true;
@@ -298,30 +298,41 @@ void ModuleParticles::orderlist() {
 }
 
 void ModuleParticles::MissilleMovement(Particle *p) {
-	
+
+	if (p->target != nullptr) {
+ 		if (p->target->position.x < 0) {
+  			p->target = nullptr;
+			EnemyPositions(p);
+		}
+	}
+
 	Enemy* enemy = p->target;
+
+	if (enemy == nullptr) {
+		EnemyPositions(p);
+		for (int i = 0; i < MAX_ENEMIES; ++i) {
+			enemy = App->enemies->enemies[i];
+			if (enemy != nullptr) {
+				p->target = enemy;
+				break;
+			}
+		}
+	}
 	if (enemy != nullptr) {
-		double angle = atan2(p->target->position.y - p->position.y, p->target ->position.x - p->position.x);
+		double angle = atan2(enemy->position.y - p->position.y, enemy->position.x - p->position.x);
 		p->angle = angle * 180 / PI;
 		double dx = (double)(5 * cos(angle));
 		double dy = (double)(5 * sin(angle));
 		p->speed.x = dx;
 		p->speed.y = dy;
-	}else{
-		EnemyPositions(p);
-		for (int i = 0; i < MAX_ENEMIES; ++i) {
-			enemy = App->enemies->enemies[positions[i].y];
-			if (enemy != nullptr && positions[i].y != 0 && positions[i].x != 0) {
-				p->target = enemy;
-				//positions[i] = { 0,0 };
-				break;
-			}
-		}
-		if (enemy == nullptr) {
-			p->speed.x = 4;
-			p->speed.y = 0;
-		}
 	}
+	else {
+		p->target = nullptr;
+		p->speed.x = 4;
+		p->speed.y = 0;
+		p->angle = 0.0f;
+	}
+	
 }
 
 
@@ -375,6 +386,11 @@ void ModuleParticles::OnCollision(Collider* c1, Collider* c2)
 				p = &explosion_tentacle_bullet;
 				break;
 			case BOMB_SHOOT:
+				if (c2->type == COLLIDER_WALL)
+					App->audio->PlaySound(p->hit_fx);
+				p = &explosion_bomb;
+				break;
+			case MISSILE_SHOOT:
 				if (c2->type == COLLIDER_WALL)
 					App->audio->PlaySound(p->hit_fx);
 				p = &explosion_bomb;
