@@ -132,9 +132,9 @@ update_status ModuleSceneStage4::Update()
 		App->render->camera.x += 1 * SCREEN_SIZE;
 	}
 
-	App->render->Blit(back, 0, -50, &ground_top, 0.0f, true);
-	App->render->Blit(back, 0, 200, &ground_bottom, 0.0f, true);
-	App->render->Blit(graphics, 0, 0, &background);
+	App->render->Blit(back, 0, 0, &background);
+	App->render->Blit(graphics, 0, -70, &ground_top);
+	App->render->Blit(graphics, 0, 150, &ground_bottom);
 	App->render->Blit(hud, 0, 224, NULL, 0.0f, false);
 
 	if (App->player->position.x >= 4700) //4700
