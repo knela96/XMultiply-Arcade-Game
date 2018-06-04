@@ -27,7 +27,7 @@
 #include "ModuleSceneStage1.h"
 
 
-#define SPAWN_MARGIN 50
+#define SPAWN_MARGIN 0
 
 ModuleEnemies::ModuleEnemies()
 {
@@ -326,7 +326,7 @@ void ModuleEnemies::SpawnEnemy(const EnemyInfo& info)
 			enemies[i]->type = ENEMY_TYPES::YELLOW_BALL;
 			break;
 		case ENEMY_TYPES::BOSS1:
-			//enemies[i] = new Enemy_BossS4(info.x, info.y);
+			enemies[i] = new Enemy_BossS4(info.x, info.y);
 			enemies[i]->type = ENEMY_TYPES::BOSS1;
 			break;
 		case ENEMY_TYPES::BOSSARM:
@@ -335,22 +335,22 @@ void ModuleEnemies::SpawnEnemy(const EnemyInfo& info)
 			break;
 
 		case ENEMY_TYPES::BOSSDISP:
-			//enemies[i] = new Enemy_BossS4Disp(info.x, info.y);
+			enemies[i] = new Enemy_BossS4Disp(info.x, info.y);
 			enemies[i]->type = ENEMY_TYPES::BOSSDISP;
 			break;
 
 		case ENEMY_TYPES::BOSSTENT:
-			//enemies[i] = new Enemy_BossS4Tenta(info.x, info.y);
+			enemies[i] = new Enemy_BossS4Tenta(info.x, info.y);
 			enemies[i]->type = ENEMY_TYPES::BOSSTENT;
 			break;
 
 		case ENEMY_TYPES::BOSSFACE:
-			//enemies[i] = new Enemy_BossS4Face(info.x, info.y);
+			enemies[i] = new Enemy_BossS4Face(info.x, info.y);
 			enemies[i]->type = ENEMY_TYPES::BOSSFACE;
 			break;
 
 		case ENEMY_TYPES::BOSSHEART:
-			//enemies[i] = new Enemy_BossS4Heart(info.x, info.y);
+			enemies[i] = new Enemy_BossS4Heart(info.x, info.y);
 			enemies[i]->type = ENEMY_TYPES::BOSSHEART;
 			break;
 

@@ -9,12 +9,49 @@
 
 Enemy_BossS4Disp::Enemy_BossS4Disp(int x, int y) : Enemy(x, y)
 {
-	fly.PushBack({ 5,5,56,50 });
-	fly.PushBack({ 5,52,56,50 });
-	fly.PushBack({ 66,5,56,50 });
-	fly.PushBack({ 5,52,56,50 });
-	fly.PushBack({ 5,5,56,50 });
-	fly.speed = 0.05f;
+	//1 phase
+
+	fly.PushBack({ 100,13,42,40 });
+
+	fly.PushBack({ 2,13,46,40 });
+	
+	fly.PushBack({ 48,13,46,40 });
+
+	fly.PushBack({ 133,13,46,40 });
+	
+	
+	
+	//2 phase
+	fly.PushBack({ 52,52,46,42 });
+
+	fly.PushBack({ 102,52,39,42 });
+
+	fly.PushBack({ 2,52,46,46 });
+
+	fly.PushBack({ 135,52,35,42 });
+
+
+	//3 phase
+
+	fly.PushBack({ 52,92,46,42 });
+
+	fly.PushBack({ 102,92,39,42 });
+
+	fly.PushBack({ 2,92,46,46 });
+
+	fly.PushBack({ 136,92,36,42 });
+
+	//2 phase
+	fly.PushBack({ 52,52,46,42 });
+
+	fly.PushBack({ 102,52,39,42 });
+
+	fly.PushBack({ 2,52,46,46 });
+
+	fly.PushBack({ 135,52,35,42 });
+
+
+	fly.speed = 0.4f;
 
 	animation = &fly;
 

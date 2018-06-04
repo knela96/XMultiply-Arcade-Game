@@ -9,11 +9,28 @@
 
 Enemy_BossS4Tenta::Enemy_BossS4Tenta(int x, int y) : Enemy(x, y)
 {
-	fly.PushBack({ 5,5,56,50 });
-	fly.PushBack({ 5,52,56,50 });
-	fly.PushBack({ 66,5,56,50 });
-	fly.PushBack({ 5,52,56,50 });
-	fly.PushBack({ 5,5,56,50 });
+	
+	fly.PushBack({ 185,140,141,125 });
+	fly.PushBack({ 185,263,141,125 });
+	fly.PushBack({ 185,387,141,125 });
+	
+	fly.PushBack({ 346,16,141,125 });
+	fly.PushBack({ 346,137,141,125 });
+	fly.PushBack({ 346,260,141,125 });
+	fly.PushBack({ 346,383,141,125 });
+	
+	fly.PushBack({ 16,383,141,125 });
+	fly.PushBack({ 185,13,141,125 });
+
+	//anticlockwise
+	fly.PushBack({ 16,383,141,125 });
+	fly.PushBack({ 346,383,141,125 });
+	fly.PushBack({ 346,260,141,125 });
+	fly.PushBack({ 346,137,141,125 });
+	fly.PushBack({ 346,16,141,125 });
+	fly.PushBack({ 185,387,141,125 });
+	fly.PushBack({ 185,263,141,125 });
+
 	fly.speed = 0.05f;
 
 	animation = &fly;

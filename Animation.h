@@ -46,8 +46,13 @@ public:
 		loops = 0;
 	}
 
+	void setFrame(int frame) {
+		current_frame = 2; 
+		loops = 0.0;
+	}
+
 	bool islastframe() {
-		if (current_frame >= last_frame) {
+		if (current_frame >= last_frame-1) {
 			return true;
 		}
 		else {

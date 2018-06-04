@@ -7,6 +7,7 @@
 #include "p2Point.h"
 #include "ModulePlayer.h"
 #include "ModuleCollision.h"
+#include "ModuleEnemies.h"
 #include "Path.h"
 
 #define MAX_ACTIVE_PARTICLES 100
@@ -44,6 +45,8 @@ enum PARTICLE_TYPE
 	BASIC_SHOOT_EXPLOSION,
 	ANEMONA_SHOOT,
 	SHRIMP_SHOOT,
+	MISSILE_SHOOT,
+	STAGE4BOSS_SHOOT,
 
 };
 
@@ -58,10 +61,12 @@ struct Particle {
 	fPoint direction_speed;
 	Uint32 born = 0;
 	Uint32 life = 0;
+	float angle = 0.0f;
 	bool fx_played = false;
 	int id = 0;
 	PARTICLE_TYPE type = NONE;
 	Path* path = new Path();
+	Enemy* target = nullptr;
 
 	Particle();
 	Particle(const Particle& p);
@@ -89,17 +94,20 @@ public:
 	bool CleanUp();
 	void OnCollision(Collider* c1, Collider* c2);
 	void removeParticles();
-
+	void orderlist();
+	void swap(iPoint * positions, int i, int j);
 	void AddParticle(const Particle& particle, int x, int y, COLLIDER_TYPE collider_type = COLLIDER_NONE, fPoint direction_speed = { 0,0 }, Uint32 delay = 0);
-	
-	
+	void MissilleMovement(Particle* particle);
+	void EnemyPositions(Particle* particle);
 public:
-
+	iPoint positions[MAX_ENEMIES];
 	Uint32 * start_time = 0;
 	Uint32* shooting_delay;
 	Particle basic_laser;
 	Particle basic_shoot;
 	Particle tentacle_shoot;
+	Particle missile;
+	Particle orb;
 	Particle bomb;
 	Particle explosion_player;
 	Particle explosion_enemy;
@@ -108,6 +116,7 @@ public:
 	Particle explosion_bomb;
 	Particle anemona_shoot;
 	Particle shrimp_shoot;
+	Particle Stage4Boss_shoot;
 	Particle Powerup;
 	Animation* animation = nullptr;
 
