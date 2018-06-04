@@ -30,6 +30,7 @@ struct Tentacle {
 class ModuleTentacles : public Module
 {
 public:
+	bool blit_tentacle = false;
 	Tentacle tentacle;
 	Tentacle anchor_top;
 	Tentacle anchor_bottom;
@@ -47,7 +48,7 @@ public:
 	void setPosition(int x, int y);
 	void ShootLaser();
 	void removeCollider();
-	void ModuleTentacles::BlitTentacles(Tentacle* p);
+	void BlitTentacles();
 };
 
 #endif // __ENEMY_H__

@@ -95,7 +95,6 @@ update_status ModuleTentacles::Update() {
 		else {
 			setPosition(App->player->position.x, App->player->position.y);
 			p->collider->SetPos(p->first_point.x, p->first_point.y);
-			BlitTentacles(p);
 		}
 	}
 	return UPDATE_CONTINUE;
@@ -126,6 +125,8 @@ void ModuleTentacles::RemoveTentacle(){
 	{
 		if (tentacles[i] != nullptr)
 		{
+			delete tentacles[i]->collider;
+			tentacles[i]->collider = nullptr;
 			delete tentacles[i];
 			tentacles[i] = nullptr;
 		}
@@ -241,16 +242,20 @@ void ModuleTentacles::setPosition(int x, int y) {
 	}
 }
 
-void ModuleTentacles::BlitTentacles(Tentacle* p) {
-	if (p->anchor) {
-		App->render->Blit(graphics, p->first_point.x, p->first_point.y, &p->anim.GetCurrentFrame(), 1.0f, 0.0f);
-	}
-	else if (p->flip) {
-		App->render->Blit(graphics, p->first_point.x + p->anim.GetCurrentFrame().x, p->first_point.y, &p->anim.GetCurrentFrame(), 1.0f, 90 + (180 * p->radian) / PI, true, true);
-		LOG("%f", tentacles[0]->radian * 180 / PI);
-	}
-	else {
-		App->render->Blit(graphics, p->first_point.x + p->anim.GetCurrentFrame().x, p->first_point.y, &p->anim.GetCurrentFrame(), 1.0f, 90 + (180 * p->radian) / PI * -1);
+void ModuleTentacles::BlitTentacles() {
+	for (uint i = 0; i < MAX_TENTACLES; ++i)
+	{
+		Tentacle* p = tentacles[i];
+		if (p->anchor) {
+			App->render->Blit(graphics, p->first_point.x, p->first_point.y, &p->anim.GetCurrentFrame(), 1.0f, 0.0f);
+		}
+		else if (p->flip) {
+			App->render->Blit(graphics, p->first_point.x, p->first_point.y, &p->anim.GetCurrentFrame(), 1.0f, 90 + (180 * p->radian) / PI, true, true);
+			LOG("%f", tentacles[0]->radian * 180 / PI);
+		}
+		else {
+			App->render->Blit(graphics, p->first_point.x, p->first_point.y, &p->anim.GetCurrentFrame(), 1.0f, 90 + (180 * p->radian) / PI * -1);
+		}
 	}
 }
 
