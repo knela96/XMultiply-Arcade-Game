@@ -132,10 +132,6 @@ update_status ModuleSceneStage4::Update()
 
 		App->render->camera.x += 1 * SCREEN_SIZE;
 	}
-
-	App->render->Blit(graphics, 0, 0, &background);
-	App->render->Blit(back, 0, 300, &ground_top);
-	App->render->Blit(back, 0, 200, &ground_bottom);
 	App->render->Blit(back, 0, 0, &background);
 	App->render->Blit(graphics, 0, -70, &ground_top);
 	App->render->Blit(graphics, 0, 150, &ground_bottom);
