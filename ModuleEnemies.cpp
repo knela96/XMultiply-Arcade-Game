@@ -340,7 +340,7 @@ void ModuleEnemies::SpawnEnemy(const EnemyInfo& info)
 			break;
 
 		case ENEMY_TYPES::BOSSTENT:
-			//enemies[i] = new Enemy_BossS4Tenta(info.x, info.y);
+			enemies[i] = new Enemy_BossS4Tenta(info.x, info.y);
 			enemies[i]->type = ENEMY_TYPES::BOSSTENT;
 			break;
 
@@ -350,7 +350,7 @@ void ModuleEnemies::SpawnEnemy(const EnemyInfo& info)
 			break;
 
 		case ENEMY_TYPES::BOSSHEART:
-			//enemies[i] = new Enemy_BossS4Heart(info.x, info.y);
+			enemies[i] = new Enemy_BossS4Heart(info.x, info.y);
 			enemies[i]->type = ENEMY_TYPES::BOSSHEART;
 			break;
 

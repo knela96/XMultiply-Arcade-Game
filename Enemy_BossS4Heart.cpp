@@ -10,10 +10,7 @@
 Enemy_BossS4Heart::Enemy_BossS4Heart(int x, int y) : Enemy(x, y)
 {
 	fly.PushBack({ 5,5,56,50 });
-	fly.PushBack({ 5,52,56,50 });
-	fly.PushBack({ 66,5,56,50 });
-	fly.PushBack({ 5,52,56,50 });
-	fly.PushBack({ 5,5,56,50 });
+	
 	fly.speed = 0.05f;
 
 	animation = &fly;
@@ -28,18 +25,5 @@ Enemy_BossS4Heart::Enemy_BossS4Heart(int x, int y) : Enemy(x, y)
 
 void Enemy_BossS4Heart::Move()
 {
-	position = original_position + path->GetCurrentPosition(&animation);
-	if (SDL_GetTicks() - shoot_delay >= 2000)
-	{
-		shoot_delay = SDL_GetTicks();
-		App->particles->AddParticle(App->particles->shrimp_shoot, position.x + fly.frames->w / 2.3, position.y + fly.frames->h / 2, COLLIDER_ENEMY, { -2,0 });
-		App->particles->AddParticle(App->particles->shrimp_shoot, position.x + fly.frames->w / 2.3, position.y + fly.frames->h / 2, COLLIDER_ENEMY, { -2,-1 });
-		App->particles->AddParticle(App->particles->shrimp_shoot, position.x + fly.frames->w / 2.3, position.y + fly.frames->h / 2, COLLIDER_ENEMY, { -1,-2 });
-		App->particles->AddParticle(App->particles->shrimp_shoot, position.x + fly.frames->w / 2.3, position.y + fly.frames->h / 2, COLLIDER_ENEMY, { 0,-2 });
-		App->particles->AddParticle(App->particles->shrimp_shoot, position.x + fly.frames->w / 2.3, position.y + fly.frames->h / 2, COLLIDER_ENEMY, { 1,-2 });
-		App->particles->AddParticle(App->particles->shrimp_shoot, position.x + fly.frames->w / 2.3, position.y + fly.frames->h / 2, COLLIDER_ENEMY, { 2,-1 });
-		App->particles->AddParticle(App->particles->shrimp_shoot, position.x + fly.frames->w / 2.3, position.y + fly.frames->h / 2, COLLIDER_ENEMY, { 2 ,0 });
-
-
-	}
+	
 }
