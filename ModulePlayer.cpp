@@ -308,21 +308,21 @@ void ModulePlayer::resetPlayer() {
 
 bool ModulePlayer::AddTentacles() {
 
-	App->tentacles->AddTentacle(App->tentacles->tentacle, position.x, position.y);
-	App->tentacles->AddTentacle(App->tentacles->tentacle, position.x + 16, position.y);
-	App->tentacles->AddTentacle(App->tentacles->tentacle, position.x + 16, position.y);
-	App->tentacles->AddTentacle(App->tentacles->tentacle, position.x + 16, position.y);
-	App->tentacles->AddTentacle(App->tentacles->tentacle, position.x + 16, position.y);
-	App->tentacles->AddTentacle(App->tentacles->tentacle, position.x + 16, position.y);
-	App->tentacles->AddTentacle(App->tentacles->anchor_top, position.x + 16, position.y, false, true);
+	App->tentacles->AddTentacle(App->tentacles->tentacle, position.x-20, position.y,(130*PI)/180);
+	App->tentacles->AddTentacle(App->tentacles->tentacle, position.x, position.y, (150 * PI) / 180);
+	App->tentacles->AddTentacle(App->tentacles->tentacle, position.x, position.y, (180 * PI) / 180);
+	App->tentacles->AddTentacle(App->tentacles->tentacle, position.x, position.y, (200 * PI) / 180);
+	App->tentacles->AddTentacle(App->tentacles->tentacle, position.x, position.y, (220 * PI) / 180);
+	App->tentacles->AddTentacle(App->tentacles->tentacle, position.x, position.y, (240 * PI) / 180);
+	App->tentacles->AddTentacle(App->tentacles->anchor_top, position.x, position.y, (260 * PI) / 180, false, true);
 
-	App->tentacles->AddTentacle(App->tentacles->tentacle, position.x, position.y, true);
-	App->tentacles->AddTentacle(App->tentacles->tentacle, position.x + 16, position.y, true);
-	App->tentacles->AddTentacle(App->tentacles->tentacle, position.x + 16, position.y, true);
-	App->tentacles->AddTentacle(App->tentacles->tentacle, position.x + 16, position.y, true);
-	App->tentacles->AddTentacle(App->tentacles->tentacle, position.x + 16, position.y, true);
-	App->tentacles->AddTentacle(App->tentacles->tentacle, position.x + 16, position.y, true);
-	App->tentacles->AddTentacle(App->tentacles->anchor_bottom, position.x + 16, position.y, false, true);
+	App->tentacles->AddTentacle(App->tentacles->tentacle, position.x, position.y, (130 * PI) / 180, true);
+	App->tentacles->AddTentacle(App->tentacles->tentacle, position.x, position.y, (150 * PI) / 180, true);
+	App->tentacles->AddTentacle(App->tentacles->tentacle, position.x , position.y, (180 * PI) / 180, true);
+	App->tentacles->AddTentacle(App->tentacles->tentacle, position.x, position.y, (200 * PI) / 180, true);
+	App->tentacles->AddTentacle(App->tentacles->tentacle, position.x, position.y, (220 * PI) / 180, true);
+	App->tentacles->AddTentacle(App->tentacles->tentacle, position.x, position.y, (240 * PI) / 180, true);
+	App->tentacles->AddTentacle(App->tentacles->anchor_bottom, position.x, position.y, (260 * PI) / 180, false, true);
 
 	return true;
 }

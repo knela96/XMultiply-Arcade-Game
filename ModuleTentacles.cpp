@@ -4,6 +4,14 @@
 #include "ModuleTentacles.h"
 #include "ModulePlayer.h"
 #include "ModuleParticles.h"
+#include "ModuleInput.h"
+
+
+#include "SDL/include/SDL.h"
+#include <stdio.h>
+#include <windows.h>
+#pragma comment( lib, "SDL/libx86/SDL2.lib" )
+#pragma comment( lib, "SDL/libx86/SDL2main.lib" )
 
 ModuleTentacles::ModuleTentacles()
 {}
@@ -83,27 +91,25 @@ update_status ModuleTentacles::Update() {
 		{
 			delete p;
 			tentacles[i] = nullptr;
-		}else{
+		}
+		else {
 			setPosition(App->player->position.x, App->player->position.y);
 			p->collider->SetPos(p->first_point.x, p->first_point.y);
-			if(p->flip)
-				App->render->Blit(graphics, p->first_point.x, p->first_point.y, &p->anim.GetCurrentFrame(),1.0f, 180.0f,true,true);
-			else
-				App->render->Blit(graphics, p->first_point.x, p->first_point.y, &p->anim.GetCurrentFrame(), 1.0f, 0.0f);
-
+			BlitTentacles(p);
 		}
 	}
 	return UPDATE_CONTINUE;
 }
 
-void ModuleTentacles::AddTentacle(const Tentacle& tentacle, int x, int y, bool flip, bool anchor)
+void ModuleTentacles::AddTentacle(const Tentacle& tentacle, int x, int y, float max_angle, bool flip, bool anchor)
 {
 	for (uint i = 0; i < MAX_TENTACLES; ++i)
 	{
 		if (tentacles[i] == nullptr)
 		{
 			Tentacle* p = new Tentacle(tentacle);
-			
+			p->radian = PI/2;
+			p->max_angle = max_angle;
 			p->flip = flip;
 			p->anchor = anchor;
 			p->first_point.x = x;
@@ -126,7 +132,7 @@ void ModuleTentacles::RemoveTentacle(){
 	}
 }
 
-void ModuleTentacles::setPosition(int x, int y) {
+/*void ModuleTentacles::setPosition(int x, int y) {
 	for (uint i = 0; i < MAX_TENTACLES; ++i)
 	{
 		if (tentacles[i] != nullptr)
@@ -164,6 +170,87 @@ void ModuleTentacles::setPosition(int x, int y) {
 
 			tentacles[i] = p;
 		}
+	}
+}*/
+
+void ModuleTentacles::setPosition(int x, int y) {
+	//SDL_SetRenderDrawColor(App->render->renderer, 0, 0, 0, SDL_ALPHA_OPAQUE);
+	//SDL_RenderClear(App->render->renderer);
+	//SDL_SetRenderDrawColor(App->render->renderer, 255, 255, 255, SDL_ALPHA_OPAQUE);
+	int invert = 1;
+	for (uint i = 0; i < MAX_TENTACLES; ++i)
+	{
+		if (tentacles[i] != nullptr)
+		{
+			Tentacle* p = tentacles[i];
+			if (i >= MAX_TENTACLES / 2) {
+				invert = 1;
+			}
+			else {
+				invert = -1;
+			}
+			LOG("%f", cos(p->radian));
+			
+			if (App->input->keyboard[SDL_SCANCODE_D]){
+				if (p->radian < p->max_angle) {
+					if (p->radian > 2 * PI)
+						p->radian = 0;
+					p->radian += 0.01f;
+				}
+			}
+			else if(App->input->keyboard[SDL_SCANCODE_A]){
+				if (p->radian > PI / 2 - (p->max_angle - PI / 2))
+					p->radian -= 0.01f;
+			}
+			else {
+				if (p->radian > PI / 2)
+					p->radian -= 0.005f;
+				else if (p->radian < PI / 2)
+					p->radian += 0.005f;
+			}
+			
+			if (i != 0 && i != MAX_TENTACLES / 2) {
+				if (!p->anchor) {//Is last Node?
+					p->first_point.x = tentacles[i - 1]->second_point.x;
+					p->first_point.y = tentacles[i - 1]->second_point.y;
+					p->second_point.x = p->first_point.x + int(cos(p->radian) * 10);
+					p->second_point.y = p->first_point.y + int(sin(p->radian) * 10 * invert);
+				}
+				else {
+					p->first_point.x = tentacles[i - 1]->second_point.x;
+					p->first_point.y = tentacles[i - 1]->second_point.y;
+					p->second_point.x = p->first_point.x;
+					p->second_point.y = p->first_point.y;
+				}
+			}
+			else if (i == 0 || i == MAX_TENTACLES / 2) {
+				if (!p->flip) {
+					p->first_point.y = y + (8 - p->anim.frames->h);
+				}
+				else {
+					p->first_point.y = y + (20 - p->anim.frames->h);
+				}
+				p->first_point.x = x + 16;
+				p->second_point.x = p->first_point.x + int(cos(p->radian) * 11);
+				p->second_point.y = p->first_point.y + int(sin(p->radian) * 11 * invert);
+			}
+			//SDL_RenderDrawLine(App->render->renderer, p->first_point.x, p->first_point.y, p->second_point.x, p->second_point.y);
+
+			tentacles[i] = p;
+		}
+	}
+}
+
+void ModuleTentacles::BlitTentacles(Tentacle* p) {
+	if (p->anchor) {
+		App->render->Blit(graphics, p->first_point.x, p->first_point.y, &p->anim.GetCurrentFrame(), 1.0f, 0.0f);
+	}
+	else if (p->flip) {
+		App->render->Blit(graphics, p->first_point.x + p->anim.GetCurrentFrame().x, p->first_point.y, &p->anim.GetCurrentFrame(), 1.0f, 90 + (180 * p->radian) / PI, true, true);
+		LOG("%f", tentacles[0]->radian * 180 / PI);
+	}
+	else {
+		App->render->Blit(graphics, p->first_point.x + p->anim.GetCurrentFrame().x, p->first_point.y, &p->anim.GetCurrentFrame(), 1.0f, 90 + (180 * p->radian) / PI * -1);
 	}
 }
 

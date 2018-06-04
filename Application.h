@@ -3,7 +3,7 @@
 
 #include "Globals.h"
 
-#define NUM_MODULES 17
+#define NUM_MODULES 18
 
 class Module;
 class ModuleWindow;
@@ -24,6 +24,7 @@ class ModuleSceneCongrats;
 class ModuleCollision;
 class ModuleTentacles;
 class ModulePowerUp;
+class ModuleSceneTest;
 
 class Application
 {
@@ -47,6 +48,7 @@ public:
 	ModuleCollision* collision = nullptr;
 	ModuleTentacles* tentacles = nullptr;
 	ModulePowerUp* powerup = nullptr;
+	ModuleSceneTest* scene_test = nullptr;
 
 public:
 

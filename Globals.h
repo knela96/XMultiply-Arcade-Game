@@ -9,7 +9,7 @@ void log(const char file[], int line, const char* format, ...);
 
 #define MIN( a, b ) ( ((a) < (b)) ? (a) : (b) )
 #define MAX( a, b ) ( ((a) > (b)) ? (a) : (b) )
-#define PI 3.14159265359
+#define PI 3.14159265358979323846
 
 enum update_status
 {
@@ -37,11 +37,11 @@ enum ENEMY_TYPES
 typedef unsigned int uint;
 
 // Configuration -----------
-#define SCREEN_SIZE 1
-#define SCREEN_WIDTH 384
-#define SCREEN_HEIGHT 256
+#define SCREEN_SIZE 2
+#define SCREEN_WIDTH 720 //384
+#define SCREEN_HEIGHT 366 //256
 #define WIN_FULLSCREEN 0
-#define WIN_FULLSCREEN_DESKTOP 1
+#define WIN_FULLSCREEN_DESKTOP 0
 #define WIN_BORDERLESS 0
 #define WIN_RESIZABLE 0
 #define REN_VSYNC 1

@@ -15,6 +15,8 @@ struct Tentacle {
 	Collider* collider = nullptr;
 	iPoint first_point;
 	iPoint second_point;
+	float max_angle;
+	float radian;
 	bool anchor = false;
 	Animation anim;
 	bool flip = false;
@@ -29,7 +31,6 @@ class ModuleTentacles : public Module
 {
 public:
 	Tentacle tentacle;
-	Tentacle tentacle2;
 	Tentacle anchor_top;
 	Tentacle anchor_bottom;
 	Tentacle* tentacles[MAX_TENTACLES];
@@ -41,11 +42,12 @@ public:
 	bool Start();
 	update_status Update();
 	bool CleanUp();
-	void AddTentacle(const Tentacle& tentacle, int x, int y, bool flip = false, bool anchor = false);
+	void AddTentacle(const Tentacle& tentacle, int x, int y, float max_angle, bool flip = false, bool anchor = false);
 	void RemoveTentacle();
 	void setPosition(int x, int y);
 	void ShootLaser();
 	void removeCollider();
+	void ModuleTentacles::BlitTentacles(Tentacle* p);
 };
 
 #endif // __ENEMY_H__
