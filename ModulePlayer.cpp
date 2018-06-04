@@ -207,10 +207,13 @@ update_status ModulePlayer::Update()
 
 			if (powerup[BASIC_SHOOT] == true) {
 				//App->particles->AddParticle(App->particles->basic_shoot, position.x + 40, position.y, COLLIDER_PLAYER_SHOT);
-				App->particles->AddParticle(App->particles->missile, position.x +10, position.y-20, COLLIDER_PLAYER_SHOT);
-				App->particles->AddParticle(App->particles->missile, position.x , position.y-10, COLLIDER_PLAYER_SHOT);
-				App->particles->AddParticle(App->particles->missile, position.x , position.y+10, COLLIDER_PLAYER_SHOT);
-				App->particles->AddParticle(App->particles->missile, position.x + 10, position.y+20, COLLIDER_PLAYER_SHOT);
+				if (App->particles->active_missiles == 0) {
+					App->particles->active_missiles = 4;
+					App->particles->AddParticle(App->particles->missile, position.x + 10, position.y - 20, COLLIDER_PLAYER_SHOT);
+					App->particles->AddParticle(App->particles->missile, position.x, position.y - 10, COLLIDER_PLAYER_SHOT);
+					App->particles->AddParticle(App->particles->missile, position.x, position.y + 10, COLLIDER_PLAYER_SHOT);
+					App->particles->AddParticle(App->particles->missile, position.x + 10, position.y + 20, COLLIDER_PLAYER_SHOT);
+				}
 				App->tentacles->ShootLaser();
 				App->audio->PlaySound(App->particles->basic_shoot.fx);
 			}

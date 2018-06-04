@@ -89,6 +89,7 @@ public:
 	~ModuleParticles();
 
 	bool Start();
+	update_status PostUpdate();
 	update_status Update();
 	bool CleanUp();
 	void OnCollision(Collider* c1, Collider* c2);
@@ -106,6 +107,7 @@ public:
 	Particle basic_shoot;
 	Particle tentacle_shoot;
 	Particle missile;
+	Particle spawn_missile;
 	Particle orb;
 	Particle bomb;
 	Particle explosion_player;
@@ -118,6 +120,7 @@ public:
 	//Particle Stage4Boss_shoot;
 	Particle Powerup;
 	Animation* animation = nullptr;
+	int active_missiles = 0;
 
 private: 
 	SDL_Texture * graphics[MAX_PARTICLE_TEXTURES];
