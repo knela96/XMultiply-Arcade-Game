@@ -44,7 +44,7 @@ enum PARTICLE_TYPE
 	BASIC_SHOOT_EXPLOSION,
 	ANEMONA_SHOOT,
 	SHRIMP_SHOOT,
-	STAGE4BOSS_SHOOT,
+	//STAGE4BOSS_SHOOT,
 
 };
 
@@ -109,7 +109,7 @@ public:
 	Particle explosion_bomb;
 	Particle anemona_shoot;
 	Particle shrimp_shoot;
-	Particle Stage4Boss_shoot;
+	//Particle Stage4Boss_shoot;
 	Particle Powerup;
 	Animation* animation = nullptr;
 
