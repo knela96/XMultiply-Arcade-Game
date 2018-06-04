@@ -134,14 +134,19 @@ bool ModuleParticles::Start()
 	shrimp_shoot.type = SHRIMP_SHOOT;
 	shrimp_shoot.life = 2000;
 
-	missile.anim.PushBack({ 0, 64, 32, 16 });
-	missile.anim.PushBack({ 0, 51, 32, 16 });
+	spawn_missile.anim.PushBack({ 0, 64, 32, 16 });
+	spawn_missile.anim.PushBack({ 0, 51, 32, 16 });
+	missile.anim.loop = false;
+	missile.anim.speed = 0.02f;
+	missile.type = MISSILE_SHOOT;
+	missile.life = 2000;
+
 	missile.anim.PushBack({ 32, 51, 32, 16 });
 	missile.anim.PushBack({ 64, 51, 32, 16 });
-	missile.anim.loop = false;
-	missile.anim.speed = 0.08f;
+	missile.anim.loop = true;
+	missile.anim.speed = 0.02f;
 	missile.type = MISSILE_SHOOT;
-	missile.life = 8000;
+	missile.life = 2000;
 /*
 	Stage4Boss_shoot.anim.PushBack({ 2, 132, 46, 46 });
 	Stage4Boss_shoot.anim.loop = true;
@@ -187,6 +192,21 @@ void ModuleParticles::removeParticles() {
 	}
 }
 
+update_status ModuleParticles::PostUpdate() {
+	for (uint i = 0; i < MAX_ACTIVE_PARTICLES; ++i)
+	{
+		if (active[i] != nullptr) {
+			if (active[i]->position.x * SCREEN_SIZE > App->render->camera.x + (App->render->camera.w * SCREEN_SIZE) + 50)
+			{
+				if (active[i]->type == MISSILE_SHOOT)
+					active_missiles--;
+				delete active[i];
+				active[i] = nullptr;
+			}
+		}
+	}
+	return UPDATE_CONTINUE;
+}
 
 // Update: draw background
 update_status ModuleParticles::Update()
@@ -327,7 +347,6 @@ void ModuleParticles::MissilleMovement(Particle *p) {
 		p->speed.y = dy;
 	}
 	else {
-		p->target = nullptr;
 		p->speed.x = 4;
 		p->speed.y = 0;
 		p->angle = 0.0f;
@@ -394,6 +413,7 @@ void ModuleParticles::OnCollision(Collider* c1, Collider* c2)
 				if (c2->type == COLLIDER_WALL)
 					App->audio->PlaySound(p->hit_fx);
 				p = &explosion_bomb;
+				active_missiles--;
 				break;
 			default:
 				p = nullptr;
@@ -439,8 +459,11 @@ bool Particle::Update()
 
 	if (life > 0)
 	{
-		if ((SDL_GetTicks() - born) > life)
+		if ((SDL_GetTicks() - born) > life) {
 			ret = false;
+			if (type == MISSILE_SHOOT)
+				App->particles->active_missiles--;
+		}
 	}
 	else
 		if (anim.Finished() && type != PLAYER_EXPLOSION)
