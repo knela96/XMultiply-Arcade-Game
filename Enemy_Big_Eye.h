@@ -23,4 +23,4 @@ public:
 	void Move();
 };
 
-#endif // __ENEMY_NEMONA_H__
+#endif // __ENEMY_BIG_EYE_H__

@@ -45,7 +45,7 @@ void Enemy_Big_Eye::Move()
 	if (SDL_GetTicks() - shoot_delay >= 1000)
 	{
 		shoot_delay = SDL_GetTicks();
-		App->particles->AddParticle(App->particles->shrimp_shoot, position.x + fly.frames->w / 2, position.y + fly.frames->h / 2, COLLIDER_ENEMY_SHOT, { -3,0});
+		App->particles->AddParticle(App->particles->shrimp_shoot, position.x + fly.frames->w / 2, position.y + fly.frames->h / 2, COLLIDER_ENEMY, { -3,0});
 		
 	}
 }

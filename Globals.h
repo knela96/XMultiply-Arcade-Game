@@ -30,18 +30,28 @@ enum ENEMY_TYPES
 	BLUE_MOUTH,
 	YELLOW_BALL,
 	BOUNCER,
-	BLUE_SENTINEL
+	BLUE_SENTINEL,
+	ROCK,
+	WORM_BODY,
+	WORM_HEAD,
+	WORM_BASE,
+	BOSS1,
+	BOSSARM,
+	BOSSTENT,
+	BOSSDISP,
+	BOSSFACE,
+	BOSSHEART
 };
 
 // Useful typedefs ---------
 typedef unsigned int uint;
 
 // Configuration -----------
-#define SCREEN_SIZE 2
-#define SCREEN_WIDTH 720 //384
-#define SCREEN_HEIGHT 366 //256
+#define SCREEN_SIZE 1
+#define SCREEN_WIDTH 384 //384
+#define SCREEN_HEIGHT 256 //256
 #define WIN_FULLSCREEN 0
-#define WIN_FULLSCREEN_DESKTOP 0
+#define WIN_FULLSCREEN_DESKTOP 1
 #define WIN_BORDERLESS 0
 #define WIN_RESIZABLE 0
 #define REN_VSYNC 1

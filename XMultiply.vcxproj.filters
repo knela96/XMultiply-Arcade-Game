@@ -72,6 +72,42 @@
     <ClCompile Include="ModuleSceneTest.cpp">
       <Filter>Scenes</Filter>
     </ClCompile>
+    <ClCompile Include="Enemy_Blue_Mouth.cpp">
+      <Filter>Enemies</Filter>
+    </ClCompile>
+    <ClCompile Include="ModuleSceneStage4.cpp">
+      <Filter>Scenes</Filter>
+    </ClCompile>
+    <ClCompile Include="Enemy_Rock.cpp">
+      <Filter>Enemies</Filter>
+    </ClCompile>
+    <ClCompile Include="Enemy_Worm_Head.cpp">
+      <Filter>Enemies</Filter>
+    </ClCompile>
+    <ClCompile Include="Enemy_Worm_Body.cpp">
+      <Filter>Enemies</Filter>
+    </ClCompile>
+    <ClCompile Include="Enemy_Worm_Base.cpp">
+      <Filter>Enemies</Filter>
+    </ClCompile>
+    <ClCompile Include="Enemy_BossS4.cpp">
+      <Filter>Enemies</Filter>
+    </ClCompile>
+    <ClCompile Include="Enemy_BossS4Arm.cpp">
+      <Filter>Enemies</Filter>
+    </ClCompile>
+    <ClCompile Include="Enemy_BossS4Disp.cpp">
+      <Filter>Enemies</Filter>
+    </ClCompile>
+    <ClCompile Include="Enemy_BossS4Face.cpp">
+      <Filter>Enemies</Filter>
+    </ClCompile>
+    <ClCompile Include="Enemy_BossS4Heart.cpp">
+      <Filter>Enemies</Filter>
+    </ClCompile>
+    <ClCompile Include="Enemy_BossS4Tenta.cpp">
+      <Filter>Enemies</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Application.h" />
@@ -156,6 +192,42 @@
     </ClInclude>
     <ClInclude Include="ModuleSceneTest.h">
       <Filter>Scenes</Filter>
+    </ClInclude>
+    <ClInclude Include="Enemy_Blue_Mouth.h">
+      <Filter>Enemies</Filter>
+    </ClInclude>
+    <ClInclude Include="ModuleSceneStage4.h">
+      <Filter>Scenes</Filter>
+    </ClInclude>
+    <ClInclude Include="Enemy_Rock.h">
+      <Filter>Enemies</Filter>
+    </ClInclude>
+    <ClInclude Include="Enemy_Worm_Head.h">
+      <Filter>Enemies</Filter>
+    </ClInclude>
+    <ClInclude Include="Enemy_Worm_Body.h">
+      <Filter>Enemies</Filter>
+    </ClInclude>
+    <ClInclude Include="Enemy_Worm_Base.h">
+      <Filter>Enemies</Filter>
+    </ClInclude>
+    <ClInclude Include="Enemy_BossS4.h">
+      <Filter>Enemies</Filter>
+    </ClInclude>
+    <ClInclude Include="Enemy_BossS4Arm.h">
+      <Filter>Enemies</Filter>
+    </ClInclude>
+    <ClInclude Include="Enemy_BossS4Disp.h">
+      <Filter>Enemies</Filter>
+    </ClInclude>
+    <ClInclude Include="Enemy_BossS4Face.h">
+      <Filter>Enemies</Filter>
+    </ClInclude>
+    <ClInclude Include="Enemy_BossS4Heart.h">
+      <Filter>Enemies</Filter>
+    </ClInclude>
+    <ClInclude Include="Enemy_BossS4Tenta.h">
+      <Filter>Enemies</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
