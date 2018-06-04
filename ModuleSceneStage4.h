@@ -5,6 +5,7 @@
 #include "Animation.h"
 #include "Globals.h"
 #include "p2Point.h"
+#include "ModuleCollision.h"
 
 struct SDL_Texture;
 typedef struct _Mix_Music Mix_Music;
@@ -59,6 +60,56 @@ public:
 	char _stageendblit2[18] = "";
 
 	bool right = false;
+
+	int ground_top_y;
+	int ground_bottom_y;
+
+	Collider* CollidersTop1;
+	Collider* CollidersTop2;
+	Collider* CollidersTop3;
+	Collider* CollidersTop4;
+	Collider* CollidersTop5;
+	Collider* CollidersTop6;
+	Collider* CollidersTop7;
+	Collider* CollidersTop8;
+	Collider* CollidersTop9;
+	Collider* CollidersTop10;
+	Collider* CollidersTop11;
+	Collider* CollidersTop12;
+	Collider* CollidersTop13;
+	Collider* CollidersTop14;
+	Collider* CollidersTop15;
+	Collider* CollidersTop16;
+	Collider* CollidersTop17;
+	Collider* CollidersTop18;
+	Collider* CollidersTop19;
+	Collider* CollidersTop20;
+	Collider* CollidersTop21;
+	Collider* CollidersTop22;
+
+	Collider* BigColliderBot;
+	Collider* ColliderBot1;
+	Collider* ColliderBot2;
+	Collider* ColliderBot3;
+	Collider* ColliderBot4;
+	Collider* ColliderBot5;
+	Collider* ColliderBot6;
+	Collider* ColliderBot7;
+	Collider* ColliderBot8;
+	Collider* ColliderBot9;
+	Collider* ColliderBot10;
+	Collider* ColliderBot11;
+	Collider* ColliderBot12;
+	Collider* ColliderBot13;
+	Collider* ColliderBot14;
+	Collider* ColliderBot15;
+	Collider* ColliderBot16;
+	Collider* ColliderBot17;
+	Collider* ColliderBot18;
+	Collider* ColliderBot19;
+	Collider* ColliderBot20;
+	Collider* ColliderBot21;
+	Collider* ColliderBot22;
 
 private:
 	bool clearstage_fx;

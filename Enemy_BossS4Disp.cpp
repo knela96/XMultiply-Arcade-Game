@@ -11,47 +11,83 @@ Enemy_BossS4Disp::Enemy_BossS4Disp(int x, int y) : Enemy(x, y)
 {
 	//1 phase
 
-	fly.PushBack({ 100,13,42,40 });
+//	fly.PushBack({ 100,13,42,40 });
 
-	fly.PushBack({ 2,13,46,40 });
+//	fly.PushBack({ 2,13,46,40 });
 	
-	fly.PushBack({ 48,13,46,40 });
+//	fly.PushBack({ 48,13,46,40 });
 
-	fly.PushBack({ 133,13,46,40 });
+//	fly.PushBack({ 133,13,46,40 });
 	
 	
 	
 	//2 phase
-	fly.PushBack({ 52,52,46,42 });
+//	fly.PushBack({ 52,52,46,42 });
 
-	fly.PushBack({ 102,52,39,42 });
+//	fly.PushBack({ 102,52,39,42 });
 
-	fly.PushBack({ 2,52,46,46 });
+//	fly.PushBack({ 2,52,46,46 });
 
-	fly.PushBack({ 135,52,35,42 });
+//	fly.PushBack({ 135,52,35,42 });
 
 
 	//3 phase
 
-	fly.PushBack({ 52,92,46,42 });
+//	fly.PushBack({ 52,92,46,42 });
 
-	fly.PushBack({ 102,92,39,42 });
+//	fly.PushBack({ 102,92,39,42 });
 
-	fly.PushBack({ 2,92,46,46 });
+//	fly.PushBack({ 2,92,46,46 });
 
-	fly.PushBack({ 136,92,36,42 });
+//	fly.PushBack({ 136,92,36,42 });
 
 	//2 phase
-	fly.PushBack({ 52,52,46,42 });
+//	fly.PushBack({ 52,52,46,42 });
 
-	fly.PushBack({ 102,52,39,42 });
+//	fly.PushBack({ 102,52,39,42 });
 
-	fly.PushBack({ 2,52,46,46 });
+//	fly.PushBack({ 2,52,46,46 });
 
-	fly.PushBack({ 135,52,35,42 });
+//	fly.PushBack({ 135,52,35,42 });
 
 
-	fly.speed = 0.4f;
+	//Particle pushback
+
+	//Phase 1 BOSS SHOOT 
+	
+	//	fly.PushBack({ 50,135,46,40 });
+
+	//	fly.PushBack({ 101,135,38,42 });
+
+	//	fly.PushBack({ 2,135,46,46 });
+
+	//	fly.PushBack({ 136,135,36,42 });
+
+	
+	// Phase 2 Boss shoot to repeat
+
+	//	fly.PushBack({ 50,178,46,40 });
+
+	//	fly.PushBack({ 100,178,37,42 });
+
+	//	fly.PushBack({ 2,178,46,46 });
+
+	//	fly.PushBack({ 135,178,36,42 });
+
+	// Phase 3 Boss shoot
+
+		fly.PushBack({ 50,222,46,40 });
+
+		fly.PushBack({ 100,222,36,42 });
+
+		fly.PushBack({ 2,222,46,46 });
+
+		fly.PushBack({ 135,222,35,42 });
+
+
+
+
+	fly.speed = 0.08f;
 
 	animation = &fly;
 
