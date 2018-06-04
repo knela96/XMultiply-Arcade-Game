@@ -32,6 +32,7 @@ bool ModuleParticles::Start()
 	graphics[PARTICLES_EXPLOSION] = App->textures->Load("Assets/Sprites/Explosions/Explosions1.png");
 	graphics[PARTICLES_ENEMYSHOOT] = App->textures->Load("Assets/Sprites/Explosions/shots1.png");
 	graphics[POWERUP] = App->textures->Load("Assets/PowerUp/PowerUp.png");
+	graphics[STAGE4BOSS_SHOOT] = App->textures->Load("Assets/Sprites/Stage4/Boss/boss4_3.png");
 
 	basic_shoot.anim.PushBack({ 64, 32, 16, 16});
 	basic_shoot.anim.loop = false;
@@ -130,6 +131,12 @@ bool ModuleParticles::Start()
 	shrimp_shoot.type = SHRIMP_SHOOT;
 	shrimp_shoot.life = 2000;
 
+	Stage4Boss_shoot.anim.PushBack({ 2, 132, 46, 46 });
+	Stage4Boss_shoot.anim.loop = true;
+	Stage4Boss_shoot.anim.speed = 0.4f;
+	Stage4Boss_shoot.type = STAGE4BOSS_SHOOT;
+	Stage4Boss_shoot.life = 2000;
+
 	return ret;
 }
 
@@ -205,6 +212,9 @@ update_status ModuleParticles::Update()
 			case SHRIMP_SHOOT:
 				texture = graphics[PARTICLES_ENEMYSHOOT];
 				break;
+			case STAGE4BOSS_SHOOT:
+				texture = graphics[PARTICLES_ENEMYSHOOT];
+				break;
 			default:
 				texture = graphics[NONE];
 				break;
@@ -229,6 +239,7 @@ update_status ModuleParticles::Update()
 					p->speed.y = 0;
 					break;
 				case SHRIMP_SHOOT:
+				case STAGE4BOSS_SHOOT:
 				case ANEMONA_SHOOT:
 					p->speed.x = p->direction_speed.x;
 					p->speed.y = p->direction_speed.y;
@@ -353,6 +364,10 @@ bool Particle::Update()
 		position.y += speed.y;
 		break;
 	case SHRIMP_SHOOT:
+		position.x += speed.x;
+		position.y += speed.y;
+		break;
+	case STAGE4BOSS_SHOOT:
 		position.x += speed.x;
 		position.y += speed.y;
 		break;
