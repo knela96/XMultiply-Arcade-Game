@@ -138,6 +138,7 @@ bool ModuleSceneStage4::Start()
 
 	App->audio->PlayMusic(music);
 
+	App->player->godmode = true;
 
 	AddEnemies();//Add Enemies
 
@@ -187,7 +188,6 @@ update_status ModuleSceneStage4::Update()
 
 		App->render->camera.x += 1 * SCREEN_SIZE;
 	}
-
 	App->render->Blit(back, 0, 0, &background);
 	App->render->Blit(graphics, 0, ground_top_y, &ground_top);
 	App->render->Blit(graphics, 0, ground_bottom_y, &ground_bottom);
@@ -359,4 +359,10 @@ void ModuleSceneStage4::enableModules() {
 }
 
 void ModuleSceneStage4::AddEnemies() {
+
+
+	App->enemies->AddEnemy(NEMONA_TENTACLE, 400, 200, -1, true);
+
+	App->enemies->AddEnemy(NEMONA_TENTACLE, 200, 200, -1, true);
+	App->enemies->AddEnemy(NEMONA_TENTACLE, 450, 200, -1, true);
 }

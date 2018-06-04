@@ -6,9 +6,12 @@
 #include "ModuleRender.h"
 #include "ModuleCollision.h"
 #include "ModuleEnemies.h"
-
 #include "SDL/include/SDL.h"
 #include "SDL/include/SDL_timer.h"
+#include <cmath>
+
+
+using namespace std;
 
 ModuleParticles::ModuleParticles() : Module() {
 
@@ -31,7 +34,8 @@ bool ModuleParticles::Start()
 	graphics[PARTICLES_LASERS] = App->textures->Load("Assets/Sprites/Character/Lasers.png");
 	graphics[PARTICLES_EXPLOSION] = App->textures->Load("Assets/Sprites/Explosions/Explosions1.png");
 	graphics[PARTICLES_ENEMYSHOOT] = App->textures->Load("Assets/Sprites/Explosions/shots1.png");
-	graphics[POWERUP] = App->textures->Load("Assets/PowerUp/PowerUp.png");
+	graphics[POWERUP] = App->textures->Load("Assets/Sprites/PowerUp/PowerUp.png");
+	//graphics[STAGE4BOSS_SHOOT] = App->textures->Load("Assets/Sprites/Stage4/Boss/boss4_3.png");
 
 	basic_shoot.anim.PushBack({ 64, 32, 16, 16});
 	basic_shoot.anim.loop = false;
@@ -130,6 +134,22 @@ bool ModuleParticles::Start()
 	shrimp_shoot.type = SHRIMP_SHOOT;
 	shrimp_shoot.life = 2000;
 
+	missile.anim.PushBack({ 0, 64, 32, 16 });
+	missile.anim.PushBack({ 0, 51, 32, 16 });
+	missile.anim.PushBack({ 32, 51, 32, 16 });
+	missile.anim.PushBack({ 64, 51, 32, 16 });
+	missile.anim.loop = false;
+	missile.anim.speed = 0.08f;
+	missile.type = MISSILE_SHOOT;
+	missile.life = 8000;
+/*
+	Stage4Boss_shoot.anim.PushBack({ 2, 132, 46, 46 });
+	Stage4Boss_shoot.anim.loop = true;
+	Stage4Boss_shoot.anim.speed = 0.4f;
+	Stage4Boss_shoot.type = STAGE4BOSS_SHOOT;
+	Stage4Boss_shoot.life = 2000;
+	*/
+
 	return ret;
 }
 
@@ -183,7 +203,7 @@ update_status ModuleParticles::Update()
 			delete p;
 			active[i] = nullptr;
 		}
-		else if (SDL_GetTicks() >= p->born)
+		else //if (SDL_GetTicks() >= p->born)
 		{
 			SDL_Texture* texture = nullptr;
 			switch (p->type) {
@@ -205,13 +225,18 @@ update_status ModuleParticles::Update()
 			case SHRIMP_SHOOT:
 				texture = graphics[PARTICLES_ENEMYSHOOT];
 				break;
+			case MISSILE_SHOOT:
+				texture = graphics[PARTICLES_PLAYER];
+				MissilleMovement(p);
+			/*case STAGE4BOSS_SHOOT:
+				texture = graphics[PARTICLES_ENEMYSHOOT];
+				break;*/
 			default:
 				texture = graphics[NONE];
 				break;
 			}
 
-			if(texture != nullptr)
- 				App->render->Blit(texture, p->position.x, p->position.y, &(p->anim.GetCurrentFrame()));
+
 
 			if (p->fx_played == false)
 			{
@@ -229,6 +254,7 @@ update_status ModuleParticles::Update()
 					p->speed.y = 0;
 					break;
 				case SHRIMP_SHOOT:
+			//	case STAGE4BOSS_SHOOT:
 				case ANEMONA_SHOOT:
 					p->speed.x = p->direction_speed.x;
 					p->speed.y = p->direction_speed.y;
@@ -236,12 +262,86 @@ update_status ModuleParticles::Update()
 				}
 				p->fx_played = true;
 			}
+
+
+			if (texture != nullptr) {
+				App->render->Blit(texture, p->position.x, p->position.y, &(p->anim.GetCurrentFrame()),1.0f,p->angle);
+			}
 		}
 	}
 
 	return UPDATE_CONTINUE;
 }
 
+void ModuleParticles::EnemyPositions(Particle *p) {
+	for (uint i = 0; i < MAX_ENEMIES; ++i) {
+		Enemy *enemy = App->enemies->enemies[i];
+		if (enemy != nullptr) {
+			int d = sqrt(pow(enemy->position.x - p->position.x, 2) + pow(enemy->position.y - p->position.y, 2));
+			positions[i].x = d;
+			positions[i].y = i;
+		}
+	}
+	orderlist();
+}
+
+void ModuleParticles::orderlist() {
+	int i, j, k;
+	for (i = 0; i < MAX_ENEMIES - 1; i++)
+	{
+		for (k = i, j = i + 1; j < MAX_ENEMIES; j++)
+			if (positions[j].x < positions[k].x && positions[j].x != 0 && positions[j].y != 0)
+				k = j;
+		if (k != i)
+			swap(positions, i, k);
+	}
+}
+
+void ModuleParticles::MissilleMovement(Particle *p) {
+
+	if (p->target != nullptr) {
+ 		if (p->target->position.x < 0) {
+  			p->target = nullptr;
+			EnemyPositions(p);
+		}
+	}
+
+	Enemy* enemy = p->target;
+
+	if (enemy == nullptr) {
+		EnemyPositions(p);
+		for (int i = 0; i < MAX_ENEMIES; ++i) {
+			enemy = App->enemies->enemies[i];
+			if (enemy != nullptr) {
+				p->target = enemy;
+				break;
+			}
+		}
+	}
+	if (enemy != nullptr) {
+		double angle = atan2(enemy->position.y - p->position.y, enemy->position.x - p->position.x);
+		p->angle = angle * 180 / PI;
+		double dx = (double)(5 * cos(angle));
+		double dy = (double)(5 * sin(angle));
+		p->speed.x = dx;
+		p->speed.y = dy;
+	}
+	else {
+		p->target = nullptr;
+		p->speed.x = 4;
+		p->speed.y = 0;
+		p->angle = 0.0f;
+	}
+	
+}
+
+
+void ModuleParticles::swap(iPoint * positions, int i, int j)
+{
+	iPoint tmp = positions[i];
+	positions[i] = positions[j];
+	positions[j] = tmp;
+}
 
 void ModuleParticles::AddParticle(const Particle& particle, int x, int y, COLLIDER_TYPE collider_type, fPoint direction_speed, Uint32 delay)
 {
@@ -286,6 +386,11 @@ void ModuleParticles::OnCollision(Collider* c1, Collider* c2)
 				p = &explosion_tentacle_bullet;
 				break;
 			case BOMB_SHOOT:
+				if (c2->type == COLLIDER_WALL)
+					App->audio->PlaySound(p->hit_fx);
+				p = &explosion_bomb;
+				break;
+			case MISSILE_SHOOT:
 				if (c2->type == COLLIDER_WALL)
 					App->audio->PlaySound(p->hit_fx);
 				p = &explosion_bomb;
@@ -344,7 +449,9 @@ bool Particle::Update()
 	switch (type) {
 	case BASIC_SHOOT:
 	case TENTACLE_SHOOT:
+	case MISSILE_SHOOT:
 		position.x += speed.x;
+		position.y += speed.y;
 		break;
 	case BOMB_SHOOT:
 		if (speed.x > 2.0f) speed.x -= 0.055f;
@@ -356,6 +463,10 @@ bool Particle::Update()
 		position.x += speed.x;
 		position.y += speed.y;
 		break;
+	/*case STAGE4BOSS_SHOOT:
+		position.x += speed.x;
+		position.y += speed.y;
+		break;*/
 	}
 
 	if (collider != nullptr)

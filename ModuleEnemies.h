@@ -43,7 +43,6 @@ private:
 private:
 
 	EnemyInfo queue[MAX_ENEMIES];
-	Enemy* enemies[MAX_ENEMIES];
 	SDL_Texture* sprites[MAX_TEXTURES];
 	Mix_Chunk* Brownworm_fx;
 	Mix_Chunk* LittleShrimp_fx;
@@ -52,6 +51,8 @@ private:
 	Mix_Chunk* Bouncer_fx;
 	Mix_Chunk* Yellowball_fx;
 	Mix_Chunk* BigEye_fx;
+public:
+	Enemy * enemies[MAX_ENEMIES];
 };
 
 #endif // __ModuleEnemies_H__
