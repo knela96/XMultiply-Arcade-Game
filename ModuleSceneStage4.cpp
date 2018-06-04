@@ -59,6 +59,8 @@ bool ModuleSceneStage4::Start()
 	start_time = 0;
 	index1 = 0;
 	index2 = 0;
+	ground_bottom_y = 150;
+	ground_top_y = -70;
 	clearstage_fx = false;
 
 
@@ -71,9 +73,63 @@ bool ModuleSceneStage4::Start()
 	App->powerup->Enable();
 	App->font->Enable();
 
-	graphics = App->textures->Load("Assets/Tilemap4.png");
+	graphics = App->textures->Load("Assets/Tilemap4.1.png");
 	font_gameover = App->font->Load("Assets/Sprites/UI/fonts.2.png", "0123456789·' ºººººººººººººabcdefghijklmnopqrstuvwxyz", 2);
 	back = App->textures->Load("Assets/ForthLvlMap.png");
+
+	//colliders
+
+	//top
+	CollidersTop1 = App->collision->AddCollider({ 0, ground_top_y, 5138, 100}, COLLIDER_WALL, this);
+	CollidersTop2 = App->collision->AddCollider({ 197, ground_top_y, 57, 120 }, COLLIDER_WALL, this);
+	CollidersTop3 = App->collision->AddCollider({ 330, ground_top_y, 43, 136 }, COLLIDER_WALL, this);
+	CollidersTop4 = App->collision->AddCollider({ 648, ground_top_y, 42, 145 }, COLLIDER_WALL, this);
+	CollidersTop5 = App->collision->AddCollider({ 840, ground_top_y, 45, 135 }, COLLIDER_WALL, this);
+	CollidersTop6 = App->collision->AddCollider({ 1346, ground_top_y,53, 185 }, COLLIDER_WALL, this);
+	CollidersTop7 = App->collision->AddCollider({ 1482, ground_top_y,42, 144 }, COLLIDER_WALL, this);
+	CollidersTop8 = App->collision->AddCollider({ 1670, ground_top_y,52, 191 }, COLLIDER_WALL, this);
+	CollidersTop9 = App->collision->AddCollider({ 1730, ground_top_y, 61, 129 }, COLLIDER_WALL, this);
+	CollidersTop10 = App->collision->AddCollider({ 1990, ground_top_y, 182, 147 }, COLLIDER_WALL, this);
+	CollidersTop11 = App->collision->AddCollider({ 2241, ground_top_y, 61, 144 }, COLLIDER_WALL, this);
+	CollidersTop12 = App->collision->AddCollider({ 2371, ground_top_y, 368, 133 }, COLLIDER_WALL, this);
+	CollidersTop13 = App->collision->AddCollider({ 2830, ground_top_y, 109, 143 }, COLLIDER_WALL, this);
+	CollidersTop14 = App->collision->AddCollider({ 2950, ground_top_y, 118, 123 }, COLLIDER_WALL, this);
+	CollidersTop15 = App->collision->AddCollider({ 3140, ground_top_y, 56, 189 }, COLLIDER_WALL, this);
+	CollidersTop16 = App->collision->AddCollider({ 3330, ground_top_y, 121, 191 }, COLLIDER_WALL, this);
+	CollidersTop17 = App->collision->AddCollider({ 3458, ground_top_y, 59, 141 }, COLLIDER_WALL, this);
+	CollidersTop18 = App->collision->AddCollider({ 3590, ground_top_y, 50, 189 }, COLLIDER_WALL, this);
+	CollidersTop19 = App->collision->AddCollider({ 3650, ground_top_y, 185, 150 }, COLLIDER_WALL, this);
+	CollidersTop20 = App->collision->AddCollider({ 4168, ground_top_y, 54, 183 }, COLLIDER_WALL, this);
+	CollidersTop21 = App->collision->AddCollider({ 4292, ground_top_y, 50, 135 }, COLLIDER_WALL, this);
+	CollidersTop22 = App->collision->AddCollider({ 4548, ground_top_y, 113, 189 }, COLLIDER_WALL, this);
+	//
+
+
+	//bottom
+
+	BigColliderBot = App->collision->AddCollider({ 0, ground_bottom_y + 142, 5138, 100 }, COLLIDER_WALL, this);
+	ColliderBot1 = App->collision->AddCollider({ 199, ground_bottom_y + 60, 51, 76 }, COLLIDER_WALL, this);
+	ColliderBot2 = App->collision->AddCollider({ 262, ground_bottom_y , 51, 119 }, COLLIDER_WALL, this);
+	ColliderBot3 = App->collision->AddCollider({ 329, ground_bottom_y , 52, 122 }, COLLIDER_WALL, this);
+	ColliderBot4 = App->collision->AddCollider({ 390, ground_bottom_y + 37, 52, 96 }, COLLIDER_WALL, this);
+	ColliderBot5 = App->collision->AddCollider({ 850, ground_bottom_y + 91, 29, 75 }, COLLIDER_WALL, this);
+	ColliderBot6 = App->collision->AddCollider({ 964, ground_bottom_y + 62, 56, 100 }, COLLIDER_WALL, this);
+	ColliderBot7 = App->collision->AddCollider({ 1365, ground_bottom_y +91, 29, 75 }, COLLIDER_WALL, this);
+	ColliderBot8 = App->collision->AddCollider({ 1475, ground_bottom_y + 62, 56, 100 }, COLLIDER_WALL, this);
+	ColliderBot9 = App->collision->AddCollider({ 1736, ground_bottom_y + 127, 56, 62 }, COLLIDER_WALL, this);
+	ColliderBot10 = App->collision->AddCollider({ 1866, ground_bottom_y + 127, 43, 62 }, COLLIDER_WALL, this);
+	ColliderBot11 = App->collision->AddCollider({ 2179, ground_bottom_y + 61, 252, 100 }, COLLIDER_WALL, this);
+	ColliderBot12 = App->collision->AddCollider({ 2522, ground_bottom_y + 98, 13, 67 }, COLLIDER_WALL, this);
+	ColliderBot13 = App->collision->AddCollider({ 2636, ground_bottom_y + 69, 47, 105 }, COLLIDER_WALL, this);
+	ColliderBot14 = App->collision->AddCollider({ 2890, ground_bottom_y + 69, 47, 105 }, COLLIDER_WALL, this);
+	ColliderBot15 = App->collision->AddCollider({ 3014, ground_bottom_y + 65, 47, 105 }, COLLIDER_WALL, this);
+	ColliderBot16 = App->collision->AddCollider({ 3144, ground_bottom_y + 116, 173, 77 }, COLLIDER_WALL, this);
+	ColliderBot17 = App->collision->AddCollider({ 3331, ground_bottom_y + 62, 188, 119 }, COLLIDER_WALL, this);
+	ColliderBot18 = App->collision->AddCollider({ 3596, ground_bottom_y + 104, 112, 65 }, COLLIDER_WALL, this);
+	ColliderBot19 = App->collision->AddCollider({ 3714, ground_bottom_y + 64, 125, 108 }, COLLIDER_WALL, this);
+	ColliderBot20 = App->collision->AddCollider({ 3978, ground_bottom_y + 101, 39, 78 }, COLLIDER_WALL, this);
+	ColliderBot21 = App->collision->AddCollider({ 4046, ground_bottom_y + 71, 48, 111 }, COLLIDER_WALL, this);
+	ColliderBot22 = App->collision->AddCollider({ 4238, ground_bottom_y + 67, 300, 111 }, COLLIDER_WALL, this);
 
 	hud = App->textures->Load("Assets/UI.png");
 
@@ -133,9 +189,67 @@ update_status ModuleSceneStage4::Update()
 	}
 
 	App->render->Blit(back, 0, 0, &background);
-	App->render->Blit(graphics, 0, -70, &ground_top);
-	App->render->Blit(graphics, 0, 150, &ground_bottom);
+	App->render->Blit(graphics, 0, ground_top_y, &ground_top);
+	App->render->Blit(graphics, 0, ground_bottom_y, &ground_bottom);
 	App->render->Blit(hud, 0, 224, NULL, 0.0f, false);
+
+
+
+
+	//colliders Update
+	CollidersTop1->SetPos(0, ground_top_y);
+	CollidersTop2->SetPos(197, ground_top_y);
+	CollidersTop3->SetPos(330, ground_top_y);
+	CollidersTop4->SetPos(648, ground_top_y);
+	CollidersTop5->SetPos(840, ground_top_y);
+	CollidersTop6->SetPos(1346, ground_top_y);
+	CollidersTop7->SetPos(1482, ground_top_y);
+	CollidersTop8->SetPos(1670, ground_top_y);
+	CollidersTop9->SetPos(1730, ground_top_y);
+	CollidersTop10->SetPos(1990, ground_top_y);
+	CollidersTop11->SetPos(2241, ground_top_y);
+	CollidersTop12->SetPos(2371, ground_top_y);
+	CollidersTop13->SetPos(2830, ground_top_y);
+	CollidersTop14->SetPos(2950, ground_top_y);
+	CollidersTop15->SetPos(3140, ground_top_y);
+	CollidersTop16->SetPos(3330, ground_top_y);
+	CollidersTop17->SetPos(3458, ground_top_y);
+	CollidersTop18->SetPos(3590, ground_top_y);
+	CollidersTop19->SetPos(3650, ground_top_y);
+	CollidersTop20->SetPos(4168, ground_top_y);
+	CollidersTop21->SetPos(4292, ground_top_y);
+	CollidersTop22->SetPos(4548, ground_top_y);
+
+	BigColliderBot->SetPos(0,ground_bottom_y + 142);
+	ColliderBot1 ->SetPos(199, ground_bottom_y +60);
+	ColliderBot2->SetPos(262, ground_bottom_y);
+	ColliderBot3->SetPos(329, ground_bottom_y);
+	ColliderBot4->SetPos(390, ground_bottom_y + 37);
+	ColliderBot5->SetPos(850, ground_bottom_y + 91);
+	ColliderBot6->SetPos(964, ground_bottom_y + 62);
+	ColliderBot7->SetPos(1365, ground_bottom_y + 91);
+	ColliderBot8->SetPos(1475, ground_bottom_y + 62);
+	ColliderBot9->SetPos(1736, ground_bottom_y + 127);
+	ColliderBot10->SetPos(1866, ground_bottom_y + 127);
+	ColliderBot11->SetPos(2179, ground_bottom_y + 61);
+	ColliderBot12->SetPos(2522, ground_bottom_y + 98);
+	ColliderBot13->SetPos(2636, ground_bottom_y + 69);
+	ColliderBot14->SetPos(2890, ground_bottom_y + 69);
+	ColliderBot15->SetPos(3014, ground_bottom_y + 65);
+	ColliderBot16->SetPos(3144, ground_bottom_y + 116);
+	ColliderBot17->SetPos(3331, ground_bottom_y + 62);
+	ColliderBot18->SetPos(3596, ground_bottom_y + 104);
+	ColliderBot19->SetPos(3714, ground_bottom_y + 64);
+	ColliderBot20->SetPos(3978, ground_bottom_y + 101);
+	ColliderBot21->SetPos(4046, ground_bottom_y + 71);
+	ColliderBot22->SetPos(4238, ground_bottom_y + 67);
+
+	if (App->input->keyboard[SDL_SCANCODE_J] == KEY_STATE::KEY_DOWN) {
+		ground_bottom_y--;
+	}
+	if (App->input->keyboard[SDL_SCANCODE_K] == KEY_STATE::KEY_DOWN) {
+		ground_top_y++;
+	}
 
 	if (App->player->position.x >= 4700) //4700
 	{
