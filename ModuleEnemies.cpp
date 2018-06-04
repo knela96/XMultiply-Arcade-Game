@@ -326,7 +326,7 @@ void ModuleEnemies::SpawnEnemy(const EnemyInfo& info)
 			enemies[i]->type = ENEMY_TYPES::YELLOW_BALL;
 			break;
 		case ENEMY_TYPES::BOSS1:
-			//enemies[i] = new Enemy_BossS4(info.x, info.y);
+			enemies[i] = new Enemy_BossS4(info.x, info.y);
 			enemies[i]->type = ENEMY_TYPES::BOSS1;
 			break;
 		case ENEMY_TYPES::BOSSARM:
