@@ -163,7 +163,6 @@ void PowerUp::PU_Effect()
 	{
 	case TENTACLES_POWERUP:
 		App->player->AddTentacles();
-
 		break;
 	case BOMB_POWERUP:
 		App->player->powerup[BOMB_SHOOT] = true;
