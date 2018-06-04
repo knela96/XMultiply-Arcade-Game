@@ -144,9 +144,9 @@ bool ModuleParticles::Start()
 	missile.anim.PushBack({ 32, 51, 32, 16 });
 	missile.anim.PushBack({ 64, 51, 32, 16 });
 	missile.anim.loop = true;
-	missile.anim.speed = 0.02f;
+	missile.anim.speed = 0.2f;
 	missile.type = MISSILE_SHOOT;
-	missile.life = 2000;
+	missile.life = 5000;
 /*
 	Stage4Boss_shoot.anim.PushBack({ 2, 132, 46, 46 });
 	Stage4Boss_shoot.anim.loop = true;
@@ -322,6 +322,9 @@ void ModuleParticles::MissilleMovement(Particle *p) {
 	if (p->target != nullptr) {
  		if (p->target->position.x < 0) {
   			p->target = nullptr;
+			p->speed.x = 4;
+			p->speed.y = 0;
+			p->angle = 0.0f;
 			EnemyPositions(p);
 		}
 	}
