@@ -27,7 +27,7 @@
 #include "ModuleSceneStage1.h"
 
 
-#define SPAWN_MARGIN 0
+#define SPAWN_MARGIN 50
 
 ModuleEnemies::ModuleEnemies()
 {

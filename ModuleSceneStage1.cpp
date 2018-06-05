@@ -452,8 +452,20 @@ void ModuleSceneStage1::AddEnemies() {
 	App->enemies->AddEnemy(BROWN_WORM, 495, 50, -1, true);
 	App->enemies->AddEnemy(BROWN_WORM, 505, 50, -1, true);
 	App->enemies->AddEnemy(BROWN_WORM, 515, 50, -1, true);
+	
+	
 
-	App->enemies->AddEnemy(BOSSTENT, 455, 50, -1);
+	App->enemies->AddEnemy(BOSS1, 545, 50, -1, true);
+	App->enemies->AddEnemy(BOSSARM, 525, 60, -1, true);
+	App->enemies->AddEnemy(BOSSFACE, 590, 50, -1, true);
+	App->enemies->AddEnemy(BOSSHEART, 610, 50, -1, true);
+	
+	App->enemies->AddEnemy(BOSSDISP, 544, 50, -1, true);
+	App->enemies->AddEnemy(BOSSTENT, 555, -40, -1, true);
+
+	
+	
+	
 
 	App->enemies->AddEnemy(BROWN_WORM, 455, 50, -1);
 	App->enemies->AddEnemy(BROWN_WORM, 465, 50, -1);
