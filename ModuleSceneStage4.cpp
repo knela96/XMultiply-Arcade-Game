@@ -59,7 +59,7 @@ bool ModuleSceneStage4::Start()
 	start_time = 0;
 	index1 = 0;
 	index2 = 0;
-	ground_bottom_y = 150;
+	ground_bottom_y = 50;
 	ground_top_y = -70;
 	clearstage_fx = false;
 
@@ -251,7 +251,7 @@ update_status ModuleSceneStage4::Update()
 		ground_top_y++;
 	}
 
-	if (App->player->position.x >= 4700) //4700
+	if (App->player->position.x >= 5700) //4700
 	{
 		if (App->input->keyboard[SDL_SCANCODE_RETURN] == KEY_STATE::KEY_DOWN || App->input->controller[START] == KEY_STATE::KEY_DOWN) {
 			App->fade->FadeToBlack((Module*)App->scene_stage4, (Module*)App->scene_MainMenu);
@@ -301,7 +301,9 @@ update_status ModuleSceneStage4::Update()
 
 	if (resetmap)
 		resetMap();
-
+	if (App->render->camera.x == 4670) {
+		right = false;
+	}
 
 	return UPDATE_CONTINUE;
 }
