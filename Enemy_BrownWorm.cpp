@@ -5,6 +5,7 @@
 
 Enemy_BrownWorm::Enemy_BrownWorm(int x, int y, bool move_up) : Enemy(x, y)
 {
+	score = 100;
 	fly.PushBack({ 0,0,32,32 });
 	fly.PushBack({ 32,0,32,32 });
 	fly.PushBack({ 64,0,32,32 });

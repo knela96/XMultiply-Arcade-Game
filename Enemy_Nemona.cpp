@@ -6,6 +6,7 @@
 
 Enemy_Nemona::Enemy_Nemona(int x, int y) : Enemy(x, y)
 {
+	score = 600;
 	fly.PushBack({ 0,5,48,48 });
 	fly.PushBack({ 49,5,50,48 });
 	fly.PushBack({ 112,5,50,48 });

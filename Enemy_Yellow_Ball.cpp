@@ -6,6 +6,7 @@
 
 Enemy_Yellow_Ball::Enemy_Yellow_Ball(int x, int y) : Enemy(x, y)
 {
+	score = 200;
 	fly.PushBack({ 10,5,70,30 });
 	fly.PushBack({ 10,40,70,30 });
 	fly.PushBack({ 10,79,70,32 });

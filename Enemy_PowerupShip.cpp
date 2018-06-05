@@ -8,6 +8,7 @@
 
 Enemy_PowerupShip::Enemy_PowerupShip(int x, int y, uint PU) : Enemy(x, y)
 {
+	score = 1000;
 	fly.PushBack({ 68, 11,28,18 });
 	fly.PushBack({ 68, 11,28,18 });
 	fly.speed = 0.05f;
