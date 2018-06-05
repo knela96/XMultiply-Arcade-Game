@@ -6,11 +6,11 @@
 
 Enemy_Blue_Ball::Enemy_Blue_Ball(int x, int y) : Enemy(x, y)
 {
-	fly.PushBack({ 0,3,32,14 });
-	fly.PushBack({ 36,3,68,16 });
-	fly.PushBack({ 76,0,103,20 });
-	fly.PushBack({ 22,27,46,49 });
-	fly.PushBack({ 52,24,77,49 });
+	fly.PushBack({ 3,6,35,22 });
+	fly.PushBack({ 2,31,35,22 });
+	fly.PushBack({ 3,55,35,22 });
+	fly.PushBack({ 3,87,35,26 });
+	fly.PushBack({ 45,6,35,22 });
 	fly.speed = 0.1f;
 
 	animation = &fly;

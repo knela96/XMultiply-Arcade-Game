@@ -442,7 +442,8 @@ void ModuleSceneStage4::AddEnemies() {
 	App->enemies->AddEnemy(NEMONA_TENTACLE, 200, 200, -1, true);
 	App->enemies->AddEnemy(NEMONA_TENTACLE, 450, 200, -1, true);
 
-	
+	App->enemies->AddEnemy(BLUE_BALL, 450, 100, -1, true);
+
 	App->enemies->AddEnemy(BOSSHEART, 4905, 119, -1, true);
 	App->enemies->AddEnemy(BOSS1, 4839, 119, -1, true);
 	
