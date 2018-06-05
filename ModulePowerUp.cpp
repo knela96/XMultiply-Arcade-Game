@@ -59,6 +59,14 @@ bool ModulePowerUp::Start()
 	YellowShells.enabled = false;
 
 
+	Missile.anim.PushBack({ 69, 57, 18, 15 });
+	Missile.anim.PushBack({ 197, 58, 18, 15 });
+	Missile.anim.loop = true;
+	Missile.anim.speed = 0.2f;
+	Missile.type = MISSILE_POWERUP;
+	Missile.enabled = false;
+
+
 	return ret;
 }
 
@@ -183,5 +191,9 @@ void PowerUp::PU_Effect()
 		break;
 	case ORB_POWERUP:
 		App->player->powerup[ORB] = true;
+		break;
+	case MISSILE_POWERUP:
+		App->player->powerup[MISSILE_SHOOT] = true;
+		break;
 	}
 }

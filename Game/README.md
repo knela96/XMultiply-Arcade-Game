@@ -14,8 +14,8 @@ W/A/S/D to move the player
 
 SPACE to shoot missiles
 
-There are currently four power-ups, each of them specified inside the wiki 
-(the bomb, the speed up, the tentacles, and the yellow shells)
+There are currently five power-ups, each of them specified inside the wiki 
+(the bomb, the speed up, the tentacles, the yellow shells and the missiles)
 
 For debuf purposes, we implemented some special keys in order to make the game easier to play;
 F1 to see collision layout, F2 to win, F3 to lose, and F5 activates Godmode.
@@ -73,6 +73,7 @@ XMultiply v1.0 ==============
 -Ghoums, the fourth level boss implemented.
 -Tentacles finally corrected
 -Implemented a new power-up, Yellow Shells.
+-Missiles implemented
 -Lives are correctly shown in UI.
 -Score Scene to check score at the end implemented.
 
