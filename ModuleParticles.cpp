@@ -147,6 +147,18 @@ bool ModuleParticles::Start()
 	missile.anim.speed = 0.2f;
 	missile.type = MISSILE_SHOOT;
 	missile.life = 5000;
+
+	explosion_missile.anim.PushBack({ 0,32,32,32 });
+	explosion_missile.anim.PushBack({ 32,32,32,32 });
+	explosion_missile.anim.PushBack({ 64,32,32,32 });
+	explosion_missile.anim.PushBack({ 96,32,32,32 });
+	explosion_missile.anim.PushBack({ 128,32,32,32 });
+	explosion_missile.anim.PushBack({ 160,32,32,32 });
+	explosion_missile.anim.loop = false;
+	explosion_missile.anim.speed = 0.4f;
+	explosion_missile.type = MISSILE_EXPLOSION;
+
+
 /*
 	Stage4Boss_shoot.anim.PushBack({ 2, 132, 46, 46 });
 	Stage4Boss_shoot.anim.loop = true;
@@ -248,6 +260,10 @@ update_status ModuleParticles::Update()
 			case MISSILE_SHOOT:
 				texture = graphics[PARTICLES_PLAYER];
 				MissilleMovement(p);
+				break;
+			case MISSILE_EXPLOSION:
+				texture = graphics[PARTICLES_EXPLOSION];
+				break;
 			/*case STAGE4BOSS_SHOOT:
 				texture = graphics[PARTICLES_ENEMYSHOOT];
 				break;*/
@@ -415,7 +431,7 @@ void ModuleParticles::OnCollision(Collider* c1, Collider* c2)
 			case MISSILE_SHOOT:
 				if (c2->type == COLLIDER_WALL)
 					App->audio->PlaySound(p->hit_fx);
-				p = &explosion_bomb;
+				p = &explosion_missile;
 				active_missiles--;
 				break;
 			default:

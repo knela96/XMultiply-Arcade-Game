@@ -37,6 +37,8 @@ Enemy_Big_Eye::Enemy_Big_Eye(int x, int y) : Enemy(x, y)
 
 	original_position.x = x;
 	original_position.y = y;
+
+	live = 1;
 }
 
 void Enemy_Big_Eye::Move()

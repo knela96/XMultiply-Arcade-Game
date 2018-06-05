@@ -22,6 +22,8 @@ Enemy_Bouncer::Enemy_Bouncer(int x, int y) : Enemy(x, y)
 
 	original_position.x = x;
 	original_position.y = y;
+
+	live = 1;
 }
 
 void Enemy_Bouncer::Move()

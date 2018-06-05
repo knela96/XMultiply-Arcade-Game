@@ -18,7 +18,9 @@ public:
 	iPoint position;
 	ENEMY_TYPES type = NO_TYPE;
 	float flip = false;
-
+	int live = 1;
+	bool hit = false;
+	Uint32 start_time;
 public:
 	Enemy(int x, int y);
 	virtual ~Enemy();
