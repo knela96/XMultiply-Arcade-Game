@@ -52,9 +52,11 @@ bool ModuleSceneStage4::Start()
 	LOG("Loading background assets");
 
 	bool ret = true;
-	right = true;
+	right = false;
 	resetmap = false;
+	entering = true;
 	cleaned = false;
+	shipdone = false;
 	aux_time = 0;
 	start_time = 0;
 	index1 = 0;
@@ -64,7 +66,7 @@ bool ModuleSceneStage4::Start()
 	clearstage_fx = false;
 
 
-	App->player->enable_movement = true;
+	//App->player->enable_movement = true;
 	App->tentacles->Enable();
 	App->player->Enable();
 	App->enemies->Enable();
@@ -182,6 +184,9 @@ bool ModuleSceneStage4::CleanUp()
 
 update_status ModuleSceneStage4::Update()
 {
+	if (entering) {
+		enter();
+	}
 	if (right)
 	{
 		App->player->position.x += 1;
@@ -301,6 +306,7 @@ update_status ModuleSceneStage4::Update()
 
 	if (resetmap)
 		resetMap();
+
 	if (App->render->camera.x == 4670) {
 		right = false;
 	}
@@ -367,4 +373,27 @@ void ModuleSceneStage4::AddEnemies() {
 
 	App->enemies->AddEnemy(NEMONA_TENTACLE, 200, 200, -1, true);
 	App->enemies->AddEnemy(NEMONA_TENTACLE, 450, 200, -1, true);
+}
+
+void ModuleSceneStage4::enter(){
+
+	if (!shipdone) {
+		App->player->position.x = 0 - App->player->current_animation->frames->w;
+		App->player->position.y = 100;
+		shipdone = true;
+	}
+	else {
+		if (App->player->position.x < 100) {
+			App->player->nitroanim = true;
+			App->player->position.x++;
+			App->render->camera.x = 0;
+			App->render->camera.y = 0;
+		}
+		else {
+			App->player->enable_movement = true;
+			right = true;
+			entering = false;
+
+		}
+	}
 }

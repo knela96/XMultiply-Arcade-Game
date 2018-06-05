@@ -10,6 +10,7 @@
 #include "ModuleFonts.h"
 #include "ModuleTentacles.h"
 #include "ModuleSceneStage1.h"
+#include "ModuleSceneStage4.h"
 #include "ModuleAudio.h"
 #include "ModulePowerUp.h"
 #include <assert.h>
@@ -281,6 +282,7 @@ update_status ModulePlayer::Update()
 		}
 		else {
 			App->scene_stage1->resetmap = true;
+			App->scene_stage4->resetmap = true;
 		}
 	}
 	LOG("%i", life);

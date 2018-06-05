@@ -17,6 +17,7 @@ public:
 	ModuleSceneStage4();
 	~ModuleSceneStage4();
 	void resetMap();
+	void enter();
 	void AddEnemies();
 	bool Start();
 	bool CleanUp();
@@ -38,8 +39,10 @@ public:
 	SDL_Rect background;
 
 	bool resetmap = false;
+	bool entering = false;
 	bool cleaned = false;
 	bool show = false;
+	bool shipdone;
 
 	Animation flag;
 	Animation people;
