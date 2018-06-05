@@ -11,6 +11,7 @@
 #include "Enemy_Nemona.h"
 #include "Enemy_Big_Eye.h"
 #include "Enemy_Blue_Mouth.h"
+#include "Enemy_BlueSentinel.h"
 #include "Enemy_Yellow_Ball.h"
 #include "Enemy_Bouncer.h"
 #include "Enemy_Rock.h"
@@ -397,7 +398,7 @@ void ModuleEnemies::SpawnEnemy(const EnemyInfo& info)
 			break;
 
 		case ENEMY_TYPES::BLUE_SENTINEL:
-			//enemies[i] = new Enemy_BlueSentinel(info.x, info.y);
+			enemies[i] = new Enemy_BlueSentinel(info.x, info.y);
 			enemies[i]->type = ENEMY_TYPES::BLUE_SENTINEL;
 			break;
 
