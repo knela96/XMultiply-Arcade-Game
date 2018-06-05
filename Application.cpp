@@ -65,7 +65,7 @@ bool Application::Init()
 	scene_stage4->Disable();
 	scene_congrats->Disable();
 	scene_test->Disable();
-	scene_MainMenu->Disable();
+	scene_score->Disable();
 
 	tentacles->Disable();
 	player->Disable();

@@ -138,7 +138,10 @@ update_status ModulePlayer::Update()
 		}
 	}
 
-	
+	if (App->input->keyboard[SDL_SCANCODE_F6]) {
+		position.x = 4600;
+		App->render->camera.x = 4600;
+	}
 	if (App->input->keyboard[SDL_SCANCODE_F5] == KEY_DOWN)
 	{
 		godmode = !godmode;

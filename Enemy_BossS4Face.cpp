@@ -41,6 +41,7 @@ Enemy_BossS4Face::Enemy_BossS4Face(int x, int y) : Enemy(x, y)
 
 void Enemy_BossS4Face::Move()
 {
+
 	position = original_position + path->GetCurrentPosition(&animation);
 	if (SDL_GetTicks()-shoot_delay >= 1250) 
 	{

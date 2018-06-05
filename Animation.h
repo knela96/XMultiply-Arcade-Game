@@ -47,8 +47,12 @@ public:
 	}
 
 	void setFrame(int frame) {
-		current_frame = 2; 
+		current_frame = frame; 
 		loops = 0.0;
+	}
+
+	int getFrame() {
+		return current_frame;
 	}
 
 	bool islastframe() {
