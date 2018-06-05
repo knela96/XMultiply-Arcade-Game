@@ -475,17 +475,20 @@ void ModuleSceneStage4::moveBot(bool up, int i) {
 void ModuleSceneStage4::AddEnemies() {
 
 
-	App->enemies->AddEnemy(NEMONA_TENTACLE, 400, 200, -1, true);
+	App->enemies->AddEnemy(BLUE_BALL2, 400, 100, -1, true);
 
-	App->enemies->AddEnemy(NEMONA_TENTACLE, 200, 200, -1, true);
-	App->enemies->AddEnemy(NEMONA_TENTACLE, 450, 200, -1, true);
 
-	App->enemies->AddEnemy(BLUE_BALL, 450, 100, -1, true);
+
+
+
+
+
+
 
 	App->enemies->AddEnemy(BOSSHEART, 4905, 119, -1, true);
 	App->enemies->AddEnemy(BOSS1, 4839, 119, -1, true);
-	
-	//App->enemies->AddEnemy(BOSSARM, 4819, 127, -1, true);
+
+	App->enemies->AddEnemy(BOSSARM, 4819, 127, -1, true);
 
 	App->enemies->AddEnemy(BOSSDISP, 4838, 119, -1, true);
 	App->enemies->AddEnemy(BOSSTENT, 4845, 26, -1, true);

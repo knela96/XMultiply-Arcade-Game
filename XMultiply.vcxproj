@@ -77,6 +77,7 @@
     <ClInclude Include="Enemy_Blue_Ball.h" />
     <ClInclude Include="Enemy.h" />
     <ClInclude Include="Enemy_Big_Eye.h" />
+    <ClInclude Include="Enemy_Blue_Ball2.h" />
     <ClInclude Include="Enemy_Blue_Mouth.h" />
     <ClInclude Include="Enemy_BossS4.h" />
     <ClInclude Include="Enemy_BossS4Arm.h" />
@@ -126,6 +127,7 @@
     <ClCompile Include="Enemy_Blue_Ball.cpp" />
     <ClCompile Include="Enemy.cpp" />
     <ClCompile Include="Enemy_Big_Eye.cpp" />
+    <ClCompile Include="Enemy_Blue_Ball2.cpp" />
     <ClCompile Include="Enemy_Blue_Mouth.cpp" />
     <ClCompile Include="Enemy_BossS4.cpp" />
     <ClCompile Include="Enemy_BossS4Arm.cpp" />
