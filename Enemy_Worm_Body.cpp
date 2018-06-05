@@ -19,7 +19,7 @@ Enemy_Worm_Body::Enemy_Worm_Body(int x, int y) : Enemy(x, y)
 
 	original_position.x = x;
 	original_position.y = y;
-}
+} 
 
 void Enemy_Worm_Body::Move()
 {

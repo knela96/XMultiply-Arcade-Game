@@ -29,10 +29,10 @@ void Enemy_Nemona::Move()
 	if (SDL_GetTicks() - shoot_delay >= 2000)
 	{
 		shoot_delay = SDL_GetTicks();
-		App->particles->AddParticle(App->particles->shrimp_shoot, position.x + fly.frames->w/2, position.y + fly.frames->h / 2, COLLIDER_ENEMY_SHOT, { -3,-0.5 });
-		App->particles->AddParticle(App->particles->shrimp_shoot, position.x + fly.frames->w / 2, position.y + fly.frames->h / 2, COLLIDER_ENEMY_SHOT, { -2,-1 });
-		App->particles->AddParticle(App->particles->shrimp_shoot, position.x + fly.frames->w / 2, position.y + fly.frames->h / 2, COLLIDER_ENEMY_SHOT, { 0,-3 });
-		App->particles->AddParticle(App->particles->shrimp_shoot, position.x + fly.frames->w / 2, position.y + fly.frames->h / 2, COLLIDER_ENEMY_SHOT, { 2,-1 });
+		App->particles->AddParticle(App->particles->Stage4Boss_shoot, position.x + fly.frames->w/2, position.y + fly.frames->h / 2, COLLIDER_ENEMY_SHOT, { -3,-0.5 });
+		App->particles->AddParticle(App->particles->Stage4Boss_shoot, position.x + fly.frames->w / 2, position.y + fly.frames->h / 2, COLLIDER_ENEMY_SHOT, { -2,-1 });
+		App->particles->AddParticle(App->particles->Stage4Boss_shoot, position.x + fly.frames->w / 2, position.y + fly.frames->h / 2, COLLIDER_ENEMY_SHOT, { 0,-3 });
+		App->particles->AddParticle(App->particles->Stage4Boss_shoot, position.x + fly.frames->w / 2, position.y + fly.frames->h / 2, COLLIDER_ENEMY_SHOT, { 2,-1 });
 		App->particles->AddParticle(App->particles->shrimp_shoot, position.x + fly.frames->w / 2, position.y + fly.frames->h / 2, COLLIDER_ENEMY_SHOT, { 3,-0.5 });
 	}
 }

@@ -12,7 +12,7 @@
 
 #define MAX_ACTIVE_PARTICLES 100
 
-#define MAX_PARTICLE_TEXTURES 5
+#define MAX_PARTICLE_TEXTURES 7
 
 
 struct SDL_Rect;
@@ -30,6 +30,8 @@ enum PARTICLE_TEXTURE
 	POWERUP,
 	PARTICLES_EXPLOSION,
 	PARTICLES_ENEMYSHOOT,
+	STAGE4BOSS_SHOOT,
+	SENTINEL_SHOOT,
 };
 enum PARTICLE_TYPE
 {
@@ -47,6 +49,8 @@ enum PARTICLE_TYPE
 	SHRIMP_SHOOT,
 	MISSILE_SHOOT,
 	MISSILE_EXPLOSION,
+	STAGE4BOSS_SHOOTN,
+	SENTINEL_SHOOTN,
 	ORB,
 	ORB_SHOOT, 
 	ORB_EXPLOSION,
@@ -125,7 +129,8 @@ public:
 	Particle explosion_orb;
 	Particle anemona_shoot;
 	Particle shrimp_shoot;
-	//Particle Stage4Boss_shoot;
+	Particle bluesentinelshot;
+	Particle Stage4Boss_shoot;
 	Particle Powerup;
 	Animation* animation = nullptr;
 	int active_missiles = 0;

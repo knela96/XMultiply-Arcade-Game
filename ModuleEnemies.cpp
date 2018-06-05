@@ -11,12 +11,14 @@
 #include "Enemy_Nemona.h"
 #include "Enemy_Big_Eye.h"
 #include "Enemy_Blue_Mouth.h"
+#include "Enemy_BlueSentinel.h"
 #include "Enemy_Yellow_Ball.h"
 #include "Enemy_Bouncer.h"
 #include "Enemy_Rock.h"
 #include "Enemy_Worm_Body.h"
 #include "Enemy_Worm_Head.h"
 #include "Enemy_Worm_Base.h"
+#include "Enemy_Blue_Ball.h"
 #include "Enemy_BossS4.h"
 #include "Enemy_BossS4Arm.h"
 #include "Enemy_BossS4Disp.h"
@@ -66,6 +68,8 @@ bool ModuleEnemies::Start()
 	sprites[ENEMY_TYPES::WORM_HEAD] = App->textures->Load("Assets/Sprites/Stage4/Enemies/Worm_Head.png");
 	sprites[ENEMY_TYPES::WORM_BODY] = App->textures->Load("Assets/Sprites/Stage4/Enemies/Worm_Body.png");
 	sprites[ENEMY_TYPES::WORM_BASE] = App->textures->Load("Assets/Sprites/Stage4/Enemies/Worm_Base.png");
+	sprites[ENEMY_TYPES::BLUE_BALL] = App->textures->Load("Assets/Sprites/Stage4/Enemies/Blue_Ball.png");
+	sprites[ENEMY_TYPES::ROCK] = App->textures->Load("Assets/Sprites/Stage4/Enemies/Rock.png");
 
 
 	Brownworm_fx = App->audio->LoadS("Assets/Audio Files/SFX in WAV/xmultipl-100.wav");
@@ -225,6 +229,12 @@ update_status ModuleEnemies::Update()
 			case WORM_HEAD:
 				texture = sprites[WORM_HEAD];
 				break;
+			case BLUE_BALL:
+				texture = sprites[BLUE_BALL];
+				break;
+			case ROCK:
+				texture = sprites[ROCK];
+				break;
 			}
 
 			if (enemies[i]->hit && (SDL_GetTicks() - enemies[i]->start_time <= 200)) {
@@ -291,6 +301,12 @@ update_status ModuleEnemies::Update()
 				break;
 			case WORM_HEAD:
 				enemies[i]->Draw(sprites[WORM_HEAD]);
+				break;
+			case BLUE_BALL:
+				enemies[i]->Draw(sprites[BLUE_BALL]);
+				break;
+			case ROCK:
+				enemies[i]->Draw(sprites[ROCK]);
 				break;
 
 			}
@@ -382,7 +398,7 @@ void ModuleEnemies::SpawnEnemy(const EnemyInfo& info)
 			break;
 
 		case ENEMY_TYPES::BLUE_SENTINEL:
-			//enemies[i] = new Enemy_BlueSentinel(info.x, info.y);
+			enemies[i] = new Enemy_BlueSentinel(info.x, info.y);
 			enemies[i]->type = ENEMY_TYPES::BLUE_SENTINEL;
 			break;
 
@@ -422,6 +438,14 @@ void ModuleEnemies::SpawnEnemy(const EnemyInfo& info)
 		case ENEMY_TYPES::BOSSHEART:
 			enemies[i] = new Enemy_BossS4Heart(info.x, info.y);
 			enemies[i]->type = ENEMY_TYPES::BOSSHEART;
+			break;
+		case ENEMY_TYPES::BLUE_BALL:
+			enemies[i] = new Enemy_Blue_Ball(info.x, info.y);
+			enemies[i]->type = ENEMY_TYPES::BLUE_BALL;
+			break;
+		case ENEMY_TYPES::ROCK:
+			//enemies[i] = new Enemy_Rock(info.x, info.y);
+			enemies[i]->type = ENEMY_TYPES::ROCK;
 			break;
 		}
 	}

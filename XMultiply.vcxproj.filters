@@ -110,6 +110,11 @@
     </ClCompile>
     <ClCompile Include="ModuleSceneScore.cpp">
       <Filter>Scenes</Filter>
+    <ClCompile Include="Enemy_Blue_Ball.cpp">
+      <Filter>Enemies</Filter>
+    </ClCompile>
+    <ClCompile Include="Enemy_BlueSentinel.cpp">
+      <Filter>Enemies</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -234,6 +239,11 @@
     </ClInclude>
     <ClInclude Include="ModuleSceneScore.h">
       <Filter>Scenes</Filter>
+    <ClInclude Include="Enemy_Blue_Ball.h">
+      <Filter>Enemies</Filter>
+    </ClInclude>
+    <ClInclude Include="Enemy_BlueSentinel.h">
+      <Filter>Enemies</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

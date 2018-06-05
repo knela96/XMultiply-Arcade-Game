@@ -59,7 +59,6 @@ bool ModuleSceneScore::Start()
 		else
 			ranking[i] = ranking_names[i];
 	}
-	*/
 	for (int i = 0; i < 5; i++) {
 		std::string str;
 		str += i;
@@ -83,7 +82,8 @@ bool ModuleSceneScore::Start()
 		str += ranking[i]->score;
 		strcpy_s(_stagenamesblit[i], str.c_str());
 	}
-
+	
+	*/
 	return ret;
 }
 
