@@ -169,7 +169,9 @@ void PowerUp::PU_Effect()
 		break;
 	case SPEED_POWERUP:
 		App->player->speed += 1;
-		App->player->nitroanim=true;
+		App->player->nitroanim = true;
 		break;
+	case ORB_POWERUP:
+		App->player->powerup[ORB] = true;
 	}
 }

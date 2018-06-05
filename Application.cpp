@@ -34,11 +34,11 @@ Application::Application()
 	modules[i++] = scene_stage4 = new ModuleSceneStage4();
 	modules[i++] = scene_congrats = new ModuleSceneCongrats();
 	modules[i++] = scene_test = new ModuleSceneTest();
+	modules[i++] = particles = new ModuleParticles();
 	modules[i++] = player = new ModulePlayer();
-	modules[i++] = tentacles = new ModuleTentacles();
 	modules[i++] = enemies = new ModuleEnemies();
 	modules[i++] = powerup = new ModulePowerUp();
-	modules[i++] = particles = new ModuleParticles();
+	modules[i++] = tentacles = new ModuleTentacles();
 	modules[i++] = collision = new ModuleCollision();
 	modules[i++] = fade = new ModuleFadeToBlack();//Must be after all scenes
 

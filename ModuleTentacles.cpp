@@ -7,6 +7,7 @@
 #include "ModuleInput.h"
 
 
+#include "SDL/include/SDL_timer.h"
 #include "SDL/include/SDL.h"
 #include <stdio.h>
 #include <windows.h>
@@ -247,7 +248,13 @@ void ModuleTentacles::BlitTentacles() {
 	{
 		Tentacle* p = tentacles[i];
 		if (p->anchor) {
-			App->render->Blit(graphics, p->first_point.x, p->first_point.y, &p->anim.GetCurrentFrame(), 1.0f, 0.0f);
+				App->render->Blit(graphics, p->first_point.x, p->first_point.y, &p->anim.GetCurrentFrame(), 1.0f, 0.0f);
+			if (SDL_GetTicks() - start_time >= 350) {
+				if (i == MAX_TENTACLES)
+					start_time = SDL_GetTicks();
+				App->particles->AddParticle(App->particles->orb, p->first_point.x+5, p->first_point.y-1);
+			}
+			
 		}
 		else if (p->flip) {
 			App->render->Blit(graphics, p->first_point.x, p->first_point.y, &p->anim.GetCurrentFrame(), 1.0f, 90 + (180 * p->radian) / PI, true, true);
@@ -266,7 +273,17 @@ void ModuleTentacles::ShootLaser() {
 		{
 			Tentacle* p = tentacles[i];
 			if (p->anchor) {
-				App->particles->AddParticle(App->particles->tentacle_shoot, p->first_point.x, p->first_point.y - 5, COLLIDER_PLAYER_SHOT);
+				if (App->player->powerup[ORB] == true) {
+					App->particles->orbs += 1;
+					App->particles->AddParticle(App->particles->orb_shoot, p->first_point.x, p->first_point.y - 5, COLLIDER_PLAYER_SHOT);
+					App->particles->AddParticle(App->particles->orb_shoot, p->first_point.x-2, p->first_point.y - 2, COLLIDER_PLAYER_SHOT);
+					if (App->particles->orbs >= 2)
+						App->particles->orbs = 0;
+
+				}
+				else {
+					App->particles->AddParticle(App->particles->tentacle_shoot, p->first_point.x, p->first_point.y, COLLIDER_PLAYER_SHOT);
+				}
 			}
 		}
 	}

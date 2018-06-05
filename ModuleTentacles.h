@@ -35,6 +35,7 @@ public:
 	Tentacle anchor_top;
 	Tentacle anchor_bottom;
 	Tentacle* tentacles[MAX_TENTACLES];
+	Uint32 start_time = 0;
 private:
 	SDL_Texture * graphics = nullptr;
 public:

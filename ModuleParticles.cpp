@@ -9,6 +9,7 @@
 #include "SDL/include/SDL.h"
 #include "SDL/include/SDL_timer.h"
 #include <cmath>
+#include "ModuleTentacles.h"
 
 
 using namespace std;
@@ -158,6 +159,38 @@ bool ModuleParticles::Start()
 	explosion_missile.anim.speed = 0.4f;
 	explosion_missile.type = MISSILE_EXPLOSION;
 
+	orb.anim.PushBack({ 64,112,16,16 });
+	orb.anim.PushBack({ 48,112,16,16 });
+	orb.anim.PushBack({ 32,112,16,16 });
+	orb.anim.PushBack({ 16,112,16,16 });
+	orb.anim.PushBack({ 0,112,16,16 });
+	orb.anim.loop = false;
+	orb.anim.speed = 0.8f;
+	orb.type = ORB;
+
+	orb_shoot.anim.PushBack({0,144,16,16});
+	orb_shoot.anim.PushBack({ 16,144,16,16 });
+	orb_shoot.anim.PushBack({ 32,144,16,16 });
+	orb_shoot.anim.PushBack({ 48,144,16,16 });
+	orb_shoot.anim.PushBack({ 64,144,16,16 });
+	orb_shoot.anim.PushBack({ 80,144,16,16 });
+	orb_shoot.anim.PushBack({ 96,144,16,16 });
+	orb_shoot.anim.PushBack({ 112,144,16,16 });
+	orb_shoot.anim.loop = false;
+	orb_shoot.anim.speed = 0.2f;
+	orb_shoot.life = 2000;
+	orb_shoot.type = ORB_SHOOT;
+	orb_shoot.hit_fx = App->audio->LoadS("Assets/Audio Files/SFX in WAV/xmultipl-123.wav");
+
+	explosion_orb.anim.PushBack({144,144,16,16});
+	explosion_orb.anim.PushBack({ 160,144,16,16 });
+	explosion_orb.anim.PushBack({ 176,144,16,16 });
+	explosion_orb.anim.PushBack({ 192,144,16,16 });
+	explosion_orb.anim.loop = false;
+	explosion_orb.anim.speed = 0.8f;
+	explosion_orb.type = ORB_EXPLOSION;
+
+
 
 
 
@@ -281,6 +314,8 @@ update_status ModuleParticles::Update()
 			switch (p->type) {
 			case BASIC_SHOOT:
 			case BOMB_SHOOT:
+			case ORB:
+			case ORB_SHOOT:
 			case TENTACLE_SHOOT:
 				texture = graphics[PARTICLES_PLAYER];
 				break;
@@ -318,6 +353,8 @@ update_status ModuleParticles::Update()
 			{
 				switch (p->type) {
 				case ENEMY_EXPLOSION:
+				case ORB:
+				case ORB_EXPLOSION:
 				case PLAYER_EXPLOSION:
 					p->speed.x = 1;
 					break;
@@ -349,6 +386,18 @@ update_status ModuleParticles::Update()
 	return UPDATE_CONTINUE;
 }
 
+void ModuleParticles::Shoot_Orb(Particle* p) {
+	double angle = atan2((App->tentacles->tentacles[6]->first_point.y + App->tentacles->tentacles[6]->anim.GetCurrentFrame().h/2)  - (App->player->position.y + App->player->current_animation->GetCurrentFrame().h / 2), App->tentacles->tentacles[6]->first_point.x - App->player->position.x);
+	double dy = 0;
+ 	double dx = (double)(5 * cos(angle));
+	if (orbs % 2)
+		dy = (double)(5 * sin(angle));
+	else
+		dy = (double)(5 * sin(angle*-1));
+	p->speed.x = dx;
+	p->speed.y = dy;
+}
+
 void ModuleParticles::EnemyPositions(Particle *p) {
 	for (uint i = 0; i < MAX_ENEMIES; ++i) {
 		Enemy *enemy = App->enemies->enemies[i];
@@ -365,11 +414,9 @@ void ModuleParticles::orderlist() {
 	int i, j, k;
 	for (i = 0; i < MAX_ENEMIES - 1; i++)
 	{
-		for (k = i, j = i + 1; j < MAX_ENEMIES; j++)
-			if (positions[j].x < positions[k].x && positions[j].x != 0 && positions[j].y != 0)
-				k = j;
-		if (k != i)
-			swap(positions, i, k);
+		for (j = i + 1; j < MAX_ENEMIES; j++)
+			if (positions[j].x < positions[i].x && positions[j].x != 0 && positions[j].y != 0)
+				swap(positions, i, j);
 	}
 }
 
@@ -390,7 +437,7 @@ void ModuleParticles::MissilleMovement(Particle *p) {
 	if (enemy == nullptr) {
 		EnemyPositions(p);
 		for (int i = 0; i < MAX_ENEMIES; ++i) {
-			enemy = App->enemies->enemies[i];
+			enemy = App->enemies->enemies[positions[i].y];
 			if (enemy != nullptr) {
 				p->target = enemy;
 				break;
@@ -435,6 +482,8 @@ void ModuleParticles::AddParticle(const Particle& particle, int x, int y, COLLID
 			if (collider_type != COLLIDER_NONE) {
 				p->collider = App->collision->AddCollider(p->anim.GetCurrentFrame(), collider_type, this);
 			}
+			if(p->type==ORB_SHOOT)
+				Shoot_Orb(p);
 			active[i] = p;
 			break;
 			
@@ -473,6 +522,11 @@ void ModuleParticles::OnCollision(Collider* c1, Collider* c2)
 					App->audio->PlaySound(p->hit_fx);
 				p = &explosion_missile;
 				active_missiles--;
+				break;
+			case ORB_SHOOT:
+				if (c2->type == COLLIDER_WALL)
+					App->audio->PlaySound(p->hit_fx);
+				p = &explosion_orb;
 				break;
 			default:
 				p = nullptr;
@@ -531,6 +585,7 @@ bool Particle::Update()
 	switch (type) {
 	case BASIC_SHOOT:
 	case TENTACLE_SHOOT:
+	case ORB_SHOOT:
 	case MISSILE_SHOOT:
 		position.x += speed.x;
 		position.y += speed.y;

@@ -49,6 +49,9 @@ enum PARTICLE_TYPE
 	MISSILE_SHOOT,
 	MISSILE_EXPLOSION,
 	STAGE4BOSS_SHOOTN,
+	ORB,
+	ORB_SHOOT, 
+	ORB_EXPLOSION,
 
 };
 
@@ -94,6 +97,7 @@ public:
 	bool Start();
 	update_status PostUpdate();
 	update_status Update();
+	void Shoot_Orb(Particle * p);
 	bool CleanUp();
 	void OnCollision(Collider* c1, Collider* c2);
 	void removeParticles();
@@ -112,6 +116,7 @@ public:
 	Particle missile;
 	Particle spawn_missile;
 	Particle orb;
+	Particle orb_shoot;
 	Particle bomb;
 	Particle explosion_player;
 	Particle explosion_enemy;
@@ -119,12 +124,14 @@ public:
 	Particle explosion_tentacle_bullet;
 	Particle explosion_bomb;
 	Particle explosion_missile;
+	Particle explosion_orb;
 	Particle anemona_shoot;
 	Particle shrimp_shoot;
 	Particle Stage4Boss_shoot;
 	Particle Powerup;
 	Animation* animation = nullptr;
 	int active_missiles = 0;
+	int orbs = 0;
 
 private: 
 	SDL_Texture * graphics[MAX_PARTICLE_TEXTURES];

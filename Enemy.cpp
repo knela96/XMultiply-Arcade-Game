@@ -33,5 +33,5 @@ void Enemy::Draw(SDL_Texture* sprites,float flip)
 void Enemy::OnCollision(Collider* collider)
 {
 	App->particles->AddParticle(App->particles->explosion_enemy, position.x, position.y);
-	App->player->score += 13;
+	App->player->score += score;
 }

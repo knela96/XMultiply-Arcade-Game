@@ -21,6 +21,7 @@ public:
 	int live = 1;
 	bool hit = false;
 	Uint32 start_time;
+	uint score = 0;
 public:
 	Enemy(int x, int y);
 	virtual ~Enemy();
