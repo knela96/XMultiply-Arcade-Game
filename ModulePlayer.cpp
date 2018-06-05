@@ -283,7 +283,7 @@ update_status ModulePlayer::Update()
 				App->font->BlitText(120, 100, font_gameover, "game over");
 			}
 			else {
-				App->fade->FadeToBlack((Module*)App->scene_stage1, (Module*)App->scene_MainMenu);
+				App->fade->FadeToBlack((Module*)App->scene_stage4, (Module*)App->scene_MainMenu);
 			}
 		}
 		else {

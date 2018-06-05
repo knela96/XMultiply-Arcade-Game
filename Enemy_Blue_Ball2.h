@@ -1,10 +1,11 @@
-#ifndef __ENEMY_ROCK_H__
-#define __ENEMY_ROCK_H__
+#pragma once
+#ifndef __ENEMY_BLUE_BALL2_H__
+#define __ENEMY_BLUE_BALL2_H__
 
 #include "Enemy.h"
 
 
-class Enemy_Rock : public Enemy
+class Enemy_Blue_Ball2 : public Enemy
 {
 private:
 	float wave = -1.0f;
@@ -18,9 +19,9 @@ public:
 
 	iPoint original_position;
 	Path* path = new Path();
-	Enemy_Rock(int x, int y);
+	Enemy_Blue_Ball2(int x, int y);
 
 	void Move();
 };
 
-#endif // __ENEMY_ROCK_H__
+#endif // __ENEMY_NEMONA_H__
