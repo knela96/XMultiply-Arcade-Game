@@ -551,17 +551,17 @@ void ModuleSceneStage4::AddEnemies() {
 
 
 
-	App->enemies->AddEnemy(BOSSHEART, 4905, 119, -1, true);
-	App->enemies->AddEnemy(BOSS1, 4839, 119, -1, true);
+	App->enemies->AddEnemy(BOSSHEART, 5016, 119, -1, true);
+	App->enemies->AddEnemy(BOSS1, 4950, 119, -1, true);
 
-	App->enemies->AddEnemy(BOSSARM, 4819, 127, -1, true);
+	App->enemies->AddEnemy(BOSSARM, 4930, 127, -1, true);
 
-	App->enemies->AddEnemy(BOSSTENT, 4845, 26, -1, true);
+	App->enemies->AddEnemy(BOSSTENT, 4956, 26, -1, true);
 
 	
-	App->enemies->AddEnemy(BOSSFACE, 4884, 119, -1, true);
-	App->enemies->AddEnemy(BOSSARM, 4819, 127, -1, true);
+	App->enemies->AddEnemy(BOSSFACE, 4995, 119, -1, true);
+	App->enemies->AddEnemy(BOSSARM, 4930, 127, -1, true);
 
-	App->enemies->AddEnemy(BOSSDISP, 4838, 119, -1, true);
+	App->enemies->AddEnemy(BOSSDISP, 4949, 119, -1, true);
 
 }

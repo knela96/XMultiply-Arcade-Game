@@ -32,7 +32,7 @@ Enemy_BossS4Face::Enemy_BossS4Face(int x, int y) : Enemy(x, y)
 
 	//path to do
 
-	path->PushBack({ -2 , -2 }, 40, &fly);
+	path->PushBack({ -2 , -1 }, 40, &fly);
 	//path->PushBack({ -2 , 0 }, 80, &fly);
 
 	up = false;

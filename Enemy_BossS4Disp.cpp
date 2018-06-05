@@ -70,28 +70,28 @@ void Enemy_BossS4Disp::Move()
 	if (App->scene_stage4->boss_phase2) {
 		switch (App->scene_stage4->current_frame) {
 		case 0:
-			original_position = { 4838, 117 };
+			original_position = { 4949, 117 };
 			break;
 		case 1:
-			original_position = { 4835, 105 };
+			original_position = { 4946, 105 };
 			break;
 		case 2:
-			original_position = { 4835, 95 };
+			original_position = { 4946, 95 };
 			break;
 		case 3:
-			original_position = { 4835, 83 };
+			original_position = { 4946, 83 };
 			break;
 		case 4:
-			original_position = { 4835, 75 };
+			original_position = { 4946, 75 };
 			break;
 		case 5:
-			original_position = { 4840, 70 };
+			original_position = { 4951, 70 };
 			break;
 		case 6:
-			original_position = { 4850, 45 };
+			original_position = { 4961, 45 };
 			break;
 		case 7:
-			original_position = { 4880, 30 };
+			original_position = { 4991, 30 };
 			break;
 		default:
 			original_position = { 0, 0 };
@@ -104,16 +104,16 @@ void Enemy_BossS4Disp::Move()
 		int height = SCREEN_HEIGHT / 4;
 		iPoint pos = App->player->position;
 		if (pos.y > 0 && pos.y < height * 1) {
-			original_position = { 4835, 82 };
+			original_position = { 4946, 82 };
 		}
 		else if (pos.y > height * 1 && pos.y < height * 2) {
-			original_position = { 4832, 95 };
+			original_position = { 4943, 95 };
 		}
 		else if (pos.y > height * 2 && pos.y < height * 3) {
-			original_position = { 4835, 105 };
+			original_position = { 4946, 105 };
 		}
 		else if (pos.y > height * 3 && pos.y < height * 4) {
-			original_position = { 4838, 119 };
+			original_position = { 4949, 119 };
 		}
 		double angle = atan2(pos.y - original_position.y, pos.x - original_position.x);
 		if (angle < PI / 2)
