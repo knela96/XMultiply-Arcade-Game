@@ -152,7 +152,6 @@ update_status ModuleSceneScore::Update()
 
 
 
-
 	// TODO 2: make so pressing SPACE the KEN stage is loaded
 	if (App->input->keyboard[SDL_SCANCODE_RETURN] == 1 || App->input->controller[START] == KEY_STATE::KEY_DOWN)
 	{

@@ -7,22 +7,20 @@
 class Enemy_Rock : public Enemy
 {
 private:
-	int wave = 1;
-	bool move_up = true;
+	float wave = -1.0f;
+	bool going_up = true;
 	int original_y = 0;
 	Animation fly;
-	int radius = 20;
-	float angle = 0;
-	bool _return = false;
+	Uint32 shoot_delay = 0;
 
 
 public:
 
 	iPoint original_position;
 	Path* path = new Path();
-	Enemy_Rock(int x, int y, bool move_up);
+	Enemy_Rock(int x, int y);
 
-	void Move(Collider* c1, Collider* c2);
+	void Move();
 };
 
 #endif // __ENEMY_ROCK_H__

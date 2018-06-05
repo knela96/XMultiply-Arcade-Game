@@ -36,6 +36,7 @@ Application::Application()
 	modules[i++] = scene_congrats = new ModuleSceneCongrats();
 	modules[i++] = scene_score = new ModuleSceneScore();
 	modules[i++] = scene_test = new ModuleSceneTest();
+
 	modules[i++] = particles = new ModuleParticles();
 	modules[i++] = player = new ModulePlayer();
 	modules[i++] = enemies = new ModuleEnemies();
@@ -65,7 +66,8 @@ bool Application::Init()
 	scene_stage4->Disable();
 	scene_congrats->Disable();
 	scene_test->Disable();
-	scene_MainMenu->Disable();
+	scene_score->Disable();
+
 
 	tentacles->Disable();
 	player->Disable();

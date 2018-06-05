@@ -51,6 +51,7 @@ private:
 	Mix_Chunk* Bouncer_fx;
 	Mix_Chunk* Yellowball_fx;
 	Mix_Chunk* BigEye_fx;
+	Mix_Chunk* Blue_Ball_fx;
 	Mix_Chunk * hit;
 public:
 	Enemy * enemies[MAX_ENEMIES];
