@@ -126,9 +126,9 @@ void Enemy_BossS4Disp::Move()
 		if (SDL_GetTicks() - shoot_delay >= 2000)
 		{
 			shoot_delay = SDL_GetTicks();
-			App->particles->AddParticle(App->particles->Stage4Boss_shoot, original_position.x, original_position.y, COLLIDER_ENEMY, { (float)(3 * cos(angle)),(float)(5 * sin(angle + 0.52)) });
-			App->particles->AddParticle(App->particles->Stage4Boss_shoot, original_position.x, original_position.y, COLLIDER_ENEMY, { (float)(3 * cos(angle)),(float)(5 * sin(angle)) });
-			App->particles->AddParticle(App->particles->Stage4Boss_shoot, original_position.x, original_position.y, COLLIDER_ENEMY, { (float)(3 * cos(angle)),(float)(5 * sin(angle - 0.52)) });
+			App->particles->AddParticle(App->particles->Stage4Boss_shoot, original_position.x, original_position.y, COLLIDER_BOSS, { (float)(3 * cos(angle)),(float)(5 * sin(angle + 0.52)) });
+			App->particles->AddParticle(App->particles->Stage4Boss_shoot, original_position.x, original_position.y, COLLIDER_BOSS, { (float)(3 * cos(angle)),(float)(5 * sin(angle)) });
+			App->particles->AddParticle(App->particles->Stage4Boss_shoot, original_position.x, original_position.y, COLLIDER_BOSS, { (float)(3 * cos(angle)),(float)(5 * sin(angle - 0.52)) });
 
 
 		}

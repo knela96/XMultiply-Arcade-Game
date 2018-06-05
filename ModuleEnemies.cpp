@@ -29,6 +29,7 @@
 #include "ModuleAudio.h"
 #include "ModuleSceneStage1.h"
 #include "SDL/include/SDL_timer.h"
+# include "ModuleSceneStage4.h"
 
 
 #define SPAWN_MARGIN 50
@@ -473,7 +474,13 @@ void ModuleEnemies::OnCollision(Collider* c1, Collider* c2)
 	{
 		if (enemies[i] != nullptr && enemies[i]->GetCollider() == c1 && (c2->type == COLLIDER_PLAYER || c2->type == COLLIDER_PLAYER_SHOT))
 		{
-			if (enemies[i]->live > 1) {
+			if (enemies[i]->type == ENEMY_TYPES::BOSS1 || enemies[i]->type == ENEMY_TYPES::BOSSARM || enemies[i]->type == ENEMY_TYPES::BOSSDISP || enemies[i]->type == ENEMY_TYPES::BOSSTENT || enemies[i]->type == ENEMY_TYPES::BOSSHEART || enemies[i]->type == ENEMY_TYPES::BOSSFACE){
+				App->scene_stage4->lifes_Boss--;
+				App->audio->PlaySound(hit);
+				enemies[i]->hit = true;
+				enemies[i]->start_time = SDL_GetTicks();
+			}
+			else if (enemies[i]->live > 1) {
 				enemies[i]->live--;
 				App->audio->PlaySound(hit);
 				enemies[i]->hit = true;

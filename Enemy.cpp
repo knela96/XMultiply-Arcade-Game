@@ -35,7 +35,5 @@ void Enemy::OnCollision(Collider* collider)
 {
 	App->particles->AddParticle(App->particles->explosion_enemy, position.x, position.y);
 	App->player->score += score;
- 	if (collider->type == COLLIDER_TYPE::COLLIDER_BOSS)
-		App->scene_stage4->lifes_Boss--;
 
 }
