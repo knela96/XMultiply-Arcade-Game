@@ -6,6 +6,7 @@
 
 Enemy_Bouncer::Enemy_Bouncer(int x, int y) : Enemy(x, y)
 {
+	score = 400;
 	fly.PushBack({ 0,0,48,32 });
 	fly.PushBack({ 49,0,48,32 });
 	fly.speed = 0.2f;
