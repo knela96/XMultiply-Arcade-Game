@@ -3,6 +3,7 @@
 #include "ModuleCollision.h"
 #include "ModuleParticles.h"
 #include "SDL/include/SDL_timer.h"
+#include "ModuleSceneStage4.h"
 
 
 /* FALTA CAMBIAR EL SPRITE DEL DISPAR*/
@@ -22,7 +23,7 @@ Enemy_BossS4Heart::Enemy_BossS4Heart(int x, int y) : Enemy(x, y)
 
 	path->PushBack({ 0 , 0 }, 2, &fly);
 
-	//collider = App->collision->AddCollider({ 5, 5, 50, 60 }, COLLIDER_TYPE::COLLIDER_ENEMY, (Module*)App->enemies);
+	collider = App->collision->AddCollider({ 5, 5, 50, 60 }, COLLIDER_TYPE::COLLIDER_BOSS, (Module*)App->enemies);
 
 	original_position.x = x;
 	original_position.y = y;
@@ -30,5 +31,5 @@ Enemy_BossS4Heart::Enemy_BossS4Heart(int x, int y) : Enemy(x, y)
 
 void Enemy_BossS4Heart::Move()
 {
-	
+	live = App->scene_stage4->lifes_Boss;
 }

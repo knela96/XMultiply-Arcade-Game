@@ -12,14 +12,16 @@ private:
 	int original_y = 0;
 	Animation fly;
 	Uint32 shoot_delay = 0;
+	Uint32 move_delay = 0;
 
 
 public:
 
 	iPoint original_position;
 	Path* path = new Path();
+	Path * newpath = new Path();
 	Enemy_BossS4Face(int x, int y);
-
+	bool up = false;
 	void Move();
 };
 

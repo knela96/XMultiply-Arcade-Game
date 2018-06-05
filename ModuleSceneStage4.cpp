@@ -373,6 +373,7 @@ update_status ModuleSceneStage4::Update()
 
 	if (App->render->camera.x == 4670) {
 		right = false;
+		aux_time = SDL_GetTicks();
 	}
 
 	return UPDATE_CONTINUE;

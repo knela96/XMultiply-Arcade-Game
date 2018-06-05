@@ -2,6 +2,7 @@
 #include "Enemy_BossS4Face.h"
 #include "ModuleCollision.h"
 #include "ModuleParticles.h"
+#include"ModuleSceneStage4.h"
 #include "SDL/include/SDL_timer.h"
 
 
@@ -31,9 +32,12 @@ Enemy_BossS4Face::Enemy_BossS4Face(int x, int y) : Enemy(x, y)
 
 	//path to do
 
-	path->PushBack({ 0 , 0 }, 2, &fly);
+	path->PushBack({ -2 , -2 }, 40, &fly);
+	//path->PushBack({ -2 , 0 }, 80, &fly);
 
-//collider = App->collision->AddCollider({ 5, 5, 56, 50 }, COLLIDER_TYPE::COLLIDER_ENEMY, (Module*)App->enemies);
+	up = false;
+
+	collider = App->collision->AddCollider({ 5, 5, 56, 50 }, COLLIDER_TYPE::COLLIDER_BOSS, (Module*)App->enemies);
 
 	original_position.x = x;
 	original_position.y = y;
@@ -41,12 +45,37 @@ Enemy_BossS4Face::Enemy_BossS4Face(int x, int y) : Enemy(x, y)
 
 void Enemy_BossS4Face::Move()
 {
+	live = App->scene_stage4->lifes_Boss;
+	if (App->scene_stage4->move_head) {
+		if (position.x <= 4800) {
+			original_position.x = 4800;
 
-	position = original_position + path->GetCurrentPosition(&animation);
-	if (SDL_GetTicks()-shoot_delay >= 1250) 
-	{
-		shoot_delay = SDL_GetTicks();
-		App->particles->AddParticle(App->particles->shrimp_shoot, position.x, position.y, COLLIDER_ENEMY_SHOT, { 2,1 });
-		App->particles->AddParticle(App->particles->shrimp_shoot, position.x, position.y, COLLIDER_ENEMY_SHOT, { 1,2 });
+			if (SDL_GetTicks() - shoot_delay >= 100 && SDL_GetTicks() - move_delay <= 400)
+			{
+				shoot_delay = SDL_GetTicks();
+				App->particles->AddParticle(App->particles->shrimp_shoot, original_position.x, original_position.y + fly.frames->h / 2, COLLIDER_ENEMY, { -2,-0.5f });
+				App->particles->AddParticle(App->particles->shrimp_shoot, original_position.x, original_position.y + fly.frames->h / 2, COLLIDER_ENEMY, { -2,0.5f });
+			}
+			if(SDL_GetTicks() - move_delay > 400){
+				if (original_position.y > 50 && up)
+					original_position.y--;
+				else if (original_position.y < SCREEN_HEIGHT - 100 && !up)
+					original_position.y++;
+
+				if (original_position.y <= 50 || original_position.y >= SCREEN_HEIGHT - 100)
+					up = !up;
+
+				position = original_position + newpath->GetCurrentPosition(&animation);
+			}
+			if(SDL_GetTicks() - move_delay > 1500)
+				move_delay = SDL_GetTicks();
+		}
+		else {
+			position = original_position + path->GetCurrentPosition(&animation);
+			if (position.x <= 4800) {
+				original_position.x = 4800;
+				original_position.y = 35;
+			}
+		}
 	}
 }

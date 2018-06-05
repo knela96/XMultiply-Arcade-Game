@@ -62,6 +62,7 @@ public:
 	bool move_head = false;
 	int current_frame = 0;
 	int rgb = 255;
+	int lifes_Boss = 40;
 
 	SDL_Rect screen;
 

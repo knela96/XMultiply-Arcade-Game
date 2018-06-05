@@ -49,7 +49,7 @@ Enemy_BossS4Tenta::Enemy_BossS4Tenta(int x, int y) : Enemy(x, y)
 
 	path->PushBack({ 0 , 0 }, 2, animation);
 
-	//collider = App->collision->AddCollider({ 5, 5, 52, 48 }, COLLIDER_TYPE::COLLIDER_WALL, (Module*)App->enemies);
+	collider = App->collision->AddCollider({ 5, 5, 52, 48 }, COLLIDER_TYPE::COLLIDER_BOSS, (Module*)App->enemies);
 
 	original_position.x = x;
 	original_position.y = y;
@@ -57,6 +57,8 @@ Enemy_BossS4Tenta::Enemy_BossS4Tenta(int x, int y) : Enemy(x, y)
 
 void Enemy_BossS4Tenta::Move()
 {
+	live = App->scene_stage4->lifes_Boss;
+
 	if (App->scene_stage4->boss_phase2 == false ) {
 		if (SDL_GetTicks() - App->scene_stage4->aux_time > 5000 && App->scene_stage4->move_head != true) {
 			spawn_head.Reset();
