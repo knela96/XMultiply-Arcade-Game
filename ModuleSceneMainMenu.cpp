@@ -28,7 +28,7 @@ bool ModuleSceneMainMenu::Start()
 	bool ret = true;
 	
 
-	graphics = App->textures->Load("Assets/Menu.png");
+	graphics = App->textures->Load("Assets/Sprites/UI/Menu.png");
 
 	music = App->audio->LoadM("Assets/Audio Files/Music in OGG/01_X-Multiply_Title_.ogg");
 

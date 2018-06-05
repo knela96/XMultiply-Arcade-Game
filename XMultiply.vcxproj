@@ -73,6 +73,7 @@
   <ItemGroup>
     <ClInclude Include="Animation.h" />
     <ClInclude Include="Application.h" />
+    <ClInclude Include="Enemy_BlueSentinel.h" />
     <ClInclude Include="Enemy_Blue_Ball.h" />
     <ClInclude Include="Enemy.h" />
     <ClInclude Include="Enemy_Big_Eye.h" />
@@ -101,6 +102,7 @@
     <ClInclude Include="ModuleFonts.h" />
     <ClInclude Include="ModulePowerUp.h" />
     <ClInclude Include="ModuleSceneCongrats.h" />
+    <ClInclude Include="ModuleSceneScore.h" />
     <ClInclude Include="ModuleSceneStage1.h" />
     <ClInclude Include="ModuleEnemies.h" />
     <ClInclude Include="ModuleFadeToBlack.h" />
@@ -120,6 +122,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Application.cpp" />
+    <ClCompile Include="Enemy_BlueSentinel.cpp" />
     <ClCompile Include="Enemy_Blue_Ball.cpp" />
     <ClCompile Include="Enemy.cpp" />
     <ClCompile Include="Enemy_Big_Eye.cpp" />
@@ -147,6 +150,7 @@
     <ClCompile Include="ModuleFonts.cpp" />
     <ClCompile Include="ModulePowerUp.cpp" />
     <ClCompile Include="ModuleSceneCongrats.cpp" />
+    <ClCompile Include="ModuleSceneScore.cpp" />
     <ClCompile Include="ModuleSceneStage1.cpp" />
     <ClCompile Include="ModuleEnemies.cpp" />
     <ClCompile Include="ModuleFadeToBlack.cpp" />

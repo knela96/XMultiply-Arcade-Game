@@ -37,6 +37,15 @@ bool ModuleParticles::Start()
 	graphics[PARTICLES_ENEMYSHOOT] = App->textures->Load("Assets/Sprites/Explosions/shots1.png");
 	graphics[POWERUP] = App->textures->Load("Assets/Sprites/PowerUp/PowerUp.png");
 	graphics[STAGE4BOSS_SHOOT] = App->textures->Load("Assets/Sprites/Stage4/Boss/boss4_3.png");
+	graphics[SENTINEL_SHOOT] = App->textures->Load("Assets/Sprites/Stage1/Enemies/2ndlvlmonster.png");
+
+	bluesentinelshot.anim.PushBack({ 7, 40, 16, 15 });
+	bluesentinelshot.anim.PushBack({ 39, 40, 16, 15 });
+	bluesentinelshot.anim.loop = false;
+	bluesentinelshot.anim.speed = 3.0f;
+	bluesentinelshot.life = 1000;
+	bluesentinelshot.type = SENTINEL_SHOOTN;
+
 
 	basic_shoot.anim.PushBack({ 64, 32, 16, 16});
 	basic_shoot.anim.loop = false;
@@ -235,7 +244,7 @@ bool ModuleParticles::Start()
 	Stage4Boss_shoot.anim.PushBack({ 48,175,37,40 });
 
 	Stage4Boss_shoot.anim.loop = true;
-	Stage4Boss_shoot.anim.speed = 0.4f;
+	Stage4Boss_shoot.anim.speed = 1;
 	Stage4Boss_shoot.type = STAGE4BOSS_SHOOTN;
 	Stage4Boss_shoot.life = 2000;
 	
@@ -342,6 +351,9 @@ update_status ModuleParticles::Update()
 			case STAGE4BOSS_SHOOTN:
 				texture = graphics[STAGE4BOSS_SHOOT];
 				break;
+			case SENTINEL_SHOOTN:
+				texture = graphics[SENTINEL_SHOOT];
+				break;
 			default:
 				texture = graphics[NONE];
 				break;
@@ -368,6 +380,7 @@ update_status ModuleParticles::Update()
 					break;
 				case SHRIMP_SHOOT:
 				case STAGE4BOSS_SHOOTN:
+				case SENTINEL_SHOOTN:
 				case ANEMONA_SHOOT:
 					p->speed.x = p->direction_speed.x;
 					p->speed.y = p->direction_speed.y;
@@ -601,6 +614,10 @@ bool Particle::Update()
 		position.y += speed.y;
 		break;
 	case STAGE4BOSS_SHOOTN:
+		position.x += speed.x;
+		position.y += speed.y;
+		break;
+	case SENTINEL_SHOOTN:
 		position.x += speed.x;
 		position.y += speed.y;
 		break;

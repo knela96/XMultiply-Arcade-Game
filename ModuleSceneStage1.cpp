@@ -92,11 +92,11 @@ bool ModuleSceneStage1::Start()
 	
 	injectiontex = App->textures->Load("Assets/Sprites/Stage1/Tilemap/Injection.png");
 
-	graphics = App->textures->Load("Assets/TileMap1.2.png");
+	graphics = App->textures->Load("Assets/Sprites/Stage1/TileMap/TileMap1.2.png");
 	font_gameover = App->font->Load("Assets/Sprites/UI/fonts.2.png", "0123456789·' ºººººººººººººabcdefghijklmnopqrstuvwxyz", 2);
-	back = App->textures->Load("Assets/FirstLvlMap3.1.png");
+	back = App->textures->Load("Assets/Sprites/Stage1/TileMap/FirstLvlMap3.1.png");
 
-	hud = App->textures->Load("Assets/UI.png");
+	hud = App->textures->Load("Assets/Sprites/UI/UI.png");
 
 	music = App->audio->LoadM("Assets/Audio Files/Music in OGG/04_Into_the_Human_Body_Stage_1_.ogg");
 	injection_fx = App->audio->LoadS("Assets/Audio Files/SFX in WAV/xmultipl-053.wav");

@@ -80,9 +80,9 @@ bool ModuleSceneStage4::Start()
 	App->font->Enable();
 	App->player->AddTentacles();
 
-	graphics = App->textures->Load("Assets/Tilemap4.1.png");
+	graphics = App->textures->Load("Assets/Sprites/Stage4/Tilemap/Tilemap4.1.png");
 	font_gameover = App->font->Load("Assets/Sprites/UI/fonts.2.png", "0123456789·' ºººººººººººººabcdefghijklmnopqrstuvwxyz", 2);
-	back = App->textures->Load("Assets/ForthLvlMap.png");
+	back = App->textures->Load("Assets/Sprites/Stage4/Tilemap/ForthLvlMap.png");
 
 	//colliders
 
@@ -138,7 +138,7 @@ bool ModuleSceneStage4::Start()
 	ColliderBot21 = App->collision->AddCollider({ 4046, ground_bottom_y + 71, 48, 111 }, COLLIDER_WALL, this);
 	ColliderBot22 = App->collision->AddCollider({ 4238, ground_bottom_y + 67, 300, 111 }, COLLIDER_WALL, this);
 
-	hud = App->textures->Load("Assets/UI.png");
+	hud = App->textures->Load("Assets/Sprites/UI/UI.png");
 
 	music = App->audio->LoadM("Assets/Audio Files/Music in OGG/10_Illegal_Illusion_Stage_4_.ogg");
 	clear_stage = App->audio->LoadM("Assets/Audio Files/Music in OGG/06_Stage_Clear.ogg");
@@ -270,10 +270,11 @@ update_status ModuleSceneStage4::Update()
 		ground_top_y--;
 	}
 
-	if (App->player->position.x >= 5700) //4700
-	{
+	if (App->player->position.x >= 5700 || App->input->keyboard[SDL_SCANCODE_P] == KEY_STATE::KEY_DOWN) //4700
+	{ 
+		right = false;
 		if (App->input->keyboard[SDL_SCANCODE_RETURN] == KEY_STATE::KEY_DOWN || App->input->controller[START] == KEY_STATE::KEY_DOWN) {
-			App->fade->FadeToBlack((Module*)App->scene_stage4, (Module*)App->scene_MainMenu);
+			App->fade->FadeToBlack((Module*)App->scene_stage4, (Module*)App->scene_score);
 		}
 		if (!clearstage_fx) {
 			App->audio->PlayMusic(App->scene_stage4->clear_stage);
@@ -380,26 +381,6 @@ void ModuleSceneStage4::enableModules() {
 	cleaned = true;
 }
 
-void ModuleSceneStage4::AddEnemies() {
-
-
-	App->enemies->AddEnemy(NEMONA_TENTACLE, 400, 200, -1, true);
-
-	App->enemies->AddEnemy(NEMONA_TENTACLE, 200, 200, -1, true);
-	App->enemies->AddEnemy(NEMONA_TENTACLE, 450, 200, -1, true);
-
-
-	App->enemies->AddEnemy(BOSS1, 450, 100, -1, true);
-	App->enemies->AddEnemy(BOSSFACE, 450, 140, -1, true);
-
-	App->enemies->AddEnemy(BOSSDISP, 544, 100, -1, true);
-	App->enemies->AddEnemy(BOSSTENT, 555, 10, -1, true);
-
-	App->enemies->AddEnemy(BOSSHEART, 450, 140, -1, true);
-	App->enemies->AddEnemy(BOSSARM, 550, 100, -1, true);
-	
-
-}
 
 
 void ModuleSceneStage4::enter() {
@@ -451,4 +432,27 @@ void ModuleSceneStage4::moveBot(bool up, int i) {
 	else if (up && ground_bottom_y > i)
 		ground_bottom_y--;
 	}
+}
+
+void ModuleSceneStage4::AddEnemies() {
+
+
+	App->enemies->AddEnemy(NEMONA_TENTACLE, 400, 200, -1, true);
+
+	App->enemies->AddEnemy(NEMONA_TENTACLE, 200, 200, -1, true);
+	App->enemies->AddEnemy(NEMONA_TENTACLE, 450, 200, -1, true);
+
+	
+	App->enemies->AddEnemy(BOSSHEART, 4905, 119, -1, true);
+	App->enemies->AddEnemy(BOSS1, 4839, 119, -1, true);
+	
+	//App->enemies->AddEnemy(BOSSARM, 4819, 127, -1, true);
+
+	App->enemies->AddEnemy(BOSSDISP, 4838, 119, -1, true);
+	App->enemies->AddEnemy(BOSSTENT, 4845, 26, -1, true);
+
+	
+	App->enemies->AddEnemy(BOSSFACE, 4884, 119, -1, true);
+
+
 }
