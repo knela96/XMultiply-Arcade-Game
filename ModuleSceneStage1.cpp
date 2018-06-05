@@ -393,7 +393,6 @@ update_status ModuleSceneStage1::Update()
 
 
 void ModuleSceneStage1::resetMap() {
-
 	if (!App->fade->isBlack) {
 		App->fade->FadeonlyBlack();
 	}
