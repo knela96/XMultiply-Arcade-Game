@@ -62,9 +62,11 @@ bool ModuleSceneStage4::Start()
 	start_time = 0;
 	index1 = 0;
 	index2 = 0;
-	ground_bottom_y = 50;
+	ground_bottom_y = 70;
 	ground_top_y = -70;
 	clearstage_fx = false;
+	moveT = false;
+	moveB = false;
 
 
 
@@ -203,7 +205,9 @@ update_status ModuleSceneStage4::Update()
 	App->render->Blit(hud, 0, 224, NULL, 0.0f, false);
 
 
-
+	if (moveT) {
+		moveTop(up, position);
+	}
 
 	//colliders Update
 	CollidersTop1->SetPos(0, ground_top_y);
@@ -258,6 +262,12 @@ update_status ModuleSceneStage4::Update()
 	}
 	if (App->input->keyboard[SDL_SCANCODE_K] == KEY_STATE::KEY_DOWN) {
 		ground_top_y++;
+	}
+	if (App->input->keyboard[SDL_SCANCODE_N] == KEY_STATE::KEY_DOWN) {
+		ground_bottom_y++;
+	}
+	if (App->input->keyboard[SDL_SCANCODE_M] == KEY_STATE::KEY_DOWN) {
+		ground_top_y--;
 	}
 
 	if (App->player->position.x >= 5700) //4700
@@ -410,7 +420,35 @@ void ModuleSceneStage4::enter() {
 			App->player->enable_movement = true;
 			right = true;
 			entering = false;
+			up = true;
+			position = -90;
+			moveT = true;
 
 		}
+	}
+}
+
+
+void ModuleSceneStage4::moveTop(bool up, int i) {
+	if (ground_top_y == i) {
+		moveT = false;
+	}
+	else {
+		if (!up && ground_top_y < i)
+			ground_top_y++;
+		else if (up && ground_top_y > i)
+			ground_top_y--;
+	}
+}
+
+void ModuleSceneStage4::moveBot(bool up, int i) {
+	if (ground_bottom_y == i) {
+		moveB = false;
+	}
+	else{
+	if (!up && ground_bottom_y < i)
+		ground_bottom_y++;
+	else if (up && ground_bottom_y > i)
+		ground_bottom_y--;
 	}
 }
