@@ -32,7 +32,7 @@ public:
 	int font_score = -1;
 	int font_gameover = -1;
 	char score_text[10];
-	uint score = 100;
+	uint score = 0;
 	Mix_Chunk* death_fx;
 	Mix_Music* music;
 	Animation idle;

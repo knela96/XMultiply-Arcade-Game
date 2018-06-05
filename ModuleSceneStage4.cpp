@@ -489,7 +489,6 @@ void ModuleSceneStage4::moveBot(bool up, int i) {
 
 void ModuleSceneStage4::AddEnemies() {
 
-<<<<<<< HEAD
 	App->enemies->AddEnemy(BLUE_SENTINEL, 554, 370, -1, true);
 	App->enemies->AddEnemy(BOUNCER, 607, 320, -1, true);
 	App->enemies->AddEnemy(POWERUPSHIP, 700, 365, -1, true);
@@ -538,7 +537,7 @@ void ModuleSceneStage4::AddEnemies() {
 	
 	
 	//BOSS
-=======
+
 
 	App->enemies->AddEnemy(BLUE_BALL2, 400, 100, -1, true);
 
@@ -550,7 +549,7 @@ void ModuleSceneStage4::AddEnemies() {
 
 
 
->>>>>>> 5d84a34344970a7faf0d62f26212d140fbdf5f43
+
 	App->enemies->AddEnemy(BOSSHEART, 4905, 119, -1, true);
 	App->enemies->AddEnemy(BOSS1, 4839, 119, -1, true);
 
