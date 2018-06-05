@@ -37,7 +37,6 @@ bool ModuleSceneScore::Start()
 	sprintf_s(App->player->score_text, 10, "%7d", App->player->score);
 	App->font->BlitText(120, 150, App->player->font_score, App->player->score_text);
 
-	App->player->score = 0;
 
 
 	/*ranking[0] = ranking_names[0];
@@ -156,9 +155,7 @@ update_status ModuleSceneScore::Update()
 			App->font->BlitText(100, 20 + (index * 40), font_gameover2, _stageendblit[index]);
 		}
 	}
-
-	App->player->score = 0;
-
+	
 	App->font->BlitText(120, 100, font_gameover1, "final score");
 	
 	sprintf_s(App->player->score_text, 10, "%7d", App->player->score);

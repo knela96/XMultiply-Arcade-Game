@@ -19,6 +19,7 @@ Enemy_BossS4::Enemy_BossS4(int x, int y) : Enemy(x, y)
 
 	animation = &fly;
 
+	live = 40;
 
 	collider = App->collision->AddCollider({ 50, 50, 145, 150 }, COLLIDER_TYPE::COLLIDER_ENEMY, (Module*)App->enemies);
 

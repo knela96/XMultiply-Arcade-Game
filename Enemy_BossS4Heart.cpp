@@ -22,6 +22,9 @@ Enemy_BossS4Heart::Enemy_BossS4Heart(int x, int y) : Enemy(x, y)
 
 	animation = &fly;
 
+
+	live = 40;
+
 	path->PushBack({ 0 , 0 }, 2, &fly);
 
 	collider = App->collision->AddCollider({ 5, 5, 50, 60 }, COLLIDER_TYPE::COLLIDER_ENEMY, (Module*)App->enemies);

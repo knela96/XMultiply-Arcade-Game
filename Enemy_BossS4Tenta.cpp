@@ -46,6 +46,7 @@ Enemy_BossS4Tenta::Enemy_BossS4Tenta(int x, int y) : Enemy(x, y)
 	spawn_head.speed = 0.05f;
 
 	animation = &fly;
+	live = 40;
 
 	path->PushBack({ 0 , 0 }, 2, animation);
 
