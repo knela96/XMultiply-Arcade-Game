@@ -11,7 +11,7 @@ Enemy_BossS4Tenta::Enemy_BossS4Tenta(int x, int y) : Enemy(x, y)
 {
 	
 	fly.PushBack({ 185,140,141,125 });
-	fly.PushBack({ 185,263,141,125 });
+/*	fly.PushBack({ 185,263,141,125 });
 	fly.PushBack({ 185,387,141,125 });
 	
 	fly.PushBack({ 346,16,141,125 });
@@ -29,7 +29,7 @@ Enemy_BossS4Tenta::Enemy_BossS4Tenta(int x, int y) : Enemy(x, y)
 	fly.PushBack({ 346,137,141,125 });
 	fly.PushBack({ 346,16,141,125 });
 	fly.PushBack({ 185,387,141,125 });
-	fly.PushBack({ 185,263,141,125 });
+	fly.PushBack({ 185,263,141,125 });*/
 
 	fly.speed = 0.05f;
 

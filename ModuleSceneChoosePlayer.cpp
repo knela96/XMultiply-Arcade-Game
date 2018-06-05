@@ -25,8 +25,8 @@ bool ModuleSceneChoosePlayer::Start()
 {
 	LOG("Loading background assets");
 	bool ret = true;
-	player1 = App->textures->Load("Assets/Sprites/UI/1Player.png");
-	player2 = App->textures->Load("Assets/Sprites/UI/2Players.png");
+	player1 = App->textures->Load("Assets/1Player.png");
+	player2 = App->textures->Load("Assets/2Players.png");
 	graphics = player1;
 	return ret;
 }
