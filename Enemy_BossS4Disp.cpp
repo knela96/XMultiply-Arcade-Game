@@ -39,7 +39,7 @@ Enemy_BossS4Disp::Enemy_BossS4Disp(int x, int y) : Enemy(x, y)
 
 	fly.PushBack({ 2,92,46,46 });
 
-	fly.PushBack({ 136,92,36,42 });
+	fly.PushBack({ 136,92,35,42 });
 
 	//2 phase
 	fly.PushBack({ 52,52,46,42 });
