@@ -84,7 +84,15 @@ Enemy_BossS4Disp::Enemy_BossS4Disp(int x, int y) : Enemy(x, y)
 
 	//	fly.PushBack({ 135,222,35,42 });
 
+	// Phase 2 Boss shoot to repeat
 
+	//	fly.PushBack({ 50,178,46,40 });
+
+	//	fly.PushBack({ 100,178,37,42 });
+
+	//	fly.PushBack({ 2,178,46,46 });
+
+	//	fly.PushBack({ 135,178,36,42 });
 
 
 	fly.speed = 0.08f;
