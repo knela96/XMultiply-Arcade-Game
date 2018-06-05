@@ -118,13 +118,13 @@ void Enemy_BossS4Disp::Move()
 		
 
 	
-		App->particles->AddParticle(App->particles->shrimp_shoot, position.x + fly.frames->w / 2.3, position.y + fly.frames->h / 2, COLLIDER_ENEMY, { -3,-1 });
-		App->particles->AddParticle(App->particles->shrimp_shoot, position.x + fly.frames->w / 2.3, position.y + fly.frames->h / 2, COLLIDER_ENEMY, { -2,-1 });
-		App->particles->AddParticle(App->particles->shrimp_shoot, position.x + fly.frames->w / 2.3, position.y + fly.frames->h / 2, COLLIDER_ENEMY, { -1,-2 });
-		App->particles->AddParticle(App->particles->shrimp_shoot, position.x + fly.frames->w / 2.3, position.y + fly.frames->h / 2, COLLIDER_ENEMY, { -2,0 });
-		App->particles->AddParticle(App->particles->shrimp_shoot, position.x + fly.frames->w / 2.3, position.y + fly.frames->h / 2, COLLIDER_ENEMY, { -1, 2 });
-		App->particles->AddParticle(App->particles->shrimp_shoot, position.x + fly.frames->w / 2.3, position.y + fly.frames->h / 2, COLLIDER_ENEMY, { -2, 1 });
-		App->particles->AddParticle(App->particles->shrimp_shoot, position.x + fly.frames->w / 2.3, position.y + fly.frames->h / 2, COLLIDER_ENEMY, { -3, 1 });
+		App->particles->AddParticle(App->particles->Stage4Boss_shoot, position.x + fly.frames->w / 2.3, position.y + fly.frames->h / 2, COLLIDER_ENEMY_SHOT, { -1,-3 });
+		App->particles->AddParticle(App->particles->Stage4Boss_shoot, position.x + fly.frames->w / 2.3, position.y + fly.frames->h / 2, COLLIDER_ENEMY_SHOT, { -1.7f,-2 });
+		App->particles->AddParticle(App->particles->Stage4Boss_shoot, position.x + fly.frames->w / 2.3, position.y + fly.frames->h / 2, COLLIDER_ENEMY_SHOT, { -2.1f,-1 });
+		App->particles->AddParticle(App->particles->Stage4Boss_shoot, position.x + fly.frames->w / 2.3, position.y + fly.frames->h / 2, COLLIDER_ENEMY_SHOT, { -2.5f,0 });
+		App->particles->AddParticle(App->particles->Stage4Boss_shoot, position.x + fly.frames->w / 2.3, position.y + fly.frames->h / 2, COLLIDER_ENEMY_SHOT, { -1.7f, 2 });
+		App->particles->AddParticle(App->particles->Stage4Boss_shoot, position.x + fly.frames->w / 2.3, position.y + fly.frames->h / 2, COLLIDER_ENEMY_SHOT, { -2.1f, 1 });
+		App->particles->AddParticle(App->particles->Stage4Boss_shoot, position.x + fly.frames->w / 2.3, position.y + fly.frames->h / 2, COLLIDER_ENEMY_SHOT, { -1, 3 });
 		
 
 	}
