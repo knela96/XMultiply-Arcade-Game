@@ -45,8 +45,6 @@ Enemy_BossS4Face::Enemy_BossS4Face(int x, int y) : Enemy(x, y)
 
 void Enemy_BossS4Face::Move()
 {
-	App->particles->AddParticle(App->particles->shrimp_shoot, original_position.x, original_position.y + fly.frames->h / 2, COLLIDER_ENEMY_SHOT, { -2,-0.5f });
-	App->particles->AddParticle(App->particles->shrimp_shoot, original_position.x, original_position.y + fly.frames->h / 2, COLLIDER_ENEMY_SHOT, { -2,0.5f });
 	if (App->scene_stage4->move_head) {
 		if (position.x <= 4800) {
 			original_position.x = 4800;

@@ -321,7 +321,7 @@ update_status ModuleSceneStage4::Update()
 		ground_top_y--;
 	}
 
-	if (App->player->position.x >= 5700 || App->input->keyboard[SDL_SCANCODE_P] == KEY_STATE::KEY_DOWN) //4700
+	if (App->player->position.x >= 5700 && SDL_GetTicks() - boss_time >= 17000 || App->input->keyboard[SDL_SCANCODE_P] == KEY_STATE::KEY_DOWN) //4700
 	{ 
 		right = false;
 		if (App->input->keyboard[SDL_SCANCODE_RETURN] == KEY_STATE::KEY_DOWN || App->input->controller[START] == KEY_STATE::KEY_DOWN) {
@@ -369,16 +369,13 @@ update_status ModuleSceneStage4::Update()
 		App->font->BlitText(80, 240, App->player->font_score, App->player->score_text);
 		App->font->BlitText(32, 240, App->player->font_score, "score");
 	}
-	for (int i = 0; i < App->player->life; ++i) {
-
-		}
-
 	if (resetmap)
 		resetMap();
 
 	if (App->render->camera.x == 4670) {
 		right = false;
-		aux_time = SDL_GetTicks();
+		fight_time = SDL_GetTicks();
+		boss_time = SDL_GetTicks();
 	}
 
 	return UPDATE_CONTINUE;
