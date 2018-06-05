@@ -321,7 +321,7 @@ update_status ModuleSceneStage4::Update()
 		ground_top_y--;
 	}
 
-	if (/*App->player->position.x >= 5700 && */SDL_GetTicks() - boss_time >= 17000 || App->input->keyboard[SDL_SCANCODE_P] == KEY_STATE::KEY_DOWN) //4700
+	if (App->player->position.x >= 5700 && SDL_GetTicks() - boss_time >= 17000 || App->input->keyboard[SDL_SCANCODE_P] == KEY_STATE::KEY_DOWN) //4700
 	{ 
 		right = false;
 		if (App->input->keyboard[SDL_SCANCODE_RETURN] == KEY_STATE::KEY_DOWN || App->input->controller[START] == KEY_STATE::KEY_DOWN) {
@@ -490,7 +490,7 @@ void ModuleSceneStage4::AddEnemies() {
 
 	App->enemies->AddEnemy(BLUE_SENTINEL, 554, 170, -1, true);
 	App->enemies->AddEnemy(BOUNCER, 607, 180, -1, true);
-	App->enemies->AddEnemy(POWERUPSHIP, 700, 165, 1, true);
+	App->enemies->AddEnemy(POWERUPSHIP, 700, 125, 1, true);
 	App->enemies->AddEnemy(POWERUPSHIP, 812, 114, 2, true);
 	App->enemies->AddEnemy(POWERUPSHIP, 943, 71, 3, true);
 	App->enemies->AddEnemy(ROCK, 1060, 150, -1, true);
