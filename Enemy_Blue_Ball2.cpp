@@ -6,11 +6,15 @@
 
 Enemy_Blue_Ball2::Enemy_Blue_Ball2(int x, int y) : Enemy(x, y)
 {
-	fly.PushBack({ 85,6,35,22 });
-	//fly.PushBack({ 2,31,35,22 });
-	//fly.PushBack({ 3,55,35,22 });
-	//fly.PushBack({ 3,87,35,26 });
-	//fly.PushBack({ 45,6,35,22 });
+	
+	fly.PushBack({ 82,6,35,26 });
+	fly.PushBack({ 82,40,35,22 });
+	fly.PushBack({ 125,92,35,22 });
+	fly.PushBack({ 82,67,35,26 });
+	fly.PushBack({ 82,92,35,26 });
+	fly.PushBack({ 82,67,35,26 });
+	fly.PushBack({ 125,92,35,24 });
+	fly.PushBack({ 82,40,35,22 });
 
 	fly.speed = 0.1f;
 
@@ -33,8 +37,8 @@ void Enemy_Blue_Ball2::Move()
 	if (SDL_GetTicks() - shoot_delay >= 2000)
 	{
 		shoot_delay = SDL_GetTicks();
-		App->particles->AddParticle(App->particles->shrimp_shoot, position.x + fly.frames->w / 2, position.y + fly.frames->h / 2, COLLIDER_ENEMY_SHOT, { -1,1 });
-		App->particles->AddParticle(App->particles->shrimp_shoot, position.x + fly.frames->w / 2, position.y + fly.frames->h / 2, COLLIDER_ENEMY_SHOT, { 1,1 });
+		App->particles->AddParticle(App->particles->shrimp_shoot, position.x + fly.frames->w / 2, position.y + fly.frames->h / 2, COLLIDER_ENEMY_SHOT, { 1,-1 });
+		App->particles->AddParticle(App->particles->shrimp_shoot, position.x + fly.frames->w / 2, position.y + fly.frames->h / 2, COLLIDER_ENEMY_SHOT, { -1,-1 });
 
 	}
 }
