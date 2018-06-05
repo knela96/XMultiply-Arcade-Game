@@ -27,6 +27,8 @@ ModuleSceneStage4::ModuleSceneStage4()
 	ground_top.w = 5138;
 	ground_top.h = 201;
 
+
+
 	ground_bottom.x = 0;
 	ground_bottom.y = 260;
 	ground_bottom.w = 5138;
@@ -38,7 +40,11 @@ ModuleSceneStage4::ModuleSceneStage4()
 	background.w = 4961;
 	background.h = 513;
 
-
+	//lives
+	lifes.x = 392;
+	lifes.y = 0;
+	lifes.w = 8;
+	lifes.h = 16;
 }
 
 
@@ -203,6 +209,11 @@ update_status ModuleSceneStage4::Update()
 	App->render->Blit(graphics, 0, ground_top_y, &ground_top);
 	App->render->Blit(graphics, 0, ground_bottom_y, &ground_bottom);
 	App->render->Blit(hud, 0, 224, NULL, 0.0f, false);
+
+
+	for (int i = 0; i < App->player->life; i++) {
+		App->render->Blit(hud, 65 + (11 * i), 224, &lifes, 0.0f, false);
+	}
 
 	if (App->render->camera.x == 2350) {
 		position = -50;

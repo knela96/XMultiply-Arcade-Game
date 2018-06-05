@@ -39,6 +39,7 @@ public:
 	SDL_Rect ground_top;
 	SDL_Rect ground_bottom;
 	SDL_Rect ship;
+	SDL_Rect lifes;
 	SDL_Rect background;
 
 	bool resetmap = false;
