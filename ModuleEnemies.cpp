@@ -78,6 +78,7 @@ bool ModuleEnemies::Start()
 	Yellowball_fx = App->audio->LoadS("Assets/Audio Files/SFX in WAV/xmultipl-093.wav");
 	BigEye_fx = App->audio->LoadS("Assets/Audio Files/SFX in WAV/xmultipl-094.wav");
 	Bouncer_fx = App->audio->LoadS("Assets/Audio Files/SFX in WAV/xmultipl-057.wav");
+	Blue_Ball_fx = App->audio->LoadS("Assets/Audio Files/SFX in WAV/xmultipl-090.wav");
 	hit = App->audio->LoadS("Assets/Audio Files/SFX in WAV/xmultipl-104.wav");
 	return true;
 }
@@ -99,6 +100,8 @@ bool ModuleEnemies::CleanUp()
 	Yellowball_fx = nullptr;
 	App->audio->UnloadS(BigEye_fx);
 	BigEye_fx = nullptr;
+	App->audio->UnloadS(Blue_Ball_fx);
+	Blue_Ball_fx = nullptr;
 
 	for (uint i = 0; i < MAX_TEXTURES; ++i) {
 		if (sprites[i] != nullptr)
@@ -443,7 +446,7 @@ void ModuleEnemies::SpawnEnemy(const EnemyInfo& info)
 			enemies[i]->type = ENEMY_TYPES::BLUE_BALL;
 			break;
 		case ENEMY_TYPES::ROCK:
-			//enemies[i] = new Enemy_Rock(info.x, info.y);
+			enemies[i] = new Enemy_Rock(info.x, info.y);
 			enemies[i]->type = ENEMY_TYPES::ROCK;
 			break;
 		}
@@ -475,13 +478,18 @@ void ModuleEnemies::OnCollision(Collider* c1, Collider* c2)
 					break;
 				case ENEMY_TYPES::POWERUPSHIP:
 					App->audio->PlaySound(Powership_fx);
+					break;
 				case ENEMY_TYPES::YELLOW_BALL:
 					App->audio->PlaySound(Yellowball_fx);
 					break;
 				case ENEMY_TYPES::BIG_EYE:
 					App->audio->PlaySound(BigEye_fx);
+					break;
 				case ENEMY_TYPES::BOUNCER:
 					App->audio->PlaySound(Bouncer_fx);
+					break;
+				case ENEMY_TYPES::BLUE_BALL:
+					App->audio->PlaySound(Blue_Ball_fx);
 					break;
 				}
 				enemies[i]->OnCollision(c2);
