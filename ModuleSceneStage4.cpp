@@ -492,23 +492,23 @@ void ModuleSceneStage4::moveBot(bool up, int i) {
 void ModuleSceneStage4::AddEnemies() {
 
 	App->enemies->AddEnemy(BLUE_SENTINEL, 554, 170, -1, true);
-	App->enemies->AddEnemy(BOUNCER, 607, 120, -1, true);
+	App->enemies->AddEnemy(BOUNCER, 607, 180, -1, true);
 	App->enemies->AddEnemy(POWERUPSHIP, 700, 165, 1, true);
 	App->enemies->AddEnemy(POWERUPSHIP, 812, 114, 2, true);
 	App->enemies->AddEnemy(POWERUPSHIP, 943, 71, 3, true);
 	App->enemies->AddEnemy(ROCK, 1060, 150, -1, true);
 	App->enemies->AddEnemy(ROCK, 1114, 131, -1, true);
 	App->enemies->AddEnemy(BOUNCER, 1176, 365, -1, true);
-	App->enemies->AddEnemy(ROCK, 1221, 193, -1, true);
-	App->enemies->AddEnemy(POWERUPSHIP, 1311, 169, 4, true);
+	App->enemies->AddEnemy(ROCK, 1221, 183, -1, true);
+	App->enemies->AddEnemy(POWERUPSHIP, 1311, 69, 4, true);
 	App->enemies->AddEnemy(ROCK, 1292, 138, -1, true);
 	App->enemies->AddEnemy(BLUE_SENTINEL, 1367, 139, -1, true);
-	App->enemies->AddEnemy(BOUNCER, 1549, 171, -1, true);
+	App->enemies->AddEnemy(BOUNCER, 1549, 180, -1, true);
 	App->enemies->AddEnemy(ROCK, 1292, 138, -1, true);
 	App->enemies->AddEnemy(BLUE_SENTINEL, 1627, 198, -1, true);
 	App->enemies->AddEnemy(BLUE_SENTINEL, 1676, 162, -1, true);
-	App->enemies->AddEnemy(ROCK, 1775, 283, -1, true);
-	App->enemies->AddEnemy(ROCK, 1830, 262, -1, true);
+	App->enemies->AddEnemy(ROCK, 1775, 183, -1, true);
+	App->enemies->AddEnemy(ROCK, 1830, 162, -1, true);
 	App->enemies->AddEnemy(ROCK, 1950, 150, -1, true);
 	App->enemies->AddEnemy(BLUE_SENTINEL, 2000, 190, -1, true);
 	App->enemies->AddEnemy(ROCK, 2060, 200, -1, true);

@@ -51,8 +51,8 @@ bool ModulePowerUp::Start()
 	speed_powerup.enabled = false;
 
 
-	YellowShells.anim.PushBack({ 0,0,18,15 });
-	YellowShells.anim.PushBack({ 0,0,18,15 });
+	YellowShells.anim.PushBack({ 37, 57,18,15 });
+	YellowShells.anim.PushBack({ 165, 58,18,15 });
 	YellowShells.anim.loop = true;
 	YellowShells.anim.speed = 0.2f;
 	YellowShells.type = ORB_POWERUP;

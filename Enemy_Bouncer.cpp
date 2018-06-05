@@ -7,9 +7,13 @@
 Enemy_Bouncer::Enemy_Bouncer(int x, int y) : Enemy(x, y)
 {
 	score = 400;
-	fly.PushBack({ 0,0,48,32 });
-	fly.PushBack({ 49,0,48,32 });
-	fly.speed = 0.2f;
+	fly.PushBack({ 10,17,40,23 });
+	fly.PushBack({ 63,17,40,23 });
+	fly.PushBack({ 63,46,40,23 });
+	fly.PushBack({ 10,46,40,23 });
+	fly.PushBack({ 63,46,40,23 });
+	fly.PushBack({ 63,17,40,23 });
+	fly.speed = 0.1f;
 
 	animation = &fly;
 
@@ -19,7 +23,7 @@ Enemy_Bouncer::Enemy_Bouncer(int x, int y) : Enemy(x, y)
 	path->PushBack({ -1 , 0 }, 15, &fly);
 
 
-	collider = App->collision->AddCollider({ 0, 0, 48, 32 }, COLLIDER_TYPE::COLLIDER_ENEMY, (Module*)App->enemies);
+	collider = App->collision->AddCollider({ 0, 0, 40, 23 }, COLLIDER_TYPE::COLLIDER_ENEMY, (Module*)App->enemies);
 
 	original_position.x = x;
 	original_position.y = y;
