@@ -28,7 +28,6 @@ Enemy_BossS4::Enemy_BossS4(int x, int y) : Enemy(x, y)
 
 void Enemy_BossS4::Move()
 {
-	live = App->scene_stage4->lifes_Boss;
 	if (App->scene_stage4->lifes_Boss > 30) {
 		animation->setFrame(0);
 	}

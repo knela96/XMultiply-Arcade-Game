@@ -252,7 +252,8 @@ void ModuleTentacles::BlitTentacles() {
 			if (SDL_GetTicks() - start_time >= 350) {
 				if (i == MAX_TENTACLES)
 					start_time = SDL_GetTicks();
-				App->particles->AddParticle(App->particles->orb, p->first_point.x+5, p->first_point.y-1);
+				if(App->player->powerup[ORB])
+					App->particles->AddParticle(App->particles->orb, p->first_point.x+5, p->first_point.y-1);
 			}
 			
 		}

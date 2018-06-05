@@ -86,6 +86,7 @@ bool ModuleSceneStage4::Start()
 	App->font->Enable();
 	//App->player->AddTentacles();
 
+
 	graphics = App->textures->Load("Assets/Sprites/Stage4/Tilemap/Tilemap4.1.png");
 	font_gameover = App->font->Load("Assets/Sprites/UI/fonts.2.png", "0123456789·' ºººººººººººººabcdefghijklmnopqrstuvwxyz", 2);
 	back = App->textures->Load("Assets/Sprites/Stage4/Tilemap/ForthLvlMap.png");

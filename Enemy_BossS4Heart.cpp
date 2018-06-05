@@ -32,5 +32,4 @@ Enemy_BossS4Heart::Enemy_BossS4Heart(int x, int y) : Enemy(x, y)
 
 void Enemy_BossS4Heart::Move()
 {
-	live = App->scene_stage4->lifes_Boss;
 }
