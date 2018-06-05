@@ -511,6 +511,7 @@ void ModuleSceneStage1::AddEnemies() {
 
 	//powerup
 	App->enemies->AddEnemy(POWERUPSHIP, 1000, 100, 2);
+	App->enemies->AddEnemy(POWERUPSHIP, 1100, 100, 5);
 	//anemona
 	App->enemies->AddEnemy(NEMONA_TENTACLE, 1000, 168, -1);
 	//powerup
