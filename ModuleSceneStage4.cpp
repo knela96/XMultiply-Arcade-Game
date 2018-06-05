@@ -442,14 +442,14 @@ void ModuleSceneStage4::AddEnemies() {
 	App->enemies->AddEnemy(NEMONA_TENTACLE, 450, 200, -1, true);
 
 
-	App->enemies->AddEnemy(BOSS1, 450, 100, -1, true);
-	App->enemies->AddEnemy(BOSSFACE, 450, 140, -1, true);
+	App->enemies->AddEnemy(BOSS1, 4840, 112, -1, true);
+	/*App->enemies->AddEnemy(BOSSFACE, 450, 140, -1, true);
 
 	App->enemies->AddEnemy(BOSSDISP, 544, 100, -1, true);
 	App->enemies->AddEnemy(BOSSTENT, 555, 10, -1, true);
 
 	App->enemies->AddEnemy(BOSSHEART, 450, 140, -1, true);
-	App->enemies->AddEnemy(BOSSARM, 550, 100, -1, true);
+	App->enemies->AddEnemy(BOSSARM, 550, 100, -1, true);*/
 
 
 }
