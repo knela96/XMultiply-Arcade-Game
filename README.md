@@ -20,7 +20,7 @@ The game centers around an unusual alien invasion against a colony planet in the
   
 
 ## Gameplay
-<iframe width="650" src="https://www.youtube.com/embed/7hml4wSPay8" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+<iframe width="650" height="360"src="https://www.youtube.com/embed/7hml4wSPay8" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
 
 ## Link to download the latest version of the game  
   [CLICK HERE](https://github.com/knela96/Project1/releases/tag/v1.0)
