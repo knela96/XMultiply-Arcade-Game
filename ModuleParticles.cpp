@@ -244,7 +244,7 @@ bool ModuleParticles::Start()
 	Stage4Boss_shoot.anim.PushBack({ 48,175,37,40 });
 
 	Stage4Boss_shoot.anim.loop = true;
-	Stage4Boss_shoot.anim.speed = 0.4f;
+	Stage4Boss_shoot.anim.speed = 1;
 	Stage4Boss_shoot.type = STAGE4BOSS_SHOOTN;
 	Stage4Boss_shoot.life = 2000;
 	
