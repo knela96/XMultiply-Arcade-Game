@@ -145,6 +145,7 @@ bool ModuleSceneStage4::Start()
 	ColliderBot22 = App->collision->AddCollider({ 4238, ground_bottom_y + 67, 300, 111 }, COLLIDER_WALL, this);
 
 	hud = App->textures->Load("Assets/Sprites/UI/UI.png");
+	
 
 	music = App->audio->LoadM("Assets/Audio Files/Music in OGG/10_Illegal_Illusion_Stage_4_.ogg");
 	clear_stage = App->audio->LoadM("Assets/Audio Files/Music in OGG/06_Stage_Clear.ogg");
@@ -367,6 +368,9 @@ update_status ModuleSceneStage4::Update()
 		App->font->BlitText(80, 240, App->player->font_score, App->player->score_text);
 		App->font->BlitText(32, 240, App->player->font_score, "score");
 	}
+	for (int i = 0; i < App->player->life; ++i) {
+
+		}
 
 	if (resetmap)
 		resetMap();
@@ -486,10 +490,60 @@ void ModuleSceneStage4::moveBot(bool up, int i) {
 
 void ModuleSceneStage4::AddEnemies() {
 
+	App->enemies->AddEnemy(BLUE_SENTINEL, 554, 370, -1, true);
+	App->enemies->AddEnemy(BOUNCER, 607, 320, -1, true);
+	App->enemies->AddEnemy(POWERUPSHIP, 700, 365, -1, true);
+	App->enemies->AddEnemy(POWERUPSHIP, 812, 314, -1, true);
+	App->enemies->AddEnemy(POWERUPSHIP, 943, 271, -1, true);
+	App->enemies->AddEnemy(ROCK, 1060, 150, -1, true);
+	App->enemies->AddEnemy(ROCK, 1114, 131, -1, true);
+	App->enemies->AddEnemy(BOUNCER, 1176, 365, -1, true);
+	App->enemies->AddEnemy(ROCK, 1221, 193, -1, true);
+	App->enemies->AddEnemy(POWERUPSHIP, 1311, 269, -1, true);
+	App->enemies->AddEnemy(ROCK, 1292, 138, -1, true);
+	App->enemies->AddEnemy(BLUE_SENTINEL, 1367, 339, -1, true);
+	App->enemies->AddEnemy(BOUNCER, 1549, 271, -1, true);
+	App->enemies->AddEnemy(ROCK, 1292, 138, -1, true);
+	App->enemies->AddEnemy(BLUE_SENTINEL, 1627, 398, -1, true);
+	App->enemies->AddEnemy(BLUE_SENTINEL, 1676, 362, -1, true);
+	App->enemies->AddEnemy(ROCK, 1775, 283, -1, true);
+	App->enemies->AddEnemy(ROCK, 1830, 262, -1, true);
+	App->enemies->AddEnemy(ROCK, 1950, 150, -1, true);
+	App->enemies->AddEnemy(BLUE_SENTINEL, 2000, 390, -1, true);
+	App->enemies->AddEnemy(ROCK, 2060, 300, -1, true);
+	App->enemies->AddEnemy(BLUE_BALL, 2140, 376, -1, true);
+	App->enemies->AddEnemy(POWERUPSHIP, 2162, 260, -1, true);
+	App->enemies->AddEnemy(BLUE_BALL, 2190, 300, -1, true);
+	App->enemies->AddEnemy(BLUE_BALL, 2250, 300, -1, true);
+	App->enemies->AddEnemy(BLUE_BALL, 2320, 300, -1, true);
+	App->enemies->AddEnemy(BLUE_BALL, 2380, 300, -1, true);
+	App->enemies->AddEnemy(BLUE_BALL2, 2260, 135, -1, true);
+	App->enemies->AddEnemy(BLUE_BALL, 2454, 415, -1, true);
+	App->enemies->AddEnemy(BLUE_BALL2, 2580, 100, -1, true);
+	App->enemies->AddEnemy(POWERUPSHIP, 2776, 240, -1, true);
+	App->enemies->AddEnemy(BLUE_BALL2, 3030, 116, -1, true);
+	App->enemies->AddEnemy(BLUE_BALL2, 3150, 175, -1, true);
+	App->enemies->AddEnemy(BLUE_BALL, 3474, 335, -1, true);
+	App->enemies->AddEnemy(BLUE_BALL, 3474, 335, -1, true);
+	App->enemies->AddEnemy(BLUE_BALL, 3543, 393, -1, true);
+	App->enemies->AddEnemy(POWERUPSHIP, 3593, 332, -1, true);
+	App->enemies->AddEnemy(BLUE_BALL2, 3734, 136, -1, true);
+	App->enemies->AddEnemy(POWERUPSHIP, 3851, 234, -1, true);
+	App->enemies->AddEnemy(BLUE_BALL2, 3923, 106, -1, true);
+	App->enemies->AddEnemy(POWERUPSHIP, 3987, 343, -1, true);
+	App->enemies->AddEnemy(BLUE_BALL2, 4117, 106, -1, true);
+	
+	
+	
+	
+	
+	//BOSS
+
 
 	App->enemies->AddEnemy(BLUE_BALL2, 400, 100, -1, true);
 
 	App->enemies->AddEnemy(ROCK, 430, 100, -1, true);
+
 
 
 
