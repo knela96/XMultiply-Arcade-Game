@@ -462,8 +462,8 @@ void ModuleSceneStage1::AddEnemies() {
 //	App->enemies->AddEnemy(BOSSHEART, 610, 50, -1, true);
 //	App->enemies->AddEnemy(BOSSDISP, 544, 50, -1, true);
 //	App->enemies->AddEnemy(BOSSTENT, 555, -40, -1, true);
-	App->enemies->AddEnemy(BLUE_BALL, 500, 0, -1, true);
-	App->enemies->AddEnemy(ROCK, 500, 0, -1, true);
+	//App->enemies->AddEnemy(BLUE_BALL, 500, 0, -1, true);
+	//App->enemies->AddEnemy(ROCK, 500, 0, -1, true);
 
 	
 	
