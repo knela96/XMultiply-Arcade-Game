@@ -35,6 +35,7 @@ Enemy_BossS4Arm::Enemy_BossS4Arm(int x, int y) : Enemy(x, y)
 
 	path->PushBack({ 0 , 0 }, 2, &fly);
 
+	live = 40;
 
 	original_position.x = x;
 	original_position.y = y;

@@ -179,6 +179,7 @@ bool ModuleSceneStage4::CleanUp()
 	hud = nullptr;
 	App->audio->UnloadM(clear_stage);
 	clear_stage = nullptr;
+	loose = false;
 
 
 	App->player->Disable();
@@ -321,10 +322,17 @@ update_status ModuleSceneStage4::Update()
 		ground_top_y--;
 	}
 
-	if (App->player->position.x >= 5700 && SDL_GetTicks() - boss_time >= 17000 || App->input->keyboard[SDL_SCANCODE_P] == KEY_STATE::KEY_DOWN) //4700
+	if (App->input->keyboard[SDL_SCANCODE_F2] == KEY_STATE::KEY_DOWN || App->player->score >= 30000) {
+		loose = true;
+	}
+
+
+	if (App->render->camera.x >= 4670 && SDL_GetTicks() - boss_time >= 17000 || loose) //4700
 	{ 
+		App->enemies->Disable();
 		right = false;
 		if (App->input->keyboard[SDL_SCANCODE_RETURN] == KEY_STATE::KEY_DOWN || App->input->controller[START] == KEY_STATE::KEY_DOWN) {
+			App->player->score += 10000;
 			App->fade->FadeToBlack((Module*)App->scene_stage4, (Module*)App->scene_score);
 		}
 		if (!clearstage_fx) {
@@ -372,7 +380,7 @@ update_status ModuleSceneStage4::Update()
 	if (resetmap)
 		resetMap();
 
-	if (App->render->camera.x == 4670) {
+	if (App->render->camera.x == 4670 && right != false) {
 		right = false;
 		fight_time = SDL_GetTicks();
 		boss_time = SDL_GetTicks();

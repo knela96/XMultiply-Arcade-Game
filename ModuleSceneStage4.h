@@ -46,6 +46,7 @@ public:
 	bool entering = false;
 	bool cleaned = false;
 	bool show = false;
+	bool loose = false;
 	bool shipdone;
 	bool moveT;
 	bool moveB;

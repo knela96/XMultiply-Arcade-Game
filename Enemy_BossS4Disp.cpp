@@ -55,6 +55,9 @@ Enemy_BossS4Disp::Enemy_BossS4Disp(int x, int y) : Enemy(x, y)
 		
 	animation = &fly;
 
+
+	live = 40;
+
 	path->PushBack({ 0 , 0 }, 1, &fly);
 
 
