@@ -28,7 +28,7 @@
 #include "SDL/include/SDL_timer.h"
 
 
-#define SPAWN_MARGIN 0
+#define SPAWN_MARGIN 50
 
 ModuleEnemies::ModuleEnemies()
 {

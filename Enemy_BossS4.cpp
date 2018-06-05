@@ -10,8 +10,8 @@
 Enemy_BossS4::Enemy_BossS4(int x, int y) : Enemy(x, y)
 {
 	fly.PushBack({ 14,35,145,104});
-	fly.PushBack({ 14,140,145,104 });
-	fly.PushBack({ 14,253,145,104 });
+	//fly.PushBack({ 14,140,145,104 });
+	//fly.PushBack({ 14,253,145,104 });
 	
 	fly.speed = 0.05f;
 
