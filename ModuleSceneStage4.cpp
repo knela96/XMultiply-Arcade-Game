@@ -84,7 +84,7 @@ bool ModuleSceneStage4::Start()
 	App->collision->Enable();
 	App->powerup->Enable();
 	App->font->Enable();
-	App->player->AddTentacles();
+	//App->player->AddTentacles();
 
 	graphics = App->textures->Load("Assets/Sprites/Stage4/Tilemap/Tilemap4.1.png");
 	font_gameover = App->font->Load("Assets/Sprites/UI/fonts.2.png", "0123456789·' ºººººººººººººabcdefghijklmnopqrstuvwxyz", 2);
@@ -152,8 +152,8 @@ bool ModuleSceneStage4::Start()
 
 	App->audio->PlayMusic(music);
 
-	App->player->godmode = true;
-	App->player->powerup[ORB] = true;
+	//App->player->godmode = true;
+	//App->player->powerup[ORB] = true;
 
 	AddEnemies();//Add Enemies
 
@@ -490,47 +490,45 @@ void ModuleSceneStage4::moveBot(bool up, int i) {
 
 void ModuleSceneStage4::AddEnemies() {
 
-	App->enemies->AddEnemy(BLUE_SENTINEL, 554, 370, -1, true);
-	App->enemies->AddEnemy(BOUNCER, 607, 320, -1, true);
-	App->enemies->AddEnemy(POWERUPSHIP, 700, 365, -1, true);
-	App->enemies->AddEnemy(POWERUPSHIP, 812, 314, -1, true);
-	App->enemies->AddEnemy(POWERUPSHIP, 943, 271, -1, true);
+	App->enemies->AddEnemy(BLUE_SENTINEL, 554, 170, -1, true);
+	App->enemies->AddEnemy(BOUNCER, 607, 120, -1, true);
+	App->enemies->AddEnemy(POWERUPSHIP, 700, 165, 1, true);
+	App->enemies->AddEnemy(POWERUPSHIP, 812, 114, 2, true);
+	App->enemies->AddEnemy(POWERUPSHIP, 943, 71, 3, true);
 	App->enemies->AddEnemy(ROCK, 1060, 150, -1, true);
 	App->enemies->AddEnemy(ROCK, 1114, 131, -1, true);
 	App->enemies->AddEnemy(BOUNCER, 1176, 365, -1, true);
 	App->enemies->AddEnemy(ROCK, 1221, 193, -1, true);
-	App->enemies->AddEnemy(POWERUPSHIP, 1311, 269, -1, true);
+	App->enemies->AddEnemy(POWERUPSHIP, 1311, 169, 4, true);
 	App->enemies->AddEnemy(ROCK, 1292, 138, -1, true);
-	App->enemies->AddEnemy(BLUE_SENTINEL, 1367, 339, -1, true);
-	App->enemies->AddEnemy(BOUNCER, 1549, 271, -1, true);
+	App->enemies->AddEnemy(BLUE_SENTINEL, 1367, 139, -1, true);
+	App->enemies->AddEnemy(BOUNCER, 1549, 171, -1, true);
 	App->enemies->AddEnemy(ROCK, 1292, 138, -1, true);
-	App->enemies->AddEnemy(BLUE_SENTINEL, 1627, 398, -1, true);
-	App->enemies->AddEnemy(BLUE_SENTINEL, 1676, 362, -1, true);
+	App->enemies->AddEnemy(BLUE_SENTINEL, 1627, 198, -1, true);
+	App->enemies->AddEnemy(BLUE_SENTINEL, 1676, 162, -1, true);
 	App->enemies->AddEnemy(ROCK, 1775, 283, -1, true);
 	App->enemies->AddEnemy(ROCK, 1830, 262, -1, true);
 	App->enemies->AddEnemy(ROCK, 1950, 150, -1, true);
-	App->enemies->AddEnemy(BLUE_SENTINEL, 2000, 390, -1, true);
-	App->enemies->AddEnemy(ROCK, 2060, 300, -1, true);
-	App->enemies->AddEnemy(BLUE_BALL, 2140, 376, -1, true);
-	App->enemies->AddEnemy(POWERUPSHIP, 2162, 260, -1, true);
-	App->enemies->AddEnemy(BLUE_BALL, 2190, 300, -1, true);
-	App->enemies->AddEnemy(BLUE_BALL, 2250, 300, -1, true);
-	App->enemies->AddEnemy(BLUE_BALL, 2320, 300, -1, true);
-	App->enemies->AddEnemy(BLUE_BALL, 2380, 300, -1, true);
-	App->enemies->AddEnemy(BLUE_BALL2, 2260, 135, -1, true);
-	App->enemies->AddEnemy(BLUE_BALL, 2454, 415, -1, true);
+	App->enemies->AddEnemy(BLUE_SENTINEL, 2000, 190, -1, true);
+	App->enemies->AddEnemy(ROCK, 2060, 200, -1, true);
+	App->enemies->AddEnemy(BLUE_BALL, 2140, 176, -1, true);
+	App->enemies->AddEnemy(POWERUPSHIP, 2162, 60, 3, true);
+	App->enemies->AddEnemy(BLUE_BALL, 2190, 100, -1, true);
+	App->enemies->AddEnemy(BLUE_BALL, 2250, 100, -1, true);
+	App->enemies->AddEnemy(BLUE_BALL, 2320, 100, -1, true);
+	App->enemies->AddEnemy(BLUE_BALL, 2380, 100, -1, true);
+	App->enemies->AddEnemy(BLUE_BALL2, 2260, 35, -1, true);
+	App->enemies->AddEnemy(BLUE_BALL, 2454, 215, -1, true);
 	App->enemies->AddEnemy(BLUE_BALL2, 2580, 100, -1, true);
-	App->enemies->AddEnemy(POWERUPSHIP, 2776, 240, -1, true);
+	App->enemies->AddEnemy(POWERUPSHIP, 2776, 40, 3, true);
 	App->enemies->AddEnemy(BLUE_BALL2, 3030, 116, -1, true);
 	App->enemies->AddEnemy(BLUE_BALL2, 3150, 175, -1, true);
-	App->enemies->AddEnemy(BLUE_BALL, 3474, 335, -1, true);
-	App->enemies->AddEnemy(BLUE_BALL, 3474, 335, -1, true);
-	App->enemies->AddEnemy(BLUE_BALL, 3543, 393, -1, true);
-	App->enemies->AddEnemy(POWERUPSHIP, 3593, 332, -1, true);
+	App->enemies->AddEnemy(BLUE_BALL, 3474, 135, -1, true);
+	App->enemies->AddEnemy(BLUE_BALL, 3474, 135, -1, true);
+	App->enemies->AddEnemy(BLUE_BALL, 3543, 193, -1, true);
 	App->enemies->AddEnemy(BLUE_BALL2, 3734, 136, -1, true);
-	App->enemies->AddEnemy(POWERUPSHIP, 3851, 234, -1, true);
 	App->enemies->AddEnemy(BLUE_BALL2, 3923, 106, -1, true);
-	App->enemies->AddEnemy(POWERUPSHIP, 3987, 343, -1, true);
+	App->enemies->AddEnemy(POWERUPSHIP, 3987, 143, 3, true);
 	App->enemies->AddEnemy(BLUE_BALL2, 4117, 106, -1, true);
 	
 	

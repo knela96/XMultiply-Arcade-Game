@@ -70,6 +70,7 @@ public:
 	PowerUp bomb_powerup;
 	PowerUp tentacles_powerup;
 	PowerUp speed_powerup;
+	PowerUp YellowShells;
 
 private:
 
