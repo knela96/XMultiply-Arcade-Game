@@ -180,6 +180,7 @@ bool ModuleParticles::Start()
 	orb_shoot.anim.speed = 0.2f;
 	orb_shoot.life = 2000;
 	orb_shoot.type = ORB_SHOOT;
+	orb_shoot.hit_fx = App->audio->LoadS("Assets/Audio Files/SFX in WAV/xmultipl-123.wav");
 
 	explosion_orb.anim.PushBack({144,144,16,16});
 	explosion_orb.anim.PushBack({ 160,144,16,16 });
