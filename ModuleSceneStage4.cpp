@@ -498,7 +498,7 @@ void ModuleSceneStage4::AddEnemies() {
 
 	App->enemies->AddEnemy(BLUE_SENTINEL, 554, 170, -1, true);
 	App->enemies->AddEnemy(BOUNCER, 607, 180, -1, true);
-	App->enemies->AddEnemy(POWERUPSHIP, 700, 165, 1, true);
+	App->enemies->AddEnemy(POWERUPSHIP, 700, 125, 1, true);
 	App->enemies->AddEnemy(POWERUPSHIP, 812, 114, 2, true);
 	App->enemies->AddEnemy(POWERUPSHIP, 943, 71, 3, true);
 	App->enemies->AddEnemy(ROCK, 1060, 150, -1, true);
@@ -518,7 +518,7 @@ void ModuleSceneStage4::AddEnemies() {
 	App->enemies->AddEnemy(BLUE_SENTINEL, 2000, 190, -1, true);
 	App->enemies->AddEnemy(ROCK, 2060, 200, -1, true);
 	App->enemies->AddEnemy(BLUE_BALL, 2140, 176, -1, true);
-	App->enemies->AddEnemy(POWERUPSHIP, 2162, 60, 3, true);
+	App->enemies->AddEnemy(POWERUPSHIP, 2162, 60, 5, true);
 	App->enemies->AddEnemy(BLUE_BALL, 2190, 100, -1, true);
 	App->enemies->AddEnemy(BLUE_BALL, 2250, 100, -1, true);
 	App->enemies->AddEnemy(BLUE_BALL, 2320, 100, -1, true);

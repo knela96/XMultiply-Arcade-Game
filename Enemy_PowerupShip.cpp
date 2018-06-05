@@ -8,6 +8,7 @@
 
 Enemy_PowerupShip::Enemy_PowerupShip(int x, int y, uint PU) : Enemy(x, y)
 {
+	score = 1000;
 	fly.PushBack({ 68, 11,28,18 });
 	fly.PushBack({ 68, 11,28,18 });
 	fly.speed = 0.05f;
@@ -34,6 +35,10 @@ Enemy_PowerupShip::Enemy_PowerupShip(int x, int y, uint PU) : Enemy(x, y)
 		break;
 	case 4:
 		p = App->powerup->AddPowerUp(App->powerup->YellowShells, position.x + 2, position.y + 10, COLLIDER_POWERUP);
+		break;
+	case 5:
+		p = App->powerup->AddPowerUp(App->powerup->Missile, position.x + 2, position.y + 10, COLLIDER_POWERUP);
+		break;
 	}
 }
 

@@ -6,6 +6,7 @@
 
 Enemy_Big_Eye::Enemy_Big_Eye(int x, int y) : Enemy(x, y)
 {
+	score = 5000;
 	fly.PushBack({ 11,10,70,68 });
 
 	fly.PushBack({ 88,10,70,68});

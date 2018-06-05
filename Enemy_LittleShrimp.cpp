@@ -6,6 +6,7 @@
 
 Enemy_LittleShrimp::Enemy_LittleShrimp(int x, int y) : Enemy(x, y)
 {
+	score = 200;
 	fly.PushBack({ 0,0,48,32 });
 	fly.PushBack({ 49,0,48,32 });
 	fly.speed = 0.2f;

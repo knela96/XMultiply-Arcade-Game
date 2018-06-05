@@ -26,6 +26,7 @@ enum POWERUP_TYPE
 	BOMB_POWERUP,
 	SPEED_POWERUP,
 	ORB_POWERUP,
+	MISSILE_POWERUP,
 };
 
 
@@ -71,6 +72,7 @@ public:
 	PowerUp tentacles_powerup;
 	PowerUp speed_powerup;
 	PowerUp YellowShells;
+	PowerUp Missile;
 
 private:
 
