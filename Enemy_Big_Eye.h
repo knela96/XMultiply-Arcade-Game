@@ -13,7 +13,6 @@ private:
 	Animation fly;
 	Uint32 shoot_delay = 0;
 
-
 public:
 
 	iPoint original_position;

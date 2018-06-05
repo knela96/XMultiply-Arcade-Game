@@ -248,7 +248,7 @@ void ModuleTentacles::BlitTentacles() {
 	{
 		Tentacle* p = tentacles[i];
 		if (p->anchor) {
-			App->render->Blit(graphics, p->first_point.x, p->first_point.y, &p->anim.GetCurrentFrame(), 1.0f, 0.0f);
+				App->render->Blit(graphics, p->first_point.x, p->first_point.y, &p->anim.GetCurrentFrame(), 1.0f, 0.0f);
 			if (SDL_GetTicks() - start_time >= 350) {
 				if (i == MAX_TENTACLES)
 					start_time = SDL_GetTicks();
@@ -282,7 +282,7 @@ void ModuleTentacles::ShootLaser() {
 
 				}
 				else {
-					App->particles->AddParticle(App->particles->tentacle_shoot, p->first_point.x, p->first_point.y - 5, COLLIDER_PLAYER_SHOT);
+					App->particles->AddParticle(App->particles->tentacle_shoot, p->first_point.x, p->first_point.y, COLLIDER_PLAYER_SHOT);
 				}
 			}
 		}

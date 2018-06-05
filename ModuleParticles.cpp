@@ -374,11 +374,9 @@ void ModuleParticles::orderlist() {
 	int i, j, k;
 	for (i = 0; i < MAX_ENEMIES - 1; i++)
 	{
-		for (k = i, j = i + 1; j < MAX_ENEMIES; j++)
-			if (positions[j].x < positions[k].x && positions[j].x != 0 && positions[j].y != 0)
-				k = j;
-		if (k != i)
-			swap(positions, i, k);
+		for (j = i + 1; j < MAX_ENEMIES; j++)
+			if (positions[j].x < positions[i].x && positions[j].x != 0 && positions[j].y != 0)
+				swap(positions, i, j);
 	}
 }
 
@@ -399,7 +397,7 @@ void ModuleParticles::MissilleMovement(Particle *p) {
 	if (enemy == nullptr) {
 		EnemyPositions(p);
 		for (int i = 0; i < MAX_ENEMIES; ++i) {
-			enemy = App->enemies->enemies[i];
+			enemy = App->enemies->enemies[positions[i].y];
 			if (enemy != nullptr) {
 				p->target = enemy;
 				break;

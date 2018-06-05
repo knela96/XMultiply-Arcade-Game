@@ -97,7 +97,6 @@ bool ModulePlayer::Start()
 	powerup[BASIC_SHOOT] = true;
 	powerup[BOMB_SHOOT] = false;
 
-
 	font_score = App->font->Load("Assets/Sprites/UI/fonts.1.png", "0123456789í.-=éè()óòáú`´!?abcdefghijklmnopqrstuvwxyz", 2);
 	font_gameover = App->font->Load("Assets/Sprites/UI/fonts.2.png", "0123456789·' ºººººººººººººabcdefghijklmnopqrstuvwxyz", 2);
 
@@ -261,10 +260,11 @@ update_status ModulePlayer::Update()
 
 
 	// Draw everything --------------------------------------
-	if (!dead)
-		if(App->tentacles->blit_tentacle)
+	if (!dead) {
+		if (App->tentacles->blit_tentacle)
 			App->tentacles->BlitTentacles();
 		App->render->Blit(graphics, position.x, position.y, &current_animation->GetCurrentFrame());
+	}
 	if (godmode == true)
 		App->font->BlitText(0, 0, App->player->font_score, _godmode);
 	
