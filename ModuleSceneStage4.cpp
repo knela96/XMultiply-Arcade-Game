@@ -477,7 +477,7 @@ void ModuleSceneStage4::AddEnemies() {
 
 	App->enemies->AddEnemy(BLUE_BALL2, 400, 100, -1, true);
 
-
+	App->enemies->AddEnemy(ROCK, 430, 100, -1, true);
 
 
 
