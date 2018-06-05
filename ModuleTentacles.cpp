@@ -193,16 +193,16 @@ void ModuleTentacles::setPosition(int x, int y) {
 			}
 			LOG("%f", cos(p->radian));
 			
-			if (App->input->keyboard[SDL_SCANCODE_D]){
+			if (App->input->keyboard[SDL_SCANCODE_D] || App->input->controller[RIGHT] == KEY_STATE::KEY_REPEAT){
 				if (p->radian < p->max_angle) {
 					if (p->radian > 2 * PI)
 						p->radian = 0;
-					p->radian += 0.01f;
+					p->radian += 0.015f;
 				}
 			}
-			else if(App->input->keyboard[SDL_SCANCODE_A]){
+			else if(App->input->keyboard[SDL_SCANCODE_A] || App->input->controller[LEFT] == KEY_STATE::KEY_REPEAT){
 				if (p->radian > PI / 2 - (p->max_angle - PI / 2))
-					p->radian -= 0.01f;
+					p->radian -= 0.015f;
 			}
 			else {
 				if (p->radian > PI / 2)
