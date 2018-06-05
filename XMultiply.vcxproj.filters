@@ -2,262 +2,100 @@
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
     <ClCompile Include="Application.cpp" />
+    <ClCompile Include="Enemy_BlueSentinel.cpp" />
+    <ClCompile Include="Enemy_Blue_Ball.cpp" />
+    <ClCompile Include="Enemy.cpp" />
+    <ClCompile Include="Enemy_Big_Eye.cpp" />
+    <ClCompile Include="Enemy_Blue_Mouth.cpp" />
+    <ClCompile Include="Enemy_BossS4.cpp" />
+    <ClCompile Include="Enemy_BossS4Arm.cpp" />
+    <ClCompile Include="Enemy_BossS4Disp.cpp" />
+    <ClCompile Include="Enemy_BossS4Face.cpp" />
+    <ClCompile Include="Enemy_BossS4Heart.cpp" />
+    <ClCompile Include="Enemy_BossS4Tenta.cpp" />
+    <ClCompile Include="Enemy_Bouncer.cpp" />
+    <ClCompile Include="Enemy_BrownWorm.cpp" />
+    <ClCompile Include="Enemy_Rock.cpp" />
+    <ClCompile Include="Enemy_Worm_Base.cpp" />
+    <ClCompile Include="Enemy_Worm_Body.cpp" />
+    <ClCompile Include="Enemy_Worm_Head.cpp" />
+    <ClCompile Include="Enemy_Yellow_Ball.cpp" />
+    <ClCompile Include="Enemy_LittleShrimp.cpp" />
+    <ClCompile Include="Enemy_Nemona.cpp" />
+    <ClCompile Include="Enemy_PowerupShip.cpp" />
+    <ClCompile Include="Globals.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="ModuleAudio.cpp" />
     <ClCompile Include="ModuleCollision.cpp" />
+    <ClCompile Include="ModuleFonts.cpp" />
+    <ClCompile Include="ModulePowerUp.cpp" />
+    <ClCompile Include="ModuleSceneCongrats.cpp" />
+    <ClCompile Include="ModuleSceneScore.cpp" />
+    <ClCompile Include="ModuleSceneStage1.cpp" />
+    <ClCompile Include="ModuleEnemies.cpp" />
+    <ClCompile Include="ModuleFadeToBlack.cpp" />
     <ClCompile Include="ModuleInput.cpp" />
+    <ClCompile Include="ModulePlayer.cpp" />
     <ClCompile Include="ModuleParticles.cpp" />
     <ClCompile Include="ModuleRender.cpp" />
+    <ClCompile Include="ModuleSceneChoosePlayer.cpp" />
+    <ClCompile Include="ModuleSceneMainMenu.cpp" />
+    <ClCompile Include="ModuleSceneStage4.cpp" />
     <ClCompile Include="ModuleTextures.cpp" />
-    <ClCompile Include="Enemy.cpp">
-      <Filter>Enemies</Filter>
-    </ClCompile>
-    <ClCompile Include="Enemy_Big_Eye.cpp">
-      <Filter>Enemies</Filter>
-    </ClCompile>
-    <ClCompile Include="Enemy_Bouncer.cpp">
-      <Filter>Enemies</Filter>
-    </ClCompile>
-    <ClCompile Include="Enemy_BrownWorm.cpp">
-      <Filter>Enemies</Filter>
-    </ClCompile>
-    <ClCompile Include="Enemy_LittleShrimp.cpp">
-      <Filter>Enemies</Filter>
-    </ClCompile>
-    <ClCompile Include="Enemy_Nemona.cpp">
-      <Filter>Enemies</Filter>
-    </ClCompile>
-    <ClCompile Include="Enemy_PowerupShip.cpp">
-      <Filter>Enemies</Filter>
-    </ClCompile>
-    <ClCompile Include="Enemy_Yellow_Ball.cpp">
-      <Filter>Enemies</Filter>
-    </ClCompile>
-    <ClCompile Include="Globals.cpp">
-      <Filter>Globals</Filter>
-    </ClCompile>
-    <ClCompile Include="ModuleWindow.cpp">
-      <Filter>Globals</Filter>
-    </ClCompile>
-    <ClCompile Include="ModuleEnemies.cpp">
-      <Filter>Enemies</Filter>
-    </ClCompile>
-    <ClCompile Include="ModuleSceneChoosePlayer.cpp">
-      <Filter>Scenes</Filter>
-    </ClCompile>
-    <ClCompile Include="ModuleSceneCongrats.cpp">
-      <Filter>Scenes</Filter>
-    </ClCompile>
-    <ClCompile Include="ModuleSceneMainMenu.cpp">
-      <Filter>Scenes</Filter>
-    </ClCompile>
-    <ClCompile Include="ModuleSceneStage1.cpp">
-      <Filter>Scenes</Filter>
-    </ClCompile>
-    <ClCompile Include="ModulePlayer.cpp">
-      <Filter>Player</Filter>
-    </ClCompile>
-    <ClCompile Include="ModulePowerUp.cpp">
-      <Filter>Player</Filter>
-    </ClCompile>
-    <ClCompile Include="ModuleTentacles.cpp">
-      <Filter>Player</Filter>
-    </ClCompile>
-    <ClCompile Include="ModuleFadeToBlack.cpp">
-      <Filter>Scenes</Filter>
-    </ClCompile>
-    <ClCompile Include="ModuleFonts.cpp">
-      <Filter>Scenes</Filter>
-    </ClCompile>
-    <ClCompile Include="ModuleSceneTest.cpp">
-      <Filter>Scenes</Filter>
-    </ClCompile>
-    <ClCompile Include="Enemy_Blue_Mouth.cpp">
-      <Filter>Enemies</Filter>
-    </ClCompile>
-    <ClCompile Include="ModuleSceneStage4.cpp">
-      <Filter>Scenes</Filter>
-    </ClCompile>
-    <ClCompile Include="Enemy_Rock.cpp">
-      <Filter>Enemies</Filter>
-    </ClCompile>
-    <ClCompile Include="Enemy_Worm_Head.cpp">
-      <Filter>Enemies</Filter>
-    </ClCompile>
-    <ClCompile Include="Enemy_Worm_Body.cpp">
-      <Filter>Enemies</Filter>
-    </ClCompile>
-    <ClCompile Include="Enemy_Worm_Base.cpp">
-      <Filter>Enemies</Filter>
-    </ClCompile>
-    <ClCompile Include="Enemy_BossS4.cpp">
-      <Filter>Enemies</Filter>
-    </ClCompile>
-    <ClCompile Include="Enemy_BossS4Arm.cpp">
-      <Filter>Enemies</Filter>
-    </ClCompile>
-    <ClCompile Include="Enemy_BossS4Disp.cpp">
-      <Filter>Enemies</Filter>
-    </ClCompile>
-    <ClCompile Include="Enemy_BossS4Face.cpp">
-      <Filter>Enemies</Filter>
-    </ClCompile>
-    <ClCompile Include="Enemy_BossS4Heart.cpp">
-      <Filter>Enemies</Filter>
-    </ClCompile>
-    <ClCompile Include="Enemy_BossS4Tenta.cpp">
-      <Filter>Enemies</Filter>
-    </ClCompile>
-    <ClCompile Include="ModuleSceneScore.cpp">
-      <Filter>Scenes</Filter>
-    <ClCompile Include="Enemy_Blue_Ball.cpp">
-      <Filter>Enemies</Filter>
-    </ClCompile>
-    <ClCompile Include="Enemy_BlueSentinel.cpp">
-      <Filter>Enemies</Filter>
-    </ClCompile>
+    <ClCompile Include="ModuleWindow.cpp" />
+    <ClCompile Include="ModuleTentacles.cpp" />
+    <ClCompile Include="ModuleSceneTest.cpp" />
+    <ClCompile Include="Enemy_Blue_Ball2.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Animation.h" />
     <ClInclude Include="Application.h" />
+    <ClInclude Include="Enemy_BlueSentinel.h" />
+    <ClInclude Include="Enemy_Blue_Ball.h" />
+    <ClInclude Include="Enemy.h" />
+    <ClInclude Include="Enemy_Big_Eye.h" />
+    <ClInclude Include="Enemy_Blue_Mouth.h" />
+    <ClInclude Include="Enemy_BossS4.h" />
+    <ClInclude Include="Enemy_BossS4Arm.h" />
+    <ClInclude Include="Enemy_BossS4Disp.h" />
+    <ClInclude Include="Enemy_BossS4Face.h" />
+    <ClInclude Include="Enemy_BossS4Heart.h" />
+    <ClInclude Include="Enemy_BossS4Tenta.h" />
+    <ClInclude Include="Enemy_Bouncer.h" />
+    <ClInclude Include="Enemy_BrownWorm.h" />
+    <ClInclude Include="Enemy_Rock.h" />
+    <ClInclude Include="Enemy_Worm_Base.h" />
+    <ClInclude Include="Enemy_Worm_Body.h" />
+    <ClInclude Include="Enemy_Worm_Head.h" />
+    <ClInclude Include="Enemy_Yellow_Ball.h" />
+    <ClInclude Include="Enemy_LittleShrimp.h" />
+    <ClInclude Include="Enemy_Nemona.h" />
+    <ClInclude Include="Enemy_PowerupShip.h" />
+    <ClInclude Include="Globals.h" />
+    <ClInclude Include="MemLeaks.h" />
     <ClInclude Include="Module.h" />
     <ClInclude Include="ModuleAudio.h" />
     <ClInclude Include="ModuleCollision.h" />
+    <ClInclude Include="ModuleFonts.h" />
+    <ClInclude Include="ModulePowerUp.h" />
+    <ClInclude Include="ModuleSceneCongrats.h" />
+    <ClInclude Include="ModuleSceneScore.h" />
+    <ClInclude Include="ModuleSceneStage1.h" />
+    <ClInclude Include="ModuleEnemies.h" />
+    <ClInclude Include="ModuleFadeToBlack.h" />
     <ClInclude Include="ModuleInput.h" />
+    <ClInclude Include="ModulePlayer.h" />
     <ClInclude Include="ModuleParticles.h" />
     <ClInclude Include="ModuleRender.h" />
+    <ClInclude Include="ModuleSceneChoosePlayer.h" />
+    <ClInclude Include="ModuleSceneMainMenu.h" />
+    <ClInclude Include="ModuleSceneStage4.h" />
     <ClInclude Include="ModuleTextures.h" />
-    <ClInclude Include="Enemy.h">
-      <Filter>Enemies</Filter>
-    </ClInclude>
-    <ClInclude Include="Enemy_Big_Eye.h">
-      <Filter>Enemies</Filter>
-    </ClInclude>
-    <ClInclude Include="Enemy_Bouncer.h">
-      <Filter>Enemies</Filter>
-    </ClInclude>
-    <ClInclude Include="Enemy_BrownWorm.h">
-      <Filter>Enemies</Filter>
-    </ClInclude>
-    <ClInclude Include="Enemy_LittleShrimp.h">
-      <Filter>Enemies</Filter>
-    </ClInclude>
-    <ClInclude Include="Enemy_Nemona.h">
-      <Filter>Enemies</Filter>
-    </ClInclude>
-    <ClInclude Include="Enemy_PowerupShip.h">
-      <Filter>Enemies</Filter>
-    </ClInclude>
-    <ClInclude Include="Enemy_Yellow_Ball.h">
-      <Filter>Enemies</Filter>
-    </ClInclude>
-    <ClInclude Include="Globals.h">
-      <Filter>Globals</Filter>
-    </ClInclude>
-    <ClInclude Include="p2Point.h">
-      <Filter>Globals</Filter>
-    </ClInclude>
-    <ClInclude Include="Path.h">
-      <Filter>Globals</Filter>
-    </ClInclude>
-    <ClInclude Include="ModuleWindow.h">
-      <Filter>Globals</Filter>
-    </ClInclude>
-    <ClInclude Include="ModuleEnemies.h">
-      <Filter>Enemies</Filter>
-    </ClInclude>
-    <ClInclude Include="ModuleSceneChoosePlayer.h">
-      <Filter>Scenes</Filter>
-    </ClInclude>
-    <ClInclude Include="ModuleSceneCongrats.h">
-      <Filter>Scenes</Filter>
-    </ClInclude>
-    <ClInclude Include="ModuleSceneMainMenu.h">
-      <Filter>Scenes</Filter>
-    </ClInclude>
-    <ClInclude Include="ModuleSceneStage1.h">
-      <Filter>Scenes</Filter>
-    </ClInclude>
-    <ClInclude Include="ModulePlayer.h">
-      <Filter>Player</Filter>
-    </ClInclude>
-    <ClInclude Include="ModulePowerUp.h">
-      <Filter>Player</Filter>
-    </ClInclude>
-    <ClInclude Include="ModuleTentacles.h">
-      <Filter>Player</Filter>
-    </ClInclude>
-    <ClInclude Include="ModuleFadeToBlack.h">
-      <Filter>Scenes</Filter>
-    </ClInclude>
-    <ClInclude Include="ModuleFonts.h">
-      <Filter>Scenes</Filter>
-    </ClInclude>
-    <ClInclude Include="MemLeaks.h">
-      <Filter>Globals</Filter>
-    </ClInclude>
-    <ClInclude Include="Animation.h">
-      <Filter>Globals</Filter>
-    </ClInclude>
-    <ClInclude Include="ModuleSceneTest.h">
-      <Filter>Scenes</Filter>
-    </ClInclude>
-    <ClInclude Include="Enemy_Blue_Mouth.h">
-      <Filter>Enemies</Filter>
-    </ClInclude>
-    <ClInclude Include="ModuleSceneStage4.h">
-      <Filter>Scenes</Filter>
-    </ClInclude>
-    <ClInclude Include="Enemy_Rock.h">
-      <Filter>Enemies</Filter>
-    </ClInclude>
-    <ClInclude Include="Enemy_Worm_Head.h">
-      <Filter>Enemies</Filter>
-    </ClInclude>
-    <ClInclude Include="Enemy_Worm_Body.h">
-      <Filter>Enemies</Filter>
-    </ClInclude>
-    <ClInclude Include="Enemy_Worm_Base.h">
-      <Filter>Enemies</Filter>
-    </ClInclude>
-    <ClInclude Include="Enemy_BossS4.h">
-      <Filter>Enemies</Filter>
-    </ClInclude>
-    <ClInclude Include="Enemy_BossS4Arm.h">
-      <Filter>Enemies</Filter>
-    </ClInclude>
-    <ClInclude Include="Enemy_BossS4Disp.h">
-      <Filter>Enemies</Filter>
-    </ClInclude>
-    <ClInclude Include="Enemy_BossS4Face.h">
-      <Filter>Enemies</Filter>
-    </ClInclude>
-    <ClInclude Include="Enemy_BossS4Heart.h">
-      <Filter>Enemies</Filter>
-    </ClInclude>
-    <ClInclude Include="Enemy_BossS4Tenta.h">
-      <Filter>Enemies</Filter>
-    </ClInclude>
-    <ClInclude Include="ModuleSceneScore.h">
-      <Filter>Scenes</Filter>
-    <ClInclude Include="Enemy_Blue_Ball.h">
-      <Filter>Enemies</Filter>
-    </ClInclude>
-    <ClInclude Include="Enemy_BlueSentinel.h">
-      <Filter>Enemies</Filter>
-    </ClInclude>
-  </ItemGroup>
-  <ItemGroup>
-    <Filter Include="Enemies">
-      <UniqueIdentifier>{a26db971-26ca-4913-b093-5c3710e57376}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Globals">
-      <UniqueIdentifier>{688c9c4a-f5e6-43d0-92fc-42262b81533c}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Scenes">
-      <UniqueIdentifier>{9fd71160-237b-4595-8b12-bf76ee974064}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Player">
-      <UniqueIdentifier>{de05cc41-3ea2-4f30-8321-7016b4d91055}</UniqueIdentifier>
-    </Filter>
+    <ClInclude Include="ModuleWindow.h" />
+    <ClInclude Include="p2Point.h" />
+    <ClInclude Include="Path.h" />
+    <ClInclude Include="ModuleTentacles.h" />
+    <ClInclude Include="ModuleSceneTest.h" />
+    <ClInclude Include="Enemy_Blue_Ball2.h" />
   </ItemGroup>
 </Project>
