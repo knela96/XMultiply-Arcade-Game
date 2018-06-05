@@ -157,12 +157,14 @@ update_status ModuleSceneScore::Update()
 		}
 	}
 
+	App->player->score = 0;
+
 	App->font->BlitText(120, 100, font_gameover1, "final score");
 	
 	sprintf_s(App->player->score_text, 10, "%7d", App->player->score);
+
 	App->font->BlitText(120, 150, font_gameover1 , App->player->score_text);
 
-	App->player->score = 0;
 
 	// TODO 2: make so pressing SPACE the KEN stage is loaded
 	if (App->input->keyboard[SDL_SCANCODE_RETURN] == 1 || App->input->controller[START] == KEY_STATE::KEY_DOWN)
