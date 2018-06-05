@@ -31,6 +31,9 @@ Enemy_PowerupShip::Enemy_PowerupShip(int x, int y, uint PU) : Enemy(x, y)
 		break;
 	case 3:
 		p= App->powerup->AddPowerUp(App->powerup->speed_powerup, position.x + 2, position.y + 10, COLLIDER_POWERUP);
+		break;
+	case 4:
+		p = App->powerup->AddPowerUp(App->powerup->YellowShells, position.x + 2, position.y + 10, COLLIDER_POWERUP);
 	}
 }
 
