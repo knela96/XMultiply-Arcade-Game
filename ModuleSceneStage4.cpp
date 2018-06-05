@@ -38,6 +38,7 @@ ModuleSceneStage4::ModuleSceneStage4()
 	background.w = 4961;
 	background.h = 513;
 
+
 }
 
 
@@ -66,6 +67,7 @@ bool ModuleSceneStage4::Start()
 	clearstage_fx = false;
 
 
+
 	//App->player->enable_movement = true;
 	App->tentacles->Enable();
 	App->player->Enable();
@@ -74,6 +76,7 @@ bool ModuleSceneStage4::Start()
 	App->collision->Enable();
 	App->powerup->Enable();
 	App->font->Enable();
+	App->player->AddTentacles();
 
 	graphics = App->textures->Load("Assets/Tilemap4.1.png");
 	font_gameover = App->font->Load("Assets/Sprites/UI/fonts.2.png", "0123456789·' ºººººººººººººabcdefghijklmnopqrstuvwxyz", 2);
@@ -141,6 +144,7 @@ bool ModuleSceneStage4::Start()
 	App->audio->PlayMusic(music);
 
 	App->player->godmode = true;
+	App->player->powerup[ORB] = true;
 
 	AddEnemies();//Add Enemies
 
