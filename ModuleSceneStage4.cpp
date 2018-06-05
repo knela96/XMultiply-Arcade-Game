@@ -62,7 +62,7 @@ bool ModuleSceneStage4::Start()
 	start_time = 0;
 	index1 = 0;
 	index2 = 0;
-	ground_bottom_y = 70;
+	ground_bottom_y = 75;
 	ground_top_y = -70;
 	clearstage_fx = false;
 	moveT = false;
@@ -204,9 +204,47 @@ update_status ModuleSceneStage4::Update()
 	App->render->Blit(graphics, 0, ground_bottom_y, &ground_bottom);
 	App->render->Blit(hud, 0, 224, NULL, 0.0f, false);
 
+	if (App->render->camera.x == 2350) {
+		position = -50;
+		up = false;
+		moveT = true;
+	}
+	if (App->render->camera.x == 2420) {
+		position = -90;
+		up = true;
+		moveT = true;
+	}
+
+	if (App->render->camera.x == 2700) {
+		position = 30;
+		up = true;
+		moveB = true;
+	}
+	if (App->render->camera.x == 2790) {
+		position = 75;
+		up = false;
+		moveB = true;
+	}
+
+	if (App->render->camera.x == 3520) {
+		position = 30;
+		up = true;
+		moveB = true;
+	}
+	if (App->render->camera.x == 3600) {
+		position = 75;
+		up = false;
+		moveB = true;
+	}
+
+
 
 	if (moveT) {
 		moveTop(up, position);
+	}
+
+	if (moveB) {
+		moveBot(up, position);
 	}
 
 	//colliders Update
