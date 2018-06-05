@@ -456,7 +456,7 @@ void ModuleEnemies::SpawnEnemy(const EnemyInfo& info)
 			enemies[i]->type = ENEMY_TYPES::BLUE_BALL;
 			break;
 		case ENEMY_TYPES::BLUE_BALL2:
-			enemies[i] = new Enemy_Blue_Ball(info.x, info.y);
+			enemies[i] = new Enemy_Blue_Ball2(info.x, info.y);
 			enemies[i]->type = ENEMY_TYPES::BLUE_BALL2;
 			break;
 		case ENEMY_TYPES::ROCK:
