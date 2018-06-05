@@ -19,7 +19,7 @@ Enemy_BossS4Heart::Enemy_BossS4Heart(int x, int y) : Enemy(x, y)
 
 	fly.speed = 0.1f;
 
-	
+
 	animation = &fly;
 
 	path->PushBack({ 0 , 0 }, 2, &fly);

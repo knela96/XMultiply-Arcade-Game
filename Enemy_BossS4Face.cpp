@@ -37,7 +37,7 @@ Enemy_BossS4Face::Enemy_BossS4Face(int x, int y) : Enemy(x, y)
 
 	up = false;
 
-	collider = App->collision->AddCollider({ 5, 5, 56, 50 }, COLLIDER_TYPE::COLLIDER_BOSS, (Module*)App->enemies);
+	collider = App->collision->AddCollider({ 5, 5, 56, 50 }, COLLIDER_TYPE::COLLIDER_ENEMY, (Module*)App->enemies);
 
 	original_position.x = x;
 	original_position.y = y;
@@ -53,8 +53,8 @@ void Enemy_BossS4Face::Move()
 			if (SDL_GetTicks() - shoot_delay >= 100 && SDL_GetTicks() - move_delay <= 400)
 			{
 				shoot_delay = SDL_GetTicks();
-				App->particles->AddParticle(App->particles->shrimp_shoot, original_position.x, original_position.y + fly.frames->h / 2, COLLIDER_BOSS, { -2,-0.5f });
-				App->particles->AddParticle(App->particles->shrimp_shoot, original_position.x, original_position.y + fly.frames->h / 2, COLLIDER_BOSS, { -2,0.5f });
+				App->particles->AddParticle(App->particles->shrimp_shoot, original_position.x, original_position.y + fly.frames->h / 2, COLLIDER_ENEMY_SHOT, { -2,-0.5f });
+				App->particles->AddParticle(App->particles->shrimp_shoot, original_position.x, original_position.y + fly.frames->h / 2, COLLIDER_ENEMY_SHOT, { -2,0.5f });
 			}
 			if(SDL_GetTicks() - move_delay > 400){
 				if (original_position.y > 50 && up)
