@@ -9,6 +9,8 @@
 
 Enemy_Blue_Mouth::Enemy_Blue_Mouth(int x, int y) : Enemy(x, y)
 {
+	score = 400;
+
 	fly.PushBack({ 5,5,56,50 });
 	fly.PushBack({ 5,52,56,50 });
 	fly.PushBack({ 66,5,56,50 });

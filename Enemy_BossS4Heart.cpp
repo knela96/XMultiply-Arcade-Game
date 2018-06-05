@@ -10,7 +10,8 @@
 
 Enemy_BossS4Heart::Enemy_BossS4Heart(int x, int y) : Enemy(x, y)
 {
-	
+	score = 300000;
+
 	fly.PushBack({ 220,50,50,60 });
 	fly.PushBack({ 275,50,50,60 });
 	fly.PushBack({ 160,50,60,60 });

@@ -6,6 +6,7 @@
 
 Enemy_BlueSentinel::Enemy_BlueSentinel(int x, int y) : Enemy(x, y)
 {
+	score = 5000;
 	fly.PushBack({ 2 ,3 ,29,30 });
 	fly.speed = 0.2f;
 
