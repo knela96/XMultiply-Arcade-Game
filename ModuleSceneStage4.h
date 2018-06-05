@@ -56,8 +56,8 @@ public:
 	Animation people;
 	Mix_Music* music;
 	Mix_Music* clear_stage;
-	Uint32 start_time;
-	Uint32 aux_time;
+	Uint32 start_time = -1;
+	Uint32 aux_time = -1;
 	bool boss_phase2 = false;
 	bool move_head = false;
 	int current_frame = 0;
@@ -78,7 +78,8 @@ public:
 
 	int ground_top_y;
 	int ground_bottom_y;
-
+	Uint32 boss_time;
+	Uint32 fight_time;
 	Collider* CollidersTop1;
 	Collider* CollidersTop2;
 	Collider* CollidersTop3;

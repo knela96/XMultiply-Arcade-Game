@@ -58,7 +58,7 @@ Enemy_BossS4Tenta::Enemy_BossS4Tenta(int x, int y) : Enemy(x, y)
 void Enemy_BossS4Tenta::Move()
 {
 	if (App->scene_stage4->boss_phase2 == false ) {
-		if (SDL_GetTicks() - App->scene_stage4->aux_time > 5000 && App->scene_stage4->move_head != true) {
+		if (SDL_GetTicks() - App->scene_stage4->fight_time > 5000 && !App->scene_stage4->right && App->scene_stage4->move_head != true) {
 			spawn_head.Reset();
 			animation = &spawn_head;
 			animation->setFrame(7 - App->scene_stage4->current_frame);
