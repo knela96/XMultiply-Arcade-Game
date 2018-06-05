@@ -80,9 +80,9 @@ bool ModuleSceneStage4::Start()
 	App->font->Enable();
 	App->player->AddTentacles();
 
-	graphics = App->textures->Load("Assets/Tilemap4.1.png");
+	graphics = App->textures->Load("Assets/Sprites/Stage4/Tilemap/Tilemap4.1.png");
 	font_gameover = App->font->Load("Assets/Sprites/UI/fonts.2.png", "0123456789·' ºººººººººººººabcdefghijklmnopqrstuvwxyz", 2);
-	back = App->textures->Load("Assets/ForthLvlMap.png");
+	back = App->textures->Load("Assets/Sprites/Stage4/Tilemap/ForthLvlMap.png");
 
 	//colliders
 
@@ -138,7 +138,7 @@ bool ModuleSceneStage4::Start()
 	ColliderBot21 = App->collision->AddCollider({ 4046, ground_bottom_y + 71, 48, 111 }, COLLIDER_WALL, this);
 	ColliderBot22 = App->collision->AddCollider({ 4238, ground_bottom_y + 67, 300, 111 }, COLLIDER_WALL, this);
 
-	hud = App->textures->Load("Assets/UI.png");
+	hud = App->textures->Load("Assets/Sprites/UI/UI.png");
 
 	music = App->audio->LoadM("Assets/Audio Files/Music in OGG/10_Illegal_Illusion_Stage_4_.ogg");
 	clear_stage = App->audio->LoadM("Assets/Audio Files/Music in OGG/06_Stage_Clear.ogg");

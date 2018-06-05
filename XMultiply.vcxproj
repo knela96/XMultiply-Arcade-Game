@@ -100,6 +100,7 @@
     <ClInclude Include="ModuleFonts.h" />
     <ClInclude Include="ModulePowerUp.h" />
     <ClInclude Include="ModuleSceneCongrats.h" />
+    <ClInclude Include="ModuleSceneScore.h" />
     <ClInclude Include="ModuleSceneStage1.h" />
     <ClInclude Include="ModuleEnemies.h" />
     <ClInclude Include="ModuleFadeToBlack.h" />
@@ -145,6 +146,7 @@
     <ClCompile Include="ModuleFonts.cpp" />
     <ClCompile Include="ModulePowerUp.cpp" />
     <ClCompile Include="ModuleSceneCongrats.cpp" />
+    <ClCompile Include="ModuleSceneScore.cpp" />
     <ClCompile Include="ModuleSceneStage1.cpp" />
     <ClCompile Include="ModuleEnemies.cpp" />
     <ClCompile Include="ModuleFadeToBlack.cpp" />

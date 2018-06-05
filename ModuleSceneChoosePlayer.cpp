@@ -25,8 +25,8 @@ bool ModuleSceneChoosePlayer::Start()
 {
 	LOG("Loading background assets");
 	bool ret = true;
-	player1 = App->textures->Load("Assets/1Player.png");
-	player2 = App->textures->Load("Assets/2Players.png");
+	player1 = App->textures->Load("Assets/Sprites/UI/1Player.png");
+	player2 = App->textures->Load("Assets/Sprites/UI/2Players.png");
 	graphics = player1;
 	return ret;
 }
@@ -66,7 +66,7 @@ update_status ModuleSceneChoosePlayer::Update()
 	// TODO 2: make so pressing SPACE the KEN stage is loaded
 	if (App->input->keyboard[SDL_SCANCODE_RETURN] == 1 || App->input->controller[START] == KEY_STATE::KEY_DOWN)
 	{
-		App->fade->FadeToBlack(App->scene_choosePlayer, App->scene_stage1, 1);
+		App->fade->FadeToBlack(App->scene_choosePlayer, App->scene_stage4, 1);
 	}
 	return UPDATE_CONTINUE;
 }

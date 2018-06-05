@@ -17,6 +17,7 @@
 #include "ModuleTentacles.h"
 #include "ModuleFonts.h"
 #include "ModulePowerUp.h"
+#include "ModuleSceneScore.h"
 #include "ModuleSceneTest.h"
 
 Application::Application()
@@ -33,6 +34,7 @@ Application::Application()
 	modules[i++] = scene_stage1 = new ModuleSceneStage1();
 	modules[i++] = scene_stage4 = new ModuleSceneStage4();
 	modules[i++] = scene_congrats = new ModuleSceneCongrats();
+	modules[i++] = scene_score = new ModuleSceneScore();
 	modules[i++] = scene_test = new ModuleSceneTest();
 	modules[i++] = particles = new ModuleParticles();
 	modules[i++] = player = new ModulePlayer();
@@ -63,6 +65,7 @@ bool Application::Init()
 	scene_stage4->Disable();
 	scene_congrats->Disable();
 	scene_test->Disable();
+	scene_MainMenu->Disable();
 
 	tentacles->Disable();
 	player->Disable();

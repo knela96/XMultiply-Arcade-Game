@@ -108,6 +108,9 @@
     <ClCompile Include="Enemy_BossS4Tenta.cpp">
       <Filter>Enemies</Filter>
     </ClCompile>
+    <ClCompile Include="ModuleSceneScore.cpp">
+      <Filter>Scenes</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Application.h" />
@@ -228,6 +231,9 @@
     </ClInclude>
     <ClInclude Include="Enemy_BossS4Tenta.h">
       <Filter>Enemies</Filter>
+    </ClInclude>
+    <ClInclude Include="ModuleSceneScore.h">
+      <Filter>Scenes</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
