@@ -207,7 +207,12 @@ update_status ModulePlayer::Update()
 		if (App->input->keyboard[SDL_SCANCODE_SPACE] == KEY_STATE::KEY_DOWN || App->input->controller[BUTTON_A] == KEY_STATE::KEY_DOWN) {
 
 			if (powerup[BASIC_SHOOT] == true) {
-				//App->particles->AddParticle(App->particles->basic_shoot, position.x + 40, position.y, COLLIDER_PLAYER_SHOT);
+				App->particles->AddParticle(App->particles->basic_shoot, position.x + 40, position.y, COLLIDER_PLAYER_SHOT);
+				App->tentacles->ShootLaser();
+				App->audio->PlaySound(App->particles->basic_shoot.fx);
+			}
+
+			if (powerup[MISSILE_SHOOT] == true) {
 				if (App->particles->active_missiles == 0) {
 					App->particles->active_missiles = 4;
 					App->particles->AddParticle(App->particles->missile, position.x + 10, position.y - 20, COLLIDER_PLAYER_SHOT);
@@ -215,8 +220,6 @@ update_status ModulePlayer::Update()
 					App->particles->AddParticle(App->particles->missile, position.x, position.y + 10, COLLIDER_PLAYER_SHOT);
 					App->particles->AddParticle(App->particles->missile, position.x + 10, position.y + 20, COLLIDER_PLAYER_SHOT);
 				}
-				App->tentacles->ShootLaser();
-				App->audio->PlaySound(App->particles->basic_shoot.fx);
 			}
 
 			if (SDL_GetTicks() - start_time >= 1000) {

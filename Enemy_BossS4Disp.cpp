@@ -76,13 +76,13 @@ Enemy_BossS4Disp::Enemy_BossS4Disp(int x, int y) : Enemy(x, y)
 
 	// Phase 3 Boss shoot
 
-		fly.PushBack({ 50,222,46,40 });
+	//	fly.PushBack({ 50,222,46,40 });
 
-		fly.PushBack({ 100,222,36,42 });
+	//	fly.PushBack({ 100,222,36,42 });
 
-		fly.PushBack({ 2,222,46,46 });
+	//	fly.PushBack({ 2,222,46,46 });
 
-		fly.PushBack({ 135,222,35,42 });
+	//	fly.PushBack({ 135,222,35,42 });
 
 
 
@@ -92,6 +92,11 @@ Enemy_BossS4Disp::Enemy_BossS4Disp(int x, int y) : Enemy(x, y)
 	animation = &fly;
 
 	path->PushBack({ 0 , 0 }, 2, &fly);
+	/*path->PushBack({ 1 , 2 }, 2, &fly);
+	path->PushBack({ 1.8 , 3 }, 2, &fly);
+	path->PushBack({ 2.5 , 3.5 }, 2, &fly);
+	path->PushBack({ 4 , 4 }, 2, &fly);*/
+	
 
 	collider = App->collision->AddCollider({ 5, 5, 52, 48 }, COLLIDER_TYPE::COLLIDER_ENEMY, (Module*)App->enemies);
 
@@ -101,18 +106,22 @@ Enemy_BossS4Disp::Enemy_BossS4Disp(int x, int y) : Enemy(x, y)
 
 void Enemy_BossS4Disp::Move()
 {
+	int i = 1;
 	position = original_position + path->GetCurrentPosition(&animation);
 	if (SDL_GetTicks() - shoot_delay >= 2000)
 	{
 		shoot_delay = SDL_GetTicks();
-		App->particles->AddParticle(App->particles->shrimp_shoot, position.x + fly.frames->w / 2.3, position.y + fly.frames->h / 2, COLLIDER_ENEMY, { -2,0 });
+		
+
+	
+		App->particles->AddParticle(App->particles->shrimp_shoot, position.x + fly.frames->w / 2.3, position.y + fly.frames->h / 2, COLLIDER_ENEMY, { -3,-1 });
 		App->particles->AddParticle(App->particles->shrimp_shoot, position.x + fly.frames->w / 2.3, position.y + fly.frames->h / 2, COLLIDER_ENEMY, { -2,-1 });
 		App->particles->AddParticle(App->particles->shrimp_shoot, position.x + fly.frames->w / 2.3, position.y + fly.frames->h / 2, COLLIDER_ENEMY, { -1,-2 });
-		App->particles->AddParticle(App->particles->shrimp_shoot, position.x + fly.frames->w / 2.3, position.y + fly.frames->h / 2, COLLIDER_ENEMY, { 0,-2 });
-		App->particles->AddParticle(App->particles->shrimp_shoot, position.x + fly.frames->w / 2.3, position.y + fly.frames->h / 2, COLLIDER_ENEMY, { 1,-2 });
-		App->particles->AddParticle(App->particles->shrimp_shoot, position.x + fly.frames->w / 2.3, position.y + fly.frames->h / 2, COLLIDER_ENEMY, { 2,-1 });
-		App->particles->AddParticle(App->particles->shrimp_shoot, position.x + fly.frames->w / 2.3, position.y + fly.frames->h / 2, COLLIDER_ENEMY, { 2 ,0 });
-
+		App->particles->AddParticle(App->particles->shrimp_shoot, position.x + fly.frames->w / 2.3, position.y + fly.frames->h / 2, COLLIDER_ENEMY, { -2,0 });
+		App->particles->AddParticle(App->particles->shrimp_shoot, position.x + fly.frames->w / 2.3, position.y + fly.frames->h / 2, COLLIDER_ENEMY, { -1, 2 });
+		App->particles->AddParticle(App->particles->shrimp_shoot, position.x + fly.frames->w / 2.3, position.y + fly.frames->h / 2, COLLIDER_ENEMY, { -2, 1 });
+		App->particles->AddParticle(App->particles->shrimp_shoot, position.x + fly.frames->w / 2.3, position.y + fly.frames->h / 2, COLLIDER_ENEMY, { -3, 1 });
+		
 
 	}
 }

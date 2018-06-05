@@ -18,6 +18,8 @@ Enemy_BrownWorm::Enemy_BrownWorm(int x, int y, bool move_up) : Enemy(x, y)
 	
 	original_position.x = x;
 	original_position.y = y;
+
+	live = 1;
 }
 
 void Enemy_BrownWorm::Move()

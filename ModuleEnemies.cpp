@@ -25,9 +25,10 @@
 #include "Enemy_BossS4Tenta.h"
 #include "ModuleAudio.h"
 #include "ModuleSceneStage1.h"
+#include "SDL/include/SDL_timer.h"
 
 
-#define SPAWN_MARGIN 0
+#define SPAWN_MARGIN 50
 
 ModuleEnemies::ModuleEnemies()
 {
@@ -74,6 +75,7 @@ bool ModuleEnemies::Start()
 	Yellowball_fx = App->audio->LoadS("Assets/Audio Files/SFX in WAV/xmultipl-093.wav");
 	BigEye_fx = App->audio->LoadS("Assets/Audio Files/SFX in WAV/xmultipl-094.wav");
 	Bouncer_fx = App->audio->LoadS("Assets/Audio Files/SFX in WAV/xmultipl-057.wav");
+	hit = App->audio->LoadS("Assets/Audio Files/SFX in WAV/xmultipl-104.wav");
 	return true;
 }
 // Called before quitting
@@ -164,6 +166,74 @@ update_status ModuleEnemies::Update()
 
 	for (uint i = 0; i < MAX_ENEMIES; ++i)
 		if (enemies[i] != nullptr) {
+			SDL_Texture* texture = nullptr;
+			switch (enemies[i]->type) {
+			case BROWN_WORM:
+				texture = sprites[BROWN_WORM];
+				break;
+			case LITTLE_SHRIMP:
+				texture = sprites[LITTLE_SHRIMP];
+				break;
+			case NEMONA_TENTACLE:
+				texture = sprites[NEMONA_TENTACLE];
+				break;
+			case POWERUPSHIP:
+				texture = sprites[POWERUPSHIP];
+				break;
+			case BIG_EYE:
+				texture = sprites[BIG_EYE];
+				break;
+			case BIG_SHRIMP:
+				texture = sprites[BIG_SHRIMP];
+				break;
+			case BOUNCER:
+				texture = sprites[BOUNCER];
+				break;
+			case YELLOW_BALL:
+				texture = sprites[YELLOW_BALL];
+				break;
+			case BLUE_SENTINEL:
+				texture = sprites[BLUE_SENTINEL];
+				break;
+			case BLUE_MOUTH:
+				texture = sprites[BLUE_MOUTH];
+				break;
+			case BOSS1:
+				texture = sprites[BOSS1];
+				break;
+			case BOSSARM:
+				texture = sprites[BOSSARM];
+				break;
+			case BOSSDISP:
+				texture = sprites[BOSSDISP];
+				break;
+			case BOSSTENT:
+				texture = sprites[BOSSTENT];
+				break;
+			case BOSSFACE:
+				texture = sprites[BOSSFACE];
+				break;
+			case BOSSHEART:
+				texture = sprites[BOSSHEART];
+				break;
+			case WORM_BASE:
+				texture = sprites[WORM_BASE];
+				break;
+			case WORM_BODY:
+				texture = sprites[WORM_BODY];
+				break;
+			case WORM_HEAD:
+				texture = sprites[WORM_HEAD];
+				break;
+			}
+
+			if (enemies[i]->hit && (SDL_GetTicks() - enemies[i]->start_time <= 200)) {
+				App->render->changeColor(texture,true);
+			}else{
+				App->render->changeColor(texture,false);
+				enemies[i]->hit = false;
+			}
+
 			switch(enemies[i]->type) {
 			case BROWN_WORM:
 				enemies[i]->Draw(sprites[BROWN_WORM]);
@@ -353,11 +423,6 @@ void ModuleEnemies::SpawnEnemy(const EnemyInfo& info)
 			enemies[i] = new Enemy_BossS4Heart(info.x, info.y);
 			enemies[i]->type = ENEMY_TYPES::BOSSHEART;
 			break;
-
-
-
-		
-		
 		}
 	}
 }
@@ -368,7 +433,14 @@ void ModuleEnemies::OnCollision(Collider* c1, Collider* c2)
 	{
 		if (enemies[i] != nullptr && enemies[i]->GetCollider() == c1 && (c2->type == COLLIDER_PLAYER || c2->type == COLLIDER_PLAYER_SHOT))
 		{
-			switch (enemies[i]->type) {
+			if (enemies[i]->live > 1) {
+				enemies[i]->live--;
+				App->audio->PlaySound(hit);
+				enemies[i]->hit = true;
+				enemies[i]->start_time = SDL_GetTicks();
+			}
+			else {
+				switch (enemies[i]->type) {
 				case ENEMY_TYPES::BROWN_WORM:
 					App->audio->PlaySound(Brownworm_fx);
 					break;
@@ -388,11 +460,12 @@ void ModuleEnemies::OnCollision(Collider* c1, Collider* c2)
 				case ENEMY_TYPES::BOUNCER:
 					App->audio->PlaySound(Bouncer_fx);
 					break;
+				}
+				enemies[i]->OnCollision(c2);
+				delete enemies[i];
+				enemies[i] = nullptr;
+				break;
 			}
-			enemies[i]->OnCollision(c2);
-			delete enemies[i];
-			enemies[i] = nullptr;
-			break;
 		}
 	}
 }

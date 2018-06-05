@@ -46,6 +46,7 @@ enum PARTICLE_TYPE
 	ANEMONA_SHOOT,
 	SHRIMP_SHOOT,
 	MISSILE_SHOOT,
+	MISSILE_EXPLOSION,
 
 };
 
@@ -115,6 +116,7 @@ public:
 	Particle explosion_bullet;
 	Particle explosion_tentacle_bullet;
 	Particle explosion_bomb;
+	Particle explosion_missile;
 	Particle anemona_shoot;
 	Particle shrimp_shoot;
 	//Particle Stage4Boss_shoot;

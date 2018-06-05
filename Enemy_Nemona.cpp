@@ -19,6 +19,8 @@ Enemy_Nemona::Enemy_Nemona(int x, int y) : Enemy(x, y)
 
 	original_position.x = x;
 	original_position.y = y;
+
+	live = 2;
 }
 
 void Enemy_Nemona::Move()

@@ -189,4 +189,18 @@ bool ModuleRender::DrawQuad(const SDL_Rect& rect, Uint8 r, Uint8 g, Uint8 b, Uin
 	return ret;
 }
 
+bool ModuleRender::changeColor(SDL_Texture * texture, bool white)
+{
+	if(white){
+		SDL_SetRenderDrawColor(renderer, 0,0, 0, 0);
+
+		// Fill in the rectangle
+		SDL_SetTextureColorMod(texture, 255, 255, 255);
+		}
+	else
+		SDL_SetTextureColorMod(texture, 255, 255, 255);
+	white = !white;
+	return false;
+}
+
 
