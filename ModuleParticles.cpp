@@ -436,7 +436,7 @@ void ModuleParticles::orderlist() {
 void ModuleParticles::MissilleMovement(Particle *p) {
 
 	if (p->target != nullptr) {
- 		if (p->target->position.x < 0) {
+ 		if (p->target != nullptr) {
   			p->target = nullptr;
 			p->speed.x = 4;
 			p->speed.y = 0;
@@ -470,7 +470,6 @@ void ModuleParticles::MissilleMovement(Particle *p) {
 		p->speed.y = 0;
 		p->angle = 0.0f;
 	}
-	
 }
 
 

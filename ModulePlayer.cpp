@@ -213,7 +213,6 @@ update_status ModulePlayer::Update()
 				App->tentacles->ShootLaser();
 				App->audio->PlaySound(App->particles->basic_shoot.fx);
 			}
-			powerup[MISSILE_SHOOT] = true;
 			if (powerup[MISSILE_SHOOT] == true) {
 				if (App->particles->active_missiles == 0) {
 					App->particles->active_missiles = 4;
