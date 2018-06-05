@@ -57,8 +57,6 @@ Enemy_BossS4Tenta::Enemy_BossS4Tenta(int x, int y) : Enemy(x, y)
 
 void Enemy_BossS4Tenta::Move()
 {
-	live = App->scene_stage4->lifes_Boss;
-
 	if (App->scene_stage4->boss_phase2 == false ) {
 		if (SDL_GetTicks() - App->scene_stage4->aux_time > 5000 && App->scene_stage4->move_head != true) {
 			spawn_head.Reset();

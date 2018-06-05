@@ -66,7 +66,6 @@ Enemy_BossS4Disp::Enemy_BossS4Disp(int x, int y) : Enemy(x, y)
 
 void Enemy_BossS4Disp::Move()
 {
-	live = App->scene_stage4->lifes_Boss;
 	if (App->scene_stage4->boss_phase2) {
 		switch (App->scene_stage4->current_frame) {
 		case 0:
