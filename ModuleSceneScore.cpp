@@ -33,6 +33,13 @@ bool ModuleSceneScore::Start()
 	font_gameover1 = App->font->Load("Assets/Sprites/UI/fonts.1.png", "0123456789·' ºººººººººººººabcdefghijklmnopqrstuvwxyz", 2);
 	font_gameover2 = App->font->Load("Assets/Sprites/UI/fonts.2.png", "0123456789·' ºººººººººººººabcdefghijklmnopqrstuvwxyz", 2);
 
+	
+	sprintf_s(App->player->score_text, 10, "%7d", App->player->score);
+	App->font->BlitText(120, 150, App->player->font_score, App->player->score_text);
+
+	App->player->score = 0;
+
+
 	/*ranking[0] = ranking_names[0];
 	ranking[1] = ranking_names[1];
 	ranking[2] = ranking_names[2];
@@ -150,7 +157,12 @@ update_status ModuleSceneScore::Update()
 		}
 	}
 
+	App->font->BlitText(120, 100, font_gameover1, "final score");
+	
+	sprintf_s(App->player->score_text, 10, "%7d", App->player->score);
+	App->font->BlitText(120, 150, font_gameover1 , App->player->score_text);
 
+	App->player->score = 0;
 
 	// TODO 2: make so pressing SPACE the KEN stage is loaded
 	if (App->input->keyboard[SDL_SCANCODE_RETURN] == 1 || App->input->controller[START] == KEY_STATE::KEY_DOWN)
