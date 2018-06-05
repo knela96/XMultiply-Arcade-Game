@@ -24,6 +24,9 @@ public:
 	update_status Update();
 	void disableModules();
 	void enableModules();
+	void moveTop(bool up, int i);
+	void moveBot(bool up, int i);
+	
 
 public:
 	uint index1 = 0;
@@ -43,6 +46,10 @@ public:
 	bool cleaned = false;
 	bool show = false;
 	bool shipdone;
+	bool moveT;
+	bool moveB;
+	bool up;
+	int position;
 
 	Animation flag;
 	Animation people;
