@@ -91,11 +91,7 @@ Enemy_BossS4Disp::Enemy_BossS4Disp(int x, int y) : Enemy(x, y)
 
 	animation = &fly;
 
-	path->PushBack({ 0 , 0 }, 2, &fly);
-	/*path->PushBack({ 1 , 2 }, 2, &fly);
-	path->PushBack({ 1.8 , 3 }, 2, &fly);
-	path->PushBack({ 2.5 , 3.5 }, 2, &fly);
-	path->PushBack({ 4 , 4 }, 2, &fly);*/
+	path->PushBack({ 0 , 0 }, 1, &fly);
 	
 
 	collider = App->collision->AddCollider({ 5, 5, 52, 48 }, COLLIDER_TYPE::COLLIDER_ENEMY, (Module*)App->enemies);
