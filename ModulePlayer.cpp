@@ -138,7 +138,10 @@ update_status ModulePlayer::Update()
 		}
 	}
 
-	
+	if (App->input->keyboard[SDL_SCANCODE_F6]) {
+		position.x = 4600;
+		App->render->camera.x = 4600;
+	}
 	if (App->input->keyboard[SDL_SCANCODE_F5] == KEY_DOWN)
 	{
 		godmode = !godmode;
@@ -280,7 +283,7 @@ update_status ModulePlayer::Update()
 				App->font->BlitText(120, 100, font_gameover, "game over");
 			}
 			else {
-				App->fade->FadeToBlack((Module*)App->scene_stage1, (Module*)App->scene_MainMenu);
+				App->fade->FadeToBlack((Module*)App->scene_stage4, (Module*)App->scene_MainMenu);
 			}
 		}
 		else {

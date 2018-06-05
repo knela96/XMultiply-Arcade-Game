@@ -11,9 +11,10 @@ Enemy_Rock::Enemy_Rock(int x, int y) : Enemy(x, y)
 
 	animation = &fly;
 
-	path->PushBack({ 0 , -1 }, 2, &fly);
+	path->PushBack({ 0 , -1 }, 89, &fly);
+	path->PushBack({ 0 , 1 }, 89, &fly);
 
-	collider = App->collision->AddCollider({ 0, 0, 48, 48 }, COLLIDER_TYPE::COLLIDER_WALL, (Module*)App->enemies);
+	collider = App->collision->AddCollider({ 0, 0, 48, 48 }, COLLIDER_TYPE::COLLIDER_WALL, (Module*)App->scene_stage4);
 
 	original_position.x = x;
 	original_position.y = y;

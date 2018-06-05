@@ -39,6 +39,7 @@ public:
 	SDL_Rect ground_top;
 	SDL_Rect ground_bottom;
 	SDL_Rect ship;
+	SDL_Rect lifes;
 	SDL_Rect background;
 
 	bool resetmap = false;
@@ -57,6 +58,9 @@ public:
 	Mix_Music* clear_stage;
 	Uint32 start_time;
 	Uint32 aux_time;
+	bool boss_phase2 = false;
+	bool move_head = false;
+	int current_frame = 0;
 	int rgb = 255;
 
 	SDL_Rect screen;

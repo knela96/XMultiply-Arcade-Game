@@ -246,7 +246,7 @@ bool ModuleParticles::Start()
 	Stage4Boss_shoot.anim.loop = true;
 	Stage4Boss_shoot.anim.speed = 1;
 	Stage4Boss_shoot.type = STAGE4BOSS_SHOOTN;
-	Stage4Boss_shoot.life = 2000;
+	Stage4Boss_shoot.life = 4000;
 	
 
 	return ret;

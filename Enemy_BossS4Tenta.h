@@ -11,6 +11,7 @@ private:
 	bool going_up = true;
 	int original_y = 0;
 	Animation fly;
+	Animation spawn_head;
 	Uint32 shoot_delay = 0;
 
 

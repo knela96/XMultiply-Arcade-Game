@@ -2,6 +2,7 @@
 #include "Enemy_BossS4Disp.h"
 #include "ModuleCollision.h"
 #include "ModuleParticles.h"
+#include "ModuleSceneStage4.h"
 #include "SDL/include/SDL_timer.h"
 
 
@@ -18,8 +19,7 @@ Enemy_BossS4Disp::Enemy_BossS4Disp(int x, int y) : Enemy(x, y)
 	fly.PushBack({ 48,13,46,40 });
 
 	fly.PushBack({ 133,13,46,40 });
-	
-	
+
 	
 	//2 phase
 	fly.PushBack({ 52,52,46,42 });
@@ -50,82 +50,88 @@ Enemy_BossS4Disp::Enemy_BossS4Disp(int x, int y) : Enemy(x, y)
 
 	fly.PushBack({ 135,52,35,42 });
 
+	fly.speed = 3.0f;
 
-	//Particle pushback
-
-	//Phase 1 BOSS SHOOT 
-	
-	//	fly.PushBack({ 50,135,46,40 });
-
-	//	fly.PushBack({ 101,135,38,42 });
-
-	//	fly.PushBack({ 2,135,46,46 });
-
-	//	fly.PushBack({ 136,135,36,42 });
-
-	
-	// Phase 2 Boss shoot to repeat
-
-	//	fly.PushBack({ 50,178,46,40 });
-
-	//	fly.PushBack({ 100,178,37,42 });
-
-	//	fly.PushBack({ 2,178,46,46 });
-
-	//	fly.PushBack({ 135,178,36,42 });
-
-	// Phase 3 Boss shoot
-
-	//	fly.PushBack({ 50,222,46,40 });
-
-	//	fly.PushBack({ 100,222,36,42 });
-
-	//	fly.PushBack({ 2,222,46,46 });
-
-	//	fly.PushBack({ 135,222,35,42 });
-
-	// Phase 2 Boss shoot to repeat
-
-	//	fly.PushBack({ 50,178,46,40 });
-
-	//	fly.PushBack({ 100,178,37,42 });
-
-	//	fly.PushBack({ 2,178,46,46 });
-
-	//	fly.PushBack({ 135,178,36,42 });
-
-
-	fly.speed = 0.08f;
-
+		
 	animation = &fly;
 
 	path->PushBack({ 0 , 0 }, 1, &fly);
+
 	
 
-	collider = App->collision->AddCollider({ 5, 5, 52, 48 }, COLLIDER_TYPE::COLLIDER_ENEMY, (Module*)App->enemies);
+	collider = App->collision->AddCollider({ 10, 10, 100, 28 }, COLLIDER_TYPE::COLLIDER_WALL, (Module*)App->scene_stage4);
 
-	original_position.x = x;
-	original_position.y = y;
+	original_position.x = 0;
+	original_position.y = 0;
 }
 
 void Enemy_BossS4Disp::Move()
 {
-	int i = 1;
-	position = original_position + path->GetCurrentPosition(&animation);
-	if (SDL_GetTicks() - shoot_delay >= 2000)
-	{
-		shoot_delay = SDL_GetTicks();
-		
+	if (App->scene_stage4->boss_phase2) {
+		switch (App->scene_stage4->current_frame) {
+		case 0:
+			original_position = { 4838, 117 };
+			break;
+		case 1:
+			original_position = { 4835, 105 };
+			break;
+		case 2:
+			original_position = { 4835, 95 };
+			break;
+		case 3:
+			original_position = { 4835, 83 };
+			break;
+		case 4:
+			original_position = { 4835, 75 };
+			break;
+		case 5:
+			original_position = { 4840, 70 };
+			break;
+		case 6:
+			original_position = { 4850, 45 };
+			break;
+		case 7:
+			original_position = { 4880, 30 };
+			break;
+		default:
+			original_position = { 0, 0 };
+			break;
+		}
 
-	
-		App->particles->AddParticle(App->particles->Stage4Boss_shoot, position.x + fly.frames->w / 2.3, position.y + fly.frames->h / 2, COLLIDER_ENEMY_SHOT, { -1,-3 });
-		App->particles->AddParticle(App->particles->Stage4Boss_shoot, position.x + fly.frames->w / 2.3, position.y + fly.frames->h / 2, COLLIDER_ENEMY_SHOT, { -1.7f,-2 });
-		App->particles->AddParticle(App->particles->Stage4Boss_shoot, position.x + fly.frames->w / 2.3, position.y + fly.frames->h / 2, COLLIDER_ENEMY_SHOT, { -2.1f,-1 });
-		App->particles->AddParticle(App->particles->Stage4Boss_shoot, position.x + fly.frames->w / 2.3, position.y + fly.frames->h / 2, COLLIDER_ENEMY_SHOT, { -2.5f,0 });
-		App->particles->AddParticle(App->particles->Stage4Boss_shoot, position.x + fly.frames->w / 2.3, position.y + fly.frames->h / 2, COLLIDER_ENEMY_SHOT, { -1.7f, 2 });
-		App->particles->AddParticle(App->particles->Stage4Boss_shoot, position.x + fly.frames->w / 2.3, position.y + fly.frames->h / 2, COLLIDER_ENEMY_SHOT, { -2.1f, 1 });
-		App->particles->AddParticle(App->particles->Stage4Boss_shoot, position.x + fly.frames->w / 2.3, position.y + fly.frames->h / 2, COLLIDER_ENEMY_SHOT, { -1, 3 });
-		
-
+		position = original_position + path->GetCurrentPosition(&animation);
 	}
+	else {
+		int height = SCREEN_HEIGHT / 4;
+		iPoint pos = App->player->position;
+		if (pos.y > 0 && pos.y < height * 1) {
+			original_position = { 4835, 82 };
+		}
+		else if (pos.y > height * 1 && pos.y < height * 2) {
+			original_position = { 4832, 95 };
+		}
+		else if (pos.y > height * 2 && pos.y < height * 3) {
+			original_position = { 4835, 105 };
+		}
+		else if (pos.y > height * 3 && pos.y < height * 4) {
+			original_position = { 4838, 119 };
+		}
+		double angle = atan2(pos.y - original_position.y, pos.x - original_position.x);
+		if (angle < PI / 2)
+			angle = 5 / 3 * PI;
+
+
+		position = original_position + path->GetCurrentPosition(&animation);
+
+
+		if (SDL_GetTicks() - shoot_delay >= 2000)
+		{
+			shoot_delay = SDL_GetTicks();
+			App->particles->AddParticle(App->particles->Stage4Boss_shoot, original_position.x, original_position.y, COLLIDER_WALL, { (float)(3 * cos(angle)),(float)(5 * sin(angle + 0.52)) });
+			App->particles->AddParticle(App->particles->Stage4Boss_shoot, original_position.x, original_position.y, COLLIDER_WALL, { (float)(3 * cos(angle)),(float)(5 * sin(angle)) });
+			App->particles->AddParticle(App->particles->Stage4Boss_shoot, original_position.x, original_position.y, COLLIDER_WALL, { (float)(3 * cos(angle)),(float)(5 * sin(angle - 0.52)) });
+
+
+		}
+	}
+	
 }
