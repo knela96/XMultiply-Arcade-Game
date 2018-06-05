@@ -187,6 +187,7 @@ bool ModuleSceneStage4::CleanUp()
 	App->enemies->Disable();
 	App->collision->Disable();
 	App->particles->Disable();
+	App->powerup->Disable();
 	App->font->Disable();
 
 

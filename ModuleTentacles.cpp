@@ -74,7 +74,8 @@ void ModuleTentacles::removeCollider() {
 		Tentacle* p = tentacles[i];
 		if (p->collider!= nullptr)
 		{
-			p->collider->to_delete = true;
+			delete p->collider;
+			p->collider = nullptr;
 		}
 	}
 
@@ -126,8 +127,6 @@ void ModuleTentacles::RemoveTentacle(){
 	{
 		if (tentacles[i] != nullptr)
 		{
-			delete tentacles[i]->collider;
-			tentacles[i]->collider = nullptr;
 			delete tentacles[i];
 			tentacles[i] = nullptr;
 		}
