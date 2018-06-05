@@ -270,10 +270,11 @@ update_status ModuleSceneStage4::Update()
 		ground_top_y--;
 	}
 
-	if (App->player->position.x >= 5700) //4700
-	{
+	if (App->player->position.x >= 5700 || App->input->keyboard[SDL_SCANCODE_P] == KEY_STATE::KEY_DOWN) //4700
+	{ 
+		right = false;
 		if (App->input->keyboard[SDL_SCANCODE_RETURN] == KEY_STATE::KEY_DOWN || App->input->controller[START] == KEY_STATE::KEY_DOWN) {
-			App->fade->FadeToBlack((Module*)App->scene_stage4, (Module*)App->scene_MainMenu);
+			App->fade->FadeToBlack((Module*)App->scene_stage4, (Module*)App->scene_score);
 		}
 		if (!clearstage_fx) {
 			App->audio->PlayMusic(App->scene_stage4->clear_stage);
