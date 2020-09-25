@@ -55,10 +55,13 @@ public:
 	Uint32 start_time;
 	Uint32 aux_time;
 	int rgb = 255;
+	float height;
 
 	bool injecting = true;
 
 	SDL_Rect screen;
+
+	SDL_Rect lifes;
 	char _stageendblit[12] = "";
 
 	char _stageend[12] = "stage clear";
@@ -75,6 +78,8 @@ public:
 	bool injected = false;
 
 	bool shipdeployed = false;
+
+	bool arrived = false;
 
 	void injectpos();
 private:

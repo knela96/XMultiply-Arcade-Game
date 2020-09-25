@@ -25,7 +25,7 @@ const Collider* Enemy::GetCollider() const
 void Enemy::Draw(SDL_Texture* sprites,float flip)
 {
 	if (collider != nullptr)
-		collider->SetPos(position.x, position.y);
+		collider->SetPos(position.x + offset.x, position.y + offset.y);
 
 	if (animation != nullptr)
 		App->render->Blit(sprites, position.x, position.y, &(animation->GetCurrentFrame()),1.0f,flip);

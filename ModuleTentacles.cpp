@@ -190,7 +190,6 @@ void ModuleTentacles::setPosition(int x, int y) {
 			else {
 				invert = -1;
 			}
-			LOG("%f", cos(p->radian));
 			
 			if (App->input->keyboard[SDL_SCANCODE_D] || App->input->controller[RIGHT] == KEY_STATE::KEY_REPEAT){
 				if (p->radian < p->max_angle) {
@@ -246,6 +245,10 @@ void ModuleTentacles::BlitTentacles() {
 	for (uint i = 0; i < MAX_TENTACLES; ++i)
 	{
 		Tentacle* p = tentacles[i];
+
+		if (p == nullptr)
+			return;
+
 		if (p->anchor) {
 				App->render->Blit(graphics, p->first_point.x, p->first_point.y, &p->anim.GetCurrentFrame(), 1.0f, 0.0f);
 			if (SDL_GetTicks() - start_time >= 350) {
@@ -258,7 +261,6 @@ void ModuleTentacles::BlitTentacles() {
 		}
 		else if (p->flip) {
 			App->render->Blit(graphics, p->first_point.x, p->first_point.y, &p->anim.GetCurrentFrame(), 1.0f, 90 + (180 * p->radian) / PI, true, true);
-			LOG("%f", tentacles[0]->radian * 180 / PI);
 		}
 		else {
 			App->render->Blit(graphics, p->first_point.x, p->first_point.y, &p->anim.GetCurrentFrame(), 1.0f, 90 + (180 * p->radian) / PI * -1);

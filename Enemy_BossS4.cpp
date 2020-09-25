@@ -19,10 +19,11 @@ Enemy_BossS4::Enemy_BossS4(int x, int y) : Enemy(x, y)
 
 	animation = &fly;
 
+	immortal = true;
 	live = 40;
 
-	collider = App->collision->AddCollider({ 50, 50, 145, 150 }, COLLIDER_TYPE::COLLIDER_ENEMY, (Module*)App->enemies);
-
+	collider = App->collision->AddCollider({ 50, 150, 145, 70 }, COLLIDER_TYPE::COLLIDER_ENEMY, (Module*)App->enemies);
+	offset.y = 40;
 	original_position.x = x;
 	original_position.y = y;
 }

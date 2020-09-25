@@ -37,7 +37,7 @@ Enemy_BossS4Face::Enemy_BossS4Face(int x, int y) : Enemy(x, y)
 
 	up = false;
 
-
+	immortal = true;
 	live = 40;
 
 	collider = App->collision->AddCollider({ 5, 5, 56, 50 }, COLLIDER_TYPE::COLLIDER_ENEMY, (Module*)App->enemies);

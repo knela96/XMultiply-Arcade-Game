@@ -290,7 +290,6 @@ update_status ModulePlayer::Update()
 			App->scene_stage4->resetmap = true;
 		}
 	}
-	LOG("%i", life);
 	
 
 	return UPDATE_CONTINUE;

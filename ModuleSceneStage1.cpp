@@ -35,6 +35,11 @@ ModuleSceneStage1::ModuleSceneStage1()
 	background.w = 4961;
 	background.h = 513;
 
+	lifes.x = 392;
+	lifes.y = 0;
+	lifes.w = 8;
+	lifes.h = 16;
+
 	//injection 
 	injection.PushBack({ 0, 0, 48, 102 });
 	injection.PushBack({ 79, 0, 48, 105 });
@@ -53,6 +58,8 @@ ModuleSceneStage1::ModuleSceneStage1()
 	injection_up.PushBack({ 0, 0, 48, 102 });
 	injection_up.speed = 0.15f;
 	injection_up.loop = false;
+
+
 
 	entering = { 0, 0, 48, 102 };
 
@@ -238,7 +245,7 @@ bool ModuleSceneStage1::CleanUp()
 	App->font->Disable();
 
 
-	App->render->camera.x = App->render->camera.y = 0;
+	App->render->camera.x = App->render->camera.y = height = 0;
 
 	return ret;
 
@@ -268,22 +275,35 @@ update_status ModuleSceneStage1::Update()
 
 	if (down)
 	{
-		App->render->camera.y += 1;
+		if (height < 257) {
+			height += 0.35;
+			App->render->camera.y = height;
+			LOG("Height: %f", height);
+		}
 	}
 
 
 	if (App->render->camera.x > 2657 * SCREEN_SIZE && App->render->camera.x < 3428 * SCREEN_SIZE) 
 	{
+		if (!arrived) {
+			height = App->render->camera.y;
+			arrived = true;
+		}
 		down = true;
 	}
-	else down = false;
+	else {
+		down = false;
+		arrived = false;
+	}
 
 		
 	App->render->Blit(back, 0, 0, &ground, 0.5f, 0, true, false);
 	App->render->Blit(graphics, 0, 0, &background);
-
-
 	App->render->Blit(hud, 0, 224, NULL, 0.0f, false);
+
+	for (int i = 0; i < App->player->life; i++) {
+		App->render->Blit(hud, 65 + (11 * i), 224, &lifes, 0.0f, false);
+	}
 
 	
 	if(injecting){
@@ -334,8 +354,11 @@ update_status ModuleSceneStage1::Update()
 
 	App->render->Blit(injectiontex, injectxy.x, injectxy.y, &entering, 0.5f);	
 	
-	if (App->player->position.x >= 4700) //4700
+	if (App->player->position.x >= 4700 || (!right && App->player->position.x > 1000)) //4700
 	{
+		right = false;
+		App->enemies->Disable();
+		App->collision->Disable();
 		if (App->input->keyboard[SDL_SCANCODE_RETURN] == KEY_STATE::KEY_DOWN || App->input->controller[START] == KEY_STATE::KEY_DOWN){
 			App->player->score += 10000;
 			App->fade->FadeToBlack((Module*)App->scene_stage1, (Module*)App->scene_stage4);

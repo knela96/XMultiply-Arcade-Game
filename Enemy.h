@@ -16,9 +16,11 @@ protected:
 
 public:
 	iPoint position;
+	iPoint offset = iPoint(0,0);
 	ENEMY_TYPES type = NO_TYPE;
 	float flip = false;
 	int live = 1;
+	bool immortal = false;
 	bool hit = false;
 	Uint32 start_time;
 	uint score = 0;

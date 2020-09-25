@@ -10,6 +10,7 @@
 struct SDL_Texture;
 typedef struct _Mix_Music Mix_Music;
 struct Mix_Chunk;
+struct Enemy_BossS4Heart;
 
 class ModuleSceneStage4 : public Module
 {
@@ -42,6 +43,10 @@ public:
 	SDL_Rect lifes;
 	SDL_Rect background;
 
+	Enemy_BossS4Heart* heart = nullptr;
+
+	bool boss_start = false;
+	bool dead_boss = false;
 	bool resetmap = false;
 	bool entering = false;
 	bool cleaned = false;

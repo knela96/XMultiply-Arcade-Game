@@ -16,6 +16,7 @@
 #include "SDL/include/SDL_render.h"
 #include "ModulePlayer.h"
 #include "ModulePowerUp.h"
+#include "Enemy_BossS4Heart.h"
 #include <stdio.h>
 
 ModuleSceneStage4::ModuleSceneStage4()
@@ -323,14 +324,46 @@ update_status ModuleSceneStage4::Update()
 		ground_top_y--;
 	}
 
-	if (App->input->keyboard[SDL_SCANCODE_F2] == KEY_STATE::KEY_DOWN || App->player->score >= 30000) {
+	if (App->input->keyboard[SDL_SCANCODE_F2] == KEY_STATE::KEY_DOWN) {
 		loose = true;
 	}
 
+	if (App->input->keyboard[SDL_SCANCODE_0] == KEY_STATE::KEY_DOWN) {
+		App->render->camera.x = 4670;
+			right = false;
+	}
 
-	if (App->render->camera.x >= 4670 && SDL_GetTicks() - boss_time >= 17000 || loose) //4700
+	if (App->render->camera.x >= 4670 && right != false) {
+		right = false;
+		fight_time = SDL_GetTicks();
+		boss_time = SDL_GetTicks();
+		boss_start = true;
+	}
+
+	if (boss_start) {
+		if (heart == nullptr) {
+			heart = (Enemy_BossS4Heart*)App->enemies->GetEnemy(BOSSHEART);
+			if (heart == nullptr)
+				dead_boss = true;
+			else
+				dead_boss = false;
+		}
+
+		if (!dead_boss) {
+			if (heart->live <= 1)
+				dead_boss = true;
+		}
+	}
+
+	
+
+
+
+
+	if (App->render->camera.x > 1000 && dead_boss || loose) //boss killed
 	{ 
 		App->enemies->Disable();
+		App->collision->Disable();
 		right = false;
 		if (App->input->keyboard[SDL_SCANCODE_RETURN] == KEY_STATE::KEY_DOWN || App->input->controller[START] == KEY_STATE::KEY_DOWN) {
 			App->player->score += 10000;
@@ -381,11 +414,7 @@ update_status ModuleSceneStage4::Update()
 	if (resetmap)
 		resetMap();
 
-	if (App->render->camera.x == 4670 && right != false) {
-		right = false;
-		fight_time = SDL_GetTicks();
-		boss_time = SDL_GetTicks();
-	}
+	
 
 	return UPDATE_CONTINUE;
 }
@@ -537,36 +566,22 @@ void ModuleSceneStage4::AddEnemies() {
 	App->enemies->AddEnemy(BLUE_BALL2, 3923, 106, -1, true);
 	App->enemies->AddEnemy(POWERUPSHIP, 3987, 143, 3, true);
 	App->enemies->AddEnemy(BLUE_BALL2, 4117, 106, -1, true);
-	
-	
-	
-	
+	App->enemies->AddEnemy(BLUE_BALL2, 400, 100, -1, true);
+	App->enemies->AddEnemy(ROCK, 430, 100, -1, true);
 	
 	//BOSS
-
-
-	App->enemies->AddEnemy(BLUE_BALL2, 400, 100, -1, true);
-
-	App->enemies->AddEnemy(ROCK, 430, 100, -1, true);
-
-
-
-
 
 
 
 
 	App->enemies->AddEnemy(BOSSHEART, 5016, 119, -1, true);
-	App->enemies->AddEnemy(BOSS1, 4950, 119, -1, true);
+	//App->enemies->AddEnemy(BOSS1, 4950, 119, -1, true);
 
-	App->enemies->AddEnemy(BOSSARM, 4930, 127, -1, true);
+	//App->enemies->AddEnemy(BOSSARM, 4930, 127, -1, true);
 
-	App->enemies->AddEnemy(BOSSTENT, 4956, 26, -1, true);
 
-	
-	App->enemies->AddEnemy(BOSSFACE, 4995, 119, -1, true);
-	App->enemies->AddEnemy(BOSSARM, 4930, 127, -1, true);
-
-	App->enemies->AddEnemy(BOSSDISP, 4949, 119, -1, true);
+	//App->enemies->AddEnemy(BOSSDISP, 4949, 119, -1, true);
+	//App->enemies->AddEnemy(BOSSTENT, 4956, 26, -1, true);
+	//App->enemies->AddEnemy(BOSSFACE, 4995, 119, -1, true);
 
 }

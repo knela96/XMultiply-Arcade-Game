@@ -47,7 +47,7 @@ Enemy_BossS4Tenta::Enemy_BossS4Tenta(int x, int y) : Enemy(x, y)
 
 	animation = &fly;
 	live = 40;
-
+	immortal = true;
 	path->PushBack({ 0 , 0 }, 2, animation);
 
 	//collider = App->collision->AddCollider({ 5, 5, 52, 48 }, COLLIDER_TYPE::COLLIDER_BOSS, (Module*)App->enemies);

@@ -22,8 +22,7 @@ Enemy_BossS4Heart::Enemy_BossS4Heart(int x, int y) : Enemy(x, y)
 
 	animation = &fly;
 
-
-	live = 40;
+	live = 20;
 
 	path->PushBack({ 0 , 0 }, 2, &fly);
 
@@ -31,6 +30,14 @@ Enemy_BossS4Heart::Enemy_BossS4Heart(int x, int y) : Enemy(x, y)
 
 	original_position.x = x;
 	original_position.y = y;
+
+	App->enemies->AddEnemy(BOSS1, 4950, 119, -1, true);
+	App->enemies->AddEnemy(BOSSARM, 4930, 127, -1, true);
+
+
+	App->enemies->AddEnemy(BOSSDISP, 4949, 119, -1, true);
+	App->enemies->AddEnemy(BOSSTENT, 4956, 26, -1, true);
+	App->enemies->AddEnemy(BOSSFACE, 4995, 119, -1, true);
 }
 
 void Enemy_BossS4Heart::Move()

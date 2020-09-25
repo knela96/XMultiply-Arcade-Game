@@ -204,44 +204,32 @@ bool ModuleParticles::Start()
 
 
 	Stage4Boss_shoot.anim.PushBack({ 96, 137 ,37,40 });
-
 	Stage4Boss_shoot.anim.PushBack({ 2, 137 ,37,40 });
-
 	Stage4Boss_shoot.anim.PushBack({ 132, 137 ,37,40 });
-
 	Stage4Boss_shoot.anim.PushBack({ 49, 137 ,37,40 });
 
 
 
 
-	// Phase 2 Boss shoot to repeat
+	//// Phase 2 Boss shoot to repeat
 
 	Stage4Boss_shoot.anim.PushBack({ 96,175,37,40 });
-
 	Stage4Boss_shoot.anim.PushBack({ 2,175,37,40 });
-
 	Stage4Boss_shoot.anim.PushBack({ 132,175,37,40 });
-
 	Stage4Boss_shoot.anim.PushBack({ 48,175,37,40 });
 
-	// Phase 3 Boss shoot
+	//// Phase 3 Boss shoot
 
-	Stage4Boss_shoot.anim.PushBack({ 96,219,37,40 });
+	//Stage4Boss_shoot.anim.PushBack({ 96,219,37,40 });
+	//Stage4Boss_shoot.anim.PushBack({ 2,219,37,40 });
+	//Stage4Boss_shoot.anim.PushBack({ 132,219,37,40 });
+	//Stage4Boss_shoot.anim.PushBack({ 48,219,37,40 });
 
-	Stage4Boss_shoot.anim.PushBack({ 2,219,37,40 });
-
-	Stage4Boss_shoot.anim.PushBack({ 132,219,37,40 });
-
-	Stage4Boss_shoot.anim.PushBack({ 48,219,37,40 });
-
-	// Phase 2 Boss shoot to repeat
-	Stage4Boss_shoot.anim.PushBack({ 96,175,37,40 });
-
-	Stage4Boss_shoot.anim.PushBack({ 2,175,37,40 });
-
-	Stage4Boss_shoot.anim.PushBack({ 132,175,37,40 });
-
-	Stage4Boss_shoot.anim.PushBack({ 48,175,37,40 });
+	//// Phase 2 Boss shoot to repeat
+	//Stage4Boss_shoot.anim.PushBack({ 96,175,37,40 });
+	//Stage4Boss_shoot.anim.PushBack({ 2,175,37,40 });
+	//Stage4Boss_shoot.anim.PushBack({ 132,175,37,40 });
+	//Stage4Boss_shoot.anim.PushBack({ 48,175,37,40 });
 
 	Stage4Boss_shoot.anim.loop = true;
 	Stage4Boss_shoot.anim.speed = 1;

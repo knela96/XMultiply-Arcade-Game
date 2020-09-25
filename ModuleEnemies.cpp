@@ -371,6 +371,16 @@ bool ModuleEnemies::AddEnemy(ENEMY_TYPES type, int x, int y, uint PU, bool move_
 	return ret;
 }
 
+Enemy* ModuleEnemies::GetEnemy(ENEMY_TYPES type)
+{
+	for (uint i = 0; enemies[i] != nullptr && i < MAX_ENEMIES; ++i) {
+		if (enemies[i]->type == ENEMY_TYPES::BOSSHEART)
+			return enemies[i];
+	}
+	return nullptr;
+}
+
+
 void ModuleEnemies::SpawnEnemy(const EnemyInfo& info)
 {
 	uint i = 0;
@@ -476,7 +486,8 @@ void ModuleEnemies::OnCollision(Collider* c1, Collider* c2)
 		{
 			
 			if (enemies[i]->live > 1) {
-				enemies[i]->live--;
+				if(!enemies[i]->immortal)
+					enemies[i]->live--;
 				App->audio->PlaySound(hit);
 				enemies[i]->hit = true;
 				enemies[i]->start_time = SDL_GetTicks();
