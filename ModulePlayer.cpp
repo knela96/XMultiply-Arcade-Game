@@ -162,6 +162,7 @@ update_status ModulePlayer::Update()
 		if ((App->input->keyboard[SDL_SCANCODE_W] == KEY_STATE::KEY_DOWN || App->input->controller[UP] == KEY_STATE::KEY_DOWN) && position.y > App->render->camera.y/SCREEN_SIZE)
 		{
 			position.y -= speed;
+			current_animation->Reset();
 			current_animation = &upward;
 			current_animation->Reset();
 		}
@@ -178,18 +179,21 @@ update_status ModulePlayer::Update()
 		}
 		if ((App->input->keyboard[SDL_SCANCODE_S] == KEY_STATE::KEY_DOWN || App->input->controller[DOWN] == KEY_STATE::KEY_DOWN) && position.y < App->render->camera.y /SCREEN_SIZE + SCREEN_HEIGHT-50)
 		{
-			position.y += speed * 1.5f;
+			position.y += speed * 1.f;
+			current_animation->Reset();
 			current_animation = &downward;
 			current_animation->Reset();
 
 		}
 		if ((App->input->keyboard[SDL_SCANCODE_S] == KEY_STATE::KEY_REPEAT || App->input->controller[DOWN] == KEY_STATE::KEY_REPEAT) && position.y < App->render->camera.y /SCREEN_SIZE + SCREEN_HEIGHT - 50)
 		{
-			position.y += speed * 1.5f;
+			position.y += speed * 1.f;
 			current_animation = &downward;
 		}
 		if (App->input->keyboard[SDL_SCANCODE_S] == KEY_STATE::KEY_UP || App->input->controller[DOWN] == KEY_STATE::KEY_UP) {
 			if (current_animation == &downward || current_animation == &downwardreturn) {
+
+				current_animation->Reset();
 				current_animation = &downwardreturn;
 				current_animation->Reset();
 			}
